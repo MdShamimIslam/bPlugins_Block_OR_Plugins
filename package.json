@@ -1,0 +1,36 @@
+{
+	"name": "audio-player-block",
+	"version": "1.0.0",
+	"description": "Listen music on the web.",
+	"scripts": {
+		"packages-update": "wp-scripts packages-update",
+		"lint": "eslint src",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"format": "wp-scripts format",
+		"start": "wp-scripts start --webpack-copy-php",
+		"build": "wp-scripts build --webpack-copy-php",
+		"i18n-pot": "wp i18n make-pot . languages/mp3player-block.pot --exclude=\"src\" && cp ./languages/mp3player-block.pot ./languages/mp3player-block-en_US.po",
+		"i18n-json": "wp i18n make-json languages/ --no-purge",
+		"i18n-mo": "wp i18n make-mo languages/",
+		"i18n": "npm run i18n-pot && npm run i18n-json && npm run i18n-mo",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"bundle": "npm run lint && npm run build && npm run i18n && npm run plugin-zip"
+	},
+	"author": "Wasek Bellah",
+	"license": "ISC",
+	"dependencies": {
+		"immer": "^10.1.1"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.9.0",
+		"eslint-webpack-plugin": "^4.2.0"
+	},
+	"files": [
+		"build",
+		"languages",
+		"index.php",
+		"plugin.php",
+		"readme.txt"
+	]
+}

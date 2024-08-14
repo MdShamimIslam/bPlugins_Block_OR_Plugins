@@ -1,0 +1,25 @@
+
+.progress-container {
+    align-items: center;
+    display: flex;
+}
+
+.current-time,
+.duration-time {
+    width: 40px; 
+    text-align: center;
+}
+
+#progress {
+    flex-grow: 1;
+    margin: 0 10px; 
+	appearance: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+}
+
+#progress::-webkit-slider-thumb {
+	appearance: none;
+	-webkit-appearance: none;
+	aspect-ratio: 1/1;
+}

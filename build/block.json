@@ -26,7 +26,8 @@
             "id": null,
             "url": "",
             "alt": "",
-            "title": ""
+            "title": "",
+            "link": ""
           },
           "audio": {
             "id": null,
@@ -35,6 +36,127 @@
           }
         }
       ]
+    },
+    "options": {
+      "type": "object",
+      "default": {
+        "songSl": "default",
+        "isThumb": true,
+        "isOverlayIcon": true,
+        "newTab": true
+      }
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "align": {
+          "desktop": "start",
+          "tablet": "start",
+          "mobile": "start"
+        },
+        "width": {
+          "desktop": "",
+          "tablet": "",
+          "mobile": ""
+        },
+        "height": {
+          "desktop": "",
+          "tablet": "",
+          "mobile": ""
+        },
+        "border": {
+          "radius": "5px"
+        },
+        "bg": "#604ca1",
+        "musicSlider": {
+          "sliderWidth": {
+            "desktop": "100px",
+            "tablet": "80px",
+            "mobile": "70px"
+          },
+          "sliderHeight": {
+            "desktop": "80px",
+            "tablet": "60px",
+            "mobile": "40px"
+          },
+          "border": {
+            "radius": "5px"
+          },
+          "overlayBg": "rgba(28, 22, 37, 0.6)"
+        },
+        "musicTitle": {
+          "color": "#fff",
+          "typo": {
+            "fontSize": 30
+          }
+        },
+        "musicName": {
+          "color": "#ddd",
+          "opacity": 0.6,
+          "typo": {
+            "fontSize": 20
+          }
+        },
+        "rangeInput": {
+          "width": {
+            "desktop": "400px",
+            "tablet": "380px",
+            "mobile": "160px"
+          },
+          "height": {
+            "desktop": "7px",
+            "tablet": "6px",
+            "mobile": "6px"
+          },
+          "margin": {
+            "desktop": {
+              "top": "15px"
+            },
+            "tablet": {
+              "top": "10px"
+            },
+            "mobile": {
+              "top": "7px"
+            }
+          },
+          "radius": 4,
+          "bg": "#FFFFFF5E",
+          "progressBg": "green",
+          "timeBg": "white"
+        },
+        "rangeThumb": {
+          "thumbWidth": {
+            "desktop": "16px",
+            "tablet": "15px",
+            "mobile": "14px"
+          },
+          "thumbBg": "rgba(89, 26, 151, 0.9)",
+          "thumbShadow": [],
+          "thumbOutline": {
+            "width": "4px",
+            "style": "solid",
+            "color": "white",
+            "radius": "50%"
+          }
+        },
+        "controlsBtn": {
+          "width": {
+            "desktop": "50px",
+            "tablet": "45px",
+            "mobile": "40px"
+          },
+          "colors": {
+            "color": "white",
+            "bg": "rgba(163, 162, 164, 0.3)"
+          },
+          "border": {
+            "width": "1px",
+            "style": "solid",
+            "color": "rgba(255, 255, 255, 0.3)",
+            "radius": "50%"
+          }
+        }
+      }
     },
     "width": {
       "type": "string",

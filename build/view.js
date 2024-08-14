@@ -34,7 +34,6 @@ const MP3Player = (selector, songs = []) => {
     disc.src = song.audio?.url;
     title.textContent = song.title;
     artist.textContent = song.artist;
-    // duration.textContent = song.duration;
     disc.addEventListener('loadedmetadata', function () {
       duration.innerHTML = toHHMMSS(disc.duration);
     });
@@ -54,7 +53,7 @@ const MP3Player = (selector, songs = []) => {
 
   // Convert time
   function toHHMMSS(time) {
-    var sec_num = parseInt(time, 10); // don't forget the second param
+    var sec_num = parseInt(time, 10);
     var hours = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - hours * 3600) / 60);
     var seconds = sec_num - hours * 3600 - minutes * 60;
@@ -87,8 +86,6 @@ const MP3Player = (selector, songs = []) => {
     var hours = Math.floor(disc.currentTime / 3600);
     var minutes = Math.floor((disc.currentTime - hours * 3600) / 60);
     var seconds = Math.floor(disc.currentTime - hours * 3600 - minutes * 60);
-    // let minutes = Math.floor(disc.currentTime / 60);
-    // let seconds = Math.floor(disc.currentTime % 60);
     if (hours < 10) {
       hours = '0' + hours;
     }

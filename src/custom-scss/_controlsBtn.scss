@@ -1,0 +1,33 @@
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    margin: 20px;
+    outline: 0;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 20px rgba(5, 36, 28, 0.3);
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.controls button:is(:hover, :focus-visible) {
+    transform: scale(0.96);
+}
+
+.controls button:nth-child(2) {
+    transform: scale(1.3);
+}
+
+.controls button:nth-child(2):is(:hover, :focus-visible) {
+    transform: scale(1.25);
+}
+.activeSlide {
+    transform: scale(1.8);
+}

@@ -125,7 +125,7 @@ const General = ({ attributes, setAttributes, setActiveIndex }) => {
                 <ToggleControl
                     className='mt5'
                     checked={options.isAutoPlay}
-                    label={__('Auto Play Music', 'mp3player-block')}
+                    label={__('Auto Play Audio', 'mp3player-block')}
                     onChange={(v) => setAttributes({ options: updateData(options, v, 'isAutoPlay') })}
                 />
             </PanelBody>

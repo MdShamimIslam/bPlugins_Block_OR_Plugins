@@ -1,10 +1,10 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaBackward, FaForward, FaPause, FaPlay } from '../../../utils/icons';
 
 
-const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setActiveIndex, swiperRef,attributes }) => {
-    const { audioProperties,style } = attributes;
-    const { bg,progressBg } = style.rangeInput;
+const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setActiveIndex, attributes }) => {
+    const { audioProperties, style,options } = attributes;
+    const { bg, progressBg } = style.rangeInput;
     const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -21,7 +21,20 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
         return () => {
             audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
         };
-    }, [audioRef,audioProperties[activeIndex]?.audio.url]);
+    }, [audioRef, audioProperties[activeIndex]?.audio.url]);
+
+
+    useEffect(() => {
+        const audio = audioRef.current;
+
+        // Automatically play the audio when the activeIndex changes
+        if (isPlaying) {
+            audio.play().catch(error => {
+                console.error("Failed to play the audio automatically: ", error);
+                setIsPlaying(false);
+            });
+        }
+    }, [activeIndex, isPlaying]);
 
     const updateProgress = () => {
         const audio = audioRef.current;
@@ -49,11 +62,10 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
                 setIsPlaying(false);
             }
         }
-        
+
     };
 
     const changeMusic = (direction) => {
-        const audio = audioRef.current;
         let newIndex = activeIndex;
 
         if (direction === 'forward') {
@@ -61,17 +73,11 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
         } else if (direction === 'backward') {
             newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
         }
-        setActiveIndex(newIndex);
-        audio.src = audioProperties[newIndex].audio.url;
-        if (isPlaying) {
-            audio.play();
-        }
 
-        // Use Swiper ref to navigate slides
-        if (swiperRef.current) {
-            swiperRef.current.slideTo(newIndex);
-        }
+        setActiveIndex(newIndex);
+        setIsPlaying(true); // Set to true to trigger auto-play in the useEffect
     };
+
 
     const handleSeek = (event) => {
         const audio = audioRef.current;
@@ -87,28 +93,31 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
         <h1 className='title' placeholder="Add Music Title...">{audioProperties[activeIndex]?.title}</h1>
         <p className='name' placeholder="Add Music Name...">{audioProperties[activeIndex]?.artist}</p>
 
-        <audio ref={audioRef} onTimeUpdate={updateProgress} 
-         key={audioProperties[activeIndex]?.audio.url}
-          onEnded={() => {
-            setIsPlaying(false);
-            changeMusic('forward')
+        <audio ref={audioRef} onTimeUpdate={updateProgress}
+            key={audioProperties[activeIndex]?.audio.url}
+            onEnded={() => {
+            if (options.isAutoPlay) {
+                changeMusic('forward');
+            }else{
+                setIsPlaying(false)
+            }
             }} >
             <source src={audioProperties[activeIndex]?.audio.url} type="audio/mpeg" />
         </audio>
 
         <div className="progress-container">
-                <span className="current-time">{formatTime(currentTime)}</span>
-                <input
-                    type="range"
-                    value={progress ? progress : 0}
-                    id="progresses"
-                    onChange={handleSeek}
-                    min="0"
-                    max="100"
-                    step="0.1"
-                    style={progressStyle}
-                />
-                <span className="duration-time">{formatTime(duration)}</span>
+            <span className="current-time">{formatTime(currentTime)}</span>
+            <input
+                type="range"
+                value={progress ? progress : 0}
+                id="progresses"
+                onChange={handleSeek}
+                min="0"
+                max="100"
+                step="0.1"
+                style={progressStyle}
+            />
+            <span className="duration-time">{formatTime(duration)}</span>
         </div>
 
         <div className="controls">

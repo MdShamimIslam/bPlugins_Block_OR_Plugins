@@ -229,12 +229,12 @@ const MusicPlayerBack = ({
   setIsPlaying,
   activeIndex,
   setActiveIndex,
-  swiperRef,
   attributes
 }) => {
   const {
     audioProperties,
-    style
+    style,
+    options
   } = attributes;
   const {
     bg,
@@ -253,6 +253,17 @@ const MusicPlayerBack = ({
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
     };
   }, [audioRef, audioProperties[activeIndex]?.audio.url]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const audio = audioRef.current;
+
+    // Automatically play the audio when the activeIndex changes
+    if (isPlaying) {
+      audio.play().catch(error => {
+        console.error("Failed to play the audio automatically: ", error);
+        setIsPlaying(false);
+      });
+    }
+  }, [activeIndex, isPlaying]);
   const updateProgress = () => {
     const audio = audioRef.current;
     const currentTime = audio.currentTime;
@@ -278,7 +289,6 @@ const MusicPlayerBack = ({
     }
   };
   const changeMusic = direction => {
-    const audio = audioRef.current;
     let newIndex = activeIndex;
     if (direction === 'forward') {
       newIndex = (activeIndex + 1) % audioProperties.length;
@@ -286,15 +296,7 @@ const MusicPlayerBack = ({
       newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
     }
     setActiveIndex(newIndex);
-    audio.src = audioProperties[newIndex].audio.url;
-    if (isPlaying) {
-      audio.play();
-    }
-
-    // Use Swiper ref to navigate slides
-    if (swiperRef.current) {
-      swiperRef.current.slideTo(newIndex);
-    }
+    setIsPlaying(true); // Set to true to trigger auto-play in the useEffect
   };
   const handleSeek = event => {
     const audio = audioRef.current;
@@ -317,8 +319,11 @@ const MusicPlayerBack = ({
     onTimeUpdate: updateProgress,
     key: audioProperties[activeIndex]?.audio.url,
     onEnded: () => {
-      setIsPlaying(false);
-      changeMusic('forward');
+      if (options.isAutoPlay) {
+        changeMusic('forward');
+      } else {
+        setIsPlaying(false);
+      }
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("source", {
     src: audioProperties[activeIndex]?.audio.url,

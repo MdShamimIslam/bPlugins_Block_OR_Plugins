@@ -108,7 +108,7 @@ const Edit = props => {
 							setIsPlaying={setIsPlaying}
 							activeIndex={activeIndex}
 							setActiveIndex={setActiveIndex}
-							swiperRef={swiperRef}
+							
 						/>
 					</div>
 

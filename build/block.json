@@ -42,6 +42,8 @@
       "type": "object",
       "default": {
         "songSl": "default",
+        "textSl": "title",
+        "rangeSl": "input",
         "isThumb": true,
         "isOverlayIcon": false,
         "isAutoPlay": true,

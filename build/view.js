@@ -437,11 +437,6 @@ const SwiperSlider = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     onClick: () => music.link ? window.open(`${music.link}`, options.newTab ? '_blank' : '_self') : {}
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_6__.FaYoutube, {
-    style: {
-      color: "red",
-      cursor: "pointer",
-      width: "20px"
-    },
     className: "youtubeIcon"
   })))))))));
 });

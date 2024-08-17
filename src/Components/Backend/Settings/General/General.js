@@ -87,7 +87,7 @@ const General = ({ attributes, setAttributes, setActiveIndex }) => {
 							/>
 							{item.link && <ToggleControl
 								checked={options.newTab}
-								label={__('Open in New Tab', 'music-player')}
+								label={__('Open in New Tab', 'mp3player-block')}
 								onChange={(v) => setAttributes({ options: updateData(options, v, 'newTab') })}
 							/>}
 
@@ -125,7 +125,7 @@ const General = ({ attributes, setAttributes, setActiveIndex }) => {
                 <ToggleControl
                     className='mt5'
                     checked={options.isAutoPlay}
-                    label={__('Auto Play Music', 'music-player')}
+                    label={__('Auto Play Music', 'mp3player-block')}
                     onChange={(v) => setAttributes({ options: updateData(options, v, 'isAutoPlay') })}
                 />
             </PanelBody>

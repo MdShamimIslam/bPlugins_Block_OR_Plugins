@@ -4,12 +4,13 @@ import { BColor, BorderControl, Label, MultiShadowControl, Typography, ColorsCon
 import { Device } from '../../../../../../Components/Device/Device';
 import { updateData } from '../../../../utils/functions';
 import { BBoxControl } from '../../../BBoxControl/BBoxControl';
-import { Tab } from '../../../Panel/Tab/Tab';
 import { musicAlignOptions } from '../../../../utils/options';
 import { produce } from 'immer';
+import { perUnit, pxUnit } from '../../../../../../Components/utils/options';
+import { Tab } from './Tab';
 
 
-const Style = ({ attributes, setAttributes, device }) => {
+const Styles = ({ attributes, setAttributes, device }) => {
     const { style, options } = attributes;
     const { textSl, rangeSl } = options;
     const { align, musicSlider, musicTitle, musicName, rangeInput, rangeThumb, controlsBtn } = style;
@@ -19,7 +20,7 @@ const Style = ({ attributes, setAttributes, device }) => {
 
     return (
         <>
-            <PanelBody className='bPlPanelBody' title={__('Music Player Wrapper', 'music-player')}>
+            <PanelBody className='bPlPanelBody' title={__('Audio Player Wrapper', 'mp3player-block')}>
                 <PanelRow>
                     <Label>{__('Alignment', 'b-blocks')}</Label>
                     <Device />
@@ -36,6 +37,7 @@ const Style = ({ attributes, setAttributes, device }) => {
                 </PanelRow>
                 <UnitControl
                     value={style.width[device]}
+                    units={[pxUnit(), perUnit()]}
                     onChange={(v) => setAttributes({ style: updateData(style, v, "width", device) })}
                 />
 
@@ -45,17 +47,18 @@ const Style = ({ attributes, setAttributes, device }) => {
                 </PanelRow>
                 <UnitControl
                     value={style.height[device]}
+                    units={[pxUnit(), perUnit()]}
                     onChange={(v) => setAttributes({ style: updateData(style, v, "height", device) })}
                 />
 
                 <BColor
-                    label={__('Background', 'music-player')}
+                    label={__('Background', 'mp3player-block')}
                     value={style.bg}
                     onChange={v => setAttributes({ style: updateData(style, v, "bg") })}
                 />
 
                 <BorderControl
-                    label={__('Border', 'music-player')}
+                    label={__('Border', 'mp3player-block')}
                     value={style.border}
                     onChange={(v) => setAttributes({ style: updateData(style, v, 'border') })}
                     defaults={{ radius: "5px" }}
@@ -63,7 +66,7 @@ const Style = ({ attributes, setAttributes, device }) => {
 
             </PanelBody>
 
-            <PanelBody className='bPlPanelBody' title={__('Music Slider', 'music-player')} initialOpen={false} >
+            <PanelBody className='bPlPanelBody' title={__('Audio Slider', 'mp3player-block')} initialOpen={false} >
 
                 <PanelRow>
                     <Label>{__('Width', 'b-blocks')}</Label>
@@ -71,6 +74,7 @@ const Style = ({ attributes, setAttributes, device }) => {
                 </PanelRow>
                 <UnitControl
                     value={sliderWidth[device]}
+                    units={[pxUnit(), perUnit()]}
                     onChange={(v) => setAttributes({ style: updateData(style, v, "musicSlider", 'sliderWidth', device) })}
                 />
 
@@ -80,17 +84,18 @@ const Style = ({ attributes, setAttributes, device }) => {
                 </PanelRow>
                 <UnitControl
                     value={sliderHeight[device]}
+                    units={[pxUnit(), perUnit()]}
                     onChange={(v) => setAttributes({ style: updateData(style, v, "musicSlider", 'sliderHeight', device) })}
                 />
 
                 <BColor
-                    label={__('Overlay Background', 'music-player')}
+                    label={__('Overlay Background', 'mp3player-block')}
                     value={overlayBg}
                     onChange={v => setAttributes({ style: updateData(style, v, "musicSlider", "overlayBg") })}
                 />
 
                 <BorderControl
-                    label={__('Border', 'music-player')}
+                    label={__('Border', 'mp3player-block')}
                     value={border}
                     onChange={(v) => setAttributes({ style: updateData(style, v, 'musicSlider', 'border') })}
                     defaults={{ radius: "5px" }}
@@ -98,7 +103,7 @@ const Style = ({ attributes, setAttributes, device }) => {
 
             </PanelBody>
 
-            <PanelBody className='bPlPanelBody' title={__('Music Player', 'music-player')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Audio Player', 'mp3player-block')} initialOpen={false}>
                 <Tab
                     options={["title", "sub-title"]}
                     value={textSl}
@@ -108,25 +113,25 @@ const Style = ({ attributes, setAttributes, device }) => {
                 {textSl === 'title' ?
                     <>
                         <BColor
-                            label={__('Color', 'music-player')}
+                            label={__('Color', 'mp3player-block')}
                             value={musicTitle.color}
                             onChange={v => setAttributes({ style: updateData(style, v, 'musicTitle', "color") })}
                         />
                         <Typography
-                            label={__('Typography', 'music-player')}
+                            label={__('Typography', 'mp3player-block')}
                             value={musicTitle.typo}
                             onChange={v => setAttributes({ style: updateData(style, v, 'musicTitle', "typo") })}
                             defaults={{ fontSize: 30 }}
                         />
                     </> : <>
                         <BColor
-                            label={__('Color', 'music-player')}
+                            label={__('Color', 'mp3player-block')}
                             value={musicName.color}
                             onChange={v => setAttributes({ style: updateData(style, v, 'musicName', "color") })}
                         />
                         <RangeControl
                             className='mt5'
-                            label={__('Opacity', 'music-player')}
+                            label={__('Opacity', 'mp3player-block')}
                             value={musicName.opacity}
                             allowReset
                             onChange={v => setAttributes({ style: updateData(style, v, 'musicName', "opacity") })}
@@ -135,7 +140,7 @@ const Style = ({ attributes, setAttributes, device }) => {
                             step={0.1}
                         />
                         <Typography
-                            label={__('Typography', 'music-player')}
+                            label={__('Typography', 'mp3player-block')}
                             value={musicName.typo}
                             onChange={v => setAttributes({ style: updateData(style, v, 'musicName', "typo") })}
                             defaults={{ fontSize: 20 }}
@@ -143,7 +148,7 @@ const Style = ({ attributes, setAttributes, device }) => {
 
                     </>
                 }
-                <p className='mt5'>For Range of Progress </p>
+                <p className='mt15'>For Range of Progress </p>
                 <Tab
                     options={["Input", "Thumb"]}
                     value={rangeSl}
@@ -152,46 +157,49 @@ const Style = ({ attributes, setAttributes, device }) => {
                 {rangeSl === 'input' ?
                     <>
                         <BColor
-                            label={__('Static Background', 'music-player')}
+                            label={__('Static Background', 'mp3player-block')}
                             value={bg}
                             onChange={v => setAttributes({ style: updateData(style, v, 'rangeInput', "bg") })}
                         />
                         <BColor
-                            label={__('Progress Background', 'music-player')}
+                            label={__('Progress Background', 'mp3player-block')}
                             value={progressBg}
                             onChange={v => setAttributes({ style: updateData(style, v, 'rangeInput', "progressBg") })}
                         />
                         <BColor
-                            label={__('Progress Time Color', 'music-player')}
+                            label={__('Progress Time Color', 'mp3player-block')}
                             value={timeBg}
                             onChange={v => setAttributes({ style: updateData(style, v, 'rangeInput', "timeBg") })}
                         />
 
                         <PanelRow>
-                            <Label>{__('Width', 'music-player')}</Label>
+                            <Label>{__('Width', 'mp3player-block')}</Label>
                             <Device />
                         </PanelRow>
                         <UnitControl
                             value={width[device]}
+                            units={[pxUnit(), perUnit()]}
                             onChange={(v) => setAttributes({ style: updateData(style, v, 'rangeInput', 'width', device) })}
                         />
 
                         <PanelRow>
-                            <Label>{__('Height', 'music-player')}</Label>
+                            <Label>{__('Height', 'mp3player-block')}</Label>
                             <Device />
                         </PanelRow>
                         <UnitControl
                             value={height[device]}
+                            units={[pxUnit(), perUnit()]}
                             onChange={(v) => setAttributes({ style: updateData(style, v, 'rangeInput', 'height', device) })}
                         />
 
                         <PanelRow>
-                            <Label>{__('Margin', 'music-player')}</Label>
+                            <Label>{__('Margin', 'mp3player-block')}</Label>
                             <Device />
                         </PanelRow>
                         <BBoxControl
                             label=""
                             values={margin[device]}
+                            units={[pxUnit(), perUnit()]}
                             onChange={v => setAttributes({
                                 style: produce(style, draft => {
                                     draft.rangeInput.margin[device] = v;
@@ -200,7 +208,7 @@ const Style = ({ attributes, setAttributes, device }) => {
                         />
 
                         <RangeControl
-                            label={__('Border radius', 'music-player')}
+                            label={__('Border radius', 'mp3player-block')}
                             value={radius}
                             allowReset
                             onChange={v => setAttributes({ style: updateData(style, v, 'rangeInput', "radius") })}
@@ -210,28 +218,29 @@ const Style = ({ attributes, setAttributes, device }) => {
 
                     </> : <>
                         <BColor
-                            label={__('Background', 'music-player')}
+                            label={__('Background', 'mp3player-block')}
                             value={thumbBg}
                             onChange={v => setAttributes({ style: updateData(style, v, 'rangeThumb', "thumbBg") })}
                         />
 
                         <PanelRow>
-                            <Label>{__('Width', 'music-player')}</Label>
+                            <Label>{__('Width', 'mp3player-block')}</Label>
                             <Device />
                         </PanelRow>
                         <UnitControl
                             value={thumbWidth[device]}
+                            units={[pxUnit(), perUnit()]}
                             onChange={(v) => setAttributes({ style: updateData(style, v, 'rangeThumb', 'thumbWidth', device) })}
                         />
                         <MultiShadowControl
                             className='mt15'
-                            label={__('Shadow', 'music-player')}
+                            label={__('Shadow', 'mp3player-block')}
                             value={thumbShadow}
                             onChange={(v) => setAttributes({ style: updateData(style, v, 'rangeThumb', 'thumbShadow') })}
                         />
 
                         <BorderControl
-                            label={__('Outline', 'music-player')}
+                            label={__('Outline', 'mp3player-block')}
                             value={thumbOutline}
                             onChange={(v) => setAttributes({ style: updateData(style, v, 'rangeThumb', 'thumbOutline') })}
                             defaults={{ radius: "50%" }}
@@ -243,26 +252,27 @@ const Style = ({ attributes, setAttributes, device }) => {
 
             </PanelBody>
 
-            <PanelBody className='bPlPanelBody' title={__('Music Controls Button', 'music-player')} initialOpen={false}>
+            <PanelBody className='bPlPanelBody' title={__('Audio Controls Button', 'mp3player-block')} initialOpen={false}>
 
                 <PanelRow>
-                    <Label>{__('Width', 'music-player')}</Label>
+                    <Label>{__('Width', 'mp3player-block')}</Label>
                     <Device />
                 </PanelRow>
                 <UnitControl
                     value={controlsBtn.width[device]}
+                    units={[pxUnit(), perUnit()]}
                     onChange={(v) => setAttributes({ style: updateData(style, v, "controlsBtn", "width", device) })}
                 />
 
                 <ColorsControl
-                    label={__('Colors', 'music-player')}
+                    label={__('Colors', 'mp3player-block')}
                     value={controlsBtn.colors}
                     onChange={(v) => setAttributes({ style: updateData(style, v,"controlsBtn", 'colors') })}
                     defaults={{ color: "white", bg: "rgba(163, 162, 164, 0.3)" }}
                 />
 
                 <BorderControl
-                    label={__('Border', 'music-player')}
+                    label={__('Border', 'mp3player-block')}
                     value={controlsBtn.border}
                     onChange={(v) => setAttributes({ style: updateData(style, v, "controlsBtn", 'border') })}
                     defaults={{ radius: "50%" }}
@@ -273,4 +283,4 @@ const Style = ({ attributes, setAttributes, device }) => {
     )
 }
 
-export default Style
+export default Styles

@@ -9,6 +9,11 @@ $primaryColor: #4527a4;
 	}
 }
 
+.components-button.button.button-primary.has-icon{
+	border-radius: 0px;
+	height: 32px;
+}
+
 .bpMp3PlayerError {
 	color: red !important;
 	text-align: center;

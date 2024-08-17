@@ -4,7 +4,7 @@ import { TabPanel } from '@wordpress/components';
 import { generalStyleTabs } from '../../../utils/options';
 import { tabController } from '../../../../../Components/utils/functions';
 import General from './General/General'
-import Style from './Style/Style'
+import Styles from './Style/Styles'
 
 const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex , device}) => {
 	return <InspectorControls>
@@ -19,7 +19,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex , dev
 
 							</>}
 							{'style' === tab.name && <>
-								<Style
+								<Styles
 									{...{ attributes, setAttributes,device }}
 									activeIndex={activeIndex}
 									setActiveIndex={setActiveIndex} />

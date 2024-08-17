@@ -14,18 +14,6 @@ $primary-clr: rgba(228, 228, 229, 1);
 
 	@import './custom-scss/keyFrames';
 
-	// %ourBlocks{
-	// 	position: relative;
-	// 	display: inline-flex;
-	// 	background-repeat: no-repeat;
-	// 	backdrop-filter: blur(8px);
-	// 	-webkit-backdrop-filter: blur(8px);
-	// 	animation: slideIn 120s forwards infinite alternate;
-	// 	padding: 15px 8px;
-	// 	display: inline-block;
-	// 	overflow: hidden;
-	// 	}
-
 	.bpMp3Player {
 		max-width: 100%;
 		background-color: #fff;
@@ -185,9 +173,6 @@ $primary-clr: rgba(228, 228, 229, 1);
 				}
 			}
 		}
-
-			// blocks parents
-			// @extend %ourBlocks;
 
 			// Slide
 			@import './custom-scss/swiperSlide';

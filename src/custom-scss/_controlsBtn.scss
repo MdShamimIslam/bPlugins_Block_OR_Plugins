@@ -16,7 +16,8 @@
     cursor: pointer;
     transition: all 0.3s linear;
 }
-.controls button svg{
+
+.controls button svg {
     margin: 0px;
 }
 
@@ -31,7 +32,14 @@
 .controls button:nth-child(2):is(:hover, :focus-visible) {
     transform: scale(1.25);
 }
+
 .activeSlide {
     transform: scale(1.8);
-    margin-left:-13px;
+    margin-left: -13px;
+}
+
+.activeSlide .youtubeIcon {
+    color: red;
+    cursor: pointer;
+    width: 20px
 }

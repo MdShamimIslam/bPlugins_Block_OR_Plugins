@@ -1,7 +1,6 @@
 $primaryColor: #4527a4;
 $primary-clr: rgba(228, 228, 229, 1);
 
-@use './custom-scss/settingStyle';
 // Dashicon
 .dashicons {
 	font-family: dashicons !important;
@@ -33,7 +32,6 @@ $primary-clr: rgba(228, 228, 229, 1);
 		border-radius: 1rem;
 		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 		padding: 1rem 2rem;
-		margin-top: 3rem;
 		display: inline-flex;
 		flex-direction: column;
 		justify-content: center;

@@ -94,7 +94,7 @@ const Edit = props => {
 						</div> : <h3 className='bpMp3PlayerError'>{__('Please add audio file first!', 'mp3player-block')}</h3>}
 				</> :
 				<>
-				<SliderStyle attributes={attributes} device={device} id={`block-${clientId}`} />
+					<SliderStyle attributes={attributes} device={device} id={`block-${clientId}`} />
 					<div className='bpMp3Player'>
 						<SwiperSlider
 							ref={swiperRef}
@@ -111,7 +111,7 @@ const Edit = props => {
 							swiperRef={swiperRef}
 						/>
 					</div>
-					
+
 				</>
 			}
 		</div>

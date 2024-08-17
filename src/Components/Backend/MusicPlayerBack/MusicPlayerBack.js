@@ -40,13 +40,16 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
 
     const playPauseMusic = () => {
         const audio = audioRef.current;
-        if (audio.paused) {
-            audio.play();
-            setIsPlaying(true);
-        } else {
-            audio.pause();
-            setIsPlaying(false);
+        if (audioProperties[activeIndex]?.audio.url) {
+            if (audio.paused) {
+                audio.play();
+                setIsPlaying(true);
+            } else {
+                audio.pause();
+                setIsPlaying(false);
+            }
         }
+        
     };
 
     const changeMusic = (direction) => {
@@ -98,7 +101,7 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
                 <input
                     type="range"
                     value={progress ? progress : 0}
-                    id="progress"
+                    id="progresses"
                     onChange={handleSeek}
                     min="0"
                     max="100"
@@ -113,7 +116,7 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
                 <FaBackward />
             </button>
             <button onClick={playPauseMusic}>
-                {isPlaying ? <FaPause id="controlIcon" /> : <FaPlay id="controlIcon" />}
+                {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
             <button className="forward" onClick={() => { changeMusic('forward') }} >
                 <FaForward />

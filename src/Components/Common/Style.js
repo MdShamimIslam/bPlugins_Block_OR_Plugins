@@ -8,6 +8,7 @@ const Style = ({ attributes, id }) => {
 		}
 		#${id} .bpMp3Player{
 			width: ${width};
+			margin-top:3rem;
 		}
 		`.replace(/\s+/g, ' ')
 	}} />

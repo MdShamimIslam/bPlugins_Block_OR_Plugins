@@ -33,7 +33,8 @@
             "id": null,
             "url": "",
             "title": ""
-          }
+          },
+          "link": ""
         }
       ]
     },
@@ -42,7 +43,8 @@
       "default": {
         "songSl": "default",
         "isThumb": true,
-        "isOverlayIcon": true,
+        "isOverlayIcon": false,
+        "isAutoPlay": true,
         "newTab": true
       }
     },
@@ -80,7 +82,10 @@
             "mobile": "40px"
           },
           "border": {
-            "radius": "5px"
+            "radius": "2px",
+            "style": "solid",
+            "color": "white",
+            "width": "3px"
           },
           "overlayBg": "rgba(28, 22, 37, 0.6)"
         },

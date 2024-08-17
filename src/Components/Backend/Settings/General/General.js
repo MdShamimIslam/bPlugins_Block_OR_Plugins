@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, Button, Dashicon,PanelRow,TextControl,ToggleControl } from '@wordpress/components';
+import { PanelBody, SelectControl, Button, Dashicon, PanelRow, TextControl, ToggleControl } from '@wordpress/components';
 import { songSlOptions } from '../../../../utils/options';
 import { updateData } from '../../../../utils/functions';
 import { HelpPanel, InlineDetailMediaUpload, Label } from '../../../../../../Components';
@@ -9,7 +9,7 @@ import { gearIcon } from '../../../../../../Components/utils/icons';
 
 const General = ({ attributes, setAttributes, setActiveIndex }) => {
     const { audioProperties, options, alignment } = attributes;
-    const { songSl,isOverlayIcon,isThumb } = options;
+    const { songSl, isOverlayIcon, isThumb } = options;
 
     const addNewAudioProperty = () => {
         setAttributes({
@@ -76,6 +76,24 @@ const General = ({ attributes, setAttributes, setActiveIndex }) => {
                         <Label>{__('Cover Photo:', 'mp3player-block')}</Label>
                         <InlineDetailMediaUpload value={cover} types={['image']} onChange={val => updateAudioProperty(index, 'cover', val)} placeholder={__('Enter Cover Image URL', 'mp3player-block')} />
 
+                        {
+						options.isOverlayIcon && <>
+							<TextControl
+                            className='mt15'
+								label={__('Social Link', 'mp3player-block')}
+								placeholder='Enter or paste link...'
+								value={item.link}
+								onChange={val => updateAudioProperty(index, 'link', val)}
+							/>
+							{item.link && <ToggleControl
+								checked={options.newTab}
+								label={__('Open in New Tab', 'music-player')}
+								onChange={(v) => setAttributes({ options: updateData(options, v, 'newTab') })}
+							/>}
+
+						</>
+					}
+
                         <PanelRow className='itemAction mt20'>
                             {1 < audioProperties.length && <Button className='removeItem' label={__('Remove', 'mp3player-block')} onClick={e => removeAudioProperty(e, index)}><Dashicon icon='no' />{__('Remove', 'mp3player-block')}</Button>}
 
@@ -92,19 +110,25 @@ const General = ({ attributes, setAttributes, setActiveIndex }) => {
             </PanelBody>
 
             <PanelBody className='bPlPanelBody' title={__('Player Options', 'mp3player-block')} initialOpen={false}>
-			<ToggleControl
-				className='mt5'
-				checked={isOverlayIcon}
-				label={__('Show Overlay Icon', 'mp3player-block')}
-				onChange={(v) => setAttributes({ options: updateData(options, v, 'isOverlayIcon') })}
-			/>
-			<ToggleControl
-				className='mt5'
-				checked={isThumb}
-				label={__('Show Range Thumb', 'mp3player-block')}
-				onChange={(v) => setAttributes({ options: updateData(options, v, 'isThumb') })}
-			/>
-		</PanelBody>
+                <ToggleControl
+                    className='mt5'
+                    checked={isOverlayIcon}
+                    label={__('Show Social Link', 'mp3player-block')}
+                    onChange={(v) => setAttributes({ options: updateData(options, v, 'isOverlayIcon') })}
+                />
+                <ToggleControl
+                    className='mt5'
+                    checked={isThumb}
+                    label={__('Show Range Thumb', 'mp3player-block')}
+                    onChange={(v) => setAttributes({ options: updateData(options, v, 'isThumb') })}
+                />
+                <ToggleControl
+                    className='mt5'
+                    checked={options.isAutoPlay}
+                    label={__('Auto Play Music', 'music-player')}
+                    onChange={(v) => setAttributes({ options: updateData(options, v, 'isAutoPlay') })}
+                />
+            </PanelBody>
 
             <BlockControls>
                 <AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Player Alignment')} alignmentControls={[

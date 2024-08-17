@@ -6,6 +6,8 @@ import { A11y, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaYoutube } from '../../../utils/icons';
 
+const defaultImg = "https://i.ibb.co/1qDChXj/cassette-tape-square.jpg";
+
 const SwiperSlider = forwardRef(({ playTrack, attributes }, ref) => {
   const { audioProperties, options } = attributes;
   const [activeSlide, setActiveSlide] = useState(0);
@@ -41,11 +43,11 @@ const SwiperSlider = forwardRef(({ playTrack, attributes }, ref) => {
       {audioProperties.map((music, index) => (
         <SwiperSlide  key={index}>
           <div className={`${activeSlide === index ? 'activeSlide' : ''}`}>
-            <img src={music.cover.url} alt={music.cover.title} />
+            <img src={music.cover.url ? music.cover.url : defaultImg} alt={music.cover.title ? music.cover.title : "Tony" } />
             {
               options.isOverlayIcon && <>
                {activeSlide === index && <div className="overlay">
-              <span onClick={() => music.cover.link ? window.open(`${music.over.link}`, options.newTab ? '_blank' : '_self') : {}} >
+              <span onClick={() => music.link ? window.open(`${music.link}`, options.newTab ? '_blank' : '_self') : {}} >
                 <FaYoutube style={{ color: "red", cursor: "pointer", width: "20px" }} className='youtubeIcon' />
               </span>
             </div>

@@ -18,7 +18,7 @@ const SliderStyle = ({ attributes, id, device = "desktop" }) => {
 	const musicNameSl = `${musicPlayerSl} .name`;
 	const controlsBtnSl = `${blockSl} .controls button`;
 
-	const rangeInputSl = `${musicPlayerSl} #progress`;
+	const rangeInputSl = `${musicPlayerSl} #progresses`;
 	const rangeThumbSl = `${rangeInputSl}::-webkit-slider-thumb`;
 
 	return <style dangerouslySetInnerHTML={{
@@ -41,7 +41,7 @@ const SliderStyle = ({ attributes, id, device = "desktop" }) => {
 				}
 
 				${activeSlideSl}{
-					${getBorderCSS(border)}
+					${getBorderCSS(border)};
 					width:${sliderWidth[device]};
 					height:${sliderHeight[device]};
 				}

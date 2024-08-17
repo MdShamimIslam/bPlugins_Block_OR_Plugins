@@ -16,6 +16,9 @@
     cursor: pointer;
     transition: all 0.3s linear;
 }
+.controls button svg{
+    margin: 0px;
+}
 
 .controls button:is(:hover, :focus-visible) {
     transform: scale(0.96);
@@ -30,4 +33,5 @@
 }
 .activeSlide {
     transform: scale(1.8);
+    margin-left:-13px;
 }

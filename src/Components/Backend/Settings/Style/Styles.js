@@ -12,7 +12,7 @@ import { Tab } from './Tab';
 
 const Styles = ({ attributes, setAttributes, device }) => {
     const { style, options } = attributes;
-    const { textSl, rangeSl } = options;
+    const { textSl, rangeSl, isOverlayIcon } = options;
     const { align, musicSlider, musicTitle, musicName, rangeInput, rangeThumb, controlsBtn } = style;
     const { sliderWidth, sliderHeight, border, overlayBg } = musicSlider;
     const { width, height, bg, progressBg, timeBg, radius, margin, } = rangeInput;
@@ -88,17 +88,18 @@ const Styles = ({ attributes, setAttributes, device }) => {
                     onChange={(v) => setAttributes({ style: updateData(style, v, "musicSlider", 'sliderHeight', device) })}
                 />
 
-                <BColor
-                    label={__('Overlay Background', 'mp3player-block')}
-                    value={overlayBg}
-                    onChange={v => setAttributes({ style: updateData(style, v, "musicSlider", "overlayBg") })}
-                />
-
+                {isOverlayIcon && <BColor
+                        label={__('Overlay Background', 'mp3player-block')}
+                        value={overlayBg}
+                        onChange={v => setAttributes({ style: updateData(style, v, "musicSlider", "overlayBg") })}
+                    />
+                }
+                
                 <BorderControl
                     label={__('Border', 'mp3player-block')}
                     value={border}
                     onChange={(v) => setAttributes({ style: updateData(style, v, 'musicSlider', 'border') })}
-                    defaults={{ radius: "5px" }}
+                    defaults={{ radius: "3px" }}
                 />
 
             </PanelBody>
@@ -267,7 +268,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
                 <ColorsControl
                     label={__('Colors', 'mp3player-block')}
                     value={controlsBtn.colors}
-                    onChange={(v) => setAttributes({ style: updateData(style, v,"controlsBtn", 'colors') })}
+                    onChange={(v) => setAttributes({ style: updateData(style, v, "controlsBtn", 'colors') })}
                     defaults={{ color: "white", bg: "rgba(163, 162, 164, 0.3)" }}
                 />
 

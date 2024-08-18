@@ -7,8 +7,9 @@ import { HelpPanel, InlineDetailMediaUpload, Label } from '../../../../../../Com
 import { produce } from 'immer';
 import { gearIcon } from '../../../../../../Components/utils/icons';
 
-const General = ({ attributes, setAttributes, setActiveIndex }) => {
-    const { audioProperties, options, alignment } = attributes;
+const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
+    const { audioProperties, options, style } = attributes;
+    const { align } = style;
     const { songSl, isOverlayIcon, isThumb } = options;
 
     const addNewAudioProperty = () => {
@@ -77,22 +78,22 @@ const General = ({ attributes, setAttributes, setActiveIndex }) => {
                         <InlineDetailMediaUpload value={cover} types={['image']} onChange={val => updateAudioProperty(index, 'cover', val)} placeholder={__('Enter Cover Image URL', 'mp3player-block')} />
 
                         {
-						options.isOverlayIcon && <>
-							<TextControl
-                            className='mt15'
-								label={__('Social Link', 'mp3player-block')}
-								placeholder='Enter or paste link...'
-								value={item.link}
-								onChange={val => updateAudioProperty(index, 'link', val)}
-							/>
-							{item.link && <ToggleControl
-								checked={options.newTab}
-								label={__('Open in New Tab', 'mp3player-block')}
-								onChange={(v) => setAttributes({ options: updateData(options, v, 'newTab') })}
-							/>}
+                            options.isOverlayIcon && <>
+                                <TextControl
+                                    className='mt15'
+                                    label={__('Social Link', 'mp3player-block')}
+                                    placeholder='Enter or paste link...'
+                                    value={item.link}
+                                    onChange={val => updateAudioProperty(index, 'link', val)}
+                                />
+                                {item.link && <ToggleControl
+                                    checked={options.newTab}
+                                    label={__('Open in New Tab', 'mp3player-block')}
+                                    onChange={(v) => setAttributes({ options: updateData(options, v, 'newTab') })}
+                                />}
 
-						</>
-					}
+                            </>
+                        }
 
                         <PanelRow className='itemAction mt20'>
                             {1 < audioProperties.length && <Button className='removeItem' label={__('Remove', 'mp3player-block')} onClick={e => removeAudioProperty(e, index)}><Dashicon icon='no' />{__('Remove', 'mp3player-block')}</Button>}
@@ -131,12 +132,18 @@ const General = ({ attributes, setAttributes, setActiveIndex }) => {
             </PanelBody>
 
             <BlockControls>
-                <AlignmentToolbar value={alignment} onChange={val => setAttributes({ alignment: val })} describedBy={__('Player Alignment')} alignmentControls={[
-                    { title: __('Player in left', 'mp3player-block'), align: 'left', icon: 'align-left' },
-                    { title: __('Player in center', 'mp3player-block'), align: 'center', icon: 'align-center' },
-                    { title: __('Player in right', 'mp3player-block'), align: 'right', icon: 'align-right' }
-                ]} />
+                <AlignmentToolbar
+                    value={align[device]}
+                    onChange={(v) => setAttributes({ style: updateData(style, v, 'align', device) })}
+                    label="Player Alignment For Slider"
+                    describedBy={__('Player Alignment For Slider')}
+                    alignmentControls={[
+                        { title: __('Player in left', 'mp3player-block'), align: 'start', icon: 'align-left' },
+                        { title: __('Player in center', 'mp3player-block'), align: 'center', icon: 'align-center' },
+                        { title: __('Player in right', 'mp3player-block'), align: 'end', icon: 'align-right' }
+                    ]} />
             </BlockControls>
+            
         </>
     )
 }

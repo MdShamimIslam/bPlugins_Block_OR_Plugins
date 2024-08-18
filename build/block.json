@@ -71,7 +71,7 @@
         "border": {
           "radius": "5px"
         },
-        "bg": "#604ca1",
+        "bg": "#3F2A25",
         "musicSlider": {
           "sliderWidth": {
             "desktop": "100px",
@@ -84,10 +84,7 @@
             "mobile": "40px"
           },
           "border": {
-            "radius": "2px",
-            "style": "solid",
-            "color": "white",
-            "width": "3px"
+            "radius": "3px"
           },
           "overlayBg": "rgba(28, 22, 37, 0.6)"
         },
@@ -128,7 +125,7 @@
           },
           "radius": 4,
           "bg": "#FFFFFF5E",
-          "progressBg": "green",
+          "progressBg": "#eb0b0b",
           "timeBg": "white"
         },
         "rangeThumb": {
@@ -137,7 +134,7 @@
             "tablet": "15px",
             "mobile": "14px"
           },
-          "thumbBg": "rgba(89, 26, 151, 0.9)",
+          "thumbBg": "#EE714B",
           "thumbShadow": [],
           "thumbOutline": {
             "width": "4px",

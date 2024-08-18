@@ -11007,7 +11007,8 @@ const Edit = props => {
     setAttributes,
     device,
     activeIndex: activeIndex,
-    setActiveIndex: setActiveIndex
+    setActiveIndex: setActiveIndex,
+    device: device
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)()
   }, options.songSl === 'default' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, 0 !== audioProperties?.length ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -11068,7 +11069,8 @@ const Edit = props => {
     isPlaying: isPlaying,
     setIsPlaying: setIsPlaying,
     activeIndex: activeIndex,
-    setActiveIndex: setActiveIndex
+    setActiveIndex: setActiveIndex,
+    swiperRef: swiperRef
   })))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)(select => {
@@ -11102,6 +11104,7 @@ const MusicPlayerBack = ({
   setIsPlaying,
   activeIndex,
   setActiveIndex,
+  swiperRef,
   attributes
 }) => {
   const {
@@ -11128,8 +11131,6 @@ const MusicPlayerBack = ({
   }, [audioRef, audioProperties[activeIndex]?.audio.url]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const audio = audioRef.current;
-
-    // Automatically play the audio when the activeIndex changes
     if (isPlaying) {
       audio.play().catch(error => {
         console.error("Failed to play the audio automatically: ", error);
@@ -11137,6 +11138,25 @@ const MusicPlayerBack = ({
       });
     }
   }, [activeIndex, isPlaying]);
+  const changeMusic = direction => {
+    const audio = audioRef.current;
+    let newIndex = activeIndex;
+    if (direction === 'forward') {
+      newIndex = (activeIndex + 1) % audioProperties.length;
+    } else if (direction === 'backward') {
+      newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
+    }
+    setActiveIndex(newIndex);
+    setProgress(0);
+    setCurrentTime(0);
+    audio.src = audioProperties[newIndex].audio?.url;
+    if (isPlaying) {
+      audio.play();
+    }
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(newIndex);
+    }
+  };
   const updateProgress = () => {
     const audio = audioRef.current;
     const currentTime = audio.currentTime;
@@ -11161,16 +11181,6 @@ const MusicPlayerBack = ({
       }
     }
   };
-  const changeMusic = direction => {
-    let newIndex = activeIndex;
-    if (direction === 'forward') {
-      newIndex = (activeIndex + 1) % audioProperties.length;
-    } else if (direction === 'backward') {
-      newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
-    }
-    setActiveIndex(newIndex);
-    setIsPlaying(true); // Set to true to trigger auto-play in the useEffect
-  };
   const handleSeek = event => {
     const audio = audioRef.current;
     const seekTime = event.target.value / 100 * audio.duration;
@@ -11190,7 +11200,7 @@ const MusicPlayerBack = ({
   }, audioProperties[activeIndex]?.artist), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("audio", {
     ref: audioRef,
     onTimeUpdate: updateProgress,
-    key: audioProperties[activeIndex]?.audio.url,
+    key: audioProperties[activeIndex]?.audio?.url,
     onEnded: () => {
       if (options.isAutoPlay) {
         changeMusic('forward');
@@ -11272,13 +11282,17 @@ __webpack_require__.r(__webpack_exports__);
 const General = ({
   attributes,
   setAttributes,
-  setActiveIndex
+  setActiveIndex,
+  device
 }) => {
   const {
     audioProperties,
     options,
-    alignment
+    style
   } = attributes;
+  const {
+    align
+  } = style;
   const {
     songSl,
     isOverlayIcon,
@@ -11435,14 +11449,15 @@ const General = ({
       options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isAutoPlay')
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
-    value: alignment,
-    onChange: val => setAttributes({
-      alignment: val
+    value: align[device],
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'align', device)
     }),
-    describedBy: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player Alignment'),
+    label: "Player Alignment For Slider",
+    describedBy: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player Alignment For Slider'),
     alignmentControls: [{
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player in left', 'mp3player-block'),
-      align: 'left',
+      align: 'start',
       icon: 'align-left'
     }, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player in center', 'mp3player-block'),
@@ -11450,7 +11465,7 @@ const General = ({
       icon: 'align-center'
     }, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player in right', 'mp3player-block'),
-      align: 'right',
+      align: 'end',
       icon: 'align-right'
     }]
   })));
@@ -11633,6 +11648,7 @@ const Setting = ({
     }),
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_6__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_6__.perUnit)()]
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
+    label: "Player Alignment",
     value: alignment,
     onChange: val => setAttributes({
       alignment: val
@@ -11701,6 +11717,7 @@ const Settings = ({
   }, tab => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, 'general' === tab.name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_General_General__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes,
     setAttributes,
+    device: device,
     activeIndex: activeIndex,
     setActiveIndex: setActiveIndex
   })), 'style' === tab.name && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Style_Styles__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -11762,7 +11779,8 @@ const Styles = ({
   } = attributes;
   const {
     textSl,
-    rangeSl
+    rangeSl,
+    isOverlayIcon
   } = options;
   const {
     align,
@@ -11846,7 +11864,7 @@ const Styles = ({
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicSlider", 'sliderHeight', device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+  }), isOverlayIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Overlay Background', 'mp3player-block'),
     value: overlayBg,
     onChange: v => setAttributes({
@@ -11859,7 +11877,7 @@ const Styles = ({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'musicSlider', 'border')
     }),
     defaults: {
-      radius: "5px"
+      radius: "3px"
     }
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
@@ -27386,7 +27404,7 @@ SwiperSlide.displayName = 'SwiperSlide';
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true}},"style":{"type":"object","default":{"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#604ca1","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"2px","style":"solid","color":"white","width":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"green","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"rgba(89, 26, 151, 0.9)","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true}},"style":{"type":"object","default":{"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#eb0b0b","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

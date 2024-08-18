@@ -13,7 +13,6 @@ const SwiperSlider = forwardRef(({ playTrack, attributes }, ref) => {
   const [activeSlide, setActiveSlide] = useState(0);
   const swiperRef = useRef(null);
 
-
   useImperativeHandle(ref, () => ({
     slideTo(index) {
       if (swiperRef.current) {
@@ -21,6 +20,7 @@ const SwiperSlider = forwardRef(({ playTrack, attributes }, ref) => {
       }
     },
   }));
+
 
   return <div className="swiper">
     <Swiper

@@ -229,6 +229,7 @@ const MusicPlayerBack = ({
   setIsPlaying,
   activeIndex,
   setActiveIndex,
+  swiperRef,
   attributes
 }) => {
   const {
@@ -255,8 +256,6 @@ const MusicPlayerBack = ({
   }, [audioRef, audioProperties[activeIndex]?.audio.url]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const audio = audioRef.current;
-
-    // Automatically play the audio when the activeIndex changes
     if (isPlaying) {
       audio.play().catch(error => {
         console.error("Failed to play the audio automatically: ", error);
@@ -264,6 +263,25 @@ const MusicPlayerBack = ({
       });
     }
   }, [activeIndex, isPlaying]);
+  const changeMusic = direction => {
+    const audio = audioRef.current;
+    let newIndex = activeIndex;
+    if (direction === 'forward') {
+      newIndex = (activeIndex + 1) % audioProperties.length;
+    } else if (direction === 'backward') {
+      newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
+    }
+    setActiveIndex(newIndex);
+    setProgress(0);
+    setCurrentTime(0);
+    audio.src = audioProperties[newIndex].audio?.url;
+    if (isPlaying) {
+      audio.play();
+    }
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(newIndex);
+    }
+  };
   const updateProgress = () => {
     const audio = audioRef.current;
     const currentTime = audio.currentTime;
@@ -288,16 +306,6 @@ const MusicPlayerBack = ({
       }
     }
   };
-  const changeMusic = direction => {
-    let newIndex = activeIndex;
-    if (direction === 'forward') {
-      newIndex = (activeIndex + 1) % audioProperties.length;
-    } else if (direction === 'backward') {
-      newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
-    }
-    setActiveIndex(newIndex);
-    setIsPlaying(true); // Set to true to trigger auto-play in the useEffect
-  };
   const handleSeek = event => {
     const audio = audioRef.current;
     const seekTime = event.target.value / 100 * audio.duration;
@@ -317,7 +325,7 @@ const MusicPlayerBack = ({
   }, audioProperties[activeIndex]?.artist), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("audio", {
     ref: audioRef,
     onTimeUpdate: updateProgress,
-    key: audioProperties[activeIndex]?.audio.url,
+    key: audioProperties[activeIndex]?.audio?.url,
     onEnded: () => {
       if (options.isAutoPlay) {
         changeMusic('forward');

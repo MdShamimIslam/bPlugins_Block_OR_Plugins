@@ -14,6 +14,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex , dev
 							{'general' === tab.name && <>
 								<General
 									{...{ attributes, setAttributes }}
+									device={device}
 									activeIndex={activeIndex}
 									setActiveIndex={setActiveIndex} />
 
@@ -27,6 +28,7 @@ const Settings = ({ attributes, setAttributes, activeIndex, setActiveIndex , dev
 						</>
 					}
 				</TabPanel>
+
 			</InspectorControls>
 }
 export default Settings

@@ -37,14 +37,16 @@ const Edit = props => {
 		}
 	};
 
+
 	return <>
 
 		{songSl === 'default' ?
-			<Setting attributes={attributes} setAttributes={setAttributes} setActiveIndex={setActiveIndex} /> :
+			<Setting attributes={attributes} setAttributes={setAttributes} setActiveIndex={setActiveIndex}/> :
 			<Settings
 				{...{ attributes, setAttributes, device }}
 				activeIndex={activeIndex}
 				setActiveIndex={setActiveIndex}
+				device={device}
 			/>}
 
 		<div {...useBlockProps()}>
@@ -52,7 +54,7 @@ const Edit = props => {
 				<>
 					{0 !== audioProperties?.length ?
 						<div id={id} ref={blockRef}>
-							<Style attributes={attributes} id={id} />
+							<Style attributes={attributes} id={id}/>
 
 							<div className='bpMp3Player'>
 								<div className='coverBox'>
@@ -108,6 +110,7 @@ const Edit = props => {
 							setIsPlaying={setIsPlaying}
 							activeIndex={activeIndex}
 							setActiveIndex={setActiveIndex}
+							swiperRef={swiperRef}
 							
 						/>
 					</div>

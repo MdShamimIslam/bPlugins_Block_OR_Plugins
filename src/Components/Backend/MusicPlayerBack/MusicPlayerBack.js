@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { FaBackward, FaForward, FaPause, FaPlay } from '../../../utils/icons';
 
 
-const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setActiveIndex, attributes }) => {
-    const { audioProperties, style,options } = attributes;
+const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setActiveIndex, swiperRef, attributes }) => {
+    const { audioProperties, style, options } = attributes;
     const { bg, progressBg } = style.rangeInput;
     const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
@@ -23,11 +23,9 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
         };
     }, [audioRef, audioProperties[activeIndex]?.audio.url]);
 
-
     useEffect(() => {
         const audio = audioRef.current;
 
-        // Automatically play the audio when the activeIndex changes
         if (isPlaying) {
             audio.play().catch(error => {
                 console.error("Failed to play the audio automatically: ", error);
@@ -35,6 +33,31 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
             });
         }
     }, [activeIndex, isPlaying]);
+
+    const changeMusic = (direction) => {
+        const audio = audioRef.current;
+        let newIndex = activeIndex;
+
+        if (direction === 'forward') {
+            newIndex = (activeIndex + 1) % audioProperties.length;
+        } else if (direction === 'backward') {
+            newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
+        }
+
+        setActiveIndex(newIndex);
+
+        setProgress(0);
+        setCurrentTime(0);
+
+        audio.src = audioProperties[newIndex].audio?.url;
+
+        if (isPlaying) {
+            audio.play();
+        }
+        if (swiperRef.current) {
+            swiperRef.current.slideTo(newIndex);
+        }
+    };
 
     const updateProgress = () => {
         const audio = audioRef.current;
@@ -65,20 +88,6 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
 
     };
 
-    const changeMusic = (direction) => {
-        let newIndex = activeIndex;
-
-        if (direction === 'forward') {
-            newIndex = (activeIndex + 1) % audioProperties.length;
-        } else if (direction === 'backward') {
-            newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
-        }
-
-        setActiveIndex(newIndex);
-        setIsPlaying(true); // Set to true to trigger auto-play in the useEffect
-    };
-
-
     const handleSeek = (event) => {
         const audio = audioRef.current;
         const seekTime = (event.target.value / 100) * audio.duration;
@@ -94,14 +103,15 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
         <p className='name' placeholder="Add Music Name...">{audioProperties[activeIndex]?.artist}</p>
 
         <audio ref={audioRef} onTimeUpdate={updateProgress}
-            key={audioProperties[activeIndex]?.audio.url}
+            key={audioProperties[activeIndex]?.audio?.url}
             onEnded={() => {
-            if (options.isAutoPlay) {
-                changeMusic('forward');
-            }else{
-                setIsPlaying(false)
-            }
-            }} >
+                if (options.isAutoPlay) {
+                    changeMusic('forward');
+                } else {
+                    setIsPlaying(false)
+                }
+            }}
+        >
             <source src={audioProperties[activeIndex]?.audio.url} type="audio/mpeg" />
         </audio>
 

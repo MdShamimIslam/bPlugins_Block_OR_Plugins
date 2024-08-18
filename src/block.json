@@ -45,6 +45,7 @@
 				"textSl": "title",
 				"rangeSl": "input",
 				"isThumb": true,
+				"isVolume": true,
 				"isOverlayIcon": false,
 				"isAutoPlay": true,
 				"newTab":true
@@ -125,7 +126,7 @@
 					},
 					"radius": 4,
 					"bg": "#FFFFFF5E",
-					"progressBg": "#eb0b0b",
+					"progressBg": "#EE714B",
 					"timeBg": "white"
 				},
 				"rangeThumb": {

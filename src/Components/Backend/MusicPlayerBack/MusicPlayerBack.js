@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { FaBackward, FaForward, FaPause, FaPlay } from '../../../utils/icons';
+import React, { useState, useEffect, useRef } from 'react'
+import { BiVolumeMute, FaBackward, FaForward, FaPause, FaPlay, FaVolumeUp } from '../../../utils/icons';
 
 
 const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setActiveIndex, swiperRef, attributes }) => {
@@ -8,6 +8,10 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
     const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [volume, setVolume] = useState(1);
+    const [showVolumeControl, setShowVolumeControl] = useState(false);
+    const volumeControlRef = useRef(null);
+
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -98,6 +102,27 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
         background: `linear-gradient(to right, ${progressBg} ${progress}%, ${bg} ${progress}%)`,
     };
 
+    const handleVolumeChange = (event) => {
+        const audio = audioRef.current;
+        const newVolume = event.target.value / 100;
+        setVolume(newVolume);
+        audio.volume = newVolume;
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (volumeControlRef.current && !volumeControlRef.current.contains(event.target)) {
+                setShowVolumeControl(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+
     return <div className="music-player">
         <h1 className='title' placeholder="Add Music Title...">{audioProperties[activeIndex]?.title}</h1>
         <p className='name' placeholder="Add Music Name...">{audioProperties[activeIndex]?.artist}</p>
@@ -114,6 +139,20 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
         >
             <source src={audioProperties[activeIndex]?.audio.url} type="audio/mpeg" />
         </audio>
+        {/* Volume Control (progress bar) */}
+        {showVolumeControl && (
+            <div ref={volumeControlRef}>
+                <input
+                    type="range"
+                    value={volume * 100}
+                    onChange={handleVolumeChange}
+                    min="0"
+                    max="100"
+                    step="1"
+                    className="volume-control"
+                />
+            </div>
+        )}
 
         <div className="progress-container">
             <span className="current-time">{formatTime(currentTime)}</span>
@@ -127,6 +166,15 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
                 step="0.1"
                 style={progressStyle}
             />
+            {
+                options.isVolume && <span
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setShowVolumeControl(!showVolumeControl);
+                    }}>
+                    {volume === 0 ? <BiVolumeMute /> : <FaVolumeUp />}
+                </span>
+            }
             <span className="duration-time">{formatTime(duration)}</span>
         </div>
 
@@ -141,6 +189,7 @@ const MusicPlayerBack = ({ audioRef, isPlaying, setIsPlaying, activeIndex, setAc
                 <FaForward />
             </button>
         </div>
+
     </div>
 }
 

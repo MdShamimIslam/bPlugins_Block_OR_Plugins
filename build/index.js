@@ -11119,6 +11119,9 @@ const MusicPlayerBack = ({
   const [progress, setProgress] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [currentTime, setCurrentTime] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [volume, setVolume] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [showVolumeControl, setShowVolumeControl] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const volumeControlRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const audio = audioRef.current;
     const handleLoadedMetadata = () => {
@@ -11189,6 +11192,23 @@ const MusicPlayerBack = ({
   const progressStyle = {
     background: `linear-gradient(to right, ${progressBg} ${progress}%, ${bg} ${progress}%)`
   };
+  const handleVolumeChange = event => {
+    const audio = audioRef.current;
+    const newVolume = event.target.value / 100;
+    setVolume(newVolume);
+    audio.volume = newVolume;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const handleClickOutside = event => {
+      if (volumeControlRef.current && !volumeControlRef.current.contains(event.target)) {
+        setShowVolumeControl(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "music-player"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
@@ -11211,6 +11231,16 @@ const MusicPlayerBack = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("source", {
     src: audioProperties[activeIndex]?.audio.url,
     type: "audio/mpeg"
+  })), showVolumeControl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: volumeControlRef
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "range",
+    value: volume * 100,
+    onChange: handleVolumeChange,
+    min: "0",
+    max: "100",
+    step: "1",
+    className: "volume-control"
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "progress-container"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
@@ -11224,7 +11254,12 @@ const MusicPlayerBack = ({
     max: "100",
     step: "0.1",
     style: progressStyle
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }), options.isVolume && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    onClick: e => {
+      e.stopPropagation();
+      setShowVolumeControl(!showVolumeControl);
+    }
+  }, volume === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.BiVolumeMute, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaVolumeUp, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "duration-time"
   }, formatTime(duration))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "controls"
@@ -11296,7 +11331,9 @@ const General = ({
   const {
     songSl,
     isOverlayIcon,
-    isThumb
+    isThumb,
+    isVolume,
+    isAutoPlay
   } = options;
   const addNewAudioProperty = () => {
     setAttributes({
@@ -11430,23 +11467,30 @@ const General = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     className: "mt5",
     checked: isOverlayIcon,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Social Link', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social Link', 'mp3player-block'),
     onChange: v => setAttributes({
       options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isOverlayIcon')
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     className: "mt5",
     checked: isThumb,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Show Range Thumb', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Range Thumb', 'mp3player-block'),
     onChange: v => setAttributes({
       options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isThumb')
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     className: "mt5",
-    checked: options.isAutoPlay,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Play Audio', 'mp3player-block'),
+    checked: isAutoPlay,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Play', 'mp3player-block'),
     onChange: v => setAttributes({
       options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isAutoPlay')
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt5",
+    checked: isVolume,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Display Volume', 'mp3player-block'),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isVolume')
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
     value: align[device],
@@ -12654,10 +12698,12 @@ const updateData = (attr, value, ...props) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BiVolumeMute: () => (/* binding */ BiVolumeMute),
 /* harmony export */   FaBackward: () => (/* binding */ FaBackward),
 /* harmony export */   FaForward: () => (/* binding */ FaForward),
 /* harmony export */   FaPause: () => (/* binding */ FaPause),
 /* harmony export */   FaPlay: () => (/* binding */ FaPlay),
+/* harmony export */   FaVolumeUp: () => (/* binding */ FaVolumeUp),
 /* harmony export */   FaYoutube: () => (/* binding */ FaYoutube),
 /* harmony export */   mp3playerIcon: () => (/* binding */ mp3playerIcon),
 /* harmony export */   nextIcon: () => (/* binding */ nextIcon),
@@ -12768,6 +12814,32 @@ function FaYoutube(props) {
     ...props
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+  }));
+}
+function FaVolumeUp(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 576 512",
+    height: "1em",
+    width: "1.2em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"
+  }));
+}
+function BiVolumeMute(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 24 24",
+    height: "1em",
+    width: "1.2em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M21.707 20.293l-2.023-2.023c1.44-1.686 2.315-3.846 2.315-6.27 0-4.091-2.472-7.453-5.999-9v2c2.387 1.386 3.999 4.047 3.999 7 0 1.832-.629 3.543-1.672 4.913l-1.285-1.285C17.644 14.536 18 13.19 18 12c0-1.771-.775-3.9-2-5v7.586l-2-2V4c0-.369-.203-.708-.528-.882-.324-.174-.72-.154-1.026.05L7.727 6.313l-4.02-4.02L2.293 3.707l18 18L21.707 20.293zM12 5.868v4.718L9.169 7.755 12 5.868zM4 17h2.697l5.748 3.832C12.612 20.943 12.806 21 13 21c.162 0 .324-.039.472-.118C13.797 20.708 14 20.369 14 20v-1.879l-2-2v2.011l-4.445-2.964c-.025-.017-.056-.02-.082-.033-.061-.033-.123-.058-.19-.078-.064-.019-.126-.032-.192-.038C7.059 15.016 7.032 15 7 15H4V9h.879L3.102 7.223C2.451 7.554 2 8.222 2 9v6C2 16.103 2.897 17 4 17z"
   }));
 }
 
@@ -27404,7 +27476,7 @@ SwiperSlide.displayName = 'SwiperSlide';
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true}},"style":{"type":"object","default":{"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#eb0b0b","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true}},"style":{"type":"object","default":{"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

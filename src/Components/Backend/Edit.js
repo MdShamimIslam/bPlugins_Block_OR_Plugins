@@ -21,7 +21,7 @@ const Edit = props => {
 	const { songSl } = options;
 	const id = `bpMp3Player-${clientId}`;
 	const blockRef = useRef(null);
-
+	
 	useEffect(() => {
 		if (songSl === 'default' && audioProperties?.length) {
 			MP3Player(blockRef.current, audioProperties);

@@ -10,7 +10,7 @@ import { gearIcon } from '../../../../../../Components/utils/icons';
 const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
     const { audioProperties, options, style } = attributes;
     const { align } = style;
-    const { songSl, isOverlayIcon, isThumb } = options;
+    const { songSl, isOverlayIcon, isThumb, isVolume, isAutoPlay } = options;
 
     const addNewAudioProperty = () => {
         setAttributes({
@@ -114,20 +114,26 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
                 <ToggleControl
                     className='mt5'
                     checked={isOverlayIcon}
-                    label={__('Show Social Link', 'mp3player-block')}
+                    label={__('Social Link', 'mp3player-block')}
                     onChange={(v) => setAttributes({ options: updateData(options, v, 'isOverlayIcon') })}
                 />
                 <ToggleControl
                     className='mt5'
                     checked={isThumb}
-                    label={__('Show Range Thumb', 'mp3player-block')}
+                    label={__('Range Thumb', 'mp3player-block')}
                     onChange={(v) => setAttributes({ options: updateData(options, v, 'isThumb') })}
                 />
                 <ToggleControl
                     className='mt5'
-                    checked={options.isAutoPlay}
-                    label={__('Auto Play Audio', 'mp3player-block')}
+                    checked={isAutoPlay}
+                    label={__('Auto Play', 'mp3player-block')}
                     onChange={(v) => setAttributes({ options: updateData(options, v, 'isAutoPlay') })}
+                />
+                <ToggleControl
+                    className='mt5'
+                    checked={isVolume}
+                    label={__('Display Volume', 'mp3player-block')}
+                    onChange={(v) => setAttributes({ options: updateData(options, v, 'isVolume') })}
                 />
             </PanelBody>
 

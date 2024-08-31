@@ -1,0 +1,69 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+.imgChild div {
+  transition: transform 0.5s, border 0.5s, border-radius 0.5s, box-shadow 0.5s;
+}
+
+.imgChild:hover div {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.contentPan,
+.stylePan {
+  background: rgba(90, 89, 90, 0.1803921569);
+}
+
+.contentChild,
+.styleChild {
+  margin-top: -15px;
+  background: #EEEEEE;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+
+.components-form-toggle.is-checked .components-form-toggle__track {
+  background-color: #635bbc;
+  border-color: #635bbc;
+}
+
+.wp-block-b-blocks-advanced-image {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-advanced-image * {
+  box-sizing: border-box;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage {
+  display: flex;
+  flex-direction: column;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  transition: transform 0.5s, border 0.5s, border-radius 0.5s, box-shadow 0.5s;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .customImage,
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .featuredImage {
+  position: relative;
+  max-width: 100%;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .featuredImage h3 {
+  color: red;
+}
+.wp-block-b-blocks-advanced-image .bBlocksAdvancedImage .caption {
+  position: absolute;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.wp-block-b-blocks-advanced-image .icon {
+  font-style: inherit;
+}
+.wp-block-b-blocks-advanced-image img {
+  width: 100%;
+  max-width: 100%;
+}
+
+/*# sourceMappingURL=view.css.map*/

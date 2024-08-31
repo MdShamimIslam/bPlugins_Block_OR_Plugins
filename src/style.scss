@@ -1,0 +1,79 @@
+$primaryColor: #4527a4;
+
+.imgChild div {
+	transition: transform 0.5s, border 0.5s, border-radius 0.5s, box-shadow 0.5s;
+}
+
+.imgChild:hover {
+	div {
+		transform: scale(1.1);
+		cursor: pointer;
+	}
+
+}
+
+.contentPan,
+.stylePan {
+	background: #5a595a2e;
+}
+
+.contentChild,
+.styleChild {
+	margin-top: -15px;
+	background: #EEEEEE;
+	padding: 10px 15px;
+	border-radius: 15px;
+}
+
+// toggle button style
+.components-form-toggle.is-checked .components-form-toggle__track {
+	background-color: #635bbc;
+	border-color: #635bbc;
+}
+
+.wp-block-b-blocks-advanced-image {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksAdvancedImage {
+		display: flex;
+		flex-direction: column;
+
+		img {
+			width: 100%;
+			max-width: 100%;
+			height: 100%;
+			max-height: 100%;
+			transition: transform 0.5s, border 0.5s, border-radius 0.5s, box-shadow 0.5s;
+		}
+
+		.customImage,
+		.featuredImage {
+			position: relative;
+			max-width: 100%;
+		}
+
+		.featuredImage {
+			h3 {
+				color: red;
+			}
+		}
+
+		.caption {
+			position: absolute;
+			height: fit-content;
+		}
+	}
+
+	.icon {
+		font-style: inherit;
+	}
+
+	img {
+		width: 100%;
+		max-width: 100%;
+	}
+}

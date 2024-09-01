@@ -323,6 +323,7 @@ const Style = ({
                 ${captionAlignment(verticalAlign, horizontalAlign, 'tablet')}
             }
         }
+            
         @media only screen and (max-width:640px){
 			${imageSl}{
 				align-items:${alignment.mobile};

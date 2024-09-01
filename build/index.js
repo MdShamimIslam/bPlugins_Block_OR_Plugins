@@ -11811,6 +11811,7 @@ const Style = ({
                 ${captionAlignment(verticalAlign, horizontalAlign, 'tablet')}
             }
         }
+            
         @media only screen and (max-width:640px){
 			${imageSl}{
 				align-items:${alignment.mobile};
@@ -15567,7 +15568,6 @@ __webpack_require__.r(__webpack_exports__);
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__, {
   icon: _utils_icons__WEBPACK_IMPORTED_MODULE_4__.blockIcon,
   edit: _Components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"]
-  // save: () => null,
 });
 })();
 

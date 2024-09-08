@@ -1,0 +1,172 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mpws/music-player",
+  "version": "1.0.0",
+  "title": "Music Player with Slider",
+  "category": "widgets",
+  "description": "Add a customizable music player with an interactive slider to your WordPress posts and pages.",
+  "keywords": [
+    "music",
+    "player",
+    "music player",
+    "music player",
+    "music slider"
+  ],
+  "textdomain": "music-player",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": ""
+    },
+    "musics": {
+      "type": "array",
+      "default": [
+        {
+          "title": "Pawn It All",
+          "name": "Alicia Keys",
+          "source": "https://github.com/ecemgo/mini-samples-great-tricks/raw/main/song-list/Pawn-It-All.mp3",
+          "thumbnail": {
+            "url": "https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/1afe4c6a-0287-43f0-9076-92f8be49d9dc"
+          },
+          "link": "https://www.youtube.com/watch?v=qEnfeG8uBRY&ab_channel=AliciaKeys-Topic"
+        }
+      ]
+    },
+    "options": {
+      "type": "object",
+      "default": {
+        "newTab": true,
+        "isThumb": true,
+        "isOverlayIcon": true,
+        "isAutoPlay": true,
+        "textSl": "title",
+        "rangeSl": "input"
+      }
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "align": {
+          "desktop": "start",
+          "tablet": "start",
+          "mobile": "start"
+        },
+        "width": {
+          "desktop": "",
+          "tablet": "",
+          "mobile": ""
+        },
+        "height": {
+          "desktop": "",
+          "tablet": "",
+          "mobile": ""
+        },
+        "border": {
+          "radius": "5px"
+        },
+        "bg": "#604ca1",
+        "musicSlider": {
+          "sliderWidth": {
+            "desktop": "100px",
+            "tablet": "80px",
+            "mobile": "70px"
+          },
+          "sliderHeight": {
+            "desktop": "80px",
+            "tablet": "60px",
+            "mobile": "40px"
+          },
+          "border": {
+            "radius": "5px"
+          },
+          "overlayBg": "rgba(28, 22, 37, 0.6)"
+        },
+        "musicTitle": {
+          "color": "#fff",
+          "typo": {
+            "fontSize": 30
+          }
+        },
+        "musicName": {
+          "color": "#ddd",
+          "opacity": 0.6,
+          "typo": {
+            "fontSize": 20
+          }
+        },
+        "rangeInput": {
+          "width": {
+            "desktop": "400px",
+            "tablet": "380px",
+            "mobile": "160px"
+          },
+          "height": {
+            "desktop": "7px",
+            "tablet": "6px",
+            "mobile": "6px"
+          },
+          "margin": {
+            "desktop": {
+              "top": "15px"
+            },
+            "tablet": {
+              "top": "10px"
+            },
+            "mobile": {
+              "top": "7px"
+            }
+          },
+          "radius": 4,
+          "bg": "#FFFFFF5E",
+          "progressBg": "green",
+          "timeBg": "white"
+        },
+        "rangeThumb": {
+          "thumbWidth": {
+            "desktop": "16px",
+            "tablet": "15px",
+            "mobile": "14px"
+          },
+          "thumbBg": "rgba(89, 26, 151, 0.9)",
+          "thumbShadow": [],
+          "thumbOutline": {
+            "width": "4px",
+            "style": "solid",
+            "color": "white",
+            "radius": "50%"
+          }
+        },
+        "controlsBtn": {
+          "width": {
+            "desktop": "50px",
+            "tablet": "45px",
+            "mobile": "40px"
+          },
+          "colors": {
+            "color": "white",
+            "bg": "rgba(163, 162, 164, 0.3)"
+          },
+          "border": {
+            "width": "1px",
+            "style": "solid",
+            "color": "rgba(255, 255, 255, 0.3)",
+            "radius": "50%"
+          }
+        }
+      }
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "example": {
+    "attributes": {}
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": ["file:./index.css", "file:./style-index.css"],
+  "style": ["file:./view.css", "file:./style-view.css"],
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

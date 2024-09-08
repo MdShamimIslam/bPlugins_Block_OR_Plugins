@@ -1,0 +1,30 @@
+{
+  "name": "bpl-block-components",
+  "version": "0.0.2",
+  "description": "Custom Components for the Blocks",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint index.js",
+    "start": "webpack --mode=development --watch",
+    "i18n-pot": "wp i18n make-pot . languages/recent-products.pot --exclude=\"src\" && cp ./languages/recent-products.pot ./languages/recent-products-en_US.po",
+    "i18n-json": "wp i18n make-json languages/ --no-purge",
+    "i18n-mo": "wp i18n make-mo languages/",
+    "i18n": "npm run i18n-pot && npm run i18n-json && npm run i18n-mo",
+    "build": "npm run lint && webpack --mode=production && npm run i18n"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bPlugins-LLC/block-components.git"
+  },
+  "author": "Wasek Bellah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bPlugins-LLC/block-components/issues"
+  },
+  "homepage": "https://github.com/bPlugins-LLC/block-components#readme",
+  "dependencies": {
+    "immer": "^10.1.1",
+    "react-sortable-hoc": "^2.0.0",
+    "select-pure": "^0.6.3"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bplcs/content-slider",
+  "version": "1.0.0",
+  "title": "Content Slider",
+  "category": "widgets",
+  "description": "Build responsive sliders with images, text, or posts in the Block Editor. Enjoy smooth transitions and customizable styles",
+  "keywords": [
+    "content slider",
+    "content",
+    "slider",
+    "Content slider Block"
+  ],
+  "textdomain": "content-slider",
+  "attributes": {
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "colors": {
+      "type": "object",
+      "default": {
+        "color": "#333",
+        "bg": "#fff"
+      }
+    },
+    "slides": {
+      "type": "array",
+      "default": [
+        {
+          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZL4GBf-exBdGOgQHpRqBnRjSLvBK9i25pgg&s",
+          "caption": "My First Slide"
+        }
+      ]
+    },
+    "slideOptions": {
+      "type": "object",
+      "default": {
+        "isInsertLink": false,
+        "transitionType": "horizontal",
+        "width": {
+          "desktop": "1200px",
+          "tablet": "760px",
+          "mobile": "576px"
+        },
+        "transitionDuration": 500,
+        "enableControl": true,
+        "enablePager": true,
+        "autoSlide": false,
+        "intervalTime": 3000
+      }
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "example": {
+    "attributes": {}
+  },
+  "editorScript": [
+    "file:./index.js",
+    "slider-script",
+    "jquery"
+  ],
+  "editorStyle": [
+    "file:./index.css",
+    "slider-style"
+  ],
+  "style": [
+    "file:./view.css",
+    "slider-style"
+  ],
+  "render": "file:./render.php",
+  "viewScript": [
+    "file:./view.js",
+    "slider-script",
+    "jquery"
+  ]
+}

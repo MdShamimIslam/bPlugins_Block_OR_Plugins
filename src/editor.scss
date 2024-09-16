@@ -1,0 +1,153 @@
+$primaryColor: #4527a4;
+
+.bBlocksInspectorInfo {
+  padding: 6px;
+
+  a {
+    text-decoration: none;
+    font-weight: 700;
+  }
+}
+
+.wp-block-bplcs-content-slider {
+  .generalSetting {
+    padding: 10px;
+  }
+  .add-slide-form {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+  .add-slide-form h3 {
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 13px;
+    color: #6366f1;
+  }
+  .slide-preview {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .slide-preview img {
+    width: 50px;
+    height: 50px;
+    object-fit: fill;
+    border-radius: 5px;
+  }
+  .slide-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .editButton {
+    cursor: pointer;
+    color: rgb(99, 85, 158);
+    transition: 0.3s ease-in-out;
+  }
+  .deleteButton {
+    cursor: pointer;
+    color: rgb(210, 72, 72);
+    transition: 0.3s ease-in-out;
+  }
+  
+  .addButton {
+    background: #4527a4;
+    width: 100%;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: none;
+  }
+  .addButton:hover {
+    background: #5942a2;
+    color: white;
+  }
+  .uploadButtonImage {
+    border: 1px solid darkgray;
+    border-radius: 4px;
+    background: #e5e5e5;
+    color: black;
+    font-weight: 500;
+    margin-top: -11px;
+    margin-bottom: 10px;
+  }
+  .insertLink {
+    margin-top: 7px;
+  }
+  .linkLabel {
+    font-weight: 500;
+    color: #6366F1;
+  }
+  
+  .saveButton {
+    background: #4527a4;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .saveButton:hover{
+    color: #fff;
+    background-color: #624ea4;
+    transition: 0.3s ease-in-out;
+  }
+  .cancelButton {
+    border: 1px solid darkgray;
+    margin-left: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  
+  .has-border {
+    border: 1px solid #7d7e86;
+    padding: 6px;
+    border-radius: 3px;
+  }
+  
+  .components-form-toggle.is-checked .components-form-toggle__track {
+    background-color: #635bbc;
+    border-color: #635bbc;
+  }
+
+  .custom-label {
+    font-size: 13px;
+}
+
+.transitionType{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.conEnabled{
+  margin-top:20px;
+}
+
+.pagerEnabled{
+  margin-top: 10px ;
+}
+.autoSlide{
+  margin-top: 10px ;
+}
+
+.unitControl{
+  margin: -20px 0 15px 0;
+}
+.interval{
+  margin-top:15px;
+}
+
+.customSelect{
+  width: 127px;
+}
+
+  
+}

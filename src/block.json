@@ -26,7 +26,7 @@
       "default": [
         {
           "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZL4GBf-exBdGOgQHpRqBnRjSLvBK9i25pgg&s",
-          "caption": "My First Slide"
+          "caption": "First Slide"
         }
       ]
     },
@@ -36,7 +36,7 @@
       "default": {
         "isInsertLink": false,
         "transitionType": "horizontal",
-        "width": { "desktop": "1200px", "tablet": "760px", "mobile": "576px" },
+        "width": { "desktop": "620px", "tablet": "580px", "mobile": "500px" },
         "transitionDuration": 500,
         "enableControl": true,
         "enablePager": true,

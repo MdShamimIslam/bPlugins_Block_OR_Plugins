@@ -8,8 +8,8 @@ import {
 import { produce } from "immer";
 import { Label } from '../../../../../../Components';
 import { updateData } from "../../../../utils/functions";
-import { pxUnit,perUnit} from "../../../../../../Components/utils/options";
-// import { Device } from 'bpl-gutenberg-panel';
+import { pxUnit} from "../../../../../../Components/utils/options";
+import { Device } from '../../../../../../Components/Device/Device';
 
 
 
@@ -35,19 +35,19 @@ const Style = ({ attributes, setAttributes, device }) => {
         />
       </div>
 
-     <div className="unitControl">
+   
      <PanelRow >
-				<Label>{__('Width', 'b-blocks')}</Label>
-        {/* <Device /> */}
+				<Label>{__('Width', 'content-slider')}</Label>
+        <Device />
 			</PanelRow>
 			<UnitControl
 				value={slideOptions.width[device]}
-        units={[pxUnit(), perUnit()]}
+        max={620}
+        units={[pxUnit()]}
 				onChange={(v) => setAttributes({ slideOptions: updateData(slideOptions, v, 'width', device) })}
 			/>
-     </div>
 
-      <p className="custom-label">Transition Duration (ms)</p>
+      <p className="custom-label" style={{marginTop:"15px"}}>Transition Duration (ms)</p>
       <RangeControl
         value={slideOptions.transitionDuration}
         onChange={(val) =>

@@ -1,0 +1,34 @@
+$primaryColor: #4527a4;
+
+.wp-block-b-blocks-test-purpose {
+	box-sizing: border-box;
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.bBlocksTestPurpose {
+		// display: inline-block;
+		p{
+			padding: 10px;
+			border-radius: 10px;
+		}
+		.startedBtn{
+			background: #4527a4;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 10px;
+		}
+		
+	}
+
+	.icon {
+		font-style: inherit;
+	}
+
+	img {
+		width: 100%;
+		max-width: 100%;
+	}
+}

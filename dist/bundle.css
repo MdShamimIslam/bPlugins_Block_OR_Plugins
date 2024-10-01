@@ -1,2 +1,15 @@
-.myclass{background:purple}body{background-color:#7fffd4}.myclass{transform:rotate(45deg)}
-/*# sourceMappingURL=bundle.css.map*/
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/components/MyComponent.scss ***!
+  \************************************************************************************************************************************************************************************************/
+.myclass {
+  background: purple; }
+
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*******************************************************************************************************************************************************************************/
+body {
+  background-color: aquamarine; }
+
+.myclass {
+  transform: rotate(45deg); }
+

@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new CleanWebpackPlugin({
-                cleanOnceBeforeBuildPatterns: ['**/*', '!bundle.js', '!bundle.css'],
+                cleanOnceBeforeBuildPatterns: ['**/*']
             }),
             new MiniCSSExtractPlugin({ filename: "bundle.css" })
         ],
@@ -27,7 +27,14 @@ module.exports = (env, argv) => {
             minimize: !isDevelopment(),
             minimizer: [
                 `...`,
-                new TerserPlugin(),
+                new TerserPlugin({
+                    extractComments: false,  
+                    terserOptions: {
+                        format: {
+                            comments: false,
+                        },
+                    },
+                }),
                 new CssMinimizerPlugin(),
             ],
         },

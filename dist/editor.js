@@ -11,7 +11,7 @@ var registerBlockType = wp.blocks.registerBlockType;
 var __ = wp.i18n.__;
 var element = wp.element.createElement;
 
-// register my first block
+// register first block
 registerBlockType("my-blocks/firstblock", {
   title: __("First Block", "my-blocks"),
   description: __("Its first block description", "my-blocks"),
@@ -32,41 +32,64 @@ registerBlockType("my-blocks/firstblock", {
 /*!*****************************************!*\
   !*** ./src/blocks/secondblock/index.js ***!
   \*****************************************/
-/***/ (function() {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _styles_editor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.editor.scss */ "./src/blocks/secondblock/styles.editor.scss");
 var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\index.js";
-var registerBlockType = wp.blocks.registerBlockType;
-var __ = wp.i18n.__;
-var element = wp.element.createElement;
 
-// register my first block
+const {
+  registerBlockType
+} = wp.blocks;
+const {
+  __
+} = wp.i18n;
+
+// register second  block
 registerBlockType("my-blocks/secondblock", {
   title: __("Second Block", "my-blocks"),
   description: __("Its second block description", "my-blocks"),
   category: "media",
   icon: "admin-network",
   keywords: [__('photo', 'my-blocks'), __('image', 'my-blocks')],
-  edit: () => {
-    return /*#__PURE__*/React.createElement("p", {
-      __self: this,
+  edit: ({
+    className
+  }) => {
+    return wp.element.createElement("p", {
+      className: className,
+      __self: undefined,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 14,
         columnNumber: 16
       }
-    }, "Editor");
+    }, " Editor Second ");
   },
   save: () => {
-    return /*#__PURE__*/React.createElement("p", {
-      __self: this,
+    return wp.element.createElement("p", {
+      __self: undefined,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 17,
         columnNumber: 16
       }
-    }, "Save");
+    }, " Save Second ");
   }
 });
+
+/***/ }),
+
+/***/ "./src/blocks/secondblock/styles.editor.scss":
+/*!***************************************************!*\
+  !*** ./src/blocks/secondblock/styles.editor.scss ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ })
 
@@ -90,7 +113,7 @@ registerBlockType("my-blocks/secondblock", {
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -149,7 +172,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_firstblock__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/firstblock */ "./src/blocks/firstblock/index.js");
 /* harmony import */ var _blocks_firstblock__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_blocks_firstblock__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _blocks_secondblock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/secondblock */ "./src/blocks/secondblock/index.js");
-/* harmony import */ var _blocks_secondblock__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_blocks_secondblock__WEBPACK_IMPORTED_MODULE_1__);
 
 
 })();

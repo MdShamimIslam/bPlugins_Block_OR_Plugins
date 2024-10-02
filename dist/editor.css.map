@@ -1,0 +1,1 @@
+{"version":3,"file":"editor.css","mappings":";;;AACA;AACA","sources":["webpack://my-blocks/./src/blocks/secondblock/styles.editor.scss"],"sourcesContent":["\r\n.wp-block-my-blocks-secondblock{\r\n    color: purple;\r\n}"],"names":[],"sourceRoot":""}

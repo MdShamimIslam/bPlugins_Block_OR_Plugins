@@ -1,0 +1,2 @@
+
+import './blocks/secondblock/script';

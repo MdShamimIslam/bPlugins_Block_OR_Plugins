@@ -3,7 +3,7 @@ var registerBlockType = wp.blocks.registerBlockType;
 var __ = wp.i18n.__;
 var element = wp.element.createElement;
 
-// register my first block
+// register first block
 registerBlockType("my-blocks/firstblock",{
     title: __("First Block", "my-blocks"),
     description:__("Its first block description", "my-blocks"),

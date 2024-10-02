@@ -1,19 +1,19 @@
+import './styles.editor.scss';
 
-var registerBlockType = wp.blocks.registerBlockType;
-var __ = wp.i18n.__;
-var element = wp.element.createElement;
+const {registerBlockType} = wp.blocks;
+const {__} = wp.i18n;
 
-// register my first block
+// register second  block
 registerBlockType("my-blocks/secondblock",{
     title: __("Second Block", "my-blocks"),
     description:__("Its second block description", "my-blocks"),
     category:"media",
     icon:"admin-network",
     keywords:[__('photo','my-blocks'),__('image','my-blocks')],
-    edit:()=>{
-        return <p>Editor</p>;
+    edit:({className}) => {
+        return <p className={className}> Editor Second </p>;
     },
-    save:()=>{
-        return <p>Save</p> ;
+    save:() => {
+        return <p> Save Second </p> ;
     }
 })

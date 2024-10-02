@@ -11,9 +11,12 @@ module.exports = (env, argv) => {
     }
 
     var config = {
-        entry: "./src/editor.js",
+        entry: {
+            editor:"./src/editor.js",
+            script:"./src/script.js"
+        },
         output: {
-            filename: "editor.js",
+            filename: "[name].js",
         },
         optimization: {
             minimizer: [
@@ -25,9 +28,12 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new CleanWebpackPlugin(),
-            new MiniCSSExtractPlugin(
-                { filename: "editor.css" }
-            )
+            new MiniCSSExtractPlugin({ 
+                chunkFilename: "[id].css",
+                filename: (chunkdata) => {
+                    return chunkdata.chunk.name === 'script' ? 'style.css' : '[name].css'
+                }
+            })
         ],
         devtool: isDevelopment() ? 'cheap-module-source-map' : 'source-map',
         module: {
@@ -43,8 +49,8 @@ module.exports = (env, argv) => {
                                 [
                                     '@babel/preset-react',
                                     {
-                                        "pragma": "React.createElement",
-                                        "pragmaFrag": "React.Fragment",
+                                        "pragma": "wp.element.createElement",
+                                        "pragmaFrag": "wp.element.Fragment",
                                         "development": isDevelopment()
                                     }
                                 ]

@@ -1,7 +1,8 @@
+
 import './styles.editor.scss';
 
-const {registerBlockType} = wp.blocks;
-const {__} = wp.i18n;
+import {registerBlockType} from '@wordpress/blocks';
+import {__} from '@wordpress/i18n';
 
 // register second  block
 registerBlockType("my-blocks/secondblock",{
@@ -11,7 +12,7 @@ registerBlockType("my-blocks/secondblock",{
     icon:"admin-network",
     keywords:[__('photo','my-blocks'),__('image','my-blocks')],
     edit:({className}) => {
-        return <p className={className}> Editor Second </p>;
+        return <p className={className}> Edit Second </p>;
     },
     save:() => {
         return <p> Save Second </p> ;

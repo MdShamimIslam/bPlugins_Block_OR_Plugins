@@ -37,22 +37,22 @@ registerBlockType("my-blocks/firstblock", {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_editor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.editor.scss */ "./src/blocks/secondblock/styles.editor.scss");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\index.js";
 
-const {
-  registerBlockType
-} = wp.blocks;
-const {
-  __
-} = wp.i18n;
+
+
 
 // register second  block
-registerBlockType("my-blocks/secondblock", {
-  title: __("Second Block", "my-blocks"),
-  description: __("Its second block description", "my-blocks"),
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)("my-blocks/secondblock", {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Second Block", "my-blocks"),
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Its second block description", "my-blocks"),
   category: "media",
   icon: "admin-network",
-  keywords: [__('photo', 'my-blocks'), __('image', 'my-blocks')],
+  keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('photo', 'my-blocks'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('image', 'my-blocks')],
   edit: ({
     className
   }) => {
@@ -61,17 +61,17 @@ registerBlockType("my-blocks/secondblock", {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 14,
+        lineNumber: 15,
         columnNumber: 16
       }
-    }, " Editor Second ");
+    }, " Edit Second ");
   },
   save: () => {
     return wp.element.createElement("p", {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 17,
+        lineNumber: 18,
         columnNumber: 16
       }
     }, " Save Second ");
@@ -90,6 +90,28 @@ registerBlockType("my-blocks/secondblock", {
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = wp.blocks;
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = wp.i18n;
 
 /***/ })
 

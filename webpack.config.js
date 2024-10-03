@@ -5,12 +5,13 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+
 module.exports = (env, argv) => {
     function isDevelopment() {
         return argv.mode === 'development'
     }
 
-    var config = {
+   var config = {
         entry: {
             editor:"./src/editor.js",
             script:"./src/script.js"
@@ -33,7 +34,7 @@ module.exports = (env, argv) => {
                 filename: (chunkdata) => {
                     return chunkdata.chunk.name === 'script' ? 'style.css' : '[name].css'
                 }
-            })
+            }),
         ],
         devtool: isDevelopment() ? 'cheap-module-source-map' : 'source-map',
         module: {
@@ -76,6 +77,11 @@ module.exports = (env, argv) => {
                     ]
                 }
             ]
+        },
+        externals:{
+          jquery: "jQuery",
+           "@wordpress/blocks": ["wp","blocks"],
+           "@wordpress/i18n": ["wp","i18n"]
         }
     };
 

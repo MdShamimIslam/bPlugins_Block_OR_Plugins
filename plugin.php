@@ -40,7 +40,7 @@ function my_blocks_register()
     wp_register_script(
         'my-blocks-script',
         plugins_url('dist/script.js', __FILE__),
-        array('')
+        array('jquery')
     );
     // register block editor.css
     wp_register_style(

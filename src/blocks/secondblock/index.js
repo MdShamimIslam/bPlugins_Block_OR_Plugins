@@ -1,8 +1,9 @@
-
 import './styles.editor.scss';
 
-import {registerBlockType} from '@wordpress/blocks';
+import {registerBlockType,getBlockDefaultClassName } from '@wordpress/blocks';
 import {__} from '@wordpress/i18n';
+import Edit from './Backend/Edit';
+import Save from './save';
 
 // register second  block
 registerBlockType("my-blocks/secondblock",{
@@ -11,10 +12,14 @@ registerBlockType("my-blocks/secondblock",{
     category:"media",
     icon:"admin-network",
     keywords:[__('photo','my-blocks'),__('image','my-blocks')],
-    edit:({className}) => {
-        return <p className={className}> Edit Second </p>;
+    supports:{
+        align:['wide','full'],
+    },
+    edit:(props) => {
+       return <Edit {...props} />;
     },
     save:() => {
-        return <p> Save Second </p> ;
+        const className = getBlockDefaultClassName("my-blocks/secondblock");
+        return <Save {...className} /> ;
     }
 })

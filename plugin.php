@@ -34,7 +34,7 @@ function my_blocks_register()
     wp_register_script(
         'my-blocks-editor-script',
         plugins_url('dist/editor.js', __FILE__),
-        array('wp-blocks', 'wp-i18n', 'wp-element')
+        array('wp-blocks', 'wp-i18n', 'wp-element','wp-editor','wp-components','wp-data')
     );
     // register block script.js
     wp_register_script(
@@ -42,7 +42,7 @@ function my_blocks_register()
         plugins_url('dist/script.js', __FILE__),
         array('jquery')
     );
-    // register block editor.css
+    // register block editor.css 
     wp_register_style(
         'my-blocks-editor-style',
         plugins_url('dist/editor.css', __FILE__),

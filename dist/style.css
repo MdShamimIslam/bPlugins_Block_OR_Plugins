@@ -2,7 +2,10 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/blocks/secondblock/style.scss ***!
   \**************************************************************************************************************************************************************************************************/
 .wp-block-my-blocks-secondblock {
-  background-color: purple; }
+  background-color: purple;
+  color: white;
+  border-radius: 10px;
+  padding: 15px; }
 
 
 /*# sourceMappingURL=style.css.map*/

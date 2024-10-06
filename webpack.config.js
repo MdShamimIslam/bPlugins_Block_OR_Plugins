@@ -11,10 +11,10 @@ module.exports = (env, argv) => {
         return argv.mode === 'development'
     }
 
-   var config = {
+    var config = {
         entry: {
-            editor:"./src/editor.js",
-            script:"./src/script.js"
+            editor: "./src/editor.js",
+            script: "./src/script.js"
         },
         output: {
             filename: "[name].js",
@@ -29,7 +29,7 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new CleanWebpackPlugin(),
-            new MiniCSSExtractPlugin({ 
+            new MiniCSSExtractPlugin({
                 chunkFilename: "[id].css",
                 filename: (chunkdata) => {
                     return chunkdata.chunk.name === 'script' ? 'style.css' : '[name].css'
@@ -78,10 +78,15 @@ module.exports = (env, argv) => {
                 }
             ]
         },
-        externals:{
-          jquery: "jQuery",
-           "@wordpress/blocks": ["wp","blocks"],
-           "@wordpress/i18n": ["wp","i18n"]
+        externals: {
+            jquery: "jQuery",
+            "@wordpress/blocks": ["wp", "blocks"],
+            "@wordpress/i18n": ["wp", "i18n"],
+            "@wordpress/editor": ["wp", "editor"],
+            "@wordpress/block-editor": ["wp", "blockEditor"],
+            "@wordpress/components": ["wp", "components"],
+            "@wordpress/element": ["wp", "element"],
+            "@wordpress/data": ["wp", "data"],
         }
     };
 

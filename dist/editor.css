@@ -11,5 +11,26 @@
   width: 50%;
   border-bottom: 3px solid rgba(0, 0, 0, 0); }
 
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/blocks/secondblock/components/extraCom/Device/style.css ***!
+  \****************************************************************************************************************************************************************************************************************************/
+.advancedOptionssingle-device {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 1px;
+  height: 17px !important;
+  width: 17px !important;
+  display: flex;
+  cursor: pointer; }
+
+.advancedOptionssingle-device.active {
+  border-color: #4527a4 !important; }
+
+.advancedOptionssingle-device > .dashicons.active {
+  color: #4527a4 !important; }
+
+.advancedOptionssingle-device span.dashicons {
+  font-size: 13px; }
+
 
 /*# sourceMappingURL=editor.css.map*/

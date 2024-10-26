@@ -14,6 +14,14 @@ registerBlockType("my-blocks/secondblock", {
         "color": {
             "type": "string",
             "default": "red"
+        },
+        "width": {
+            "type": "object",
+            "default": {
+                "desktop": "700px",
+                "tablet": "650px",
+                "mobile": "400px"
+            }
         }
     },
     icon: "admin-network",

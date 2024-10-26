@@ -19,4 +19,4 @@ const Style = ({ attributes, setAttributes }) => {
   )
 }
 
-export default Style
+export default Style;

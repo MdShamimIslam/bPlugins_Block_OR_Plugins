@@ -6,7 +6,7 @@ import General from './General/General';
 import Style from './Style/Style';
 import { generalStyleTabs } from '../../../utils/options';
 
-const Settings = ({ attributes, setAttributes }) => {
+const Settings = ({ attributes, setAttributes, device }) => {
 
     return (
         <>
@@ -18,7 +18,9 @@ const Settings = ({ attributes, setAttributes }) => {
                     {
                         tab => <>
                             {'general' === tab.name &&
-                                <General attributes={attributes} setAttributes={setAttributes} />}
+                                <General attributes={attributes} setAttributes={setAttributes}
+                                device={device}
+                                 />}
 
                             {'style' === tab.name && <Style attributes={attributes} setAttributes={setAttributes} />}
                         </>

@@ -79,10 +79,10 @@ registerBlockType("my-blocks/firstblock", {
 
 /***/ }),
 
-/***/ "./src/blocks/secondblock/Backend/Edit.js":
-/*!************************************************!*\
-  !*** ./src/blocks/secondblock/Backend/Edit.js ***!
-  \************************************************/
+/***/ "./src/blocks/secondblock/components/Backend/Edit.js":
+/*!***********************************************************!*\
+  !*** ./src/blocks/secondblock/components/Backend/Edit.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -92,8 +92,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Settings_Settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Settings/Settings */ "./src/blocks/secondblock/Backend/Settings/Settings.js");
-var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\Backend\\Edit.js";
+/* harmony import */ var _Settings_Settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Settings/Settings */ "./src/blocks/secondblock/components/Backend/Settings/Settings.js");
+/* harmony import */ var _Common_Style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Common/Style */ "./src/blocks/secondblock/components/Common/Style.js");
+var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\components\\Backend\\Edit.js";
+
 
 
 const Edit = props => {
@@ -109,7 +111,7 @@ const Edit = props => {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11,
+      lineNumber: 12,
       columnNumber: 13
     }
   }), wp.element.createElement("div", {
@@ -117,22 +119,31 @@ const Edit = props => {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13,
+      lineNumber: 14,
       columnNumber: 13
     }
-  }, wp.element.createElement("div", {
-    className: "bBlocksFirstBlock",
+  }, wp.element.createElement(_Common_Style__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    id: `block-${clientId}`,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18,
+      lineNumber: 16,
+      columnNumber: 17
+    }
+  }), wp.element.createElement("div", {
+    className: "bBlocksSecondBlock",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19,
       columnNumber: 17
     }
   }, wp.element.createElement("p", {
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19,
+      lineNumber: 20,
       columnNumber: 21
     }
   }, "Editor Contents here!!"))));
@@ -141,10 +152,10 @@ const Edit = props => {
 
 /***/ }),
 
-/***/ "./src/blocks/secondblock/Backend/Settings/General/General.js":
-/*!********************************************************************!*\
-  !*** ./src/blocks/secondblock/Backend/Settings/General/General.js ***!
-  \********************************************************************/
+/***/ "./src/blocks/secondblock/components/Backend/Settings/General/General.js":
+/*!*******************************************************************************!*\
+  !*** ./src/blocks/secondblock/components/Backend/Settings/General/General.js ***!
+  \*******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -156,13 +167,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\Backend\\Settings\\General\\General.js";
+var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\components\\Backend\\Settings\\General\\General.js";
 
 
 const General = () => {
-  return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody
-  // className='bPlPanelBody'
-  , {
+  return wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Purpose General', 'my-blocks'),
     initialOpen: false,
     __self: undefined,
@@ -172,10 +181,11 @@ const General = () => {
       columnNumber: 9
     }
   }, wp.element.createElement("p", {
+    className: "general",
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11,
+      lineNumber: 8,
       columnNumber: 13
     }
   }, "General Settings..."));
@@ -184,10 +194,10 @@ const General = () => {
 
 /***/ }),
 
-/***/ "./src/blocks/secondblock/Backend/Settings/Settings.js":
-/*!*************************************************************!*\
-  !*** ./src/blocks/secondblock/Backend/Settings/Settings.js ***!
-  \*************************************************************/
+/***/ "./src/blocks/secondblock/components/Backend/Settings/Settings.js":
+/*!************************************************************************!*\
+  !*** ./src/blocks/secondblock/components/Backend/Settings/Settings.js ***!
+  \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -201,11 +211,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Components_utils_functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../Components/utils/functions */ "../Components/utils/functions.js");
-/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/options */ "./src/blocks/secondblock/utils/options.js");
-/* harmony import */ var _General_General__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./General/General */ "./src/blocks/secondblock/Backend/Settings/General/General.js");
-/* harmony import */ var _Style_Style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Style/Style */ "./src/blocks/secondblock/Backend/Settings/Style/Style.js");
-var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\Backend\\Settings\\Settings.js";
+/* harmony import */ var _Components_utils_functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../Components/utils/functions */ "../Components/utils/functions.js");
+/* harmony import */ var _General_General__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./General/General */ "./src/blocks/secondblock/components/Backend/Settings/General/General.js");
+/* harmony import */ var _Style_Style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Style/Style */ "./src/blocks/secondblock/components/Backend/Settings/Style/Style.js");
+/* harmony import */ var _utils_options__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../utils/options */ "./src/blocks/secondblock/utils/options.js");
+var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\components\\Backend\\Settings\\Settings.js";
 
 
 
@@ -224,12 +234,10 @@ const Settings = ({
       lineNumber: 13,
       columnNumber: 13
     }
-  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel
-  // wp-block-my-blocks-secondblock
-  , {
-    className: "bPlTabPanel ",
+  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
+    className: "bPlTabPanel",
     activeClass: "activeTab",
-    tabs: _utils_options__WEBPACK_IMPORTED_MODULE_4__.generalStyleTabs,
+    tabs: _utils_options__WEBPACK_IMPORTED_MODULE_6__.generalStyleTabs,
     onSelect: _Components_utils_functions__WEBPACK_IMPORTED_MODULE_3__.tabController,
     __self: undefined,
     __source: {
@@ -237,22 +245,22 @@ const Settings = ({
       lineNumber: 14,
       columnNumber: 17
     }
-  }, tab => wp.element.createElement(wp.element.Fragment, null, 'general' === tab.name && wp.element.createElement(_General_General__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, tab => wp.element.createElement(wp.element.Fragment, null, 'general' === tab.name && wp.element.createElement(_General_General__WEBPACK_IMPORTED_MODULE_4__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 21,
       columnNumber: 33
     }
-  }), 'style' === tab.name && wp.element.createElement(_Style_Style__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), 'style' === tab.name && wp.element.createElement(_Style_Style__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24,
+      lineNumber: 23,
       columnNumber: 54
     }
   })))));
@@ -261,10 +269,10 @@ const Settings = ({
 
 /***/ }),
 
-/***/ "./src/blocks/secondblock/Backend/Settings/Style/Style.js":
-/*!****************************************************************!*\
-  !*** ./src/blocks/secondblock/Backend/Settings/Style/Style.js ***!
-  \****************************************************************/
+/***/ "./src/blocks/secondblock/components/Backend/Settings/Style/Style.js":
+/*!***************************************************************************!*\
+  !*** ./src/blocks/secondblock/components/Backend/Settings/Style/Style.js ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -276,22 +284,80 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\Backend\\Settings\\Style\\Style.js";
+var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\components\\Backend\\Settings\\Style\\Style.js";
 
 
-const Style = () => {
-  return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody
-  // className='bPlPanelBody'
-  , {
+const Style = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    color
+  } = attributes;
+  return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Purpose Style', 'my-blocks'),
     initialOpen: false,
     __self: undefined,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8,
+      lineNumber: 9,
       columnNumber: 7
     }
-  }, "Style Settings..."));
+  }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+    value: color,
+    onChange: val => setAttributes({
+      color: val
+    }),
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12,
+      columnNumber: 9
+    }
+  })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/blocks/secondblock/components/Common/Style.js":
+/*!***********************************************************!*\
+  !*** ./src/blocks/secondblock/components/Common/Style.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\components\\Common\\Style.js";
+const Style = ({
+  attributes,
+  id
+}) => {
+  const {
+    color
+  } = attributes;
+  const mainSl = `#${id}`;
+  const blockSl = `${mainSl} .bBlocksSecondBlock`;
+  return wp.element.createElement("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+		
+		${blockSl} p{
+			color:${color};
+		}
+
+	`
+    },
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8,
+      columnNumber: 9
+    }
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
 
@@ -310,7 +376,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Backend/Edit */ "./src/blocks/secondblock/Backend/Edit.js");
+/* harmony import */ var _components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Backend/Edit */ "./src/blocks/secondblock/components/Backend/Edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/blocks/secondblock/save.js");
 var _jsxFileName = "D:\\Ampps\\www\\tutorial\\wp-content\\plugins\\my-blocks\\src\\blocks\\secondblock\\index.js";
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
@@ -325,18 +391,24 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Second Block", "my-blocks"),
   description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Its second block description", "my-blocks"),
   category: "media",
+  attributes: {
+    "color": {
+      "type": "string",
+      "default": "red"
+    }
+  },
   icon: "admin-network",
   keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('photo', 'my-blocks'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('image', 'my-blocks')],
   supports: {
     align: ['wide', 'full']
   },
   edit: props => {
-    return wp.element.createElement(_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({}, props, {
+    return wp.element.createElement(_components_Backend_Edit__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({}, props, {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 19,
-        columnNumber: 15
+        lineNumber: 25,
+        columnNumber: 16
       }
     }));
   },
@@ -346,7 +418,7 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 23,
+        lineNumber: 29,
         columnNumber: 16
       }
     }));

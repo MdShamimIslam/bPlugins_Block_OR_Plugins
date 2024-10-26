@@ -1,25 +1,31 @@
 import './styles.editor.scss';
 
-import {registerBlockType,getBlockDefaultClassName } from '@wordpress/blocks';
-import {__} from '@wordpress/i18n';
-import Edit from './Backend/Edit';
+import { registerBlockType, getBlockDefaultClassName } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import Edit from './components/Backend/Edit';
 import Save from './save';
 
 // register second  block
-registerBlockType("my-blocks/secondblock",{
+registerBlockType("my-blocks/secondblock", {
     title: __("Second Block", "my-blocks"),
-    description:__("Its second block description", "my-blocks"),
-    category:"media",
-    icon:"admin-network",
-    keywords:[__('photo','my-blocks'),__('image','my-blocks')],
-    supports:{
-        align:['wide','full'],
+    description: __("Its second block description", "my-blocks"),
+    category: "media",
+    attributes: {
+        "color": {
+            "type": "string",
+            "default": "red"
+        }
     },
-    edit:(props) => {
-       return <Edit {...props} />;
+    icon: "admin-network",
+    keywords: [__('photo', 'my-blocks'), __('image', 'my-blocks')],
+    supports: {
+        align: ['wide', 'full'],
     },
-    save:() => {
+    edit: (props) => {
+        return <Edit {...props} />;
+    },
+    save: () => {
         const className = getBlockDefaultClassName("my-blocks/secondblock");
-        return <Save {...className} /> ;
+        return <Save {...className} />;
     }
 })

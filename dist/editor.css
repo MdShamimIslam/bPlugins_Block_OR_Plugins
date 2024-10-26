@@ -1,4 +1,15 @@
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/blocks/secondblock/styles.editor.scss ***!
   \**********************************************************************************************************************************************************************************************************/
+.components-tab-panel__tabs .activeTab {
+  border-bottom: 3px solid #4527a4;
+  font-weight: bold;
+  background-color: rgba(69, 39, 164, 0.15); }
 
+.components-tab-panel__tabs button {
+  color: #4527a4;
+  width: 50%;
+  border-bottom: 3px solid rgba(0, 0, 0, 0); }
+
+
+/*# sourceMappingURL=editor.css.map*/

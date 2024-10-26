@@ -1,10 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
-import { tabController } from '../../../../../../Components/utils/functions';
-import { generalStyleTabs } from '../../utils/options';
+import { tabController } from '../../../../../../../Components/utils/functions';
 import General from './General/General';
 import Style from './Style/Style';
+import { generalStyleTabs } from '../../../utils/options';
 
 const Settings = ({ attributes, setAttributes }) => {
 
@@ -12,8 +12,7 @@ const Settings = ({ attributes, setAttributes }) => {
         <>
             <InspectorControls>
                 <TabPanel
-                // wp-block-my-blocks-secondblock
-                    className='bPlTabPanel ' activeClass='activeTab'
+                    className='bPlTabPanel' activeClass='activeTab'
                     tabs={generalStyleTabs}
                     onSelect={tabController}>
                     {

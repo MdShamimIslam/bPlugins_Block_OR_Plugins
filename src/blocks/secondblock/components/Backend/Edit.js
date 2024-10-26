@@ -1,5 +1,6 @@
 import React from 'react';
 import Settings from './Settings/Settings';
+import Style from '../Common/Style';
 
 
 const Edit = (props) => {
@@ -12,10 +13,10 @@ const Edit = (props) => {
 
             <div className={className}>
                 {/* styles */}
-                {/* <Style attributes={attributes} id={`block-${clientId}`} /> */}
+                <Style attributes={attributes} id={`block-${clientId}`} />
 
                 {/* conetnt */}
-                <div className="bBlocksFirstBlock">
+                <div className="bBlocksSecondBlock">
                     <p>Editor Contents here!!</p>
                 </div>
 

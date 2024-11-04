@@ -32,7 +32,7 @@
 .wp-block-bpmp-mp3-player .bpMp3Player .volume-control {
   position: absolute;
   transform: rotate(-90deg);
-  right: 0;
+  right: 15px;
   top: 76px;
 }
 .wp-block-bpmp-mp3-player .bpMp3Player .coverBox {

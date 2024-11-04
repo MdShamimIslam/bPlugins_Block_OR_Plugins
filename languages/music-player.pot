@@ -1,0 +1,197 @@
+# Copyright (C) 2024 bPlugins
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Music Player with Slider 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/music-player\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-08-10T06:05:37+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: music-player\n"
+
+#. Plugin Name of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\music-player\music-player.php
+msgid "Music Player with Slider"
+msgstr ""
+
+#. Description of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\music-player\music-player.php
+msgid "Add a dynamic music player to your WordPress site with an interactive slider. Customize audio playback and enhance user experience with seamless control and integration."
+msgstr ""
+
+#. Author of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\music-player\music-player.php
+msgid "bPlugins"
+msgstr ""
+
+#. Author URI of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\music-player\music-player.php
+msgid "https://bplugins.com"
+msgstr ""
+
+#: build/index.js:1
+msgid "General"
+msgstr ""
+
+#: build/index.js:1
+msgid "Style"
+msgstr ""
+
+#: build/index.js:1
+msgid "Title"
+msgstr ""
+
+#: build/index.js:1
+msgid "Name"
+msgstr ""
+
+#: build/index.js:1
+msgid "Source"
+msgstr ""
+
+#: build/index.js:1
+msgid "Thumbnail"
+msgstr ""
+
+#: build/index.js:1
+msgid "Enter or upload thumbnail..."
+msgstr ""
+
+#: build/index.js:1
+msgid "Link"
+msgstr ""
+
+#: build/index.js:1
+msgid "Open in New Tab"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show Range Thumb"
+msgstr ""
+
+#: build/index.js:1
+msgid "Remove"
+msgstr ""
+
+#: build/index.js:1
+msgid "Duplicate"
+msgstr ""
+
+#: build/index.js:1
+msgid "Add New Music"
+msgstr ""
+
+#: build/index.js:1
+msgid "Music Wrapper"
+msgstr ""
+
+#: build/index.js:1
+msgid "Background"
+msgstr ""
+
+#: build/index.js:1
+msgid "Border"
+msgstr ""
+
+#: build/index.js:1
+msgid "Music Slider"
+msgstr ""
+
+#: build/index.js:1
+msgid "Overlay Background"
+msgstr ""
+
+#: build/index.js:1
+msgid "Music Player"
+msgstr ""
+
+#: build/index.js:1
+msgid "Color"
+msgstr ""
+
+#: build/index.js:1
+msgid "Typography"
+msgstr ""
+
+#: build/index.js:1
+msgid "Opacity"
+msgstr ""
+
+#: build/index.js:1
+msgid "Static Background"
+msgstr ""
+
+#: build/index.js:1
+msgid "Progress Background"
+msgstr ""
+
+#: build/index.js:1
+msgid "Progress Time Background"
+msgstr ""
+
+#: build/index.js:1
+msgid "Width"
+msgstr ""
+
+#: build/index.js:1
+msgid "Height"
+msgstr ""
+
+#: build/index.js:1
+msgid "Margin"
+msgstr ""
+
+#: build/index.js:1
+msgid "Border radius"
+msgstr ""
+
+#: build/index.js:1
+msgid "Shadow"
+msgstr ""
+
+#: build/index.js:1
+msgid "Outline"
+msgstr ""
+
+#: build/index.js:1
+msgid "Music Controls Button"
+msgstr ""
+
+#: build/index.js:1
+msgid "Colors"
+msgstr ""
+
+#: build/block.json
+msgctxt "block title"
+msgid "Music Player with Slider"
+msgstr ""
+
+#: build/block.json
+msgctxt "block description"
+msgid "Add a customizable music player with an interactive slider to your WordPress posts and pages."
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "music"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "player"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "music player"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "music slider"
+msgstr ""

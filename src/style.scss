@@ -1,0 +1,54 @@
+$primaryColor: #4527a4;
+$primary-clr: rgba(228, 228, 229, 1);
+
+@use './custom-scss/general';
+@use './custom-scss/settingStyle';
+
+.wp-block-mpws-music-player {
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	@import './custom-scss/keyFrames';
+
+	%ourBlocks{
+		position: relative;
+		display: inline-flex;
+		background-repeat: no-repeat;
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		animation: slideIn 120s forwards infinite alternate;
+		padding: 15px 8px;
+		display: inline-block;
+		overflow: hidden;
+		}
+
+	.bBlocksMusicPlayer {
+		// blocks parents
+		@extend %ourBlocks;
+
+		// Slide
+		@import './custom-scss/swiperSlide';
+
+		// Music Player
+		@import './custom-scss/music';
+
+		// Progress
+		@import './custom-scss/progress';
+
+		// Controls
+		@import './custom-scss/controlsBtn';
+
+	}
+
+	.icon {
+		font-style: inherit;
+	}
+
+	img {
+		width: 100%;
+		max-width: 100%;
+	}
+}

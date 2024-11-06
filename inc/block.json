@@ -1,0 +1,134 @@
+{
+  "apiVersion": "1",
+  "name": "osm/open-street-map",
+  "title": "Open Street Map",
+  "description": "Enhance your WordPress site with interactive open-street-map (OSM) blocks.",
+  "category": "widgets",
+  "keywords": [
+    "OSM",
+    "osm",
+    "Open Street Map",
+    "open",
+    "Open",
+    "Map",
+    "map",
+    "open street map"
+  ],
+  "textdomain": "open-street-map",
+  "attributes": {
+    "cId": {
+      "type": "string",
+      "default": ""
+    },
+    "align": {
+      "type": "string",
+      "default": "center"
+    },
+    "map": {
+      "type": "object",
+      "default": {
+        "marker": {
+          "currentUrl":"https://png.pngtree.com/png-clipart/20230123/original/pngtree-flat-red-location-sign-png-image_8927579.png",
+          "fromUrl": "https://www.openstreetmap.org/assets/marker-green-2de0354ac458a358b9925a8b7f5746324122ff884605073e1ee602fe8006e060.png",
+          "toUrl": "https://www.openstreetmap.org/assets/marker-red-ea1f472cd753fdbe59b263a7dc4886006415079498be4d13a18c12ed33ac5b26.png",
+          "pathUrl": "https://png.pngtree.com/png-clipart/20230123/original/pngtree-flat-red-location-sign-png-image_8927579.png"
+        },
+        "listPlace": [],
+        "fromListPlace": [],
+        "desListPlace": [],
+        "selectPosition": "",
+        "selectFromPosition": "",
+        "selectDestinationPosition": "",
+        "searchQuery": "",
+        "fromSearchQuery": "",
+        "DesSearchQuery": "",
+        "latitude": "",
+        "longitude": "",
+        "from":{"lat":"","lon":""},
+        "destination":{"lat":"","lon":""},
+        "routeDirection": {
+            "fromLocation": {
+              "lat": 0,
+              "lon": 0,
+              "locationName": ""
+            },
+            "toLocation": {
+              "lat": 0,
+              "lon": 0,
+              "locationName": ""
+            }
+        },
+        "routingSystem":"none"
+      }
+    },
+    "options": {
+      "type": "object",
+      "default": {
+        "scrollZoom": true,
+        "isViewLatLon": true,
+        "isMapLayer": true,
+        "isFullScreen": true,
+        "isDownloadPDF": false,
+        "isViewMyLocation": true,
+        "mapLayerType": "default",
+        "selectMarker": "start"
+      }
+    },
+    "layout": {
+      "type": "object",
+      "default": {
+        "mapColumns": {
+          "width": { "desktop": "620px", "tablet": "620px", "mobile": "300px" },
+          "height": { "desktop": "450px", "tablet": "450px", "mobile": "295px" }
+        },
+        "markerColumns": {
+          "width": { "desktop": 30, "tablet": 30, "mobile": 30 },
+          "height": { "desktop": 40, "tablet": 40, "mobile": 40 }
+        },
+        "selfMarkerColumns": {
+          "width": { "desktop": 15, "tablet": 15, "mobile": 15 },
+          "height": { "desktop": 30, "tablet": 30, "mobile": 30 }
+        },
+        "othersMarkerColumns": {
+          "width": { "desktop": 15, "tablet": 15, "mobile": 15 },
+          "height": { "desktop": 30, "tablet": 30, "mobile": 30 }
+        },
+        "pathMarkerColumns": {
+          "width": { "desktop": 15, "tablet": 15, "mobile": 15 },
+          "height": { "desktop": 30, "tablet": 30, "mobile": 30 }
+        }
+      }
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "tooltipColors": { "color": "white", "bg": "#4527a4" },
+        "tipColor": "#4527a4",
+        "tooltipTypo": { "fontSize": 13 },
+        "border": {},
+        "zoom": 13,
+        "alignment": {
+          "desktop": "start",
+          "tablet": "start",
+          "mobile": "start"
+        }
+      }
+    }
+   
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "example": {
+    "attributes": {
+      "preview": true,
+      "columns": {
+        "desktop": 1,
+        "tablet": 1,
+        "mobile": 1
+      }
+    }
+  },
+  "editorScript": "file:./../dist/editor.js"
+}

@@ -1,0 +1,33 @@
+
+$primaryColor: #4527a4;
+
+.prefixNowEditing {
+	outline: 2px solid $primaryColor;
+}
+
+.prefixInspectorInfo {
+	padding: 6px;
+
+	a {
+		text-decoration: none;
+		font-weight: bold;
+	}
+}
+
+// Tab Panel style
+.components-button.components-tab-panel__tabs-item {
+  font-size: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.components-button.components-tab-panel__tabs-item.active-tab {
+  background-color: #4527a4;
+  color: #ffffff;
+}
+.components-form-toggle.is-checked .components-form-toggle__track {
+  background-color: #635bbc;
+  border-color: #635bbc;
+  // box-shadow: 0 0 0 var(--wp-admin-border-width-focus) #fff,
+  //   0 0 0 calc(var(--wp-admin-border-width-focus) * 2) #635bbc;
+}

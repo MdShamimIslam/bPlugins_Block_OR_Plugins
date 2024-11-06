@@ -1,0 +1,85 @@
+# Copyright (C) 2024 bPlugins LLC
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Open Street Map 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/open-street-map\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-07-09T12:48:39+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: open-street-map\n"
+
+#. Plugin Name of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\open-street-map\index.php
+msgid "Open Street Map"
+msgstr ""
+
+#. Description of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\open-street-map\index.php
+msgid "Description of the OSM Block."
+msgstr ""
+
+#. Author of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\open-street-map\index.php
+msgid "bPlugins LLC"
+msgstr ""
+
+#. Author URI of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\open-street-map\index.php
+msgid "http://bplugins.com"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block title"
+msgid "Open Street Map"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block description"
+msgid "Enhance your WordPress site with interactive open-street-map (OSM) blocks."
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "OSM"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "osm"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "Open Street Map"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "open"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "Open"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "Map"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "map"
+msgstr ""
+
+#: inc/block.json
+msgctxt "block keyword"
+msgid "open street map"
+msgstr ""

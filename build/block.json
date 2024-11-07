@@ -1,0 +1,149 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "b-blocks/panoramic-image-viewer",
+  "version": "1.0.0",
+  "title": "Panoramic Image Viewer",
+  "category": "widgets",
+  "description": "Interactive 3D and 360° Viewer for Panoramic Images.",
+  "keywords": [
+    "panoramic image viewer",
+    "panoramic",
+    "panorama",
+    "3D image viewer",
+    "b-blocks panoramic image viewer",
+    "360° image viewer"
+  ],
+  "textdomain": "b-blocks",
+  "attributes": {
+    "margin": {
+      "type": "object",
+      "default": {
+        "desktop": {},
+        "tablet": {},
+        "mobile": {}
+      }
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "options": {
+      "type": "object",
+      "default": {
+        "viewerSl": "360°",
+        "alignSl": {
+          "desktop": "center",
+          "tablet": "center",
+          "mobile": "center"
+        },
+        "autoLoad": true,
+        "showZoomCtrl": true,
+        "draggable": true,
+        "mouseZoom": true,
+        "showFullscreenCtrl": true,
+        "pitch": 0,
+        "hfov": 110,
+        "disableKeyboardCtrl": false,
+        "doubleClickZoom": true,
+        "autoRotate": 1,
+        "compass": true,
+        "autoRotateInactivityDelay": 9000,
+        "panolens": {
+          "autoRotate": true,
+          "autoRotateSpeed": 1,
+          "fullscreen": true,
+          "setting": true,
+          "isDeviceMotion": true,
+          "cameraFov": 90,
+          "autoRotateActivationDuration": 5000
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "default": {
+        "width": {
+          "desktop": "100%",
+          "tablet": "100%",
+          "mobile": "100%"
+        },
+        "height": {
+          "desktop": "500px",
+          "tablet": "480px",
+          "mobile": "300px"
+        },
+        "border": {},
+        "margin": {
+          "desktop": {},
+          "tablet": {},
+          "mobile": {}
+        },
+        "padding": {
+          "desktop": {
+            "top": "10px",
+            "right": "10px",
+            "bottom": "10px",
+            "left": "10px"
+          },
+          "tablet": {
+            "top": "10px",
+            "right": "10px",
+            "bottom": "10px",
+            "left": "10px"
+          },
+          "mobile": {
+            "top": "10px",
+            "right": "10px",
+            "bottom": "10px",
+            "left": "10px"
+          }
+        },
+        "button": {
+          "typo": {
+            "fontSize": 18
+          },
+          "textAlign": {
+            "desktop": "center",
+            "tablet": "center",
+            "mobile": "center"
+          },
+          "horizontalAlign": {
+            "desktop": "start",
+            "tablet": "start",
+            "mobile": "start"
+          },
+          "verticalAlign": {
+            "desktop": "top",
+            "tablet": "top",
+            "mobile": "top"
+          },
+          "colors": {
+            "color": "white",
+            "bg": "#5A1C81"
+          },
+          "btnWidth": {
+            "desktop": "",
+            "tablet": "",
+            "mobile": ""
+          }
+        }
+      }
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "example": {
+    "attributes": {}
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./view.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

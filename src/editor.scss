@@ -1,0 +1,42 @@
+$primaryColor: #4527a4;
+
+.bBlocksInspectorInfo {
+  padding: 6px;
+
+  a {
+    text-decoration: none;
+    font-weight: 700;
+  }
+}
+
+.wp-block-b-blocks-panoramic-image-viewer {
+  position: relative;
+
+  .bPlBlockBeforeSelect {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .mediaBtn {
+    background: #4527a4;
+    color: white;
+    height: 32px;
+    margin-top: 15px;
+    margin-left: -5px;
+  }
+
+  .thumbnail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .em5sgkm6 {
+    background: #4527a4;
+  }
+}

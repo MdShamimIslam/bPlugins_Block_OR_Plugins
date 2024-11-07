@@ -1,0 +1,158 @@
+# Copyright (C) 2024 bPlugins
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Panoramic Image Viewer 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/panoramic-image-viewer\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-10-30T05:05:06+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: b-blocks\n"
+
+#. Plugin Name of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\panoramic-image-viewer\panoramic-image-viewer.php
+msgid "Panoramic Image Viewer"
+msgstr ""
+
+#. Description of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\panoramic-image-viewer\panoramic-image-viewer.php
+msgid "The 3D Panoramic Panoramic Image Viewer block lets users embed a 360° interactive image, offering drag-to-view, zoom, and fullscreen etc options for an immersive experience."
+msgstr ""
+
+#. Author of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\panoramic-image-viewer\panoramic-image-viewer.php
+msgid "bPlugins"
+msgstr ""
+
+#. Author URI of the plugin
+#: D:\Ampps\www\shamim\wp-content\plugins\panoramic-image-viewer\panoramic-image-viewer.php
+msgid "https://bplugins.com"
+msgstr ""
+
+#: build/index.js:1
+msgid "View Adjustment Controls"
+msgstr ""
+
+#: build/index.js:1
+msgid "Image URL"
+msgstr ""
+
+#: build/index.js:1
+msgid "Enter or upload image url"
+msgstr ""
+
+#: build/index.js:1
+msgid "Auto Load"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show Zoom Control"
+msgstr ""
+
+#: build/index.js:1
+msgid "Draggable"
+msgstr ""
+
+#: build/index.js:1
+msgid "Mouse Zoom"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show Full Screen Control"
+msgstr ""
+
+#: build/index.js:1
+msgid "Skyward Tilt Control"
+msgstr ""
+
+#: build/index.js:1
+msgid "Wide Angle Zoomer"
+msgstr ""
+
+#: build/index.js:1
+msgid "Auto Rotate"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show Full Screen"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show Setting"
+msgstr ""
+
+#: build/index.js:1
+msgid "Auto Rotate Speed"
+msgstr ""
+
+#: build/index.js:1
+msgid "Camera Field of View"
+msgstr ""
+
+#: build/index.js:1
+msgid "Panoramic Image Viewer Style"
+msgstr ""
+
+#: build/index.js:1
+msgid "Alignment"
+msgstr ""
+
+#: build/index.js:1
+msgid "Border"
+msgstr ""
+
+#: build/index.js:1
+msgid "Panoramic Image Viewer in left"
+msgstr ""
+
+#: build/index.js:1
+msgid "Panoramic Image Viewer in center"
+msgstr ""
+
+#: build/index.js:1
+msgid "Panoramic Image Viewer in right"
+msgstr ""
+
+#: build/index.js:1
+msgid "Paste or type a image URL"
+msgstr ""
+
+#: build/block.json
+msgctxt "block title"
+msgid "Panoramic Image Viewer"
+msgstr ""
+
+#: build/block.json
+msgctxt "block description"
+msgid "A 3D panoramic Panoramic Image Viewer for immersive exploration of panoramic images with interactive controls."
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "panoramic Panoramic Image Viewer"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "panoramic"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "3D Panoramic Image Viewer"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "b-blocks Panoramic Image Viewer"
+msgstr ""
+
+#: build/block.json
+msgctxt "block keyword"
+msgid "360° Panoramic Image Viewer"
+msgstr ""

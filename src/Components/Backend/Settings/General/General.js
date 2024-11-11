@@ -45,7 +45,7 @@ const General = ({ attributes, setAttributes }) => {
     >
       <p>Choose Image Viewer</p>
       <Tab
-        options={["360°", "3D"]}
+        options={["3D", "360°"]}
         value={viewerSl}
         onChange={(v) =>
           setAttributes({ options: updateData(options, v, "viewerSl") })
@@ -125,7 +125,7 @@ const General = ({ attributes, setAttributes }) => {
           <ToggleControl
             className="mt5"
             checked={showZoomCtrl}
-            label={__("Show Zoom Control", "b-blocks")}
+            label={__("Zoom Control", "b-blocks")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "showZoomCtrl"),
@@ -135,7 +135,7 @@ const General = ({ attributes, setAttributes }) => {
           <ToggleControl
             className="mt5"
             checked={showFullscreenCtrl}
-            label={__("Show Full Screen Control", "b-blocks")}
+            label={__("Full Screen Control ", "b-blocks")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "showFullscreenCtrl"),
@@ -145,7 +145,7 @@ const General = ({ attributes, setAttributes }) => {
           <ToggleControl
             className="mt5"
             checked={compass}
-            label={__("Show Compass", "b-blocks")}
+            label={__("Compass", "b-blocks")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "compass"),
@@ -225,26 +225,6 @@ const General = ({ attributes, setAttributes }) => {
               })
             }
           />
-          <ToggleControl
-            className="mt5"
-            checked={fullscreen}
-            label={__("Show Full Screen", "b-blocks")}
-            onChange={(v) =>
-              setAttributes({
-                options: updateData(options, v, "panolens", "fullscreen"),
-              })
-            }
-          />
-          <ToggleControl
-            className="mt5"
-            checked={setting}
-            label={__("Show Setting", "b-blocks")}
-            onChange={(v) =>
-              setAttributes({
-                options: updateData(options, v, "panolens", "setting"),
-              })
-            }
-          />
 
           {autoRotate && (
             <>
@@ -288,8 +268,29 @@ const General = ({ attributes, setAttributes }) => {
               />
             </>
           )}
+
+          <ToggleControl
+            className={autoRotate ? "mt20" : "mt5"}
+            checked={fullscreen}
+            label={__("Full Screen Control Icon", "b-blocks")}
+            onChange={(v) =>
+              setAttributes({
+                options: updateData(options, v, "panolens", "fullscreen"),
+              })
+            }
+          />
+          <ToggleControl
+            className="mt5"
+            checked={setting}
+            label={__("Setting Control Icon", "b-blocks")}
+            onChange={(v) =>
+              setAttributes({
+                options: updateData(options, v, "panolens", "setting"),
+              })
+            }
+          />
           <RangeControl
-            className="mt15"
+            className="mt20"
             label={__("Camera Field of View", "b-blocks")}
             value={cameraFov}
             allowReset

@@ -22,7 +22,7 @@ const Style = ({ attributes, setAttributes, device }) => {
   const { alignSl } = options;
   const { isDeviceMotion } = options.panolens;
   const { width, height, border, margin, padding, button } = layout;
-  const { typo, textAlign, colors, btnWidth, alignment } = button;
+  const { typo, textAlign, colors, btnWidth } = button;
   
 
   return (
@@ -122,21 +122,6 @@ const Style = ({ attributes, setAttributes, device }) => {
             }
             defaults={{ fontSize: 18 }}
           />
-
-          <PanelRow>
-            <Label>{__("Alignment", "b-blocks")}</Label>
-            <Device />
-          </PanelRow>
-          <Tab
-            options={["start", "center", "end"]}
-            value={alignment[device]}
-            onChange={(v) =>
-              setAttributes({
-                layout: updateData(layout, v, "button", "alignment", device),
-              })
-            }
-          />
-
           <PanelRow>
             <Label>{__("Text Align", "b-blocks")}</Label>
             <Device />
@@ -150,47 +135,6 @@ const Style = ({ attributes, setAttributes, device }) => {
               })
             }
           />
-
-          {/* <PanelRow>
-            <Label>{__("Horizontal Align", "b-blocks")}</Label>
-            <Device />
-          </PanelRow>
-          <Tab
-            options={["start", "center", "end"]}
-            value={horizontalAlign[device]}
-            onChange={(val) =>
-              setAttributes({
-                layout: updateData(
-                  layout,
-                  val,
-                  "button",
-                  "horizontalAlign",
-                  device
-                ),
-              })
-            }
-          /> */}
-
-          {/* <PanelRow>
-            <Label>{__("Vertical Align", "b-blocks")}</Label>
-            <Device />
-          </PanelRow>
-          <Tab
-            options={["top", "middle", "bottom"]}
-            value={verticalAlign[device]}
-            onChange={(val) =>
-              setAttributes({
-                layout: updateData(
-                  layout,
-                  val,
-                  "button",
-                  "verticalAlign",
-                  device
-                ),
-              })
-            }
-          /> */}
-
           <PanelRow>
             <Label>{__("Margin", "b-blocks")}</Label>
             <Device />

@@ -99,7 +99,6 @@ const PanoramicImageViewer = ({ attributes }) => {
       } else {
         window.addEventListener("deviceorientation", handleDeviceOrientation);
       }
-      
     } else {
       window.removeEventListener("deviceorientation", handleDeviceOrientation);
       viewerRef.current?.enableControl(window.PANOLENS.CONTROLS.ORBIT);

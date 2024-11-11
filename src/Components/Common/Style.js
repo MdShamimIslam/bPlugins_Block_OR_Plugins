@@ -36,7 +36,7 @@ const Style = ({ attributes, id, device = "desktop" }) => {
 		}
 
     ${buttonSl}{
-			width: ${btnWidth[device] ? `${btnWidth[device]}px` : "100%"};
+			width: ${btnWidth[device] ? `${btnWidth[device]}px` : `${width[device] ? width[device] : "100%" }`};
       text-align:${textAlign[device]};
       ${getColorsCSS(colors)}
       padding: ${getBoxCSS(padding[device])};
@@ -58,7 +58,7 @@ const Style = ({ attributes, id, device = "desktop" }) => {
 			}
 
 			${buttonSl}{
-				width: ${btnWidth.tablet ? `${btnWidth.tablet}px` : "100%"};
+				width: ${btnWidth.tablet ? `${btnWidth.tablet}px` : `${width.tablet ? width.tablet : "100%" }`};
 				text-align:${textAlign.tablet};
 				padding: ${getBoxCSS(padding.tablet)};
 				margin: ${getBoxCSS(margin.tablet)};
@@ -76,7 +76,7 @@ const Style = ({ attributes, id, device = "desktop" }) => {
 			}
 
 			${buttonSl}{
-				width: ${btnWidth.mobile ? `${btnWidth.mobile}px` : "100%"};
+				width: ${btnWidth.mobile ? `${btnWidth.mobile}px` : `${width.mobile ? width.mobile : "100%" }`};
 				text-align:${textAlign.mobile};
 				padding: ${getBoxCSS(padding.mobile)};
 				margin: ${getBoxCSS(margin.mobile)};

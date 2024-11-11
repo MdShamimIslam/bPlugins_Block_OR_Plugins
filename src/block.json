@@ -31,7 +31,7 @@
     "options": {
       "type": "object",
       "default": {
-        "viewerSl": "360°",
+        "viewerSl": "3d",
         "alignSl": {
           "desktop": "center",
           "tablet": "center",

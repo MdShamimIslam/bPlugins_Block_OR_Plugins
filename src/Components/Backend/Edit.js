@@ -26,7 +26,9 @@ const Edit = (props) => {
         {!isSelected && <div className="bPlBlockBeforeSelect"></div>}
 
         {imageUrl ? (
-          <div className="bBlocksImageViewer">
+          <div 
+          className="bBlocksImageViewer"
+          >
             {viewerSl !== "360°" ? (
               <PanoramicImageViewer attributes={attributes} />
             ) : (

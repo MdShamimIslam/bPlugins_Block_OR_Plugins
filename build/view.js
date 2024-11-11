@@ -1,1 +1,678 @@
-(()=>{"use strict";var t={338:(t,e,n)=>{var o=n(795);e.H=o.createRoot,o.hydrateRoot},795:t=>{t.exports=window.ReactDOM}},e={};const n=window.React;var o=function n(o){var a=e[o];if(void 0!==a)return a.exports;var i=e[o]={exports:{}};return t[o](i,i.exports,n),i.exports}(338);const a=({attributes:t})=>{const{imageUrl:e,options:o}=t,{autoLoad:a,showZoomCtrl:i,draggable:r,mouseZoom:l,showFullscreenCtrl:s,pitch:d,hfov:c,disableKeyboardCtrl:m,doubleClickZoom:u,autoRotate:$,compass:p,autoRotateInactivityDelay:g}=o,b=(0,n.useRef)(null);return(0,n.useEffect)((()=>{const{pannellum:t}=window;if(t&&b.current){const n=t.viewer(b.current,{type:"equirectangular",panorama:e,autoLoad:a,showZoomCtrl:i,draggable:r,mouseZoom:l,showFullscreenCtrl:s,pitch:d,hfov:c,disableKeyboardCtrl:m,doubleClickZoom:u,autoRotate:$,compass:p,autoRotateInactivityDelay:g});return()=>{n.destroy()}}}),[e,a,i,r,l,s,d,c,m,u,$,p,g]),(0,n.createElement)("div",{ref:b,id:"panorama",className:"panoramaImgViewer"})},i=({attributes:t})=>{const{imageUrl:e,options:o}=t,{autoRotate:a,autoRotateSpeed:i,cameraFov:r,fullscreen:l,setting:s,autoRotateActivationDuration:d,isDeviceMotion:c}=o.panolens,m=(0,n.useRef)(null),[u,$]=(0,n.useState)(!1),p=(0,n.useRef)(null);(0,n.useEffect)((()=>{const{PANOLENS:t}=window,n=new t.ImagePanorama(e),o=[...l?["fullscreen"]:[],...s?["setting"]:[]];return p.current=new t.Viewer({container:m.current,autoRotate:a,autoRotateSpeed:i,controlButtons:o,cameraFov:r,autoRotateActivationDuration:d}),p.current.add(n),()=>{p.current.dispose()}}),[e,a,i,r,l,s,d,c]);const g=t=>{const{alpha:e,beta:n,gamma:o}=t;p.current&&p.current.camera&&p.current.camera.rotation.set(THREE.Math.degToRad(n),THREE.Math.degToRad(e),THREE.Math.degToRad(-o))};return(0,n.useEffect)((()=>(u?(p.current?.enableControl(window.PANOLENS.CONTROLS.DEVICEORIENTATION),"function"==typeof window.DeviceOrientationEvent?.requestPermission?window.DeviceOrientationEvent?.requestPermission().then((t=>{"granted"===t&&window.addEventListener("deviceorientation",g)})).catch(console.error):window.addEventListener("deviceorientation",g)):(window.removeEventListener("deviceorientation",g),p.current?.enableControl(window.PANOLENS.CONTROLS.ORBIT)),()=>{window.removeEventListener("deviceorientation",g)})),[u]),(0,n.createElement)("div",{ref:m,className:"panoramaImgViewer",key:`${e}-${a}-${i}-${r}-${l}-${s}-${d}-${c}`},c&&(0,n.createElement)("button",{className:"btn",onClick:()=>{$((t=>!t))}},u?"Stop Device Motion":"Start Device Motion"))},r=t=>{const{width:e="0px",style:n="solid",color:o="#0000",side:a="all",radius:i="0px"}=t||{},r=t=>{const e=a?.toLowerCase();return e?.includes("all")||e?.includes(t)},l=`${e} ${n} ${o}`,s=`\n\t\t${"0px"!==e&&e?["top","right","bottom","left"].map((t=>r(t)?`border-${t}: ${l};`:"")).join(""):""}\n\t\t${i?`border-radius: ${i};`:""}\n\t`;return s},l=t=>{const{color:e="#333",bgType:n="solid",bg:o="#0000",gradient:a="linear-gradient(135deg, #4527a4, #8344c5)"}=t||{};return`\n\t\t${e?`color: ${e};`:""}\n\t\t${a||o?`background: ${"gradient"===n?a:o};`:""}\n\t`},s=(t,e,n=!0)=>{const{fontFamily:o="Default",fontCategory:a="sans-serif",fontVariant:i=400,fontWeight:r=400,isUploadFont:l=!0,fontSize:s={desktop:15,tablet:15,mobile:15},fontStyle:d="normal",textTransform:c="none",textDecoration:m="auto",lineHeight:u="135%",letterSpace:$="0px"}=e||{},p=(t,e)=>t?`${e}: ${t};`:"",g=!n||!o||"Default"===o,b=s?.desktop||s,w=s?.tablet||b,h=s?.mobile||w,f=`\n\t\t${g?"":`font-family: '${o}', ${a};`}\n\t\t${p(r,"font-weight")}\n\t\tfont-size: ${b}px;\n\t\t${p(d,"font-style")}\n\t\t${p(c,"text-transform")}\n\t\t${p(m,"text-decoration")}\n\t\t${p(u,"line-height")}\n\t\t${p($,"letter-spacing")}\n\t`,v=i&&400!==i?"400i"===i?":ital@1":i?.includes("00i")?`: ital, wght@1, ${i?.replace("00i","00")} `:`: wght@${i} `:"",x=g?"":`https://fonts.googleapis.com/css2?family=${o?.split(" ").join("+")}${v.replace(/ /g,"")}&display=swap`;return{googleFontLink:!l||g?"":`@import url(${x});`,styles:`${t}{\n\t\t\t${f}\n\t\t}\n\t\t@media (max-width: 768px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${w}px;\n\t\t\t}\n\t\t}\n\t\t@media (max-width: 576px) {\n\t\t\t${t}{\n\t\t\t\tfont-size: ${h}px;\n\t\t\t}\n\t\t}`.replace(/\s+/g," ").trim()}},d=(t={})=>Object.values(t).join(" "),c=({attributes:t,id:e,device:o="desktop"})=>{const{layout:a,options:i}=t,{width:c,height:u,border:$,margin:p,padding:g,button:b}=a,{alignSl:w}=i,{typo:h,textAlign:f,horizontalAlign:v,verticalAlign:x,colors:E,btnWidth:y}=b,R=`#${e} .bBlocksImageViewer`,S=`${R} .panoramaImgViewer`,C=`${S} .btn`,L=`${S} .panolens-canvas`;return(0,n.createElement)("style",{dangerouslySetInnerHTML:{__html:`\n\n\t\t ${s("",h)?.googleFontLink}\n         ${s(C,h)?.styles}\n\t\t\n\t\t${R}{\n\t\t\talign-items: ${w[o]};\n\t\t}\n\n\t\t${S}{\n\t\t\t${r($)}\n\t\t\twidth: ${c[o]};\n\t\t\theight: ${u[o]};\n\t\t}\n\n    ${C}{\n\t\t\twidth: ${y[o]?`${y[o]}px`:"100%"};\n      text-align:${f[o]};\n      ${l(E)}\n      padding: ${d(g[o])};\n      margin: ${d(p[o])};\n\t\t\t${m(x,v,o)}\n\t\t}\n\t\t\t\n\t\t${L}{\n\t\t\tborder-radius: ${$.radius};\n\t\t}\n\n\t\t@media only screen and (min-width:641px) and (max-width: 1024px){\n\t\t\t${R}{\n\t\t\t\talign-items: ${w.tablet};\n\t\t\t}\n\n\t\t\t${S}{\n\t\t\t\twidth: ${c.tablet};\n\t\t\t\theight: ${u.tablet};\n\t\t\t}\n\n\t\t\t${C}{\n\t\t\t\twidth: ${y.tablet?`${y.tablet}px`:"100%"};\n\t\t\t\ttext-align:${f.tablet};\n\t\t\t\tpadding: ${d(g.tablet)};\n\t\t\t\tmargin: ${d(p.tablet)};\n\t\t\t\t${m(x,v,"tablet")}\n\t\t\t}\n\t\t}\n\n\t\t@media only screen and (max-width:640px){\n\t\t\t${R}{\n\t\t\t\talign-items: ${w.mobile};\n\t\t\t}\n\n\t\t\t${S}{\n\t\t\t\twidth: ${c.mobile};\n\t\t\t\theight: ${u.mobile};\n\t\t\t}\n\n\t\t\t${C}{\n\t\t\t\twidth: ${y.mobile?`${y.mobile}px`:"100%"};\n\t\t\t\ttext-align:${f.mobile};\n\t\t\t\tpadding: ${d(g.mobile)};\n\t\t\t\tmargin: ${d(p.mobile)};\n\t\t\t\t${m(x,v,"mobile")}\n\t\t\t}\n\t\t}\n\n\t`}})},m=(t,e,n)=>`\n    ${"start"===e[n]?"left: 0; right: auto;":""}\n    ${"center"===e[n]?"left: 50%; right: auto; transform: translateX(-50%);":""}\n    ${"end"===e[n]?"right: 0; left: auto;":""}\n    ${"top"===t[n]?"top: 0; bottom: auto;":""}\n    ${"middle"===t[n]?"top: 50%; bottom: auto; transform: translateY(-50%);":""}\n    ${"bottom"===t[n]?"bottom: 0; top: auto;":""}\n    ${"center"===e[n]&&"middle"===t[n]?"top: 50%; right: auto; bottom: auto; left: 50%; transform: translate(-50%, -50%);":""}\n  `;document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll(".wp-block-b-blocks-panoramic-image-viewer").forEach((t=>{const e=JSON.parse(t.dataset.attributes);(0,o.H)(t).render((0,n.createElement)(n.Fragment,null,(0,n.createElement)(c,{attributes:e,id:t.id}),(0,n.createElement)("div",{className:"bBlocksImageViewer"},"360°"!==e.options.viewerSl?(0,n.createElement)(i,{attributes:e}):(0,n.createElement)(a,{attributes:e})))),t?.removeAttribute("data-attributes")}))}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "../Components/utils/getCSS.js":
+/*!*************************************!*\
+  !*** ../Components/utils/getCSS.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getBackgroundCSS: () => (/* binding */ getBackgroundCSS),
+/* harmony export */   getBorderCSS: () => (/* binding */ getBorderCSS),
+/* harmony export */   getBoxCSS: () => (/* binding */ getBoxCSS),
+/* harmony export */   getColorsCSS: () => (/* binding */ getColorsCSS),
+/* harmony export */   getIconCSS: () => (/* binding */ getIconCSS),
+/* harmony export */   getMultiShadowCSS: () => (/* binding */ getMultiShadowCSS),
+/* harmony export */   getSeparatorCSS: () => (/* binding */ getSeparatorCSS),
+/* harmony export */   getShadowCSS: () => (/* binding */ getShadowCSS),
+/* harmony export */   getSpaceCSS: () => (/* binding */ getSpaceCSS),
+/* harmony export */   getTypoCSS: () => (/* binding */ getTypoCSS)
+/* harmony export */ });
+const getBackgroundCSS = (bg, isSolid = true, isGradient = true, isImage = true) => {
+  const {
+    type = 'solid',
+    color = '#000000b3',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)',
+    image = {},
+    position = 'center center',
+    attachment = 'initial',
+    repeat = 'no-repeat',
+    size = 'cover',
+    overlayColor = '#000000b3'
+  } = bg || {};
+  const styles = 'gradient' === type && isGradient ? `background: ${gradient};` : 'image' === type && isImage ? `background: url(${image?.url});
+				background-color: ${overlayColor};
+				background-position: ${position};
+				background-size: ${size};
+				background-repeat: ${repeat};
+				background-attachment: ${attachment};
+				background-blend-mode: overlay;` : isSolid && `background: ${color};`;
+  return styles;
+}; // PHP version in Stepped Content
+
+const getBorderCSS = border => {
+  const {
+    width = '0px',
+    style = 'solid',
+    color = '#0000',
+    side = 'all',
+    radius = '0px'
+  } = border || {};
+  const borderSideCheck = s => {
+    const bSide = side?.toLowerCase();
+    return bSide?.includes('all') || bSide?.includes(s);
+  };
+  const noWidth = width === '0px' || !width;
+  const borderCSS = `${width} ${style} ${color}`;
+  const styles = `
+		${noWidth ? '' : ['top', 'right', 'bottom', 'left'].map(side => borderSideCheck(side) ? `border-${side}: ${borderCSS};` : '').join('')}
+		${!radius ? '' : `border-radius: ${radius};`}
+	`;
+  return styles;
+};
+const getColorsCSS = colors => {
+  const {
+    color = '#333',
+    bgType = 'solid',
+    bg = '#0000',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = colors || {};
+  const styles = `
+		${color ? `color: ${color};` : ''}
+		${gradient || bg ? `background: ${'gradient' === bgType ? gradient : bg};` : ''}
+	`;
+  return styles;
+};
+const getIconCSS = (icon, isSize = true, isColor = true) => {
+  const {
+    fontSize = 16,
+    colorType = 'solid',
+    color = 'inherit',
+    gradient = 'linear-gradient(135deg, #4527a4, #8344c5)'
+  } = icon || {};
+  const colorCSS = 'gradient' === colorType ? `color: transparent; background-image: ${gradient}; -webkit-background-clip: text; background-clip: text;` : `color: ${color};`;
+  const styles = `
+		${!fontSize || !isSize ? '' : `font-size: ${fontSize}px;`}
+		${isColor ? colorCSS : ''}
+	`;
+  return styles;
+};
+const getMultiShadowCSS = (value, type = 'box') => {
+  let styles = '';
+  value?.map((item, index) => {
+    const {
+      hOffset = '0px',
+      vOffset = '0px',
+      blur = '0px',
+      spreed = '0px',
+      color = '#7090b0',
+      isInset = false
+    } = item || {};
+    const inset = isInset ? 'inset' : '';
+    const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+    const isComa = index + 1 >= value.length ? '' : ', ';
+    styles += 'text' === type ? `${offsetBlur} ${color}${isComa}` : `${offsetBlur} ${spreed} ${color} ${inset}${isComa}`;
+  });
+  return styles || 'none';
+};
+const getSeparatorCSS = separator => {
+  const {
+    width = '50%',
+    height = '2px',
+    style = 'solid',
+    color = '#bbb'
+  } = separator || {};
+  const styles = `
+		width: ${width};
+		${'0px' === height && '0em' === height && '0rem' === height ? '' : `border-top: ${height} ${style} ${color};`}
+	`;
+  return styles;
+};
+const getShadowCSS = shadow => {
+  const {
+    type = 'box',
+    hOffset = '0px',
+    vOffset = '0px',
+    blur = '0px',
+    spreed = '0px',
+    color = '#7090b0',
+    isInset = false
+  } = shadow || {};
+  const inset = isInset ? 'inset' : '';
+  const offsetBlur = `${hOffset} ${vOffset} ${blur}`;
+  const styles = 'text' === type ? `${offsetBlur} ${color}` : `${offsetBlur} ${spreed} ${color} ${inset}`;
+  return styles || 'none';
+};
+const getSpaceCSS = space => {
+  const {
+    side = 2,
+    vertical = '0px',
+    horizontal = '0px',
+    top = '0px',
+    right = '0px',
+    bottom = '0px',
+    left = '0px'
+  } = space || {};
+  const styles = 2 === side ? `${vertical} ${horizontal}` : `${top} ${right} ${bottom} ${left}`;
+  return styles;
+};
+const getTypoCSS = (selector, typo, isFamily = true) => {
+  const {
+    fontFamily = 'Default',
+    fontCategory = 'sans-serif',
+    fontVariant = 400,
+    fontWeight = 400,
+    isUploadFont = true,
+    fontSize = {
+      desktop: 15,
+      tablet: 15,
+      mobile: 15
+    },
+    fontStyle = 'normal',
+    textTransform = 'none',
+    textDecoration = 'auto',
+    lineHeight = '135%',
+    letterSpace = '0px'
+  } = typo || {};
+  const generateCss = (value, cssProperty) => !value ? '' : `${cssProperty}: ${value};`;
+  const isEmptyFamily = !isFamily || !fontFamily || 'Default' === fontFamily;
+  const desktopFontSize = fontSize?.desktop || fontSize;
+  const tabletFontSize = fontSize?.tablet || desktopFontSize;
+  const mobileFontSize = fontSize?.mobile || tabletFontSize;
+  const styles = `
+		${isEmptyFamily ? '' : `font-family: '${fontFamily}', ${fontCategory};`}
+		${generateCss(fontWeight, 'font-weight')}
+		${`font-size: ${desktopFontSize}px;`}
+		${generateCss(fontStyle, 'font-style')}
+		${generateCss(textTransform, 'text-transform')}
+		${generateCss(textDecoration, 'text-decoration')}
+		${generateCss(lineHeight, 'line-height')}
+		${generateCss(letterSpace, 'letter-spacing')}
+	`;
+
+  // Google font link
+  const linkQuery = !fontVariant || 400 === fontVariant ? '' : '400i' === fontVariant ? ':ital@1' : fontVariant?.includes('00i') ? `: ital, wght@1, ${fontVariant?.replace('00i', '00')} ` : `: wght@${fontVariant} `;
+  const link = isEmptyFamily ? '' : `https://fonts.googleapis.com/css2?family=${fontFamily?.split(' ').join('+')}${linkQuery.replace(/ /g, '')}&display=swap`;
+  return {
+    googleFontLink: !isUploadFont || isEmptyFamily ? '' : `@import url(${link});`,
+    styles: `${selector}{
+			${styles}
+		}
+		@media (max-width: 768px) {
+			${selector}{
+				${`font-size: ${tabletFontSize}px;`}
+			}
+		}
+		@media (max-width: 576px) {
+			${selector}{
+				${`font-size: ${mobileFontSize}px;`}
+			}
+		}`.replace(/\s+/g, ' ').trim()
+  };
+};
+const getBoxCSS = (val = {}) => Object.values(val).join(' ');
+
+/***/ }),
+
+/***/ "./src/Components/Common/ImageViewer.js":
+/*!**********************************************!*\
+  !*** ./src/Components/Common/ImageViewer.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const ImageViewer = ({
+  attributes
+}) => {
+  const {
+    imageUrl,
+    options
+  } = attributes;
+  const {
+    autoLoad,
+    showZoomCtrl,
+    draggable,
+    mouseZoom,
+    showFullscreenCtrl,
+    pitch,
+    hfov,
+    disableKeyboardCtrl,
+    doubleClickZoom,
+    autoRotate,
+    compass,
+    autoRotateInactivityDelay
+  } = options;
+  const panoramaRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const {
+      pannellum
+    } = window;
+    if (pannellum && panoramaRef.current) {
+      const viewer = pannellum.viewer(panoramaRef.current, {
+        type: "equirectangular",
+        panorama: imageUrl,
+        autoLoad,
+        showZoomCtrl,
+        draggable,
+        mouseZoom,
+        showFullscreenCtrl,
+        pitch,
+        hfov,
+        disableKeyboardCtrl,
+        doubleClickZoom,
+        autoRotate,
+        compass,
+        autoRotateInactivityDelay
+      });
+      return () => {
+        viewer.destroy();
+      };
+    }
+  }, [imageUrl, autoLoad, showZoomCtrl, draggable, mouseZoom, showFullscreenCtrl, pitch, hfov, disableKeyboardCtrl, doubleClickZoom, autoRotate, compass, autoRotateInactivityDelay]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: panoramaRef,
+    id: "panorama",
+    className: "panoramaImgViewer"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageViewer);
+
+/***/ }),
+
+/***/ "./src/Components/Common/PanoramicImageViewer.js":
+/*!*******************************************************!*\
+  !*** ./src/Components/Common/PanoramicImageViewer.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const PanoramicImageViewer = ({
+  attributes
+}) => {
+  const {
+    imageUrl,
+    options
+  } = attributes;
+  const {
+    autoRotate,
+    autoRotateSpeed,
+    cameraFov,
+    fullscreen,
+    setting,
+    autoRotateActivationDuration,
+    isDeviceMotion
+  } = options.panolens;
+  const imageContainerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const [isDeviceMotionActive, setIsDeviceMotionActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const viewerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const {
+      PANOLENS
+    } = window;
+    const panorama = new PANOLENS.ImagePanorama(imageUrl);
+    const controlButtons = [...(fullscreen ? ["fullscreen"] : []), ...(setting ? ["setting"] : [])];
+    viewerRef.current = new PANOLENS.Viewer({
+      container: imageContainerRef.current,
+      autoRotate,
+      autoRotateSpeed,
+      controlButtons,
+      cameraFov,
+      autoRotateActivationDuration
+    });
+    viewerRef.current.add(panorama);
+    const onControlChange = () => {
+      setIsDeviceMotionActive(viewerRef.current.getControl().id !== "orbit");
+    };
+    viewerRef.current.addUpdateCallback(() => {
+      if (viewerRef.current.getControl() !== viewerRef.current.previousControl) {
+        onControlChange();
+        viewerRef.current.previousControl = viewerRef.current.getControl();
+      }
+    });
+    return () => {
+      viewerRef.current.dispose();
+    };
+  }, [imageUrl, autoRotate, autoRotateSpeed, cameraFov, fullscreen, setting, autoRotateActivationDuration, isDeviceMotion]);
+  const handleDeviceMotionToggle = () => {
+    setIsDeviceMotionActive(prev => !prev);
+  };
+  const handleDeviceOrientation = event => {
+    const {
+      alpha,
+      beta,
+      gamma
+    } = event;
+    if (viewerRef.current && viewerRef.current.camera) {
+      viewerRef.current.camera.rotation.set(THREE.Math.degToRad(beta), THREE.Math.degToRad(alpha), THREE.Math.degToRad(-gamma));
+    }
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (isDeviceMotionActive) {
+      viewerRef.current?.enableControl(window.PANOLENS.CONTROLS.DEVICEORIENTATION);
+      if (typeof window.DeviceOrientationEvent?.requestPermission === "function") {
+        window.DeviceOrientationEvent?.requestPermission().then(response => {
+          if (response === "granted") {
+            window.addEventListener("deviceorientation", handleDeviceOrientation);
+          }
+        }).catch(console.error);
+      } else {
+        window.addEventListener("deviceorientation", handleDeviceOrientation);
+      }
+    } else {
+      window.removeEventListener("deviceorientation", handleDeviceOrientation);
+      viewerRef.current?.enableControl(window.PANOLENS.CONTROLS.ORBIT);
+    }
+    window.viewerRef = viewerRef;
+    return () => {
+      window.removeEventListener("deviceorientation", handleDeviceOrientation);
+    };
+  }, [isDeviceMotionActive]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, isDeviceMotion && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "btn",
+    onClick: handleDeviceMotionToggle
+  }, isDeviceMotionActive ? "Stop Device Motion" : "Start Device Motion"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ref: imageContainerRef,
+    className: "panoramaImgViewer",
+    key: `${imageUrl}-${autoRotate}-${autoRotateSpeed}-${cameraFov}-${fullscreen}-${setting}-${autoRotateActivationDuration}-${isDeviceMotion}`
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PanoramicImageViewer);
+
+/***/ }),
+
+/***/ "./src/Components/Common/Style.js":
+/*!****************************************!*\
+  !*** ./src/Components/Common/Style.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+
+
+const Style = ({
+  attributes,
+  id,
+  device = "desktop"
+}) => {
+  const {
+    layout,
+    options
+  } = attributes;
+  const {
+    width,
+    height,
+    border,
+    margin,
+    padding,
+    button
+  } = layout;
+  const {
+    alignSl
+  } = options;
+  const {
+    typo,
+    textAlign,
+    colors,
+    btnWidth
+  } = button;
+  const mainSl = `#${id}`;
+  const blockSl = `${mainSl} .bBlocksImageViewer`;
+  const imageSl = `${blockSl} .panoramaImgViewer`;
+  const buttonSl = `${blockSl} .btn`;
+  const canvasSl = `${imageSl} .panolens-canvas`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+
+		 ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", typo)?.googleFontLink}
+     ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(buttonSl, typo)?.styles}
+
+		${blockSl}{
+			align-items: ${alignSl[device]};
+		}
+
+		${imageSl}{
+			${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(border)}
+			width: ${width[device]};
+			height: ${height[device]};
+		}
+
+    ${buttonSl}{
+			width: ${btnWidth[device] ? `${btnWidth[device]}px` : "100%"};
+      text-align:${textAlign[device]};
+      ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getColorsCSS)(colors)}
+      padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(padding[device])};
+      margin: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(margin[device])};
+		}
+			
+		${canvasSl}{
+			border-radius: ${border.radius};
+		}
+
+		@media only screen and (min-width:641px) and (max-width: 1024px){
+			${blockSl}{
+				align-items: ${alignSl.tablet};
+			}
+
+			${imageSl}{
+				width: ${width.tablet};
+				height: ${height.tablet};
+			}
+
+			${buttonSl}{
+				width: ${btnWidth.tablet ? `${btnWidth.tablet}px` : "100%"};
+				text-align:${textAlign.tablet};
+				padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(padding.tablet)};
+				margin: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(margin.tablet)};
+			}
+		}
+
+		@media only screen and (max-width:640px){
+			${blockSl}{
+				align-items: ${alignSl.mobile};
+			}
+
+			${imageSl}{
+				width: ${width.mobile};
+				height: ${height.mobile};
+			}
+
+			${buttonSl}{
+				width: ${btnWidth.mobile ? `${btnWidth.mobile}px` : "100%"};
+				text-align:${textAlign.mobile};
+				padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(padding.mobile)};
+				margin: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(margin.mobile)};
+			}
+		}
+
+	`
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Style);
+
+/***/ }),
+
+/***/ "./src/style.scss":
+/*!************************!*\
+  !*** ./src/style.scss ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./node_modules/react-dom/client.js":
+/*!******************************************!*\
+  !*** ./node_modules/react-dom/client.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "react-dom":
+/*!***************************!*\
+  !*** external "ReactDOM" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = window["ReactDOM"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+/*!*********************!*\
+  !*** ./src/view.js ***!
+  \*********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _Components_Common_ImageViewer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Common/ImageViewer */ "./src/Components/Common/ImageViewer.js");
+/* harmony import */ var _Components_Common_PanoramicImageViewer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/Common/PanoramicImageViewer */ "./src/Components/Common/PanoramicImageViewer.js");
+/* harmony import */ var _Components_Common_Style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/Common/Style */ "./src/Components/Common/Style.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const PanoramicImageViewerEls = document.querySelectorAll(".wp-block-b-blocks-panoramic-image-viewer");
+  PanoramicImageViewerEls.forEach(PanoramicImageViewerEl => {
+    const attributes = JSON.parse(PanoramicImageViewerEl.dataset.attributes);
+    (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(PanoramicImageViewerEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Style__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      attributes: attributes,
+      id: PanoramicImageViewerEl.id
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "bBlocksImageViewer"
+    }, attributes.options.viewerSl !== "360°" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_PanoramicImageViewer__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      attributes: attributes
+    }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_ImageViewer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      attributes: attributes
+    }))));
+    PanoramicImageViewerEl?.removeAttribute("data-attributes");
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

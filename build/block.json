@@ -51,12 +51,12 @@
         "autoRotateInactivityDelay": 9000,
         "panolens": {
           "autoRotate": true,
-          "autoRotateSpeed": 1,
           "fullscreen": true,
           "setting": true,
           "isDeviceMotion": true,
-          "cameraFov": 90,
-          "autoRotateActivationDuration": 5000
+          "autoRotateSpeed": 1,
+          "cameraFov": 110,
+          "autoRotateActivationDuration": 3000
         }
       }
     },
@@ -102,6 +102,11 @@
         "button": {
           "typo": {
             "fontSize": 18
+          },
+          "alignment": {
+            "desktop": "center",
+            "tablet": "center",
+            "mobile": "center"
           },
           "textAlign": {
             "desktop": "center",

@@ -11,17 +11,17 @@ $primaryColor: #4527a4;
     display: flex;
     flex-direction: column;
 
+    .btn {
+      cursor: pointer;
+      border: none;
+    }
+    
     .panoramaImgViewer {
       overflow: hidden;
-      .btn {
-        position: absolute;
-        cursor: pointer;
-        border: none;
+      .panolens-canvas {
+        width: 100% !important;
+        height: 100% !important;
       }
-    }
-    .panolens-canvas {
-      width: 100% !important;
-      height: 100% !important;
     }
   }
 

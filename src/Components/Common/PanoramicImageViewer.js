@@ -35,6 +35,19 @@ const PanoramicImageViewer = ({ attributes }) => {
 
     viewerRef.current.add(panorama);
 
+    const onControlChange = () => {
+      setIsDeviceMotionActive(viewerRef.current.getControl().id !== "orbit");
+    };
+
+    viewerRef.current.addUpdateCallback(() => {
+      if (
+        viewerRef.current.getControl() !== viewerRef.current.previousControl
+      ) {
+        onControlChange();
+        viewerRef.current.previousControl = viewerRef.current.getControl();
+      }
+    });
+
     return () => {
       viewerRef.current.dispose();
     };
@@ -51,7 +64,6 @@ const PanoramicImageViewer = ({ attributes }) => {
 
   const handleDeviceMotionToggle = () => {
     setIsDeviceMotionActive((prev) => !prev);
-   
   };
 
   const handleDeviceOrientation = (event) => {
@@ -69,8 +81,8 @@ const PanoramicImageViewer = ({ attributes }) => {
   useEffect(() => {
     if (isDeviceMotionActive) {
       viewerRef.current?.enableControl(
-				window.PANOLENS.CONTROLS.DEVICEORIENTATION,
-			);
+        window.PANOLENS.CONTROLS.DEVICEORIENTATION
+      );
       if (
         typeof window.DeviceOrientationEvent?.requestPermission === "function"
       ) {
@@ -87,12 +99,12 @@ const PanoramicImageViewer = ({ attributes }) => {
       } else {
         window.addEventListener("deviceorientation", handleDeviceOrientation);
       }
+      
     } else {
       window.removeEventListener("deviceorientation", handleDeviceOrientation);
-      viewerRef.current?.enableControl(
-				window.PANOLENS.CONTROLS.ORBIT,
-			);
+      viewerRef.current?.enableControl(window.PANOLENS.CONTROLS.ORBIT);
     }
+    window.viewerRef = viewerRef;
 
     return () => {
       window.removeEventListener("deviceorientation", handleDeviceOrientation);
@@ -100,17 +112,18 @@ const PanoramicImageViewer = ({ attributes }) => {
   }, [isDeviceMotionActive]);
 
   return (
-    <div
-      ref={imageContainerRef}
-      className="panoramaImgViewer"
-      key={`${imageUrl}-${autoRotate}-${autoRotateSpeed}-${cameraFov}-${fullscreen}-${setting}-${autoRotateActivationDuration}-${isDeviceMotion}`}
-    >
+    <>
       {isDeviceMotion && (
         <button className="btn" onClick={handleDeviceMotionToggle}>
-          {isDeviceMotionActive  ? "Stop Device Motion" : "Start Device Motion"}
+          {isDeviceMotionActive ? "Stop Device Motion" : "Start Device Motion"}
         </button>
       )}
-    </div>
+      <div
+        ref={imageContainerRef}
+        className="panoramaImgViewer"
+        key={`${imageUrl}-${autoRotate}-${autoRotateSpeed}-${cameraFov}-${fullscreen}-${setting}-${autoRotateActivationDuration}-${isDeviceMotion}`}
+      ></div>
+    </>
   );
 };
 

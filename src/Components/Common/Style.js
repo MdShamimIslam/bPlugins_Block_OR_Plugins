@@ -9,13 +9,12 @@ const Style = ({ attributes, id, device = "desktop" }) => {
   const { layout, options } = attributes;
   const { width, height, border, margin, padding, button } = layout;
   const { alignSl } = options;
-  const { typo, textAlign, horizontalAlign, verticalAlign, colors, btnWidth } =
-    button;
+  const { typo, textAlign, colors, btnWidth } = button;
 
   const mainSl = `#${id}`;
   const blockSl = `${mainSl} .bBlocksImageViewer`;
   const imageSl = `${blockSl} .panoramaImgViewer`;
-  const buttonSl = `${imageSl} .btn`;
+  const buttonSl = `${blockSl} .btn`;
   const canvasSl = `${imageSl} .panolens-canvas`;
 
   return (
@@ -24,8 +23,8 @@ const Style = ({ attributes, id, device = "desktop" }) => {
         __html: `
 
 		 ${getTypoCSS("", typo)?.googleFontLink}
-         ${getTypoCSS(buttonSl, typo)?.styles}
-		
+     ${getTypoCSS(buttonSl, typo)?.styles}
+
 		${blockSl}{
 			align-items: ${alignSl[device]};
 		}
@@ -42,7 +41,6 @@ const Style = ({ attributes, id, device = "desktop" }) => {
       ${getColorsCSS(colors)}
       padding: ${getBoxCSS(padding[device])};
       margin: ${getBoxCSS(margin[device])};
-			${buttonAlignment(verticalAlign, horizontalAlign, device)}
 		}
 			
 		${canvasSl}{
@@ -64,7 +62,6 @@ const Style = ({ attributes, id, device = "desktop" }) => {
 				text-align:${textAlign.tablet};
 				padding: ${getBoxCSS(padding.tablet)};
 				margin: ${getBoxCSS(margin.tablet)};
-				${buttonAlignment(verticalAlign, horizontalAlign, "tablet")}
 			}
 		}
 
@@ -83,7 +80,6 @@ const Style = ({ attributes, id, device = "desktop" }) => {
 				text-align:${textAlign.mobile};
 				padding: ${getBoxCSS(padding.mobile)};
 				margin: ${getBoxCSS(margin.mobile)};
-				${buttonAlignment(verticalAlign, horizontalAlign, "mobile")}
 			}
 		}
 
@@ -94,28 +90,3 @@ const Style = ({ attributes, id, device = "desktop" }) => {
 };
 export default Style;
 
-const buttonAlignment = (verticalAlign, horizontalAlign, device) => {
-  return `
-    ${horizontalAlign[device] === "start" ? "left: 0; right: auto;" : ""}
-    ${
-      horizontalAlign[device] === "center"
-        ? "left: 50%; right: auto; transform: translateX(-50%);"
-        : ""
-    }
-    ${horizontalAlign[device] === "end" ? "right: 0; left: auto;" : ""}
-    ${verticalAlign[device] === "top" ? "top: 0; bottom: auto;" : ""}
-    ${
-      verticalAlign[device] === "middle"
-        ? "top: 50%; bottom: auto; transform: translateY(-50%);"
-        : ""
-    }
-    ${verticalAlign[device] === "bottom" ? "bottom: 0; top: auto;" : ""}
-    ${
-      horizontalAlign[device] === "center"
-        ? verticalAlign[device] === "middle"
-          ? "top: 50%; right: auto; bottom: auto; left: 50%; transform: translate(-50%, -50%);"
-          : ""
-        : ""
-    }
-  `;
-};

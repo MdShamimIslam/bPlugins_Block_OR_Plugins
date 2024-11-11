@@ -28,8 +28,15 @@ const General = ({ attributes, setAttributes }) => {
     panolens,
     autoRotateInactivityDelay,
   } = options;
-  const { autoRotate, autoRotateSpeed, cameraFov, fullscreen, setting,autoRotateActivationDuration, isDeviceMotion } =
-    panolens;
+  const {
+    autoRotate,
+    autoRotateSpeed,
+    cameraFov,
+    fullscreen,
+    setting,
+    autoRotateActivationDuration,
+    isDeviceMotion
+  } = panolens;
 
   return (
     <PanelBody
@@ -81,7 +88,7 @@ const General = ({ attributes, setAttributes }) => {
             label={__("Draggable", "b-blocks")}
             onChange={(v) =>
               setAttributes({
-                options: updateData(options, v, "draggable")
+                options: updateData(options, v, "draggable"),
               })
             }
           />
@@ -238,38 +245,49 @@ const General = ({ attributes, setAttributes }) => {
               })
             }
           />
-          {
-            autoRotate && <>
-            <RangeControl
-            className="mt20"
-            label={__("Auto Rotate Speed", "b-blocks")}
-            value={autoRotateSpeed}
-            allowReset
-            onChange={(v) =>
-              setAttributes({
-                options: updateData(options, v, "panolens", "autoRotateSpeed"),
-              })
-            }
-            min={0}
-            max={10}
-            step={0.1}
-          />
-          <RangeControl
-            className="mt20"
-            label={__("Auto Rotate Activation Duration", "b-blocks")}
-            value={autoRotateActivationDuration}
-            allowReset
-            onChange={(v) =>
-              setAttributes({
-                options: updateData(options, v, "panolens", "autoRotateActivationDuration"),
-              })
-            }
-            min={0}
-            max={60000}
-            step={1000}
-          />
+
+          {autoRotate && (
+            <>
+              <RangeControl
+                className="mt20"
+                label={__("Auto Rotate Speed", "b-blocks")}
+                value={autoRotateSpeed}
+                allowReset
+                onChange={(v) =>
+                  setAttributes({
+                    options: updateData(
+                      options,
+                      v,
+                      "panolens",
+                      "autoRotateSpeed"
+                    ),
+                  })
+                }
+                min={0}
+                max={10}
+                step={0.1}
+              />
+              <RangeControl
+                className="mt20"
+                label={__("Auto Rotate Activation Duration", "b-blocks")}
+                value={autoRotateActivationDuration}
+                allowReset
+                onChange={(v) =>
+                  setAttributes({
+                    options: updateData(
+                      options,
+                      v,
+                      "panolens",
+                      "autoRotateActivationDuration"
+                    ),
+                  })
+                }
+                min={0}
+                max={60000}
+                step={1000}
+              />
             </>
-          }
+          )}
           <RangeControl
             className="mt15"
             label={__("Camera Field of View", "b-blocks")}

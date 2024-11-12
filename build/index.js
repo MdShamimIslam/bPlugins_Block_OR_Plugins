@@ -10704,10 +10704,13 @@ const OneHaashPlayer = () => {
   const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [audioTrack, setAudioTrack] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const audioRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const [showSpeedOptions, setShowSpeedOptions] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [playbackSpeed, setPlaybackSpeed] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const track = audioRef.current;
     setAudioTrack(track);
     if (track) {
+      track.playbackRate = playbackSpeed;
       track.addEventListener("loadedmetadata", () => {
         const timeStamps = parseTime(track);
         const currentTimeElement = document.querySelector(".time.current");
@@ -10743,7 +10746,17 @@ const OneHaashPlayer = () => {
         track.removeEventListener("timeupdate", () => {});
       }
     };
-  }, []);
+  }, [playbackSpeed]);
+  const handleSpeedClick = () => {
+    setShowSpeedOptions(!showSpeedOptions);
+  };
+  const changeSpeed = speed => {
+    setPlaybackSpeed(speed);
+    if (audioTrack) {
+      audioTrack.playbackRate = speed;
+    }
+    setShowSpeedOptions(false);
+  };
   const handlePlayPause = () => {
     if (isPlaying) {
       audioTrack?.pause();
@@ -10850,8 +10863,19 @@ const OneHaashPlayer = () => {
     className: "time till-end"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "speed",
-    "data-speed": 1
-  }, "1x")))));
+    "data-speed": playbackSpeed,
+    onClick: handleSpeedClick
+  }, playbackSpeed, "x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `speed-options ${showSpeedOptions ? "show" : ""}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(0.5)
+  }, "0.5x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(1)
+  }, "1x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(1.5)
+  }, "1.5x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(2)
+  }, "2x"))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OneHaashPlayer);
 

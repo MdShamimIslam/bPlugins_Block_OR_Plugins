@@ -6,12 +6,16 @@ const OneHaashPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioTrack, setAudioTrack] = useState(null);
   const audioRef = useRef(null);
+  const [showSpeedOptions, setShowSpeedOptions] = useState(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
 
   useEffect(() => {
     const track = audioRef.current;
     setAudioTrack(track);
 
     if (track) {
+      track.playbackRate = playbackSpeed;
+
       track.addEventListener("loadedmetadata", () => {
         const timeStamps = parseTime(track);
         const currentTimeElement = document.querySelector(".time.current");
@@ -53,7 +57,19 @@ const OneHaashPlayer = () => {
         track.removeEventListener("timeupdate", () => {});
       }
     };
-  }, []);
+  }, [playbackSpeed]);
+
+  const handleSpeedClick = () => {
+    setShowSpeedOptions(!showSpeedOptions); 
+  };
+
+  const changeSpeed = (speed) => {
+    setPlaybackSpeed(speed);
+    if (audioTrack) {
+      audioTrack.playbackRate = speed;
+    }
+    setShowSpeedOptions(false);
+  };
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -85,8 +101,6 @@ const OneHaashPlayer = () => {
       formatTime(duration),
     ];
   }
-
-  
 
   return (
     <div id="v-player">
@@ -149,11 +163,11 @@ const OneHaashPlayer = () => {
 
             {isPlaying ? (
               <span className="playpause" onClick={handlePlayPause}>
-                <FaPause id="pause"/>
+                <FaPause id="pause" />
               </span>
             ) : (
               <span className="playpause" onClick={handlePlayPause}>
-                <FaPlay id="play"/>
+                <FaPlay id="play" />
               </span>
             )}
 
@@ -167,9 +181,32 @@ const OneHaashPlayer = () => {
               <input type="range" id="seek" defaultValue={0} min={0} max="" />
             </div>
             <div className="time till-end" />
-            <div id="speed" data-speed={1}>
-              1x
+
+            {/* <div
+              id="speed"
+              data-speed={playbackSpeed}
+              onClick={handleSpeedClick}
+            >
+              {playbackSpeed}x
             </div>
+            {showSpeedOptions && (
+              <div className="speed-options">
+                <div onClick={() => changeSpeed(0.5)}>0.5x</div>
+                <div onClick={() => changeSpeed(1)}>1x</div>
+                <div onClick={() => changeSpeed(1.5)}>1.5x</div>
+                <div onClick={() => changeSpeed(2)}>2x</div>
+              </div>
+            )} */}
+             <div id="speed" data-speed={playbackSpeed} onClick={handleSpeedClick}>
+          {playbackSpeed}x
+        </div>
+        <div className={`speed-options ${showSpeedOptions ? "show" : ""}`}>
+          <div onClick={() => changeSpeed(0.5)}>0.5x</div>
+          <div onClick={() => changeSpeed(1)}>1x</div>
+          <div onClick={() => changeSpeed(1.5)}>1.5x</div>
+          <div onClick={() => changeSpeed(2)}>2x</div>
+        </div>
+
           </div>
         </div>
       </div>

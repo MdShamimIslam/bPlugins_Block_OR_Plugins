@@ -728,17 +728,13 @@ button.swiper-pagination-bullet {
     padding: 0;
     box-sizing: border-box;
   }
-  /* #v-player {
-    font-family: "Poppins", sans-serif;
-    width: 860px;
-   
-    margin: 20px auto;
+
+  #v-player {
+   display: flex;
+   align-items: center;
+   /* justify-content: end; */
   }
-  #podcast-player {
-    border: 1px solid #e7e9f0;
-    border-radius: 8px;
-    padding: 20px 25px 10px;
-  } */
+  
   .epidode-header {
     display: flex;
     justify-content: space-between;
@@ -794,7 +790,7 @@ button.swiper-pagination-bullet {
     cursor: pointer;
   }
   #controls .playpause:hover {
-    color: #fdb515;
+    color: #4527a4;
   }
   #play,
   #pause {
@@ -805,7 +801,7 @@ button.swiper-pagination-bullet {
   }
   #play:hover,
   #pause:hover {
-    color: #fdb515;
+    color: #4527a4;
   }
   #pause {
     display: none;
@@ -824,8 +820,8 @@ button.swiper-pagination-bullet {
   }
   #prev-15:hover,
   #next-30:hover {
-    color: #fdb515;
-    background-color: #fdb515;
+    color: #4527a4;
+    background-color: #4527a4;
   }
   #prev-15::before,
   #next-30::before {
@@ -934,7 +930,7 @@ button.swiper-pagination-bullet {
       line-height:32px;
       min-width:40px;
       text-align:center;
-      color:#15284B;
+      color:#9499a2;
       font-size:14px;
       transition:all 0.2s ease-in-out;
     }
@@ -943,17 +939,17 @@ button.swiper-pagination-bullet {
       position:absolute;
       top:0;
       left:0;
-      border:1px solid #15284B;
+      border:1px solid #60749a;
       border-radius:4px;
       width:40px;
       height:30px;
       transition:all 0.2s ease-in-out;
     }
     #speed:hover{
-      color:#FDB515;
+      color:#4527a4;
     }
     #speed:hover::before{
-      border-color:#FDB515;
+      border-color:#4527a4;
     }
   
   .speed-options {
@@ -1037,7 +1033,7 @@ button.swiper-pagination-bullet {
     margin-top:10px
   }
   .backfor:hover{
-    color: #FDB515;
+    color: #4527a4;
   }
   
   @media (max-width: 767px) {

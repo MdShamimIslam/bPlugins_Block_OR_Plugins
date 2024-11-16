@@ -4,7 +4,7 @@ import {
   getTypoCSS,
 } from "../../../../../Components/utils/getCSS";
 
-const OneHaashStyle = ({ attributes, id, device="desktop" }) => {
+const OneHaashStyle = ({ attributes, id, device = "desktop" }) => {
   const {
     haashWidth,
     haashHeight,
@@ -19,7 +19,6 @@ const OneHaashStyle = ({ attributes, id, device="desktop" }) => {
   const podcastSl = `${vPlayerSl} #podcast-player`;
   const episodeParaSl = `${podcastSl} .epidode-header p`;
   const episodeTitleSl = `${podcastSl}  .episode-title`;
-//   const controlSl = `${podcastSl}  #controls`;
 
   return (
     <style
@@ -33,6 +32,10 @@ const OneHaashStyle = ({ attributes, id, device="desktop" }) => {
         ${getTypoCSS(episodeTitleSl, haashTitle.typo)?.styles}
 
 		
+        ${vPlayerSl}{
+          justify-content: ${attributes.style.align[device]};
+        }
+
         ${podcastSl}{
             width: ${haashWidth[device]};
             height: ${haashHeight[device]};
@@ -50,8 +53,40 @@ const OneHaashStyle = ({ attributes, id, device="desktop" }) => {
 
         ${episodeTitleSl}{
             color:${haashTitle.color};
-          
         }
+
+
+        @media only screen and (min-width:641px) and (max-width: 1024px){
+                ${vPlayerSl}{
+                    justify-content: ${attributes.style.align.tablet};
+                }
+
+                ${podcastSl}{
+                    width: ${haashWidth.tablet};
+                    height: ${haashHeight.tablet};
+                }
+
+                ${podcastSl}{
+                    padding: ${getBoxCSS(hasshPadding.tablet)};
+                }
+        }
+
+
+        @media only screen and (max-width:640px){
+            ${vPlayerSl}{
+                justify-content: ${attributes.style.align.mobile};
+            }
+
+            ${podcastSl}{
+                width: ${haashWidth.mobile};
+                height: ${haashHeight.mobile};
+            }
+
+            ${podcastSl}{
+                padding: ${getBoxCSS(hasshPadding.mobile)};
+            }
+        }
+
 
 		`,
       }}

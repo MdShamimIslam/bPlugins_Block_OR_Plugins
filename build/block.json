@@ -65,9 +65,9 @@
         "oneHaashPlayer": {
           "waveBg": "#4527a4",
           "haashAlign": {
-            "desktop": "start",
-            "tablet": "start",
-            "mobile": "start"
+            "desktop": "center",
+            "tablet": "center",
+            "mobile": "center"
           },
           "haashWidth": {
             "desktop": "100%",

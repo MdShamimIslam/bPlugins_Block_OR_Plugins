@@ -12898,8 +12898,6 @@ const OneHaashStyle = ({
   const podcastSl = `${vPlayerSl} #podcast-player`;
   const episodeParaSl = `${podcastSl} .epidode-header p`;
   const episodeTitleSl = `${podcastSl}  .episode-title`;
-  //   const controlSl = `${podcastSl}  #controls`;
-
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
     dangerouslySetInnerHTML: {
       __html: `
@@ -12911,6 +12909,10 @@ const OneHaashStyle = ({
         ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(episodeTitleSl, haashTitle.typo)?.styles}
 
 		
+        ${vPlayerSl}{
+          justify-content: ${attributes.style.align[device]};
+        }
+
         ${podcastSl}{
             width: ${haashWidth[device]};
             height: ${haashHeight[device]};
@@ -12928,8 +12930,40 @@ const OneHaashStyle = ({
 
         ${episodeTitleSl}{
             color:${haashTitle.color};
-          
         }
+
+
+        @media only screen and (min-width:641px) and (max-width: 1024px){
+                ${vPlayerSl}{
+                    justify-content: ${attributes.style.align.tablet};
+                }
+
+                ${podcastSl}{
+                    width: ${haashWidth.tablet};
+                    height: ${haashHeight.tablet};
+                }
+
+                ${podcastSl}{
+                    padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(hasshPadding.tablet)};
+                }
+        }
+
+
+        @media only screen and (max-width:640px){
+            ${vPlayerSl}{
+                justify-content: ${attributes.style.align.mobile};
+            }
+
+            ${podcastSl}{
+                width: ${haashWidth.mobile};
+                height: ${haashHeight.mobile};
+            }
+
+            ${podcastSl}{
+                padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(hasshPadding.mobile)};
+            }
+        }
+
 
 		`
     }
@@ -28087,7 +28121,7 @@ SwiperSlide.displayName = 'SwiperSlide';
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"start","tablet":"start","mobile":"start"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"center","tablet":"center","mobile":"center"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

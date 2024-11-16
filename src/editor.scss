@@ -13,6 +13,10 @@ $primaryColor: #4527a4;
 	border-radius: 0px;
 	height: 32px;
 }
+.addItem Button:hover{
+	background-color: #{$primaryColor};
+    color: white !important;
+}
 
 .bpMp3PlayerError {
 	color: red !important;

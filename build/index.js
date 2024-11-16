@@ -10952,6 +10952,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Common_SliderStyle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Common/SliderStyle */ "./src/Components/Common/SliderStyle.js");
 /* harmony import */ var _MusicPlayerBack_MusicPlayerBack__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./MusicPlayerBack/MusicPlayerBack */ "./src/Components/Backend/MusicPlayerBack/MusicPlayerBack.js");
 /* harmony import */ var _SwiperSlider_SwiperSlider__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./SwiperSlider/SwiperSlider */ "./src/Components/Backend/SwiperSlider/SwiperSlider.js");
+/* harmony import */ var _Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../Common/OneHaashPlayer/OneHaashPlayer */ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js");
+/* harmony import */ var _Common_OneHaashPlayer_OneHaashStyle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../Common/OneHaashPlayer/OneHaashStyle */ "./src/Components/Common/OneHaashPlayer/OneHaashStyle.js");
+
+
 
 
 
@@ -10986,7 +10990,7 @@ const Edit = props => {
   const id = `bpMp3Player-${clientId}`;
   const blockRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (songSl === 'default' && audioProperties?.length) {
+    if (songSl === "default" && audioProperties?.length) {
       (0,_Common_MP3Player__WEBPACK_IMPORTED_MODULE_5__["default"])(blockRef.current, audioProperties);
     }
   }, [audioProperties, options, songSl]);
@@ -10998,7 +11002,7 @@ const Edit = props => {
       audio.play();
     }
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === 'default' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Setting__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === "default" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Setting__WEBPACK_IMPORTED_MODULE_7__["default"], {
     attributes: attributes,
     setAttributes: setAttributes,
     setActiveIndex: setActiveIndex
@@ -11011,7 +11015,7 @@ const Edit = props => {
     device: device
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)()
-  }, options.songSl === 'default' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, 0 !== audioProperties?.length ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, songSl === "default" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, 0 !== audioProperties?.length ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: id,
     ref: blockRef
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_Style__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -11053,7 +11057,7 @@ const Edit = props => {
     className: "nextBtn"
   }, _utils_icons__WEBPACK_IMPORTED_MODULE_4__.nextIcon))))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
     className: "bpMp3PlayerError"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Please add audio file first!', 'mp3player-block'))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Please add audio file first!", "mp3player-block"))) : songSl === "slider" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_9__["default"], {
     attributes: attributes,
     device: device,
     id: `block-${clientId}`
@@ -11071,11 +11075,19 @@ const Edit = props => {
     activeIndex: activeIndex,
     setActiveIndex: setActiveIndex,
     swiperRef: swiperRef
-  })))));
+  }))) : songSl === "oneHaash" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_OneHaashPlayer_OneHaashStyle__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    attributes: attributes,
+    id: `block-${clientId}`,
+    device: device
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    attributes: attributes,
+    activeIndex: activeIndex,
+    setActiveIndex: setActiveIndex
+  })) : "No Player"));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)(select => {
   return {
-    device: select('core/edit-post').__experimentalGetPreviewDeviceType()?.toLowerCase()
+    device: select("core/edit-post").__experimentalGetPreviewDeviceType()?.toLowerCase()
   };
 })(Edit));
 
@@ -11333,23 +11345,32 @@ const General = ({
     isOverlayIcon,
     isThumb,
     isVolume,
-    isAutoPlay
+    isAutoPlay,
+    oneHaash
   } = options;
+  const {
+    isBackForIcon,
+    isPrevNextIcon,
+    isOldTime,
+    isRunningTime,
+    isPlaySpeed,
+    isDownloadIcon
+  } = oneHaash;
   const addNewAudioProperty = () => {
     setAttributes({
       audioProperties: [...audioProperties, {
-        title: 'Green Chair',
-        artist: 'Diego Nava',
+        title: "Green Chair",
+        artist: "Diego Nava",
         cover: {
           id: null,
-          url: '',
-          alt: '',
-          title: ''
+          url: "",
+          alt: "",
+          title: ""
         },
         audio: {
           id: null,
-          url: '',
-          title: ''
+          url: "",
+          title: ""
         }
       }]
     });
@@ -11379,7 +11400,7 @@ const General = ({
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bpmpInspectorInfo mt10"
-  }, "Need more block like this? Checkout the bundle \u27A1 ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+  }, "Need more block like this? Checkout the bundle \u27A1", " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: "https://wordpress.org/plugins/b-blocks",
     target: "_blank",
     rel: "noopener noreferrer"
@@ -11387,14 +11408,14 @@ const General = ({
     slug: "audio-player-block"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     className: "bPlPanelBody addRemoveItems",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add or Remove Audios', 'mp3player-block')
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add or Remove Audios", "mp3player-block")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose Player', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Choose Player", "mp3player-block"),
     labelPosition: "left",
     value: songSl,
     options: _utils_options__WEBPACK_IMPORTED_MODULE_4__.songSlOptions,
     onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'songSl')
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "songSl")
     })
   }), audioProperties.map((item, index) => {
     const {
@@ -11406,111 +11427,157 @@ const General = ({
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
       key: index,
       className: "bPlPanelBody editItem",
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(`Audio No ${index + 1}:`, 'mp3player-block'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(`Audio No ${index + 1}:`, "mp3player-block"),
       initialOpen: 0 !== index ? false : true
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, {
       className: ""
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title:', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
       value: title,
-      onChange: val => updateAudioProperty(index, 'title', val)
+      onChange: val => updateAudioProperty(index, "title", val)
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, {
       className: ""
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Artist:', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Artist:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
       value: artist,
-      onChange: val => updateAudioProperty(index, 'artist', val)
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Audio File:', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.InlineDetailMediaUpload, {
+      onChange: val => updateAudioProperty(index, "artist", val)
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio File:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.InlineDetailMediaUpload, {
       value: audio,
-      types: ['audio'],
-      onChange: val => updateAudioProperty(index, 'audio', val),
-      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter Audio URL', 'mp3player-block')
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Cover Photo:', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.InlineDetailMediaUpload, {
+      types: ["audio"],
+      onChange: val => updateAudioProperty(index, "audio", val),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter Audio URL", "mp3player-block")
+    }), songSl !== "oneHaash" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Cover Photo:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.InlineDetailMediaUpload, {
       value: cover,
-      types: ['image'],
-      onChange: val => updateAudioProperty(index, 'cover', val),
-      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter Cover Image URL', 'mp3player-block')
-    }), options.isOverlayIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+      types: ["image"],
+      onChange: val => updateAudioProperty(index, "cover", val),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter Cover Image URL", "mp3player-block")
+    })), options.isOverlayIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
       className: "mt15",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social Link', 'mp3player-block'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Social Link", "mp3player-block"),
       placeholder: "Enter or paste link...",
       value: item.link,
-      onChange: val => updateAudioProperty(index, 'link', val)
+      onChange: val => updateAudioProperty(index, "link", val)
     }), item.link && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
       checked: options.newTab,
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Open in New Tab', 'mp3player-block'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Open in New Tab", "mp3player-block"),
       onChange: v => setAttributes({
-        options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'newTab')
+        options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "newTab")
       })
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, {
       className: "itemAction mt20"
     }, 1 < audioProperties.length && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       className: "removeItem",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'mp3player-block'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Remove", "mp3player-block"),
       onClick: e => removeAudioProperty(e, index)
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Dashicon, {
       icon: "no"
-    }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Remove", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       className: "duplicateItem",
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Duplicate', 'mp3player-block'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Duplicate", "mp3player-block"),
       onClick: e => duplicateAudioProperty(e, index)
-    }, _Components_utils_icons__WEBPACK_IMPORTED_MODULE_7__.gearIcon, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Duplicate', 'mp3player-block'))));
+    }, _Components_utils_icons__WEBPACK_IMPORTED_MODULE_7__.gearIcon, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Duplicate", "mp3player-block"))));
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "addItem"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add New Audio', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add New Audio", "mp3player-block"),
     onClick: addNewAudioProperty
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Dashicon, {
     icon: "plus"
-  }), " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add New Audio', 'mp3player-block')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  }), " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add New Audio", "mp3player-block")))), songSl === "oneHaash" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player Options', 'mp3player-block'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Options", "mp3player-block"),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt20",
+    checked: isPrevNextIcon,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("isPrevNextIcon", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "oneHaash", "isPrevNextIcon")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt10",
+    checked: isRunningTime,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("isRunningTime", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "oneHaash", "isRunningTime")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt10",
+    checked: isOldTime,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("isOldTime", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "oneHaash", "isOldTime")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt10",
+    checked: isPlaySpeed,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("isPlaySpeed", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "oneHaash", "isPlaySpeed")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt10",
+    checked: isDownloadIcon,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("isDownloadIcon", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "oneHaash", "isDownloadIcon")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt10",
+    checked: isBackForIcon,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("isBackForIcon", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "oneHaash", "isBackForIcon")
+    })
+  })), songSl === "slider" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Options", "mp3player-block"),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     className: "mt5",
     checked: isOverlayIcon,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Social Link', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Social Link", "mp3player-block"),
     onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isOverlayIcon')
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isOverlayIcon")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     className: "mt5",
     checked: isThumb,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Range Thumb', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Range Thumb", "mp3player-block"),
     onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isThumb')
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isThumb")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     className: "mt5",
     checked: isAutoPlay,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Auto Play', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Auto Play", "mp3player-block"),
     onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isAutoPlay')
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isAutoPlay")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
     className: "mt5",
     checked: isVolume,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Display Volume', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Display Volume", "mp3player-block"),
     onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, 'isVolume')
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isVolume")
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
     value: align[device],
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'align', device)
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "align", device)
     }),
     label: "Player Alignment For Slider",
-    describedBy: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player Alignment For Slider'),
+    describedBy: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Alignment For Slider"),
     alignmentControls: [{
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player in left', 'mp3player-block'),
-      align: 'start',
-      icon: 'align-left'
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player in left", "mp3player-block"),
+      align: "start",
+      icon: "align-left"
     }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player in center', 'mp3player-block'),
-      align: 'center',
-      icon: 'align-center'
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player in center", "mp3player-block"),
+      align: "center",
+      icon: "align-center"
     }, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Player in right', 'mp3player-block'),
-      align: 'end',
-      icon: 'align-right'
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player in right", "mp3player-block"),
+      align: "end",
+      icon: "align-right"
     }]
   })));
 };
@@ -11822,6 +11889,7 @@ const Styles = ({
     options
   } = attributes;
   const {
+    songSl,
     textSl,
     rangeSl,
     isOverlayIcon
@@ -11833,7 +11901,8 @@ const Styles = ({
     musicName,
     rangeInput,
     rangeThumb,
-    controlsBtn
+    controlsBtn,
+    oneHaashPlayer
   } = style;
   const {
     sliderWidth,
@@ -11856,76 +11925,86 @@ const Styles = ({
     thumbShadow,
     thumbOutline
   } = rangeThumb;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  const {
+    haashWidth,
+    haashHeight,
+    waveBg,
+    haashBorder,
+    hasshPadding,
+    haashTitle,
+    haashSubTitle,
+    haashInputRange
+  } = oneHaashPlayer;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === "slider" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Audio Player Wrapper', 'mp3player-block')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Alignment', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio Player Wrapper", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Alignment", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
     value: align[device],
     options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.musicAlignOptions,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'align', device)
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "align", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: style.width[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "width", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Height', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: style.height[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "height", device)
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Background", "mp3player-block"),
     value: style.bg,
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "bg")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border", "mp3player-block"),
     value: style.border,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'border')
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "border")
     }),
     defaults: {
       radius: "5px"
     }
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Audio Slider', 'mp3player-block'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio Slider", "mp3player-block"),
     initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: sliderWidth[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicSlider", 'sliderWidth', device)
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicSlider", "sliderWidth", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Height', 'b-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: sliderHeight[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicSlider", 'sliderHeight', device)
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicSlider", "sliderHeight", device)
     })
   }), isOverlayIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Overlay Background', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Overlay Background", "mp3player-block"),
     value: overlayBg,
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicSlider", "overlayBg")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border", "mp3player-block"),
     value: border,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'musicSlider', 'border')
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicSlider", "border")
     }),
     defaults: {
       radius: "3px"
     }
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Audio Player', 'mp3player-block'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio Player", "mp3player-block"),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Tab__WEBPACK_IMPORTED_MODULE_9__.Tab, {
     options: ["title", "sub-title"],
@@ -11933,43 +12012,43 @@ const Styles = ({
     onChange: v => setAttributes({
       options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "textSl")
     })
-  }), textSl === 'title' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'mp3player-block'),
+  }), textSl === "title" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Color", "mp3player-block"),
     value: musicTitle.color,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'musicTitle', "color")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicTitle", "color")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Typography, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Typography', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Typography", "mp3player-block"),
     value: musicTitle.typo,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'musicTitle', "typo")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicTitle", "typo")
     }),
     defaults: {
       fontSize: 30
     }
   })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Color", "mp3player-block"),
     value: musicName.color,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'musicName', "color")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicName", "color")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
     className: "mt5",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Opacity', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Opacity", "mp3player-block"),
     value: musicName.opacity,
     allowReset: true,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'musicName', "opacity")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicName", "opacity")
     }),
     min: 0,
     max: 1,
     step: 0.1
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Typography, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Typography', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Typography", "mp3player-block"),
     value: musicName.typo,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'musicName', "typo")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicName", "typo")
     }),
     defaults: {
       fontSize: 20
@@ -11982,37 +12061,37 @@ const Styles = ({
     onChange: v => setAttributes({
       options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "rangeSl")
     })
-  }), rangeSl === 'input' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Static Background', 'mp3player-block'),
+  }), rangeSl === "input" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Static Background", "mp3player-block"),
     value: bg,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeInput', "bg")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeInput", "bg")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Progress Background', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Progress Background", "mp3player-block"),
     value: progressBg,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeInput', "progressBg")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeInput", "progressBg")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Progress Time Color', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Progress Time Color", "mp3player-block"),
     value: timeBg,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeInput', "timeBg")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeInput", "timeBg")
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: width[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeInput', 'width', device)
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeInput", "width", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Height', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: height[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeInput', 'height', device)
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeInput", "height", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Margin', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BBoxControl_BBoxControl__WEBPACK_IMPORTED_MODULE_6__.BBoxControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Margin", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BBoxControl_BBoxControl__WEBPACK_IMPORTED_MODULE_6__.BBoxControl, {
     label: "",
     values: margin[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
@@ -12022,72 +12101,179 @@ const Styles = ({
       })
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border radius', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border radius", "mp3player-block"),
     value: radius,
     allowReset: true,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeInput', "radius")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeInput", "radius")
     }),
     min: 0,
     max: 20
   })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Background", "mp3player-block"),
     value: thumbBg,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeThumb', "thumbBg")
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeThumb", "thumbBg")
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: thumbWidth[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeThumb', 'thumbWidth', device)
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeThumb", "thumbWidth", device)
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.MultiShadowControl, {
     className: "mt15",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Shadow', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Shadow", "mp3player-block"),
     value: thumbShadow,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeThumb', 'thumbShadow')
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeThumb", "thumbShadow")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Outline', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Outline", "mp3player-block"),
     value: thumbOutline,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, 'rangeThumb', 'thumbOutline')
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "rangeThumb", "thumbOutline")
     }),
     defaults: {
       radius: "50%"
     }
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Audio Controls Button', 'mp3player-block'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio Controls Button", "mp3player-block"),
     initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width', 'mp3player-block')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: controlsBtn.width[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "controlsBtn", "width", device)
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.ColorsControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Colors', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Colors", "mp3player-block"),
     value: controlsBtn.colors,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "controlsBtn", 'colors')
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "controlsBtn", "colors")
     }),
     defaults: {
       color: "white",
       bg: "rgba(163, 162, 164, 0.3)"
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border', 'mp3player-block'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border", "mp3player-block"),
     value: controlsBtn.border,
     onChange: v => setAttributes({
-      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "controlsBtn", 'border')
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "controlsBtn", "border")
     }),
     defaults: {
       radius: "50%"
     }
-  })));
+  }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Wrapper", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+    value: haashWidth[device],
+    units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashWidth", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+    value: haashHeight[device],
+    units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashHeight", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border", "mp3player-block"),
+    value: haashBorder,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashBorder")
+    }),
+    defaults: {
+      radius: "5px"
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Padding", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BBoxControl_BBoxControl__WEBPACK_IMPORTED_MODULE_6__.BBoxControl, {
+    label: "",
+    values: hasshPadding[device],
+    units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
+    onChange: v => setAttributes({
+      style: (0,immer__WEBPACK_IMPORTED_MODULE_10__.produce)(style, draft => {
+        draft.oneHaashPlayer.hasshPadding[device] = v;
+      })
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Episode Style", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Tab__WEBPACK_IMPORTED_MODULE_9__.Tab, {
+    options: ["title", "sub-title"],
+    value: textSl,
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "textSl")
+    })
+  }), textSl === "title" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Color", "mp3player-block"),
+    value: haashTitle.color,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashTitle", "color")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Typography, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Typography", "mp3player-block"),
+    value: haashTitle.typo,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashTitle", "typo")
+    }),
+    defaults: {
+      fontSize: 30
+    }
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Color", "mp3player-block"),
+    value: haashSubTitle.color,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashSubTitle", "color")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    className: "mt5",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Opacity", "mp3player-block"),
+    value: haashSubTitle.opacity,
+    allowReset: true,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashSubTitle", "opacity")
+    }),
+    min: 0,
+    max: 1,
+    step: 0.1
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Typography, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Typography", "mp3player-block"),
+    value: haashSubTitle.typo,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashSubTitle", "typo")
+    }),
+    defaults: {
+      fontSize: 20
+    }
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Wave Style", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Background", "mp3player-block"),
+    value: waveBg,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "waveBg")
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Controls Style", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Input range static Color", "mp3player-block"),
+    value: haashInputRange.staticColor,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashInputRange", "staticColor")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Input range progress Color", "mp3player-block"),
+    value: haashInputRange.progressColor,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashInputRange", "progressColor")
+    })
+  }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Styles);
 
@@ -12417,6 +12603,342 @@ const MP3Player = (selector, songs = []) => {
 
 /***/ }),
 
+/***/ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js":
+/*!****************************************************************!*\
+  !*** ./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/icons */ "./src/utils/icons.js");
+/* harmony import */ var _OneHaashPlayer_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OneHaashPlayer.css */ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.css");
+
+
+
+
+const OneHaashPlayer = ({
+  attributes,
+  activeIndex,
+  setActiveIndex
+}) => {
+  const {
+    options,
+    style,
+    audioProperties
+  } = attributes;
+  const {
+    isBackForIcon,
+    isPrevNextIcon,
+    isOldTime,
+    isRunningTime,
+    isPlaySpeed,
+    isDownloadIcon
+  } = options.oneHaash;
+  const {
+    waveBg,
+    haashInputRange
+  } = style.oneHaashPlayer;
+  const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [audioTrack, setAudioTrack] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const audioRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const [showSpeedOptions, setShowSpeedOptions] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [playbackSpeed, setPlaybackSpeed] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [currentTime, setCurrentTime] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const track = audioRef.current;
+    setAudioTrack(track);
+    if (track) {
+      track.src = audioProperties[activeIndex]?.audio?.url;
+      track.load();
+      track.playbackRate = playbackSpeed;
+      track.addEventListener("loadedmetadata", () => {
+        setDuration(track.duration);
+      });
+      track.addEventListener("timeupdate", () => {
+        const position = 100 / track.duration * track.currentTime;
+        const fillBar = document.querySelector(".fill-bar");
+        if (fillBar) {
+          fillBar.style.width = `${position}%`;
+        }
+        setCurrentTime(track?.currentTime);
+      });
+    }
+    return () => {
+      if (track) {
+        track.removeEventListener("loadedmetadata", () => {});
+        track.removeEventListener("timeupdate", () => {});
+      }
+    };
+  }, [playbackSpeed, activeIndex, isBackForIcon, isPrevNextIcon, isOldTime, isRunningTime, isPlaySpeed, isDownloadIcon]);
+  const handleNext = () => {
+    if (activeIndex < audioProperties?.length - 1) {
+      setActiveIndex(activeIndex + 1);
+    } else {
+      setActiveIndex(0);
+    }
+    if (audioTrack) {
+      audioTrack.pause();
+      audioTrack.currentTime = 0;
+    }
+    setTimeout(() => {
+      if (isPlaying) {
+        audioTrack?.play();
+      }
+    }, 0);
+  };
+  const handlePrev = () => {
+    if (activeIndex > 0) {
+      setActiveIndex(activeIndex - 1);
+    } else {
+      setActiveIndex(audioProperties?.length - 1);
+    }
+    if (audioTrack) {
+      audioTrack.pause();
+      audioTrack.currentTime = 0;
+    }
+    setTimeout(() => {
+      if (isPlaying) {
+        audioTrack?.play();
+      }
+    }, 0);
+  };
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      audioTrack?.pause();
+    } else {
+      audioTrack?.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+  const handleSpeedClick = () => {
+    setShowSpeedOptions(!showSpeedOptions);
+  };
+  const changeSpeed = speed => {
+    setPlaybackSpeed(speed);
+    if (audioTrack) {
+      audioTrack.playbackRate = speed;
+      if (isPlaying) {
+        audioTrack.play();
+      }
+    }
+    setShowSpeedOptions(false);
+  };
+  function parseTime(audioTrack) {
+    if (!audioTrack || isNaN(audioTrack.duration)) return ["00:00", "-00:00", "00:00"];
+    const current = audioTrack.currentTime || 0;
+    const duration = audioTrack.duration || 0;
+    const tillEnd = duration - current;
+    const formatTime = time => {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    };
+    return [formatTime(current), `-${formatTime(tillEnd)}`, formatTime(duration)];
+  }
+  const playedPercentage = currentTime / duration * 100;
+  const progressStyle = {
+    background: `linear-gradient(to right, ${haashInputRange.progressColor} ${playedPercentage}%, ${haashInputRange.staticColor} ${playedPercentage}%)`
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "v-player"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("audio", {
+    ref: audioRef,
+    id: "audio-track",
+    src: audioProperties[activeIndex]?.audio?.url,
+    type: "audio/mpeg",
+    preload: "metadata"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "podcast-player"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "epidode-header"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, audioProperties[activeIndex]?.artist), isDownloadIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "episode-download",
+    href: audioProperties[activeIndex]?.audio?.url
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.ImOneDownload, {
+    className: "fas fa-download"
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    className: "episode-title"
+  }, " ", audioProperties[activeIndex]?.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wave"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "100%",
+    viewBox: "0 0 299 35"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("linearGradient", {
+    id: "PSgrad_0",
+    x1: "70.711%",
+    x2: "0%",
+    y1: "70.711%",
+    y2: "0%"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("stop", {
+    offset: "0%",
+    stopColor: "rgb(253, 181, 21)",
+    stopOpacity: 1
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("stop", {
+    offset: "100%",
+    stopColor: "rgb(251, 245, 236)",
+    stopOpacity: 1
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    className: isPlaying ? "wave-animation" : "",
+    fill: waveBg,
+    d: "M450,40 L0,40 L0,17.3134328 C18.6666667,24.8756219 32,28.6567164 40,28.6567164 C52,28.6567164 71,5.97014925 86,5.97014925 C101,5.97014925 107,19.7014925 122,19.7014925 C137,19.7014925 143,0 156,0 C169,0 177,36.4179104 194,36.4179104 C211,36.4179104 208,20.2985075 220,20.2985075 C232,20.2985075 240,28.6567164 256,28.6567164 C272,28.6567164 276,5.97014925 289,5.97014925 C302,5.97014925 314,23.2835821 326,23.2835821 C338,23.2835821 354,10.7462687 365,10.7462687 C376,10.7462687 397,32.8358209 408,32.8358209 C415.333333,32.8358209 429.333333,27.6616915 450,17.3134328 L450,40 Z"
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "controls",
+    style: !isBackForIcon ? {
+      marginTop: "17px",
+      marginBottom: "17px"
+    } : {}
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "first-part control1"
+  }, isPrevNextIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "prev-15",
+    onClick: () => {
+      audioTrack.currentTime = Math.max(0, audioTrack.currentTime - 15);
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null), isBackForIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "backfor",
+    onClick: handlePrev
+  }, _utils_icons__WEBPACK_IMPORTED_MODULE_1__.mdSkipPrevious), isPlaying ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "playpause",
+    onClick: handlePlayPause
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaOnePause, {
+    id: "pause"
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "playpause",
+    onClick: handlePlayPause
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaOnePlay, {
+    id: "play"
+  })), isBackForIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("sapn", {
+    className: "backfor",
+    onClick: handleNext
+  }, _utils_icons__WEBPACK_IMPORTED_MODULE_1__.mdSkipNext), isPrevNextIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "next-30",
+    onClick: () => audioTrack.currentTime += 30
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "second-part"
+  }, isRunningTime && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "time current"
+  }, parseTime(audioTrack)[0]), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "progress-bar"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "default-bar"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "fill-bar"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "range",
+    id: "seek",
+    value: currentTime,
+    max: duration,
+    onChange: e => {
+      if (audioTrack) {
+        audioTrack.currentTime = e.target.value;
+      }
+    },
+    style: progressStyle
+  })), isOldTime && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "time till-end"
+  }, parseTime(audioTrack)[1]), isPlaySpeed && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "speed",
+    "data-speed": playbackSpeed,
+    onClick: handleSpeedClick
+  }, playbackSpeed, "x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `speed-options ${showSpeedOptions ? "show" : ""}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(0.5)
+  }, "0.5x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(1)
+  }, "1x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(1.5)
+  }, "1.5x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(2)
+  }, "2x")))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OneHaashPlayer);
+
+/***/ }),
+
+/***/ "./src/Components/Common/OneHaashPlayer/OneHaashStyle.js":
+/*!***************************************************************!*\
+  !*** ./src/Components/Common/OneHaashPlayer/OneHaashStyle.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+
+
+const OneHaashStyle = ({
+  attributes,
+  id,
+  device = "desktop"
+}) => {
+  const {
+    haashWidth,
+    haashHeight,
+    haashBorder,
+    hasshPadding,
+    haashTitle,
+    haashSubTitle
+  } = attributes.style.oneHaashPlayer;
+  const idSl = `#${id}`;
+  const vPlayerSl = `${idSl} #v-player`;
+  const podcastSl = `${vPlayerSl} #podcast-player`;
+  const episodeParaSl = `${podcastSl} .epidode-header p`;
+  const episodeTitleSl = `${podcastSl}  .episode-title`;
+  //   const controlSl = `${podcastSl}  #controls`;
+
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+
+        ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", haashSubTitle.typo)?.googleFontLink}
+        ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(episodeParaSl, haashSubTitle.typo)?.styles}
+
+        ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", haashTitle.typo)?.googleFontLink}
+        ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(episodeTitleSl, haashTitle.typo)?.styles}
+
+		
+        ${podcastSl}{
+            width: ${haashWidth[device]};
+            height: ${haashHeight[device]};
+        }
+
+        ${podcastSl}{
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(haashBorder)}
+            padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(hasshPadding[device])};
+        }
+
+        ${episodeParaSl}{
+            color:${haashSubTitle.color};
+			opacity:${haashSubTitle.opacity};
+        }
+
+        ${episodeTitleSl}{
+            color:${haashTitle.color};
+          
+        }
+
+		`
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OneHaashStyle);
+
+/***/ }),
+
 /***/ "./src/Components/Common/SliderStyle.js":
 /*!**********************************************!*\
   !*** ./src/Components/Common/SliderStyle.js ***!
@@ -12701,10 +13223,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BiVolumeMute: () => (/* binding */ BiVolumeMute),
 /* harmony export */   FaBackward: () => (/* binding */ FaBackward),
 /* harmony export */   FaForward: () => (/* binding */ FaForward),
+/* harmony export */   FaOnePause: () => (/* binding */ FaOnePause),
+/* harmony export */   FaOnePlay: () => (/* binding */ FaOnePlay),
 /* harmony export */   FaPause: () => (/* binding */ FaPause),
 /* harmony export */   FaPlay: () => (/* binding */ FaPlay),
 /* harmony export */   FaVolumeUp: () => (/* binding */ FaVolumeUp),
 /* harmony export */   FaYoutube: () => (/* binding */ FaYoutube),
+/* harmony export */   ImOneDownload: () => (/* binding */ ImOneDownload),
+/* harmony export */   mdSkipNext: () => (/* binding */ mdSkipNext),
+/* harmony export */   mdSkipPrevious: () => (/* binding */ mdSkipPrevious),
 /* harmony export */   mp3playerIcon: () => (/* binding */ mp3playerIcon),
 /* harmony export */   nextIcon: () => (/* binding */ nextIcon),
 /* harmony export */   playIcon: () => (/* binding */ playIcon),
@@ -12713,7 +13240,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const iconColor = '#4527a4';
+const iconColor = "#4527a4";
+const FaOnePlay = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+  }));
+};
+const FaOnePause = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"
+  }));
+};
+const mdSkipNext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+  stroke: "currentColor",
+  fill: "currentColor",
+  strokeWidth: 0,
+  viewBox: "0 0 24 24",
+  height: "1em",
+  width: "1em"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"
+}));
+const mdSkipPrevious = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+  stroke: "currentColor",
+  fill: "currentColor",
+  strokeWidth: 0,
+  viewBox: "0 0 24 24",
+  height: "1em",
+  width: "1em"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "M6 6h2v12H6zm3.5 6l8.5 6V6z"
+}));
+const ImOneDownload = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 16 16",
+    height: "1.5em",
+    width: "1em"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M11.5 7l-4 4-4-4h2.5v-6h3v6zM7.5 11h-7.5v4h15v-4h-7.5zM14 13h-2v-1h2v1z"
+  }));
+};
 const mp3playerIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
@@ -12882,6 +13465,9 @@ const songSlOptions = [{
 }, {
   label: 'Slider',
   value: 'slider'
+}, {
+  label: 'OneHaash',
+  value: 'oneHaash'
 }];
 const musicAlignOptions = [{
   label: 'Left',
@@ -12893,6 +13479,21 @@ const musicAlignOptions = [{
   label: 'Right',
   value: 'end'
 }];
+
+// export const musics = [
+//     {
+//       title: "The One Haas Experience",
+//       src: "https://api.podcache.net/episodes/698d602a-a059-45dc-b42c-a2bdfde19922/stream.mp3",
+//     },
+//     {
+//       title: "Another Episode",
+//       src: "http://www.pakium.pk/wp-content/uploads/2015/08/Man-Aamadeh-Am-S08E03-PakiUM.Com_.mp3",
+//     },
+//     {
+//       title: "Yet Another Episode",
+//       src: "https://dl.dropboxusercontent.com/s/s0xk91uo1gr9ybg/The%20Prince%20of%20Egypt%20-%2001%20-%20Deliver%20US.mp3",
+//     },
+//   ];
 
 /***/ }),
 
@@ -12939,6 +13540,19 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************!*\
   !*** ./node_modules/swiper/swiper.css ***!
   \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.css":
+/*!*****************************************************************!*\
+  !*** ./src/Components/Common/OneHaashPlayer/OneHaashPlayer.css ***!
+  \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -27473,7 +28087,7 @@ SwiperSlide.displayName = 'SwiperSlide';
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true}},"style":{"type":"object","default":{"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"start","tablet":"start","mobile":"start"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

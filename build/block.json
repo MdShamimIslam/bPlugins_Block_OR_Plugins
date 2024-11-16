@@ -48,12 +48,81 @@
         "isVolume": true,
         "isOverlayIcon": false,
         "isAutoPlay": true,
-        "newTab": true
+        "newTab": true,
+        "oneHaash": {
+          "isBackForIcon": true,
+          "isPrevNextIcon": true,
+          "isOldTime": true,
+          "isRunningTime": true,
+          "isPlaySpeed": true,
+          "isDownloadIcon": true
+        }
       }
     },
     "style": {
       "type": "object",
       "default": {
+        "oneHaashPlayer": {
+          "waveBg": "#4527a4",
+          "haashAlign": {
+            "desktop": "start",
+            "tablet": "start",
+            "mobile": "start"
+          },
+          "haashWidth": {
+            "desktop": "100%",
+            "tablet": "100%",
+            "mobile": "100%"
+          },
+          "haashHeight": {
+            "desktop": "100%",
+            "tablet": "100%",
+            "mobile": "100%"
+          },
+          "haashBorder": {
+            "radius": "5px",
+            "width": "1px",
+            "style": "solid",
+            "color": "#ccc"
+          },
+          "hasshPadding": {
+            "desktop": {
+              "top": "20px",
+              "right": "25px",
+              "bottom": "10px",
+              "left": "25px"
+            },
+            "tablet": {
+              "top": "20px",
+              "left": "25px",
+              "right": "25px",
+              "bottom": "10px"
+            },
+            "mobile": {
+              "top": "20px",
+              "left": "25px",
+              "right": "25px",
+              "bottom": "10px"
+            }
+          },
+          "haashTitle": {
+            "color": "#000",
+            "typo": {
+              "fontSize": 30
+            }
+          },
+          "haashSubTitle": {
+            "color": "#879eb4",
+            "opacity": 0.6,
+            "typo": {
+              "fontSize": 20
+            }
+          },
+          "haashInputRange": {
+            "staticColor": "#ccc",
+            "progressColor": "#4527a4"
+          }
+        },
         "align": {
           "desktop": "start",
           "tablet": "start",

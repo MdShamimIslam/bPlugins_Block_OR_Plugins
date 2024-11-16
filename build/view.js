@@ -659,6 +659,266 @@ const MP3Player = (selector, songs = []) => {
 
 /***/ }),
 
+/***/ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js":
+/*!****************************************************************!*\
+  !*** ./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/icons */ "./src/utils/icons.js");
+/* harmony import */ var _OneHaashPlayer_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OneHaashPlayer.css */ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.css");
+
+
+
+
+const OneHaashPlayer = ({
+  attributes,
+  activeIndex,
+  setActiveIndex
+}) => {
+  const {
+    options,
+    style,
+    audioProperties
+  } = attributes;
+  const {
+    isBackForIcon,
+    isPrevNextIcon,
+    isOldTime,
+    isRunningTime,
+    isPlaySpeed,
+    isDownloadIcon
+  } = options.oneHaash;
+  const {
+    waveBg,
+    haashInputRange
+  } = style.oneHaashPlayer;
+  const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [audioTrack, setAudioTrack] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const audioRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const [showSpeedOptions, setShowSpeedOptions] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [playbackSpeed, setPlaybackSpeed] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [currentTime, setCurrentTime] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const track = audioRef.current;
+    setAudioTrack(track);
+    if (track) {
+      track.src = audioProperties[activeIndex]?.audio?.url;
+      track.load();
+      track.playbackRate = playbackSpeed;
+      track.addEventListener("loadedmetadata", () => {
+        setDuration(track.duration);
+      });
+      track.addEventListener("timeupdate", () => {
+        const position = 100 / track.duration * track.currentTime;
+        const fillBar = document.querySelector(".fill-bar");
+        if (fillBar) {
+          fillBar.style.width = `${position}%`;
+        }
+        setCurrentTime(track?.currentTime);
+      });
+    }
+    return () => {
+      if (track) {
+        track.removeEventListener("loadedmetadata", () => {});
+        track.removeEventListener("timeupdate", () => {});
+      }
+    };
+  }, [playbackSpeed, activeIndex, isBackForIcon, isPrevNextIcon, isOldTime, isRunningTime, isPlaySpeed, isDownloadIcon]);
+  const handleNext = () => {
+    if (activeIndex < audioProperties?.length - 1) {
+      setActiveIndex(activeIndex + 1);
+    } else {
+      setActiveIndex(0);
+    }
+    if (audioTrack) {
+      audioTrack.pause();
+      audioTrack.currentTime = 0;
+    }
+    setTimeout(() => {
+      if (isPlaying) {
+        audioTrack?.play();
+      }
+    }, 0);
+  };
+  const handlePrev = () => {
+    if (activeIndex > 0) {
+      setActiveIndex(activeIndex - 1);
+    } else {
+      setActiveIndex(audioProperties?.length - 1);
+    }
+    if (audioTrack) {
+      audioTrack.pause();
+      audioTrack.currentTime = 0;
+    }
+    setTimeout(() => {
+      if (isPlaying) {
+        audioTrack?.play();
+      }
+    }, 0);
+  };
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      audioTrack?.pause();
+    } else {
+      audioTrack?.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+  const handleSpeedClick = () => {
+    setShowSpeedOptions(!showSpeedOptions);
+  };
+  const changeSpeed = speed => {
+    setPlaybackSpeed(speed);
+    if (audioTrack) {
+      audioTrack.playbackRate = speed;
+      if (isPlaying) {
+        audioTrack.play();
+      }
+    }
+    setShowSpeedOptions(false);
+  };
+  function parseTime(audioTrack) {
+    if (!audioTrack || isNaN(audioTrack.duration)) return ["00:00", "-00:00", "00:00"];
+    const current = audioTrack.currentTime || 0;
+    const duration = audioTrack.duration || 0;
+    const tillEnd = duration - current;
+    const formatTime = time => {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    };
+    return [formatTime(current), `-${formatTime(tillEnd)}`, formatTime(duration)];
+  }
+  const playedPercentage = currentTime / duration * 100;
+  const progressStyle = {
+    background: `linear-gradient(to right, ${haashInputRange.progressColor} ${playedPercentage}%, ${haashInputRange.staticColor} ${playedPercentage}%)`
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "v-player"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("audio", {
+    ref: audioRef,
+    id: "audio-track",
+    src: audioProperties[activeIndex]?.audio?.url,
+    type: "audio/mpeg",
+    preload: "metadata"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "podcast-player"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "epidode-header"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, audioProperties[activeIndex]?.artist), isDownloadIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    className: "episode-download",
+    href: audioProperties[activeIndex]?.audio?.url
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.ImOneDownload, {
+    className: "fas fa-download"
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    className: "episode-title"
+  }, " ", audioProperties[activeIndex]?.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wave"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "100%",
+    viewBox: "0 0 299 35"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("linearGradient", {
+    id: "PSgrad_0",
+    x1: "70.711%",
+    x2: "0%",
+    y1: "70.711%",
+    y2: "0%"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("stop", {
+    offset: "0%",
+    stopColor: "rgb(253, 181, 21)",
+    stopOpacity: 1
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("stop", {
+    offset: "100%",
+    stopColor: "rgb(251, 245, 236)",
+    stopOpacity: 1
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    className: isPlaying ? "wave-animation" : "",
+    fill: waveBg,
+    d: "M450,40 L0,40 L0,17.3134328 C18.6666667,24.8756219 32,28.6567164 40,28.6567164 C52,28.6567164 71,5.97014925 86,5.97014925 C101,5.97014925 107,19.7014925 122,19.7014925 C137,19.7014925 143,0 156,0 C169,0 177,36.4179104 194,36.4179104 C211,36.4179104 208,20.2985075 220,20.2985075 C232,20.2985075 240,28.6567164 256,28.6567164 C272,28.6567164 276,5.97014925 289,5.97014925 C302,5.97014925 314,23.2835821 326,23.2835821 C338,23.2835821 354,10.7462687 365,10.7462687 C376,10.7462687 397,32.8358209 408,32.8358209 C415.333333,32.8358209 429.333333,27.6616915 450,17.3134328 L450,40 Z"
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "controls",
+    style: !isBackForIcon ? {
+      marginTop: "17px",
+      marginBottom: "17px"
+    } : {}
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "first-part control1"
+  }, isPrevNextIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "prev-15",
+    onClick: () => {
+      audioTrack.currentTime = Math.max(0, audioTrack.currentTime - 15);
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null), isBackForIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "backfor",
+    onClick: handlePrev
+  }, _utils_icons__WEBPACK_IMPORTED_MODULE_1__.mdSkipPrevious), isPlaying ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "playpause",
+    onClick: handlePlayPause
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaOnePause, {
+    id: "pause"
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "playpause",
+    onClick: handlePlayPause
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaOnePlay, {
+    id: "play"
+  })), isBackForIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("sapn", {
+    className: "backfor",
+    onClick: handleNext
+  }, _utils_icons__WEBPACK_IMPORTED_MODULE_1__.mdSkipNext), isPrevNextIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "next-30",
+    onClick: () => audioTrack.currentTime += 30
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "second-part"
+  }, isRunningTime && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "time current"
+  }, parseTime(audioTrack)[0]), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "progress-bar"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "default-bar"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "fill-bar"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "range",
+    id: "seek",
+    value: currentTime,
+    max: duration,
+    onChange: e => {
+      if (audioTrack) {
+        audioTrack.currentTime = e.target.value;
+      }
+    },
+    style: progressStyle
+  })), isOldTime && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "time till-end"
+  }, parseTime(audioTrack)[1]), isPlaySpeed && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "speed",
+    "data-speed": playbackSpeed,
+    onClick: handleSpeedClick
+  }, playbackSpeed, "x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `speed-options ${showSpeedOptions ? "show" : ""}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(0.5)
+  }, "0.5x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(1)
+  }, "1x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(1.5)
+  }, "1.5x"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: () => changeSpeed(2)
+  }, "2x")))))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OneHaashPlayer);
+
+/***/ }),
+
 /***/ "./src/Components/Common/SliderStyle.js":
 /*!**********************************************!*\
   !*** ./src/Components/Common/SliderStyle.js ***!
@@ -924,10 +1184,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BiVolumeMute: () => (/* binding */ BiVolumeMute),
 /* harmony export */   FaBackward: () => (/* binding */ FaBackward),
 /* harmony export */   FaForward: () => (/* binding */ FaForward),
+/* harmony export */   FaOnePause: () => (/* binding */ FaOnePause),
+/* harmony export */   FaOnePlay: () => (/* binding */ FaOnePlay),
 /* harmony export */   FaPause: () => (/* binding */ FaPause),
 /* harmony export */   FaPlay: () => (/* binding */ FaPlay),
 /* harmony export */   FaVolumeUp: () => (/* binding */ FaVolumeUp),
 /* harmony export */   FaYoutube: () => (/* binding */ FaYoutube),
+/* harmony export */   ImOneDownload: () => (/* binding */ ImOneDownload),
+/* harmony export */   mdSkipNext: () => (/* binding */ mdSkipNext),
+/* harmony export */   mdSkipPrevious: () => (/* binding */ mdSkipPrevious),
 /* harmony export */   mp3playerIcon: () => (/* binding */ mp3playerIcon),
 /* harmony export */   nextIcon: () => (/* binding */ nextIcon),
 /* harmony export */   playIcon: () => (/* binding */ playIcon),
@@ -936,7 +1201,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const iconColor = '#4527a4';
+const iconColor = "#4527a4";
+const FaOnePlay = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+  }));
+};
+const FaOnePause = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"
+  }));
+};
+const mdSkipNext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+  stroke: "currentColor",
+  fill: "currentColor",
+  strokeWidth: 0,
+  viewBox: "0 0 24 24",
+  height: "1em",
+  width: "1em"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"
+}));
+const mdSkipPrevious = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+  stroke: "currentColor",
+  fill: "currentColor",
+  strokeWidth: 0,
+  viewBox: "0 0 24 24",
+  height: "1em",
+  width: "1em"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "M6 6h2v12H6zm3.5 6l8.5 6V6z"
+}));
+const ImOneDownload = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 16 16",
+    height: "1.5em",
+    width: "1em"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M11.5 7l-4 4-4-4h2.5v-6h3v6zM7.5 11h-7.5v4h15v-4h-7.5zM14 13h-2v-1h2v1z"
+  }));
+};
 const mp3playerIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
@@ -1104,6 +1425,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************!*\
   !*** ./node_modules/swiper/swiper.css ***!
   \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.css":
+/*!*****************************************************************!*\
+  !*** ./src/Components/Common/OneHaashPlayer/OneHaashPlayer.css ***!
+  \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -12444,6 +12777,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/FrontEnd/AudioSlider */ "./src/Components/FrontEnd/AudioSlider.js");
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var _Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Common/SliderStyle */ "./src/Components/Common/SliderStyle.js");
+/* harmony import */ var _Components_Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Components/Common/OneHaashPlayer/OneHaashPlayer */ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js");
+
 
 
 
@@ -12458,13 +12793,16 @@ document.addEventListener('DOMContentLoaded', () => {
       audioProperties,
       options
     } = attributes;
+    const {
+      songSl
+    } = options;
     {
-      options.songSl === 'default' ? (0,_Components_Common_MP3Player__WEBPACK_IMPORTED_MODULE_2__["default"])(mp3PlayerEl, audioProperties) : (0,react_dom_client__WEBPACK_IMPORTED_MODULE_4__.createRoot)(mp3PlayerEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      songSl === 'default' ? (0,_Components_Common_MP3Player__WEBPACK_IMPORTED_MODULE_2__["default"])(mp3PlayerEl, audioProperties) : (0,react_dom_client__WEBPACK_IMPORTED_MODULE_4__.createRoot)(mp3PlayerEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === 'slider' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__["default"], {
         attributes: attributes,
         id: mp3PlayerEl.id
       }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_3__["default"], {
         attributes: attributes
-      })));
+      })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
     }
     mp3PlayerEl?.removeAttribute('data-attributes');
   });

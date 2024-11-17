@@ -12,6 +12,8 @@ import MusicPlayerBack from "./MusicPlayerBack/MusicPlayerBack";
 import SwiperSlider from "./SwiperSlider/SwiperSlider";
 import OneHaashPlayer from "../Common/OneHaashPlayer/OneHaashPlayer";
 import OneHaashStyle from "../Common/OneHaashPlayer/OneHaashStyle";
+import MinimalPlayer from "../Common/MinimalPlayer/MinimalPlayer";
+import AudioPlayCard from "../Common/AudioPlayCard/AudioPlayCard";
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
@@ -117,7 +119,6 @@ const Edit = (props) => {
               <MusicPlayerBack
                 attributes={attributes}
                 audioRef={audioRef}
-                isPlaying={isPlaying}
                 setIsPlaying={setIsPlaying}
                 activeIndex={activeIndex}
                 setActiveIndex={setActiveIndex}
@@ -138,7 +139,7 @@ const Edit = (props) => {
                 setActiveIndex={setActiveIndex}
               />
           </>
-        ) : (
+        ) : songSl === "minimal" ? <MinimalPlayer/> : songSl === "card" ? <AudioPlayCard  attributes={attributes} /> :  (
           "No Player"
         )}
       </div>

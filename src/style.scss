@@ -5,12 +5,16 @@ $primary-clr: rgba(228, 228, 229, 1);
 .dashicons {
 	font-family: dashicons !important;
 }
-
 // Audio Player
 .wp-block-bpmp-mp3-player {
 	* {
 		box-sizing: border-box;
 	}
+
+	// minimal player style
+	@import './custom-scss/minimalPlyer';
+	// audio player card style
+	@import './custom-scss/audioPlayCard';
 
 	@import './custom-scss/keyFrames';
 
@@ -191,8 +195,11 @@ $primary-clr: rgba(228, 228, 229, 1);
 	
 			// Controls
 			@import './custom-scss/controlsBtn';
+
+			
 	}
 }
+
 
 
 

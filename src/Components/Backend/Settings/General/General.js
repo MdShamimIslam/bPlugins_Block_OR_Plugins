@@ -76,6 +76,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
     });
   };
 
+
   return (
     <>
       <div className="bpmpInspectorInfo mt10">
@@ -134,7 +135,9 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
               <InlineDetailMediaUpload
                 value={audio}
                 types={["audio"]}
-                onChange={(val) => updateAudioProperty(index, "audio", val)}
+                onChange={(val) => {
+                  updateAudioProperty(index, "audio", val);
+                }}
                 placeholder={__("Enter Audio URL", "mp3player-block")}
               />
 
@@ -208,6 +211,49 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
         </div>
       </PanelBody>
 
+      {songSl === "slider" && (
+        <PanelBody
+          className="bPlPanelBody"
+          title={__("Player Options", "mp3player-block")}
+          initialOpen={false}
+        >
+          <ToggleControl
+            className="mt5"
+            checked={isOverlayIcon}
+            label={__("Social Link", "mp3player-block")}
+            onChange={(v) =>
+              setAttributes({
+                options: updateData(options, v, "isOverlayIcon"),
+              })
+            }
+          />
+          <ToggleControl
+            className="mt5"
+            checked={isThumb}
+            label={__("Range Thumb", "mp3player-block")}
+            onChange={(v) =>
+              setAttributes({ options: updateData(options, v, "isThumb") })
+            }
+          />
+          <ToggleControl
+            className="mt5"
+            checked={isAutoPlay}
+            label={__("Auto Play", "mp3player-block")}
+            onChange={(v) =>
+              setAttributes({ options: updateData(options, v, "isAutoPlay") })
+            }
+          />
+          <ToggleControl
+            className="mt5"
+            checked={isVolume}
+            label={__("Display Volume", "mp3player-block")}
+            onChange={(v) =>
+              setAttributes({ options: updateData(options, v, "isVolume") })
+            }
+          />
+        </PanelBody>
+      )}
+
       {songSl === "oneHaash" && (
         <PanelBody
           className="bPlPanelBody"
@@ -264,7 +310,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
               })
             }
           />
-           <ToggleControl
+          <ToggleControl
             className="mt10"
             checked={isBackForIcon}
             label={__("isBackForIcon", "mp3player-block")}
@@ -272,49 +318,6 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
               setAttributes({
                 options: updateData(options, v, "oneHaash", "isBackForIcon"),
               })
-            }
-          />
-        </PanelBody>
-      )}
-
-      {songSl === "slider" && (
-        <PanelBody
-          className="bPlPanelBody"
-          title={__("Player Options", "mp3player-block")}
-          initialOpen={false}
-        >
-          <ToggleControl
-            className="mt5"
-            checked={isOverlayIcon}
-            label={__("Social Link", "mp3player-block")}
-            onChange={(v) =>
-              setAttributes({
-                options: updateData(options, v, "isOverlayIcon"),
-              })
-            }
-          />
-          <ToggleControl
-            className="mt5"
-            checked={isThumb}
-            label={__("Range Thumb", "mp3player-block")}
-            onChange={(v) =>
-              setAttributes({ options: updateData(options, v, "isThumb") })
-            }
-          />
-          <ToggleControl
-            className="mt5"
-            checked={isAutoPlay}
-            label={__("Auto Play", "mp3player-block")}
-            onChange={(v) =>
-              setAttributes({ options: updateData(options, v, "isAutoPlay") })
-            }
-          />
-          <ToggleControl
-            className="mt5"
-            checked={isVolume}
-            label={__("Display Volume", "mp3player-block")}
-            onChange={(v) =>
-              setAttributes({ options: updateData(options, v, "isVolume") })
             }
           />
         </PanelBody>

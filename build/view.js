@@ -919,6 +919,114 @@ const OneHaashPlayer = ({
 
 /***/ }),
 
+/***/ "./src/Components/Common/OneHaashPlayer/OneHaashStyle.js":
+/*!***************************************************************!*\
+  !*** ./src/Components/Common/OneHaashPlayer/OneHaashStyle.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+
+
+const OneHaashStyle = ({
+  attributes,
+  id,
+  device = "desktop"
+}) => {
+  const {
+    haashWidth,
+    haashHeight,
+    haashBorder,
+    hasshPadding,
+    haashTitle,
+    haashSubTitle
+  } = attributes.style.oneHaashPlayer;
+  const idSl = `#${id}`;
+  const vPlayerSl = `${idSl} #v-player`;
+  const podcastSl = `${vPlayerSl} #podcast-player`;
+  const episodeParaSl = `${podcastSl} .epidode-header p`;
+  const episodeTitleSl = `${podcastSl}  .episode-title`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+
+        ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", haashSubTitle.typo)?.googleFontLink}
+        ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(episodeParaSl, haashSubTitle.typo)?.styles}
+
+        ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", haashTitle.typo)?.googleFontLink}
+        ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(episodeTitleSl, haashTitle.typo)?.styles}
+
+		
+        ${vPlayerSl}{
+          justify-content: ${attributes.style.align[device]};
+        }
+
+        ${podcastSl}{
+            width: ${haashWidth[device]};
+            height: ${haashHeight[device]};
+        }
+
+        ${podcastSl}{
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(haashBorder)}
+            padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(hasshPadding[device])};
+        }
+
+        ${episodeParaSl}{
+            color:${haashSubTitle.color};
+			opacity:${haashSubTitle.opacity};
+        }
+
+        ${episodeTitleSl}{
+            color:${haashTitle.color};
+        }
+
+
+        @media only screen and (min-width:641px) and (max-width: 1024px){
+                ${vPlayerSl}{
+                    justify-content: ${attributes.style.align.tablet};
+                }
+
+                ${podcastSl}{
+                    width: ${haashWidth.tablet};
+                    height: ${haashHeight.tablet};
+                }
+
+                ${podcastSl}{
+                    padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(hasshPadding.tablet)};
+                }
+        }
+
+
+        @media only screen and (max-width:640px){
+            ${vPlayerSl}{
+                justify-content: ${attributes.style.align.mobile};
+            }
+
+            ${podcastSl}{
+                width: ${haashWidth.mobile};
+                height: ${haashHeight.mobile};
+            }
+
+            ${podcastSl}{
+                padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(hasshPadding.mobile)};
+            }
+        }
+
+
+		`
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OneHaashStyle);
+
+/***/ }),
+
 /***/ "./src/Components/Common/SliderStyle.js":
 /*!**********************************************!*\
   !*** ./src/Components/Common/SliderStyle.js ***!
@@ -1173,6 +1281,42 @@ const AudioSlider = ({
 
 /***/ }),
 
+/***/ "./src/Components/FrontEnd/OneHaash.js":
+/*!*********************************************!*\
+  !*** ./src/Components/FrontEnd/OneHaash.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Common/OneHaashPlayer/OneHaashPlayer */ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js");
+/* harmony import */ var _Common_OneHaashPlayer_OneHaashStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Common/OneHaashPlayer/OneHaashStyle */ "./src/Components/Common/OneHaashPlayer/OneHaashStyle.js");
+
+
+
+
+const OneHaash = ({
+  attributes,
+  id
+}) => {
+  const [activeIndex, setActiveIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_OneHaashPlayer_OneHaashStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    id: id
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    attributes: attributes,
+    activeIndex: activeIndex,
+    setActiveIndex: setActiveIndex
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OneHaash);
+
+/***/ }),
+
 /***/ "./src/utils/icons.js":
 /*!****************************!*\
   !*** ./src/utils/icons.js ***!
@@ -1190,7 +1334,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   FaPlay: () => (/* binding */ FaPlay),
 /* harmony export */   FaVolumeUp: () => (/* binding */ FaVolumeUp),
 /* harmony export */   FaYoutube: () => (/* binding */ FaYoutube),
+/* harmony export */   GiPauseButton: () => (/* binding */ GiPauseButton),
+/* harmony export */   GrPlayFill: () => (/* binding */ GrPlayFill),
 /* harmony export */   ImOneDownload: () => (/* binding */ ImOneDownload),
+/* harmony export */   MinimalNextIcon: () => (/* binding */ MinimalNextIcon),
+/* harmony export */   MinimalPauseIcon: () => (/* binding */ MinimalPauseIcon),
+/* harmony export */   MinimalPlayIcon: () => (/* binding */ MinimalPlayIcon),
+/* harmony export */   MinimalPrevIcon: () => (/* binding */ MinimalPrevIcon),
 /* harmony export */   mdSkipNext: () => (/* binding */ mdSkipNext),
 /* harmony export */   mdSkipPrevious: () => (/* binding */ mdSkipPrevious),
 /* harmony export */   mp3playerIcon: () => (/* binding */ mp3playerIcon),
@@ -1202,6 +1352,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 const iconColor = "#4527a4";
+function GiPauseButton(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fa fa-pause triger",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M120.16 45A20.162 20.162 0 0 0 100 65.16v381.68A20.162 20.162 0 0 0 120.16 467h65.68A20.162 20.162 0 0 0 206 446.84V65.16A20.162 20.162 0 0 0 185.84 45h-65.68zm206 0A20.162 20.162 0 0 0 306 65.16v381.68A20.162 20.162 0 0 0 326.16 467h65.68A20.162 20.162 0 0 0 412 446.84V65.16A20.162 20.162 0 0 0 391.84 45h-65.68z"
+  }));
+}
+function GrPlayFill(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    className: "fa fa-play triger",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+  }));
+}
 const FaOnePlay = () => {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     stroke: "currentColor",
@@ -1224,6 +1402,54 @@ const FaOnePause = () => {
     width: "1em"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"
+  }));
+};
+const MinimalNextIcon = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "icon",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 100 100"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M26.695 34.434v31.132L54.5 49.998z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M24.07 34.434v31.132c0 2.018 2.222 3.234 3.95 2.267l27.804-15.568c1.706-.955 1.707-3.578 0-4.533L28.02 32.168c-2.957-1.655-5.604 2.88-2.649 4.533l27.805 15.564v-4.533L25.371 63.3l3.95 2.267V34.435c-.001-3.387-5.251-3.387-5.251-.001z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M55.5 34.434v31.132l27.805-15.568z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M52.875 34.434v31.132c0 2.018 2.222 3.234 3.949 2.267 9.27-5.189 18.537-10.379 27.805-15.568 1.705-.955 1.705-3.578 0-4.533L56.824 32.168c-2.957-1.655-5.604 2.88-2.648 4.533l27.803 15.564v-4.533L54.176 63.3l3.949 2.267V34.435c0-3.387-5.25-3.387-5.25-.001z"
+  })));
+};
+const MinimalPrevIcon = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "icon",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 100 100"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M26.695 34.434v31.132L54.5 49.998z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M24.07 34.434v31.132c0 2.018 2.222 3.234 3.95 2.267l27.804-15.568c1.706-.955 1.707-3.578 0-4.533L28.02 32.168c-2.957-1.655-5.604 2.88-2.649 4.533l27.805 15.564v-4.533L25.371 63.3l3.95 2.267V34.435c-.001-3.387-5.251-3.387-5.251-.001z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M55.5 34.434v31.132l27.805-15.568z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M52.875 34.434v31.132c0 2.018 2.222 3.234 3.949 2.267 9.27-5.189 18.537-10.379 27.805-15.568 1.705-.955 1.705-3.578 0-4.533L56.824 32.168c-2.957-1.655-5.604 2.88-2.648 4.533l27.803 15.564v-4.533L54.176 63.3l3.949 2.267V34.435c0-3.387-5.25-3.387-5.25-.001z"
+  })));
+};
+const MinimalPauseIcon = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "icon pause",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 100 100"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M22.537 8.046h17.791c1.104 0 2.003.898 2.003 1.993v79.912a2.005 2.005 0 0 1-2.003 2.003h-17.79a2.005 2.005 0 0 1-2.003-2.003V10.04c0-1.095.898-1.993 2.002-1.993zM59.672 8.046h17.8c1.095 0 1.993.898 1.993 1.993v79.912a2.003 2.003 0 0 1-1.993 2.003h-17.8a1.997 1.997 0 0 1-1.993-2.003V10.04c0-1.095.889-1.993 1.993-1.993z"
+  }));
+};
+const MinimalPlayIcon = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "icon play",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 64 64"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M51.109 30.335l-36-24A2 2 0 0 0 12 8v48a2.003 2.003 0 0 0 2 2c.388 0 .775-.113 1.109-.336l36-24a2 2 0 0 0 0-3.329z"
   }));
 };
 const mdSkipNext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
@@ -12777,7 +13003,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/FrontEnd/AudioSlider */ "./src/Components/FrontEnd/AudioSlider.js");
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var _Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Common/SliderStyle */ "./src/Components/Common/SliderStyle.js");
-/* harmony import */ var _Components_Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Components/Common/OneHaashPlayer/OneHaashPlayer */ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js");
+/* harmony import */ var _Components_FrontEnd_OneHaash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Components/FrontEnd/OneHaash */ "./src/Components/FrontEnd/OneHaash.js");
 
 
 
@@ -12785,8 +13011,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const mp3PlayerEls = document.querySelectorAll('.wp-block-bpmp-mp3-player');
+document.addEventListener("DOMContentLoaded", () => {
+  const mp3PlayerEls = document.querySelectorAll(".wp-block-bpmp-mp3-player");
   mp3PlayerEls.forEach(mp3PlayerEl => {
     const attributes = JSON.parse(mp3PlayerEl.dataset.attributes);
     const {
@@ -12797,14 +13023,17 @@ document.addEventListener('DOMContentLoaded', () => {
       songSl
     } = options;
     {
-      songSl === 'default' ? (0,_Components_Common_MP3Player__WEBPACK_IMPORTED_MODULE_2__["default"])(mp3PlayerEl, audioProperties) : (0,react_dom_client__WEBPACK_IMPORTED_MODULE_4__.createRoot)(mp3PlayerEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === 'slider' ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      songSl === "default" ? (0,_Components_Common_MP3Player__WEBPACK_IMPORTED_MODULE_2__["default"])(mp3PlayerEl, audioProperties) : (0,react_dom_client__WEBPACK_IMPORTED_MODULE_4__.createRoot)(mp3PlayerEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === "slider" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__["default"], {
         attributes: attributes,
         id: mp3PlayerEl.id
       }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_3__["default"], {
         attributes: attributes
-      })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
+      })) : songSl === "oneHaash" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_FrontEnd_OneHaash__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        attributes: attributes,
+        id: mp3PlayerEl.id
+      }) : "No Player"));
     }
-    mp3PlayerEl?.removeAttribute('data-attributes');
+    mp3PlayerEl?.removeAttribute("data-attributes");
   });
 });
 /******/ })()

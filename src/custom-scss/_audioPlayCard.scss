@@ -1,0 +1,119 @@
+
+.music_card{
+  background: #fff;
+  box-shadow: 9px 7px 37px -6px rgba(0,0,0,0.75);
+  overflow: hidden;
+  position: relative;
+  width: 300px;
+  height: 550px;
+  margin: 10px auto;
+}
+
+@keyframes waveCard{
+    0%{ transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); }
+}
+
+.image{
+    height: 300px;
+    width: 310px;
+    position: absolute;
+    background-size: cover;
+    opacity: 0.3;
+    z-index: 1;
+}
+.image:after {
+  height: 100px;
+  content: '';
+  top: 200px;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  background: linear-gradient(rgba(9, 2, 4, 0), #444);
+}
+.waveCard {
+  position: absolute;
+  height: 750px;
+  width: 750px;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  margin-left: -70%;
+  margin-top: -130%;
+  background: radial-gradient(#353535, #383737);
+}
+
+.waveCard:nth-child(2),
+.waveCard:nth-child(3) {
+  top: 10px;
+}
+
+.waveCard{
+    animation: waveCard 55s linear infinite;
+    -wbkit-animation: waveCard 55s linear infinite;
+    -moz-animation: waveCard 55s linear infinite;
+    border-radius: 40%;
+}
+
+.waveCard:nth-child(2){
+    animation: waveCard 50s linear infinite;
+    -wbkit-animation: waveCard 50s linear infinite;
+    -moz-animation: waveCard 50s linear infinite;
+}
+
+.waveCard:nth-child(3){
+    animation: waveCard 45s linear infinite;
+    -wbkit-animation: waveCard 45s linear infinite;
+    -moz-animation: waveCard 45s linear infinite;
+}
+
+.playing .waveCard{
+    border-radius: 40%;
+    animation: waveCard 3000ms linear infinite;
+    -wbkit-animation: waveCard 3000ms linear infinite;
+    -moz-animation: waveCard 3000ms linear infinite;
+}
+.playing .waveCard:nth-child(2){
+    border-radius: 40%;
+    animation: waveCard 4000ms linear infinite;
+    -wbkit-animation: waveCard 4000ms linear infinite;
+    -moz-animation: waveCard 4000ms linear infinite;
+}
+.playing .waveCard:nth-child(3){
+    border-radius: 40%;
+    animation: waveCard 5000ms linear infinite;
+    -wbkit-animation: waveCard 5000ms linear infinite;
+    -moz-animation: waveCard 5000ms linear infinite;
+}
+.info{
+    bottom: 60px;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+.title{
+    font-size: 1.4em;
+    font-family: "Lato", sans-serif;
+    color: #333;
+    margin-bottom: 8px;
+}
+.artist{
+    font-family: "Lobster", sans-serif;
+    font-size: 1.2em;
+    color: #787878;
+}
+.cardControls{
+    position: absolute;
+    bottom: 15px;
+    // left: 10px;
+    color: #555;
+    font-size: 1.2em!important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+   
+}

@@ -10954,6 +10954,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SwiperSlider_SwiperSlider__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./SwiperSlider/SwiperSlider */ "./src/Components/Backend/SwiperSlider/SwiperSlider.js");
 /* harmony import */ var _Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../Common/OneHaashPlayer/OneHaashPlayer */ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js");
 /* harmony import */ var _Common_OneHaashPlayer_OneHaashStyle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../Common/OneHaashPlayer/OneHaashStyle */ "./src/Components/Common/OneHaashPlayer/OneHaashStyle.js");
+/* harmony import */ var _Common_MinimalPlayer_MinimalPlayer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../Common/MinimalPlayer/MinimalPlayer */ "./src/Components/Common/MinimalPlayer/MinimalPlayer.js");
+/* harmony import */ var _Common_AudioPlayCard_AudioPlayCard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../Common/AudioPlayCard/AudioPlayCard */ "./src/Components/Common/AudioPlayCard/AudioPlayCard.js");
+
+
 
 
 
@@ -11070,7 +11074,6 @@ const Edit = props => {
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_MusicPlayerBack_MusicPlayerBack__WEBPACK_IMPORTED_MODULE_10__["default"], {
     attributes: attributes,
     audioRef: audioRef,
-    isPlaying: isPlaying,
     setIsPlaying: setIsPlaying,
     activeIndex: activeIndex,
     setActiveIndex: setActiveIndex,
@@ -11083,7 +11086,9 @@ const Edit = props => {
     attributes: attributes,
     activeIndex: activeIndex,
     setActiveIndex: setActiveIndex
-  })) : "No Player"));
+  })) : songSl === "minimal" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_MinimalPlayer_MinimalPlayer__WEBPACK_IMPORTED_MODULE_14__["default"], null) : songSl === "card" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_AudioPlayCard_AudioPlayCard__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    attributes: attributes
+  }) : "No Player"));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)(select => {
   return {
@@ -11442,7 +11447,9 @@ const General = ({
     })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio File:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.InlineDetailMediaUpload, {
       value: audio,
       types: ["audio"],
-      onChange: val => updateAudioProperty(index, "audio", val),
+      onChange: val => {
+        updateAudioProperty(index, "audio", val);
+      },
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter Audio URL", "mp3player-block")
     }), songSl !== "oneHaash" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Cover Photo:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.InlineDetailMediaUpload, {
       value: cover,
@@ -11481,7 +11488,39 @@ const General = ({
     onClick: addNewAudioProperty
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Dashicon, {
     icon: "plus"
-  }), " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add New Audio", "mp3player-block")))), songSl === "oneHaash" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  }), " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add New Audio", "mp3player-block")))), songSl === "slider" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Options", "mp3player-block"),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt5",
+    checked: isOverlayIcon,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Social Link", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isOverlayIcon")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt5",
+    checked: isThumb,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Range Thumb", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isThumb")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt5",
+    checked: isAutoPlay,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Auto Play", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isAutoPlay")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    className: "mt5",
+    checked: isVolume,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Display Volume", "mp3player-block"),
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isVolume")
+    })
+  })), songSl === "oneHaash" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Options", "mp3player-block"),
     initialOpen: false
@@ -11526,38 +11565,6 @@ const General = ({
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("isBackForIcon", "mp3player-block"),
     onChange: v => setAttributes({
       options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "oneHaash", "isBackForIcon")
-    })
-  })), songSl === "slider" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Options", "mp3player-block"),
-    initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    className: "mt5",
-    checked: isOverlayIcon,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Social Link", "mp3player-block"),
-    onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isOverlayIcon")
-    })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    className: "mt5",
-    checked: isThumb,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Range Thumb", "mp3player-block"),
-    onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isThumb")
-    })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    className: "mt5",
-    checked: isAutoPlay,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Auto Play", "mp3player-block"),
-    onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isAutoPlay")
-    })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-    className: "mt5",
-    checked: isVolume,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Display Volume", "mp3player-block"),
-    onChange: v => setAttributes({
-      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "isVolume")
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
     value: align[device],
@@ -12166,7 +12173,7 @@ const Styles = ({
     defaults: {
       radius: "50%"
     }
-  }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  }))) : songSl === "oneHaash" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Wrapper", "mp3player-block")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
@@ -12273,7 +12280,7 @@ const Styles = ({
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashInputRange", "progressColor")
     })
-  }))));
+  }))) : songSl === "card" ? "card style" : "No style");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Styles);
 
@@ -12432,6 +12439,115 @@ const SwiperSlider = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(({
   })))))))));
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SwiperSlider);
+
+/***/ }),
+
+/***/ "./src/Components/Common/AudioPlayCard/AudioPlayCard.js":
+/*!**************************************************************!*\
+  !*** ./src/Components/Common/AudioPlayCard/AudioPlayCard.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/icons */ "./src/utils/icons.js");
+
+
+
+const AudioPlayCard = ({
+  attributes
+}) => {
+  const {
+    audioProperties
+  } = attributes;
+  const [currentTrackIndex, setCurrentTrackIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [audio, setAudio] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const trackUrl = audioProperties[currentTrackIndex]?.audio?.url || null;
+    if (trackUrl) {
+      const newAudio = new Audio(trackUrl);
+      newAudio.volume = 0.2;
+      newAudio.loop = false;
+      setAudio(newAudio);
+    }
+    return () => {
+      if (audio) {
+        audio.pause();
+        setAudio(null);
+      }
+    };
+  }, [audioProperties, currentTrackIndex]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (audio && isPlaying) {
+      audio.play().catch(err => console.error("Audio play error:", err.message));
+    }
+  }, [audio, isPlaying]);
+  const togglePlayPause = () => {
+    if (!audio) {
+      console.error("No audio object initialized.");
+      return;
+    }
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play().catch(err => console.error("Audio play error:", err.message));
+    }
+    setIsPlaying(!isPlaying);
+  };
+  const playTrack = index => {
+    if (audio) {
+      audio.pause();
+    }
+    setCurrentTrackIndex(index);
+  };
+  const playPrevious = () => {
+    const newIndex = currentTrackIndex === 0 ? audioProperties.length - 1 : currentTrackIndex - 1;
+    playTrack(newIndex);
+  };
+  const playNext = () => {
+    const newIndex = currentTrackIndex === audioProperties.length - 1 ? 0 : currentTrackIndex + 1;
+    playTrack(newIndex);
+  };
+  const addAutoImg = {
+    background: `url("${audioProperties[currentTrackIndex]?.link || "http://pak101.com/celebrities/Singers/Gul_Panra_Pakistani_Female_Singer_Celebrity_1_awaha_Pak101(dot)com.jpg"}") no-repeat 70%`,
+    backgroundSize: "cover"
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `music_card ${isPlaying ? "playing" : ""}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: addAutoImg,
+    className: "image"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "waveCard"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "waveCard"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "waveCard"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "title"
+  }, audioProperties[currentTrackIndex]?.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "artist"
+  }, audioProperties[currentTrackIndex]?.artist)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "cardControls"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaBackward, {
+    onClick: playPrevious
+  }), isPlaying ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.GiPauseButton, {
+    onClick: togglePlayPause
+  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.GrPlayFill, {
+    onClick: togglePlayPause
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaForward, {
+    onClick: playNext
+  })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayCard);
 
 /***/ }),
 
@@ -12600,6 +12716,71 @@ const MP3Player = (selector, songs = []) => {
   progressContainer.addEventListener('click', setProgress);
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MP3Player);
+
+/***/ }),
+
+/***/ "./src/Components/Common/MinimalPlayer/MinimalPlayer.js":
+/*!**************************************************************!*\
+  !*** ./src/Components/Common/MinimalPlayer/MinimalPlayer.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/icons */ "./src/utils/icons.js");
+
+
+const MinimalPlayer = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__bar"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__album"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__albumImg active-song",
+    "data-author": "Khalid",
+    "data-song": "Location",
+    data: "",
+    "data-src": "http://www.pakium.pk/wp-content/uploads/2015/08/Man-Aamadeh-Am-S08E03-PakiUM.Com_.mp3",
+    style: {
+      backgroundImage: "url(https://alikinvv.github.io/minimal-player/build/img/album.jpg"
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__albumImg",
+    "data-author": "Khalid",
+    "data-song": "Angels",
+    data: "",
+    "data-src": "http://www.pakium.pk/wp-content/uploads/2015/08/Man-Aamadeh-Am-S08E03-PakiUM.Com_.mp3",
+    style: {
+      backgroundImage: "url(https://alikinvv.github.io/minimal-player/build/img/album.jpg"
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__controls"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__prev"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.MinimalPrevIcon, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__play"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.MinimalPlayIcon, null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.MinimalPauseIcon, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__next"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.MinimalNextIcon, null)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__timeline"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "player__author"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "player__song"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player__timelineBar"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "playhead"
+  })))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MinimalPlayer);
 
 /***/ }),
 
@@ -13263,7 +13444,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   FaPlay: () => (/* binding */ FaPlay),
 /* harmony export */   FaVolumeUp: () => (/* binding */ FaVolumeUp),
 /* harmony export */   FaYoutube: () => (/* binding */ FaYoutube),
+/* harmony export */   GiPauseButton: () => (/* binding */ GiPauseButton),
+/* harmony export */   GrPlayFill: () => (/* binding */ GrPlayFill),
 /* harmony export */   ImOneDownload: () => (/* binding */ ImOneDownload),
+/* harmony export */   MinimalNextIcon: () => (/* binding */ MinimalNextIcon),
+/* harmony export */   MinimalPauseIcon: () => (/* binding */ MinimalPauseIcon),
+/* harmony export */   MinimalPlayIcon: () => (/* binding */ MinimalPlayIcon),
+/* harmony export */   MinimalPrevIcon: () => (/* binding */ MinimalPrevIcon),
 /* harmony export */   mdSkipNext: () => (/* binding */ mdSkipNext),
 /* harmony export */   mdSkipPrevious: () => (/* binding */ mdSkipPrevious),
 /* harmony export */   mp3playerIcon: () => (/* binding */ mp3playerIcon),
@@ -13275,6 +13462,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 const iconColor = "#4527a4";
+function GiPauseButton(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fa fa-pause triger",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M120.16 45A20.162 20.162 0 0 0 100 65.16v381.68A20.162 20.162 0 0 0 120.16 467h65.68A20.162 20.162 0 0 0 206 446.84V65.16A20.162 20.162 0 0 0 185.84 45h-65.68zm206 0A20.162 20.162 0 0 0 306 65.16v381.68A20.162 20.162 0 0 0 326.16 467h65.68A20.162 20.162 0 0 0 412 446.84V65.16A20.162 20.162 0 0 0 391.84 45h-65.68z"
+  }));
+}
+function GrPlayFill(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    stroke: "currentColor",
+    className: "fa fa-play triger",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+  }));
+}
 const FaOnePlay = () => {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     stroke: "currentColor",
@@ -13297,6 +13512,54 @@ const FaOnePause = () => {
     width: "1em"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"
+  }));
+};
+const MinimalNextIcon = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "icon",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 100 100"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M26.695 34.434v31.132L54.5 49.998z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M24.07 34.434v31.132c0 2.018 2.222 3.234 3.95 2.267l27.804-15.568c1.706-.955 1.707-3.578 0-4.533L28.02 32.168c-2.957-1.655-5.604 2.88-2.649 4.533l27.805 15.564v-4.533L25.371 63.3l3.95 2.267V34.435c-.001-3.387-5.251-3.387-5.251-.001z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M55.5 34.434v31.132l27.805-15.568z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M52.875 34.434v31.132c0 2.018 2.222 3.234 3.949 2.267 9.27-5.189 18.537-10.379 27.805-15.568 1.705-.955 1.705-3.578 0-4.533L56.824 32.168c-2.957-1.655-5.604 2.88-2.648 4.533l27.803 15.564v-4.533L54.176 63.3l3.949 2.267V34.435c0-3.387-5.25-3.387-5.25-.001z"
+  })));
+};
+const MinimalPrevIcon = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "icon",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 100 100"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M26.695 34.434v31.132L54.5 49.998z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M24.07 34.434v31.132c0 2.018 2.222 3.234 3.95 2.267l27.804-15.568c1.706-.955 1.707-3.578 0-4.533L28.02 32.168c-2.957-1.655-5.604 2.88-2.649 4.533l27.805 15.564v-4.533L25.371 63.3l3.95 2.267V34.435c-.001-3.387-5.251-3.387-5.251-.001z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M55.5 34.434v31.132l27.805-15.568z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M52.875 34.434v31.132c0 2.018 2.222 3.234 3.949 2.267 9.27-5.189 18.537-10.379 27.805-15.568 1.705-.955 1.705-3.578 0-4.533L56.824 32.168c-2.957-1.655-5.604 2.88-2.648 4.533l27.803 15.564v-4.533L54.176 63.3l3.949 2.267V34.435c0-3.387-5.25-3.387-5.25-.001z"
+  })));
+};
+const MinimalPauseIcon = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "icon pause",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 100 100"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M22.537 8.046h17.791c1.104 0 2.003.898 2.003 1.993v79.912a2.005 2.005 0 0 1-2.003 2.003h-17.79a2.005 2.005 0 0 1-2.003-2.003V10.04c0-1.095.898-1.993 2.002-1.993zM59.672 8.046h17.8c1.095 0 1.993.898 1.993 1.993v79.912a2.003 2.003 0 0 1-1.993 2.003h-17.8a1.997 1.997 0 0 1-1.993-2.003V10.04c0-1.095.889-1.993 1.993-1.993z"
+  }));
+};
+const MinimalPlayIcon = () => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "icon play",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 64 64"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M51.109 30.335l-36-24A2 2 0 0 0 12 8v48a2.003 2.003 0 0 0 2 2c.388 0 .775-.113 1.109-.336l36-24a2 2 0 0 0 0-3.329z"
   }));
 };
 const mdSkipNext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
@@ -13502,6 +13765,12 @@ const songSlOptions = [{
 }, {
   label: 'OneHaash',
   value: 'oneHaash'
+}, {
+  label: 'Card',
+  value: 'card'
+}, {
+  label: 'Minimal',
+  value: 'minimal'
 }];
 const musicAlignOptions = [{
   label: 'Left',

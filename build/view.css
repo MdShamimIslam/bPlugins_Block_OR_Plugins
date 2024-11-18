@@ -202,14 +202,14 @@
   font-size: 12px;
   color: #949494;
 }
+.wp-block-bpmp-mp3-player .audioCardPlayer {
+  display: flex;
+}
 .wp-block-bpmp-mp3-player .music_card {
   background: #fff;
   box-shadow: 9px 7px 37px -6px rgba(0, 0, 0, 0.75);
   overflow: hidden;
   position: relative;
-  width: 300px;
-  height: 550px;
-  margin: 10px auto;
 }
 @keyframes waveCard {
   0% {
@@ -220,8 +220,7 @@
   }
 }
 .wp-block-bpmp-mp3-player .image {
-  height: 300px;
-  width: 310px;
+  width: 100%;
   position: absolute;
   background-size: cover;
   opacity: 0.3;
@@ -244,12 +243,7 @@
   left: 0;
   top: 0;
   margin-left: -70%;
-  margin-top: -130%;
   background: radial-gradient(#353535, #383737);
-}
-.wp-block-bpmp-mp3-player .waveCard:nth-child(2),
-.wp-block-bpmp-mp3-player .waveCard:nth-child(3) {
-  top: 10px;
 }
 .wp-block-bpmp-mp3-player .waveCard {
   animation: waveCard 55s linear infinite;
@@ -293,15 +287,7 @@
   right: 0;
 }
 .wp-block-bpmp-mp3-player .title {
-  font-size: 1.4em;
-  font-family: "Lato", sans-serif;
-  color: #333;
   margin-bottom: 8px;
-}
-.wp-block-bpmp-mp3-player .artist {
-  font-family: "Lobster", sans-serif;
-  font-size: 1.2em;
-  color: #787878;
 }
 .wp-block-bpmp-mp3-player .cardControls {
   position: absolute;
@@ -311,7 +297,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 15px;
   width: 100%;
 }

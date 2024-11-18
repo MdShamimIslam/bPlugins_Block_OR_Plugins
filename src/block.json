@@ -114,9 +114,59 @@
               "fontSize": 20
             }
           },
-          "haashInputRange":{
-            "staticColor":"#ccc",
-            "progressColor":"#4527a4"
+          "haashInputRange": {
+            "staticColor": "#ccc",
+            "progressColor": "#4527a4"
+          }
+        },
+        "cardPlayer": {
+          "cardAlign": {
+            "desktop": "center",
+            "tablet": "center",
+            "mobile": "center"
+          },
+          "cardWidth": {
+            "desktop": "300px",
+            "tablet": "300px",
+            "mobile": "270px"
+          },
+          "cardHeight": {
+            "desktop": "550px",
+            "tablet": "550px",
+            "mobile": "500px"
+          },
+          "cardImgHeight": {
+            "desktop": "300px",
+            "tablet": "300px",
+            "mobile": "300px"
+          },
+          "waveTop":{
+            "desktop": -130,
+            "tablet": -130,
+            "mobile": -160
+          },
+          "wave2Top":{
+            "desktop": 10,
+            "tablet": 10,
+            "mobile": 0
+          },
+          "wave3Top":{
+            "desktop": 10,
+            "tablet": 10,
+            "mobile": 0
+          },
+          "cardTitle": {
+            "color": "#000",
+            "typo": {
+              "fontSize": 30
+            }
+          },
+          "cardSubTitle": {
+            "color": "#879eb4",
+            "opacity": 0.6,
+            "typo": {
+              "fontSize": 20
+            }
           }
         },
         "align": {

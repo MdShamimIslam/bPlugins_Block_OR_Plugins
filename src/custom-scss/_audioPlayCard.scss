@@ -1,12 +1,12 @@
 
+.audioCardPlayer{
+  display: flex;
+}
 .music_card{
   background: #fff;
   box-shadow: 9px 7px 37px -6px rgba(0,0,0,0.75);
   overflow: hidden;
   position: relative;
-  width: 300px;
-  height: 550px;
-  margin: 10px auto;
 }
 
 @keyframes waveCard{
@@ -15,8 +15,7 @@
 }
 
 .image{
-    height: 300px;
-    width: 310px;
+    width: 100%;
     position: absolute;
     background-size: cover;
     opacity: 0.3;
@@ -39,13 +38,7 @@
   left: 0;
   top: 0;
   margin-left: -70%;
-  margin-top: -130%;
   background: radial-gradient(#353535, #383737);
-}
-
-.waveCard:nth-child(2),
-.waveCard:nth-child(3) {
-  top: 10px;
 }
 
 .waveCard{
@@ -54,19 +47,16 @@
     -moz-animation: waveCard 55s linear infinite;
     border-radius: 40%;
 }
-
 .waveCard:nth-child(2){
     animation: waveCard 50s linear infinite;
     -wbkit-animation: waveCard 50s linear infinite;
     -moz-animation: waveCard 50s linear infinite;
 }
-
 .waveCard:nth-child(3){
     animation: waveCard 45s linear infinite;
     -wbkit-animation: waveCard 45s linear infinite;
     -moz-animation: waveCard 45s linear infinite;
 }
-
 .playing .waveCard{
     border-radius: 40%;
     animation: waveCard 3000ms linear infinite;
@@ -93,15 +83,7 @@
     right: 0;
 }
 .title{
-    font-size: 1.4em;
-    font-family: "Lato", sans-serif;
-    color: #333;
     margin-bottom: 8px;
-}
-.artist{
-    font-family: "Lobster", sans-serif;
-    font-size: 1.2em;
-    color: #787878;
 }
 .cardControls{
     position: absolute;
@@ -112,7 +94,6 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 15px;
     width: 100%;
    

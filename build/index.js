@@ -10955,7 +10955,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Common_OneHaashPlayer_OneHaashPlayer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../Common/OneHaashPlayer/OneHaashPlayer */ "./src/Components/Common/OneHaashPlayer/OneHaashPlayer.js");
 /* harmony import */ var _Common_OneHaashPlayer_OneHaashStyle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../Common/OneHaashPlayer/OneHaashStyle */ "./src/Components/Common/OneHaashPlayer/OneHaashStyle.js");
 /* harmony import */ var _Common_MinimalPlayer_MinimalPlayer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../Common/MinimalPlayer/MinimalPlayer */ "./src/Components/Common/MinimalPlayer/MinimalPlayer.js");
-/* harmony import */ var _Common_AudioPlayCard_AudioPlayCard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../Common/AudioPlayCard/AudioPlayCard */ "./src/Components/Common/AudioPlayCard/AudioPlayCard.js");
+/* harmony import */ var _Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../Common/AudioPlayCard/AudioCard */ "./src/Components/Common/AudioPlayCard/AudioCard.js");
 
 
 
@@ -11086,8 +11086,10 @@ const Edit = props => {
     attributes: attributes,
     activeIndex: activeIndex,
     setActiveIndex: setActiveIndex
-  })) : songSl === "minimal" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_MinimalPlayer_MinimalPlayer__WEBPACK_IMPORTED_MODULE_14__["default"], null) : songSl === "card" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_AudioPlayCard_AudioPlayCard__WEBPACK_IMPORTED_MODULE_15__["default"], {
-    attributes: attributes
+  })) : songSl === "minimal" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_MinimalPlayer_MinimalPlayer__WEBPACK_IMPORTED_MODULE_14__["default"], null) : songSl === "card" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    attributes: attributes,
+    id: `block-${clientId}`,
+    device: device
   }) : "No Player"));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.withSelect)(select => {
@@ -11909,7 +11911,8 @@ const Styles = ({
     rangeInput,
     rangeThumb,
     controlsBtn,
-    oneHaashPlayer
+    oneHaashPlayer,
+    cardPlayer
   } = style;
   const {
     sliderWidth,
@@ -11942,22 +11945,33 @@ const Styles = ({
     haashSubTitle,
     haashInputRange
   } = oneHaashPlayer;
+  const {
+    cardWidth,
+    cardHeight,
+    cardImgHeight,
+    waveTop,
+    wave2Top,
+    wave3Top,
+    cardAlign,
+    cardTitle,
+    cardSubTitle
+  } = cardPlayer;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === "slider" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio Player Wrapper", "mp3player-block")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Alignment", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Alignment", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
     value: align[device],
     options: _utils_options__WEBPACK_IMPORTED_MODULE_7__.musicAlignOptions,
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "align", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: style.width[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "width", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: style.height[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
@@ -11982,13 +11996,13 @@ const Styles = ({
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio Slider", "mp3player-block"),
     initialOpen: false
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: sliderWidth[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "musicSlider", "sliderWidth", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: sliderHeight[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
@@ -12176,13 +12190,13 @@ const Styles = ({
   }))) : songSl === "oneHaash" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Wrapper", "mp3player-block")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: haashWidth[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashWidth", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "b-blocks")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: haashHeight[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
     onChange: v => setAttributes({
@@ -12280,7 +12294,114 @@ const Styles = ({
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "oneHaashPlayer", "haashInputRange", "progressColor")
     })
-  }))) : songSl === "card" ? "card style" : "No style");
+  }))) : songSl === "card" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Card Player Style", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+    value: cardWidth[device],
+    units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)()],
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardWidth", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Height", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+    value: cardHeight[device],
+    units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)()],
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardHeight", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Image Height", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
+    value: cardImgHeight[device],
+    units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)()],
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardImgHeight", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    className: "mt20",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Wave", "mp3player-block"),
+    value: waveTop,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, -170 + (v - -170), "cardPlayer", "waveTop", device)
+    }),
+    min: -300,
+    max: 0,
+    step: 1
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    className: "mt10",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Wave-2", "mp3player-block"),
+    value: wave2Top,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "wave2Top", device)
+    }),
+    min: 0,
+    max: 300
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    className: "mt10",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Wave-3", "mp3player-block"),
+    value: wave3Top,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "wave3Top", device)
+    }),
+    min: 0,
+    max: 300
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "mt10"
+  }, "Control Alignment"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Tab__WEBPACK_IMPORTED_MODULE_9__.Tab, {
+    options: ["left", "center", "right"],
+    value: cardAlign[device],
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardAlign", device)
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Episode Info", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Tab__WEBPACK_IMPORTED_MODULE_9__.Tab, {
+    options: ["title", "sub-title"],
+    value: textSl,
+    onChange: v => setAttributes({
+      options: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(options, v, "textSl")
+    })
+  }), textSl === "title" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Color", "mp3player-block"),
+    value: cardTitle.color,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardTitle", "color")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Typography, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Typography", "mp3player-block"),
+    value: cardTitle.typo,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardTitle", "typo")
+    }),
+    defaults: {
+      fontSize: 30
+    }
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Color", "mp3player-block"),
+    value: cardSubTitle.color,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardSubTitle", "color")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    className: "mt5",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Opacity", "mp3player-block"),
+    value: cardSubTitle.opacity,
+    allowReset: true,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardSubTitle", "opacity")
+    }),
+    min: 0,
+    max: 1,
+    step: 0.1
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Typography, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Typography", "mp3player-block"),
+    value: cardSubTitle.typo,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardSubTitle", "typo")
+    }),
+    defaults: {
+      fontSize: 20
+    }
+  })))) : "No style");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Styles);
 
@@ -12442,6 +12563,47 @@ const SwiperSlider = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(({
 
 /***/ }),
 
+/***/ "./src/Components/Common/AudioPlayCard/AudioCard.js":
+/*!**********************************************************!*\
+  !*** ./src/Components/Common/AudioPlayCard/AudioCard.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _AudioPlayCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AudioPlayCard */ "./src/Components/Common/AudioPlayCard/AudioPlayCard.js");
+/* harmony import */ var _AudioPlayCardStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AudioPlayCardStyle */ "./src/Components/Common/AudioPlayCard/AudioPlayCardStyle.js");
+
+
+
+
+const AudioCard = ({
+  attributes,
+  id,
+  device
+}) => {
+  const [activeIndex, setActiveIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "audioCardPlayer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AudioPlayCardStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    id: id,
+    device: device
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AudioPlayCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    attributes: attributes,
+    activeIndex: activeIndex,
+    setActiveIndex: setActiveIndex
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioCard);
+
+/***/ }),
+
 /***/ "./src/Components/Common/AudioPlayCard/AudioPlayCard.js":
 /*!**************************************************************!*\
   !*** ./src/Components/Common/AudioPlayCard/AudioPlayCard.js ***!
@@ -12460,19 +12622,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const AudioPlayCard = ({
-  attributes
+  attributes,
+  activeIndex,
+  setActiveIndex
 }) => {
   const {
     audioProperties
   } = attributes;
-  const [currentTrackIndex, setCurrentTrackIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [audio, setAudio] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const trackUrl = audioProperties[currentTrackIndex]?.audio?.url || null;
+    const trackUrl = audioProperties[activeIndex]?.audio?.url || null;
     if (trackUrl) {
       const newAudio = new Audio(trackUrl);
-      newAudio.volume = 0.2;
+      newAudio.volume = 0.5;
       newAudio.loop = false;
       setAudio(newAudio);
     }
@@ -12482,7 +12645,7 @@ const AudioPlayCard = ({
         setAudio(null);
       }
     };
-  }, [audioProperties, currentTrackIndex]);
+  }, [audioProperties, activeIndex]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (audio && isPlaying) {
       audio.play().catch(err => console.error("Audio play error:", err.message));
@@ -12504,18 +12667,18 @@ const AudioPlayCard = ({
     if (audio) {
       audio.pause();
     }
-    setCurrentTrackIndex(index);
+    setActiveIndex(index);
   };
   const playPrevious = () => {
-    const newIndex = currentTrackIndex === 0 ? audioProperties.length - 1 : currentTrackIndex - 1;
+    const newIndex = activeIndex === 0 ? audioProperties.length - 1 : activeIndex - 1;
     playTrack(newIndex);
   };
   const playNext = () => {
-    const newIndex = currentTrackIndex === audioProperties.length - 1 ? 0 : currentTrackIndex + 1;
+    const newIndex = activeIndex === audioProperties.length - 1 ? 0 : activeIndex + 1;
     playTrack(newIndex);
   };
   const addAutoImg = {
-    background: `url("${audioProperties[currentTrackIndex]?.link || "http://pak101.com/celebrities/Singers/Gul_Panra_Pakistani_Female_Singer_Celebrity_1_awaha_Pak101(dot)com.jpg"}") no-repeat 70%`,
+    background: `url("${audioProperties[activeIndex]?.cover?.url || "http://pak101.com/celebrities/Singers/Gul_Panra_Pakistani_Female_Singer_Celebrity_1_awaha_Pak101(dot)com.jpg"}") no-repeat 70%`,
     backgroundSize: "cover"
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -12533,9 +12696,9 @@ const AudioPlayCard = ({
     className: "info"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "title"
-  }, audioProperties[currentTrackIndex]?.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, audioProperties[activeIndex]?.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "artist"
-  }, audioProperties[currentTrackIndex]?.artist)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, audioProperties[activeIndex]?.artist)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "cardControls"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaBackward, {
     onClick: playPrevious
@@ -12548,6 +12711,174 @@ const AudioPlayCard = ({
   })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayCard);
+
+/***/ }),
+
+/***/ "./src/Components/Common/AudioPlayCard/AudioPlayCardStyle.js":
+/*!*******************************************************************!*\
+  !*** ./src/Components/Common/AudioPlayCard/AudioPlayCardStyle.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+
+
+const AudioPlayCardStyle = ({
+  attributes,
+  id,
+  device = "desktop"
+}) => {
+  const {
+    cardWidth,
+    cardHeight,
+    cardImgHeight,
+    waveTop,
+    wave2Top,
+    wave3Top,
+    cardAlign,
+    cardTitle,
+    cardSubTitle
+  } = attributes.style.cardPlayer;
+  const idSl = `#${id}`;
+  const audioPlayerSl = `${idSl} .audioCardPlayer`;
+  const musicCardSl = `${audioPlayerSl} .music_card`;
+  const titleSl = `${musicCardSl} .info .title`;
+  const artistSl = `${musicCardSl} .info .artist`;
+  const imageSl = `${audioPlayerSl} .image`;
+  const waveCardSl = `${musicCardSl} .waveCard`;
+  const waveCard2Sl = `${musicCardSl} .waveCard:nth-child(2)`;
+  const waveCard3Sl = `${musicCardSl} .waveCard:nth-child(3)`;
+  const controlsSl = `${musicCardSl} .cardControls`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+  
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", cardSubTitle.typo)?.googleFontLink}
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(artistSl, cardSubTitle.typo)?.styles}
+
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", cardTitle.typo)?.googleFontLink}
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(titleSl, cardTitle.typo)?.styles}
+         
+            ${artistSl}{
+                color:${cardSubTitle.color};
+                opacity:${cardSubTitle.opacity};
+            }
+    
+            ${titleSl}{
+                color:${cardTitle.color};
+            }
+         
+            ${audioPlayerSl}{
+                justify-content : ${attributes.style.align[device]};
+            }
+         
+            ${musicCardSl}{
+                width : ${cardWidth[device]};
+                height : ${cardHeight[device]};
+            }
+
+            ${imageSl}{
+                height : ${cardImgHeight[device]};
+            }
+          
+            ${waveCardSl} {
+                margin-top: ${waveTop[device]}%;
+            }
+
+            ${waveCard2Sl} {
+                top: ${wave2Top[device]}px;
+            }
+
+            ${waveCard3Sl} {
+                top: ${wave3Top[device]}px;
+            }
+
+            ${controlsSl} {
+               justify-content: ${cardAlign[device]};
+               left: ${cardAlign[device] === "left" ? "10px" : cardAlign[device] === "right" ? "-10px" : 0};
+            }
+  
+  
+          @media only screen and (min-width:641px) and (max-width: 1024px){
+            ${audioPlayerSl}{
+                justify-content : ${attributes.style.align.tablet};
+            }
+         
+            ${musicCardSl}{
+                width : ${cardWidth.tablet};
+                height : ${cardHeight.tablet};
+            }
+
+            ${imageSl}{
+                height : ${cardImgHeight.tablet};
+            }
+          
+            ${waveCardSl} {
+                margin-top: ${waveTop.tablet}%;
+            }
+
+            ${waveCard2Sl} {
+                top: ${wave2Top.tablet}px;
+            }
+
+            ${waveCard3Sl} {
+                top: ${wave3Top.tablet}px;
+            }
+
+            ${controlsSl} {
+               justify-content: ${cardAlign.tablet};
+               left: ${cardAlign.tablet === "left" ? "10px" : cardAlign.tablet === "right" ? "-10px" : 0};
+            }
+
+          }
+  
+  
+          @media only screen and (max-width:640px){
+                ${audioPlayerSl}{
+                justify-content : ${attributes.style.align.mobile};
+            }
+         
+            ${musicCardSl}{
+                width : ${cardWidth.mobile};
+                height : ${cardHeight.mobile};
+            }
+
+            ${imageSl}{
+                height : ${cardImgHeight.mobile};
+            }
+          
+            ${waveCardSl} {
+                margin-top: ${waveTop.mobile}%;
+            }
+
+            ${waveCard2Sl} {
+                top: ${wave2Top.mobile}px;
+            }
+
+            ${waveCard3Sl} {
+                top: ${wave3Top.mobile}px;
+            }
+
+            ${controlsSl} {
+               justify-content: ${cardAlign.mobile};
+               left: ${cardAlign.mobile === 'left' ? "10px" : cardAlign.mobile === 'right' ? "-10px" : 0};
+            }
+
+          }
+  
+  
+          `
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayCardStyle);
 
 /***/ }),
 
@@ -28390,7 +28721,7 @@ SwiperSlide.displayName = 'SwiperSlide';
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"center","tablet":"center","mobile":"center"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"center","tablet":"center","mobile":"center"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"cardPlayer":{"cardAlign":{"desktop":"center","tablet":"center","mobile":"center"},"cardWidth":{"desktop":"300px","tablet":"300px","mobile":"270px"},"cardHeight":{"desktop":"550px","tablet":"550px","mobile":"500px"},"cardImgHeight":{"desktop":"300px","tablet":"300px","mobile":"300px"},"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":10,"tablet":10,"mobile":0},"wave3Top":{"desktop":10,"tablet":10,"mobile":0},"cardTitle":{"color":"#000","typo":{"fontSize":30}},"cardSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}}},"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

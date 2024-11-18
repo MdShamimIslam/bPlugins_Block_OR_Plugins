@@ -492,6 +492,322 @@ const SwiperSlider = (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(({
 
 /***/ }),
 
+/***/ "./src/Components/Common/AudioPlayCard/AudioCard.js":
+/*!**********************************************************!*\
+  !*** ./src/Components/Common/AudioPlayCard/AudioCard.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _AudioPlayCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AudioPlayCard */ "./src/Components/Common/AudioPlayCard/AudioPlayCard.js");
+/* harmony import */ var _AudioPlayCardStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AudioPlayCardStyle */ "./src/Components/Common/AudioPlayCard/AudioPlayCardStyle.js");
+
+
+
+
+const AudioCard = ({
+  attributes,
+  id,
+  device
+}) => {
+  const [activeIndex, setActiveIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "audioCardPlayer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AudioPlayCardStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    id: id,
+    device: device
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_AudioPlayCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    attributes: attributes,
+    activeIndex: activeIndex,
+    setActiveIndex: setActiveIndex
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioCard);
+
+/***/ }),
+
+/***/ "./src/Components/Common/AudioPlayCard/AudioPlayCard.js":
+/*!**************************************************************!*\
+  !*** ./src/Components/Common/AudioPlayCard/AudioPlayCard.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/icons */ "./src/utils/icons.js");
+
+
+
+const AudioPlayCard = ({
+  attributes,
+  activeIndex,
+  setActiveIndex
+}) => {
+  const {
+    audioProperties
+  } = attributes;
+  const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [audio, setAudio] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const trackUrl = audioProperties[activeIndex]?.audio?.url || null;
+    if (trackUrl) {
+      const newAudio = new Audio(trackUrl);
+      newAudio.volume = 0.5;
+      newAudio.loop = false;
+      setAudio(newAudio);
+    }
+    return () => {
+      if (audio) {
+        audio.pause();
+        setAudio(null);
+      }
+    };
+  }, [audioProperties, activeIndex]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (audio && isPlaying) {
+      audio.play().catch(err => console.error("Audio play error:", err.message));
+    }
+  }, [audio, isPlaying]);
+  const togglePlayPause = () => {
+    if (!audio) {
+      console.error("No audio object initialized.");
+      return;
+    }
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play().catch(err => console.error("Audio play error:", err.message));
+    }
+    setIsPlaying(!isPlaying);
+  };
+  const playTrack = index => {
+    if (audio) {
+      audio.pause();
+    }
+    setActiveIndex(index);
+  };
+  const playPrevious = () => {
+    const newIndex = activeIndex === 0 ? audioProperties.length - 1 : activeIndex - 1;
+    playTrack(newIndex);
+  };
+  const playNext = () => {
+    const newIndex = activeIndex === audioProperties.length - 1 ? 0 : activeIndex + 1;
+    playTrack(newIndex);
+  };
+  const addAutoImg = {
+    background: `url("${audioProperties[activeIndex]?.cover?.url || "http://pak101.com/celebrities/Singers/Gul_Panra_Pakistani_Female_Singer_Celebrity_1_awaha_Pak101(dot)com.jpg"}") no-repeat 70%`,
+    backgroundSize: "cover"
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `music_card ${isPlaying ? "playing" : ""}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: addAutoImg,
+    className: "image"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "waveCard"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "waveCard"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "waveCard"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "info"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "title"
+  }, audioProperties[activeIndex]?.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "artist"
+  }, audioProperties[activeIndex]?.artist)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "cardControls"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaBackward, {
+    onClick: playPrevious
+  }), isPlaying ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.GiPauseButton, {
+    onClick: togglePlayPause
+  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.GrPlayFill, {
+    onClick: togglePlayPause
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaForward, {
+    onClick: playNext
+  })));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayCard);
+
+/***/ }),
+
+/***/ "./src/Components/Common/AudioPlayCard/AudioPlayCardStyle.js":
+/*!*******************************************************************!*\
+  !*** ./src/Components/Common/AudioPlayCard/AudioPlayCardStyle.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+
+
+const AudioPlayCardStyle = ({
+  attributes,
+  id,
+  device = "desktop"
+}) => {
+  const {
+    cardWidth,
+    cardHeight,
+    cardImgHeight,
+    waveTop,
+    wave2Top,
+    wave3Top,
+    cardAlign,
+    cardTitle,
+    cardSubTitle
+  } = attributes.style.cardPlayer;
+  const idSl = `#${id}`;
+  const audioPlayerSl = `${idSl} .audioCardPlayer`;
+  const musicCardSl = `${audioPlayerSl} .music_card`;
+  const titleSl = `${musicCardSl} .info .title`;
+  const artistSl = `${musicCardSl} .info .artist`;
+  const imageSl = `${audioPlayerSl} .image`;
+  const waveCardSl = `${musicCardSl} .waveCard`;
+  const waveCard2Sl = `${musicCardSl} .waveCard:nth-child(2)`;
+  const waveCard3Sl = `${musicCardSl} .waveCard:nth-child(3)`;
+  const controlsSl = `${musicCardSl} .cardControls`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+  
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", cardSubTitle.typo)?.googleFontLink}
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(artistSl, cardSubTitle.typo)?.styles}
+
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)("", cardTitle.typo)?.googleFontLink}
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(titleSl, cardTitle.typo)?.styles}
+         
+            ${artistSl}{
+                color:${cardSubTitle.color};
+                opacity:${cardSubTitle.opacity};
+            }
+    
+            ${titleSl}{
+                color:${cardTitle.color};
+            }
+         
+            ${audioPlayerSl}{
+                justify-content : ${attributes.style.align[device]};
+            }
+         
+            ${musicCardSl}{
+                width : ${cardWidth[device]};
+                height : ${cardHeight[device]};
+            }
+
+            ${imageSl}{
+                height : ${cardImgHeight[device]};
+            }
+          
+            ${waveCardSl} {
+                margin-top: ${waveTop[device]}%;
+            }
+
+            ${waveCard2Sl} {
+                top: ${wave2Top[device]}px;
+            }
+
+            ${waveCard3Sl} {
+                top: ${wave3Top[device]}px;
+            }
+
+            ${controlsSl} {
+               justify-content: ${cardAlign[device]};
+               left: ${cardAlign[device] === "left" ? "10px" : cardAlign[device] === "right" ? "-10px" : 0};
+            }
+  
+  
+          @media only screen and (min-width:641px) and (max-width: 1024px){
+            ${audioPlayerSl}{
+                justify-content : ${attributes.style.align.tablet};
+            }
+         
+            ${musicCardSl}{
+                width : ${cardWidth.tablet};
+                height : ${cardHeight.tablet};
+            }
+
+            ${imageSl}{
+                height : ${cardImgHeight.tablet};
+            }
+          
+            ${waveCardSl} {
+                margin-top: ${waveTop.tablet}%;
+            }
+
+            ${waveCard2Sl} {
+                top: ${wave2Top.tablet}px;
+            }
+
+            ${waveCard3Sl} {
+                top: ${wave3Top.tablet}px;
+            }
+
+            ${controlsSl} {
+               justify-content: ${cardAlign.tablet};
+               left: ${cardAlign.tablet === "left" ? "10px" : cardAlign.tablet === "right" ? "-10px" : 0};
+            }
+
+          }
+  
+  
+          @media only screen and (max-width:640px){
+                ${audioPlayerSl}{
+                justify-content : ${attributes.style.align.mobile};
+            }
+         
+            ${musicCardSl}{
+                width : ${cardWidth.mobile};
+                height : ${cardHeight.mobile};
+            }
+
+            ${imageSl}{
+                height : ${cardImgHeight.mobile};
+            }
+          
+            ${waveCardSl} {
+                margin-top: ${waveTop.mobile}%;
+            }
+
+            ${waveCard2Sl} {
+                top: ${wave2Top.mobile}px;
+            }
+
+            ${waveCard3Sl} {
+                top: ${wave3Top.mobile}px;
+            }
+
+            ${controlsSl} {
+               justify-content: ${cardAlign.mobile};
+               left: ${cardAlign.mobile === 'left' ? "10px" : cardAlign.mobile === 'right' ? "-10px" : 0};
+            }
+
+          }
+  
+  
+          `
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayCardStyle);
+
+/***/ }),
+
 /***/ "./src/Components/Common/MP3Player.js":
 /*!********************************************!*\
   !*** ./src/Components/Common/MP3Player.js ***!
@@ -13004,6 +13320,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var _Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Common/SliderStyle */ "./src/Components/Common/SliderStyle.js");
 /* harmony import */ var _Components_FrontEnd_OneHaash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Components/FrontEnd/OneHaash */ "./src/Components/FrontEnd/OneHaash.js");
+/* harmony import */ var _Components_Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Components/Common/AudioPlayCard/AudioCard */ "./src/Components/Common/AudioPlayCard/AudioCard.js");
+
 
 
 
@@ -13029,6 +13347,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_3__["default"], {
         attributes: attributes
       })) : songSl === "oneHaash" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_FrontEnd_OneHaash__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        attributes: attributes,
+        id: mp3PlayerEl.id
+      }) : songSl === "card" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_7__["default"], {
         attributes: attributes,
         id: mp3PlayerEl.id
       }) : "No Player"));

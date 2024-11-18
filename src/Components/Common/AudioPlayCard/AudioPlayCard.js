@@ -6,19 +6,17 @@ import {
   GrPlayFill,
 } from "../../../utils/icons";
 
-const AudioPlayCard = ({ attributes }) => {
+const AudioPlayCard = ({ attributes, activeIndex, setActiveIndex }) => {
   const { audioProperties } = attributes;
-
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio, setAudio] = useState(null);
-
+  
   useEffect(() => {
-    const trackUrl = audioProperties[currentTrackIndex]?.audio?.url || null;
+    const trackUrl = audioProperties[activeIndex]?.audio?.url || null;
 
     if (trackUrl) {
       const newAudio = new Audio(trackUrl);
-      newAudio.volume = 0.2;
+      newAudio.volume = 0.5;
       newAudio.loop = false;
       setAudio(newAudio);
     }
@@ -29,7 +27,7 @@ const AudioPlayCard = ({ attributes }) => {
         setAudio(null);
       }
     };
-  }, [audioProperties, currentTrackIndex]);
+  }, [audioProperties, activeIndex]);
 
   useEffect(() => {
     if (audio && isPlaying) {
@@ -59,28 +57,28 @@ const AudioPlayCard = ({ attributes }) => {
     if (audio) {
       audio.pause();
     }
-    setCurrentTrackIndex(index);
+    setActiveIndex(index);
   };
 
   const playPrevious = () => {
     const newIndex =
-      currentTrackIndex === 0
+      activeIndex === 0
         ? audioProperties.length - 1
-        : currentTrackIndex - 1;
+        : activeIndex - 1;
     playTrack(newIndex);
   };
 
   const playNext = () => {
     const newIndex =
-      currentTrackIndex === audioProperties.length - 1
+      activeIndex === audioProperties.length - 1
         ? 0
-        : currentTrackIndex + 1;
+        : activeIndex + 1;
     playTrack(newIndex);
   };
 
   const addAutoImg = {
     background: `url("${
-      audioProperties[currentTrackIndex]?.link ||
+      audioProperties[activeIndex]?.cover?.url ||
       "http://pak101.com/celebrities/Singers/Gul_Panra_Pakistani_Female_Singer_Celebrity_1_awaha_Pak101(dot)com.jpg"
     }") no-repeat 70%`,
     backgroundSize: "cover",
@@ -93,9 +91,9 @@ const AudioPlayCard = ({ attributes }) => {
       <div className="waveCard" />
       <div className="waveCard" />
       <div className="info">
-        <div className="title">{audioProperties[currentTrackIndex]?.title}</div>
+        <div className="title">{audioProperties[activeIndex]?.title}</div>
         <div className="artist">
-          {audioProperties[currentTrackIndex]?.artist}
+          {audioProperties[activeIndex]?.artist}
         </div>
       </div>
       <div className="cardControls">

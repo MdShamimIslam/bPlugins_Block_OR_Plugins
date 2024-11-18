@@ -4,6 +4,7 @@ import AudioSlider from "./Components/FrontEnd/AudioSlider";
 import { createRoot } from "react-dom/client";
 import SliderStyle from "./Components/Common/SliderStyle";
 import OneHaash from "./Components/FrontEnd/OneHaash";
+import AudioCard from "./Components/Common/AudioPlayCard/AudioCard";
 
 document.addEventListener("DOMContentLoaded", () => {
   const mp3PlayerEls = document.querySelectorAll(".wp-block-bpmp-mp3-player");
@@ -24,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 </>
               ) : songSl === "oneHaash" ? (
                 <OneHaash attributes={attributes} id={mp3PlayerEl.id} />
+              ) : songSl === "card" ? (
+                <AudioCard attributes={attributes} id={mp3PlayerEl.id} />
               ) : (
                 "No Player"
               )}

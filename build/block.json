@@ -124,6 +124,8 @@
           }
         },
         "cardPlayer": {
+          "cardBg": "#fff",
+          "cardBorder": {},
           "cardAlign": {
             "desktop": "center",
             "tablet": "center",
@@ -159,6 +161,16 @@
             "tablet": 10,
             "mobile": 0
           },
+          "cardShadow": [
+            {
+              "blur": "15px",
+              "color": "#7090b0",
+              "hOffset": "0px",
+              "isInset": false,
+              "spreed": "0px",
+              "vOffset": "0px"
+            }
+          ],
           "cardTitle": {
             "color": "#000",
             "typo": {

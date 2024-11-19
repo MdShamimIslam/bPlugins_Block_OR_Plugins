@@ -1,4 +1,4 @@
-import { getTypoCSS } from "../../../../../Components/utils/getCSS";
+import { getBorderCSS, getMultiShadowCSS, getTypoCSS } from "../../../../../Components/utils/getCSS";
 
 const AudioPlayCardStyle = ({ attributes, id, device = "desktop" }) => {
   const {
@@ -9,6 +9,9 @@ const AudioPlayCardStyle = ({ attributes, id, device = "desktop" }) => {
     wave2Top,
     wave3Top,
     cardAlign,
+    cardShadow,
+    cardBg,
+    cardBorder,
     cardTitle,
     cardSubTitle
   } = attributes.style.cardPlayer;
@@ -49,8 +52,11 @@ const AudioPlayCardStyle = ({ attributes, id, device = "desktop" }) => {
             }
          
             ${musicCardSl}{
+                ${getBorderCSS(cardBorder)}
                 width : ${cardWidth[device]};
                 height : ${cardHeight[device]};
+                box-shadow: ${getMultiShadowCSS(cardShadow)};
+                background:${cardBg};
             }
 
             ${imageSl}{
@@ -142,6 +148,7 @@ const AudioPlayCardStyle = ({ attributes, id, device = "desktop" }) => {
             ${waveCard2Sl} {
                 top: ${wave2Top.mobile}px;
             }
+
 
             ${waveCard3Sl} {
                 top: ${wave3Top.mobile}px;

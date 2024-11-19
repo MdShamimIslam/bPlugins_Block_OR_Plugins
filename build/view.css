@@ -206,8 +206,6 @@
   display: flex;
 }
 .wp-block-bpmp-mp3-player .music_card {
-  background: #fff;
-  box-shadow: 9px 7px 37px -6px rgba(0, 0, 0, 0.75);
   overflow: hidden;
   position: relative;
 }
@@ -220,7 +218,7 @@
   }
 }
 .wp-block-bpmp-mp3-player .image {
-  width: 100%;
+  width: 102%;
   position: absolute;
   background-size: cover;
   opacity: 0.3;

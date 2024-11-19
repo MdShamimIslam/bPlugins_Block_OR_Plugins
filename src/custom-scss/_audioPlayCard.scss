@@ -3,8 +3,6 @@
   display: flex;
 }
 .music_card{
-  background: #fff;
-  box-shadow: 9px 7px 37px -6px rgba(0,0,0,0.75);
   overflow: hidden;
   position: relative;
 }
@@ -15,7 +13,7 @@
 }
 
 .image{
-    width: 100%;
+    width: 102%;
     position: absolute;
     background-size: cover;
     opacity: 0.3;
@@ -88,7 +86,6 @@
 .cardControls{
     position: absolute;
     bottom: 15px;
-    // left: 10px;
     color: #555;
     font-size: 1.2em!important;
     cursor: pointer;

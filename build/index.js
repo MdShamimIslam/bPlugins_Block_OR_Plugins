@@ -11953,9 +11953,13 @@ const Styles = ({
     wave2Top,
     wave3Top,
     cardAlign,
+    cardShadow,
+    cardBg,
+    cardBorder,
     cardTitle,
     cardSubTitle
   } = cardPlayer;
+  console.log(cardShadow);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === "slider" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Audio Player Wrapper", "mp3player-block")
@@ -12314,6 +12318,24 @@ const Styles = ({
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)()],
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardImgHeight", device)
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Background", "mp3player-block"),
+    value: cardBg,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardBg")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.MultiShadowControl, {
+    label: "Shadow",
+    value: cardShadow,
+    onChange: val => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, val, "cardPlayer", "cardShadow")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border", "mp3player-block"),
+    value: cardBorder,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "cardPlayer", "cardBorder")
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
     className: "mt20",
@@ -12743,6 +12765,9 @@ const AudioPlayCardStyle = ({
     wave2Top,
     wave3Top,
     cardAlign,
+    cardShadow,
+    cardBg,
+    cardBorder,
     cardTitle,
     cardSubTitle
   } = attributes.style.cardPlayer;
@@ -12780,8 +12805,11 @@ const AudioPlayCardStyle = ({
             }
          
             ${musicCardSl}{
+                ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(cardBorder)}
                 width : ${cardWidth[device]};
                 height : ${cardHeight[device]};
+                box-shadow: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getMultiShadowCSS)(cardShadow)};
+                background:${cardBg};
             }
 
             ${imageSl}{
@@ -12861,6 +12889,7 @@ const AudioPlayCardStyle = ({
             ${waveCard2Sl} {
                 top: ${wave2Top.mobile}px;
             }
+
 
             ${waveCard3Sl} {
                 top: ${wave3Top.mobile}px;
@@ -28721,7 +28750,7 @@ SwiperSlide.displayName = 'SwiperSlide';
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"center","tablet":"center","mobile":"center"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"cardPlayer":{"cardAlign":{"desktop":"center","tablet":"center","mobile":"center"},"cardWidth":{"desktop":"300px","tablet":"300px","mobile":"270px"},"cardHeight":{"desktop":"550px","tablet":"550px","mobile":"500px"},"cardImgHeight":{"desktop":"300px","tablet":"300px","mobile":"300px"},"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":10,"tablet":10,"mobile":0},"wave3Top":{"desktop":10,"tablet":10,"mobile":0},"cardTitle":{"color":"#000","typo":{"fontSize":30}},"cardSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}}},"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isVolume":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"center","tablet":"center","mobile":"center"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"cardPlayer":{"cardBg":"#fff","cardBorder":{},"cardAlign":{"desktop":"center","tablet":"center","mobile":"center"},"cardWidth":{"desktop":"300px","tablet":"300px","mobile":"270px"},"cardHeight":{"desktop":"550px","tablet":"550px","mobile":"500px"},"cardImgHeight":{"desktop":"300px","tablet":"300px","mobile":"300px"},"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":10,"tablet":10,"mobile":0},"wave3Top":{"desktop":10,"tablet":10,"mobile":0},"cardShadow":[{"blur":"15px","color":"#7090b0","hOffset":"0px","isInset":false,"spreed":"0px","vOffset":"0px"}],"cardTitle":{"color":"#000","typo":{"fontSize":30}},"cardSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}}},"align":{"desktop":"start","tablet":"start","mobile":"start"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

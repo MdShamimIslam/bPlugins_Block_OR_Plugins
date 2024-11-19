@@ -49,9 +49,21 @@ const Styles = ({ attributes, setAttributes, device }) => {
     haashSubTitle,
     haashInputRange,
   } = oneHaashPlayer;
-  const { cardWidth, cardHeight, cardImgHeight, waveTop, wave2Top, wave3Top, cardAlign,cardTitle,cardSubTitle } =
-    cardPlayer;
-
+  const {
+    cardWidth,
+    cardHeight,
+    cardImgHeight,
+    waveTop,
+    wave2Top,
+    wave3Top,
+    cardAlign,
+    cardShadow,
+    cardBg,
+    cardBorder,
+    cardTitle,
+    cardSubTitle,
+  } = cardPlayer;
+  console.log(cardShadow);
   return (
     <>
       {songSl === "slider" ? (
@@ -683,109 +695,160 @@ const Styles = ({ attributes, setAttributes, device }) => {
         </>
       ) : songSl === "card" ? (
         <>
-        <PanelBody
-          className="bPlPanelBody"
-          title={__("Card Player Style", "mp3player-block")}
-        >
-          <PanelRow>
-            <Label>{__("Width", "mp3player-block")}</Label>
-            <Device />
-          </PanelRow>
-          <UnitControl
-            value={cardWidth[device]}
-            units={[pxUnit()]}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(style, v, "cardPlayer", "cardWidth", device),
-              })
-            }
-          />
+          <PanelBody
+            className="bPlPanelBody"
+            title={__("Card Player Style", "mp3player-block")}
+          >
+            <PanelRow>
+              <Label>{__("Width", "mp3player-block")}</Label>
+              <Device />
+            </PanelRow>
+            <UnitControl
+              value={cardWidth[device]}
+              units={[pxUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "cardPlayer",
+                    "cardWidth",
+                    device
+                  ),
+                })
+              }
+            />
 
-          <PanelRow>
-            <Label>{__("Height", "mp3player-block")}</Label>
-            <Device />
-          </PanelRow>
-          <UnitControl
-            value={cardHeight[device]}
-            units={[pxUnit()]}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(style, v, "cardPlayer", "cardHeight", device),
-              })
-            }
-          />
-          <PanelRow>
-            <Label>{__("Image Height", "mp3player-block")}</Label>
-            <Device />
-          </PanelRow>
-          <UnitControl
-            value={cardImgHeight[device]}
-            units={[pxUnit()]}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(
-                  style,
-                  v,
-                  "cardPlayer",
-                  "cardImgHeight",
-                  device
-                ),
-              })
-            }
-          />
-          <RangeControl
-            className="mt20"
-            label={__("Wave", "mp3player-block")}
-            value={waveTop}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(
-                  style,
-                  -170 + (v - -170),
-                  "cardPlayer",
-                  "waveTop",
-                  device
-                ),
-              })
-            }
-            min={-300}
-            max={0}
-            step={1}
-          />
-          <RangeControl
-            className="mt10"
-            label={__("Wave-2", "mp3player-block")}
-            value={wave2Top}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(style, v, "cardPlayer", "wave2Top", device),
-              })
-            }
-            min={0}
-            max={300}
-          />
-          <RangeControl
-            className="mt10"
-            label={__("Wave-3", "mp3player-block")}
-            value={wave3Top}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(style, v, "cardPlayer", "wave3Top", device),
-              })
-            }
-            min={0}
-            max={300}
-          />
-          <p className="mt10">Control Alignment</p>
-           <Tab
+            <PanelRow>
+              <Label>{__("Height", "mp3player-block")}</Label>
+              <Device />
+            </PanelRow>
+            <UnitControl
+              value={cardHeight[device]}
+              units={[pxUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "cardPlayer",
+                    "cardHeight",
+                    device
+                  ),
+                })
+              }
+            />
+            <PanelRow>
+              <Label>{__("Image Height", "mp3player-block")}</Label>
+              <Device />
+            </PanelRow>
+            <UnitControl
+              value={cardImgHeight[device]}
+              units={[pxUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "cardPlayer",
+                    "cardImgHeight",
+                    device
+                  ),
+                })
+              }
+            />
+            <BColor
+              label={__("Background", "mp3player-block")}
+              value={cardBg}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "cardPlayer",
+                    "cardBg"
+                  ),
+                })
+              }
+            />
+            <MultiShadowControl
+              label="Shadow"
+              value={cardShadow}
+              onChange={(val) =>
+                setAttributes({
+                  style: updateData(style, val, "cardPlayer", "cardShadow"),
+                })
+              }
+            />
+             <BorderControl
+              label={__("Border", "mp3player-block")}
+              value={cardBorder}
+              onChange={(v) =>
+                setAttributes({ style: updateData(style, v,"cardPlayer", "cardBorder") })
+              }
+            />
+            <RangeControl
+              className="mt20"
+              label={__("Wave", "mp3player-block")}
+              value={waveTop}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    -170 + (v - -170),
+                    "cardPlayer",
+                    "waveTop",
+                    device
+                  ),
+                })
+              }
+              min={-300}
+              max={0}
+              step={1}
+            />
+            <RangeControl
+              className="mt10"
+              label={__("Wave-2", "mp3player-block")}
+              value={wave2Top}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "cardPlayer", "wave2Top", device),
+                })
+              }
+              min={0}
+              max={300}
+            />
+            <RangeControl
+              className="mt10"
+              label={__("Wave-3", "mp3player-block")}
+              value={wave3Top}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "cardPlayer", "wave3Top", device),
+                })
+              }
+              min={0}
+              max={300}
+            />
+
+            <p className="mt10">Control Alignment</p>
+            <Tab
               options={["left", "center", "right"]}
               value={cardAlign[device]}
               onChange={(v) =>
-                setAttributes({ style: updateData(style, v,"cardPlayer", "cardAlign", device) })
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "cardPlayer",
+                    "cardAlign",
+                    device
+                  ),
+                })
               }
             />
-        </PanelBody>
-        <PanelBody
+          </PanelBody>
+          <PanelBody
             className="bPlPanelBody"
             title={__("Episode Info", "mp3player-block")}
           >

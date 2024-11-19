@@ -669,6 +669,9 @@ const AudioPlayCardStyle = ({
     wave2Top,
     wave3Top,
     cardAlign,
+    cardShadow,
+    cardBg,
+    cardBorder,
     cardTitle,
     cardSubTitle
   } = attributes.style.cardPlayer;
@@ -706,8 +709,11 @@ const AudioPlayCardStyle = ({
             }
          
             ${musicCardSl}{
+                ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(cardBorder)}
                 width : ${cardWidth[device]};
                 height : ${cardHeight[device]};
+                box-shadow: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getMultiShadowCSS)(cardShadow)};
+                background:${cardBg};
             }
 
             ${imageSl}{
@@ -787,6 +793,7 @@ const AudioPlayCardStyle = ({
             ${waveCard2Sl} {
                 top: ${wave2Top.mobile}px;
             }
+
 
             ${waveCard3Sl} {
                 top: ${wave3Top.mobile}px;

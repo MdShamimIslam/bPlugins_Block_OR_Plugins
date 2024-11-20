@@ -5,202 +5,14 @@
   font-family: dashicons !important;
 }
 
+.wp-block-bpmp-mp3-player {
+  /* play speed style start */
+  /* play speed style end  */
+  /* wave style start  */
+  /* wave style end  */
+}
 .wp-block-bpmp-mp3-player * {
   box-sizing: border-box;
-}
-.wp-block-bpmp-mp3-player .icon {
-  display: inline-block;
-  width: 2em;
-  height: 2em;
-  font-size: 30px;
-  fill: #D7DCE2;
-  transition: all 0.2s ease-in-out;
-}
-.wp-block-bpmp-mp3-player .player {
-  padding-top: 40px;
-}
-.wp-block-bpmp-mp3-player .player.play .player__timeline {
-  transform: translateY(-90%);
-}
-.wp-block-bpmp-mp3-player .player.play .player__album:after {
-  box-shadow: 0px 30px 28px -10px rgba(0, 0, 0, 0.2);
-}
-.wp-block-bpmp-mp3-player .player.play .player__album {
-  top: -65px;
-}
-.wp-block-bpmp-mp3-player .player.play .pause {
-  display: inline-block;
-}
-.wp-block-bpmp-mp3-player .player.play .play {
-  display: none;
-}
-.wp-block-bpmp-mp3-player .player__album {
-  width: 112px;
-  height: 112px;
-  border-radius: 50%;
-  margin-right: 22px;
-  position: relative;
-  top: -50px;
-  transition: all 0.4s ease-in-out;
-}
-.wp-block-bpmp-mp3-player .player__album:before {
-  content: "";
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  border-radius: 50%;
-}
-.wp-block-bpmp-mp3-player .player__album:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 50%;
-  box-shadow: none;
-  transition: all 0.3s ease-in-out;
-}
-.wp-block-bpmp-mp3-player .player__albumImg {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  position: relative;
-  z-index: 2;
-  display: none;
-}
-.wp-block-bpmp-mp3-player .player__albumImg.active-song {
-  display: block;
-}
-.wp-block-bpmp-mp3-player .player__bar {
-  background: #fff;
-  padding: 10px 25px;
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 15px;
-  box-shadow: 0 30px 56px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 3;
-}
-.wp-block-bpmp-mp3-player .player__controls {
-  display: flex;
-  align-items: center;
-}
-.wp-block-bpmp-mp3-player .player__prev {
-  transform: rotate(180deg);
-  height: 80px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 15px;
-  transition: all 0.2s ease-in-out;
-  margin-right: 3px;
-}
-.wp-block-bpmp-mp3-player .player__prev:hover {
-  background: #D7DCE2;
-}
-.wp-block-bpmp-mp3-player .player__prev:hover svg {
-  fill: #fff;
-}
-.wp-block-bpmp-mp3-player .player__play {
-  cursor: pointer;
-  height: 80px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  transition: all 0.2s ease-in-out;
-  margin-right: 3px;
-  position: relative;
-}
-.wp-block-bpmp-mp3-player .player__play:hover {
-  background: #D7DCE2;
-}
-.wp-block-bpmp-mp3-player .player__play:hover svg {
-  fill: #fff;
-}
-.wp-block-bpmp-mp3-player .player__play svg {
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.wp-block-bpmp-mp3-player .player__play svg.pause {
-  display: none;
-}
-.wp-block-bpmp-mp3-player .player__next {
-  cursor: pointer;
-  height: 80px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  transition: all 0.2s ease-in-out;
-  margin-left: -8px;
-}
-.wp-block-bpmp-mp3-player .player__next:hover {
-  background: #D7DCE2;
-}
-.wp-block-bpmp-mp3-player .player__next:hover svg {
-  fill: #fff;
-}
-.wp-block-bpmp-mp3-player .player__timeline {
-  background: #fff6fb;
-  height: 95px;
-  border-radius: 15px;
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-  right: 10px;
-  transform: translateY(0);
-  transition: all 0.3s ease-in-out;
-  z-index: 1;
-  padding-left: 160px;
-  flex-direction: column;
-  justify-content: center;
-}
-.wp-block-bpmp-mp3-player .player__timelineBar {
-  background: #E7E7E7;
-  width: 95%;
-  height: 4px;
-  border-radius: 15px;
-  margin-top: 13px;
-  position: relative;
-}
-.wp-block-bpmp-mp3-player .player #playhead {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 15px;
-  width: 0;
-  height: 100%;
-  background: #fd6d94;
-}
-.wp-block-bpmp-mp3-player .player__author {
-  line-height: 1;
-  font-weight: bold;
-  margin-bottom: 6px;
-  margin-top: 15px;
-}
-.wp-block-bpmp-mp3-player .player__song {
-  line-height: 1;
-  margin: 0;
-  font-size: 12px;
-  color: #949494;
 }
 .wp-block-bpmp-mp3-player .audioCardPlayer {
   display: flex;
@@ -297,6 +109,590 @@
   align-items: center;
   gap: 15px;
   width: 100%;
+}
+.wp-block-bpmp-mp3-player * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wp-block-bpmp-mp3-player #v-player {
+  display: flex;
+  align-items: center;
+  /* justify-content: end; */
+}
+.wp-block-bpmp-mp3-player .epidode-header {
+  display: flex;
+  justify-content: space-between;
+  color: #879eb4;
+}
+.wp-block-bpmp-mp3-player .epidode-header p {
+  margin: 0;
+  font-size: 16px;
+}
+.wp-block-bpmp-mp3-player .episode-download {
+  font-size: 14px;
+  color: #879eb4;
+  transition: all 0.2s ease-in-out;
+}
+.wp-block-bpmp-mp3-player .episode-download:hover {
+  color: #15284b;
+}
+.wp-block-bpmp-mp3-player #podcast-player .episode-title {
+  margin: 10px 0 20px;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.wp-block-bpmp-mp3-player #controls,
+.wp-block-bpmp-mp3-player .second-part {
+  color: #879eb4;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.wp-block-bpmp-mp3-player .first-part,
+.wp-block-bpmp-mp3-player .second-part {
+  position: relative;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.wp-block-bpmp-mp3-player .second-part {
+  flex-grow: 1;
+}
+.wp-block-bpmp-mp3-player #controls .playpause {
+  font-size: 20px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.wp-block-bpmp-mp3-player #controls .playpause:hover {
+  color: #4527a4;
+}
+.wp-block-bpmp-mp3-player #play,
+.wp-block-bpmp-mp3-player #pause {
+  transition: all 0.2s ease-in-out;
+  padding: 0 15px;
+  font-size: 36px;
+  color: #15284b;
+}
+.wp-block-bpmp-mp3-player #play:hover,
+.wp-block-bpmp-mp3-player #pause:hover {
+  color: #4527a4;
+}
+.wp-block-bpmp-mp3-player #pause {
+  display: none;
+}
+.wp-block-bpmp-mp3-player #prev-15,
+.wp-block-bpmp-mp3-player #next-30 {
+  position: relative;
+  display: inline-block;
+  color: #15284b;
+  min-width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #15284b;
+  margin-right: -10px;
+}
+.wp-block-bpmp-mp3-player #prev-15:hover,
+.wp-block-bpmp-mp3-player #next-30:hover {
+  color: #4527a4;
+  background-color: #4527a4;
+}
+.wp-block-bpmp-mp3-player #prev-15::before,
+.wp-block-bpmp-mp3-player #next-30::before {
+  content: "";
+  position: absolute;
+  background: url("https://howwesolve.com/wp-content/uploads/2020/04/arrow-sec-white.svg") center no-repeat;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  left: 0;
+  top: 0;
+}
+.wp-block-bpmp-mp3-player #prev-15::before {
+  transform: scaleX(-1);
+}
+.wp-block-bpmp-mp3-player #prev-15::after,
+.wp-block-bpmp-mp3-player #next-30::after {
+  content: "15";
+  position: absolute;
+  line-height: 32px;
+  width: 30px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  font-size: 14px;
+}
+.wp-block-bpmp-mp3-player #next-30::after {
+  content: "30";
+}
+.wp-block-bpmp-mp3-player #controls .time.current {
+  min-width: 45px;
+  text-align: right;
+  font-size: 14px;
+}
+.wp-block-bpmp-mp3-player #controls .time.till-end {
+  min-width: 50px;
+  text-align: left;
+  font-size: 14px;
+}
+.wp-block-bpmp-mp3-player #controls .progress-bar {
+  margin: 0 10px;
+  width: 100%;
+  position: relative;
+  height: 10px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.wp-block-bpmp-mp3-player #controls .default-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: #e7e9f0;
+  border-radius: 50px;
+}
+.wp-block-bpmp-mp3-player #controls .fill-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 10px;
+  background-color: #15284b;
+  border-radius: 50px;
+}
+.wp-block-bpmp-mp3-player #controls #seek {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  width: 100%;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 50px;
+  outline: none;
+  cursor: pointer;
+}
+.wp-block-bpmp-mp3-player #controls #seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  cursor: pointer;
+}
+.wp-block-bpmp-mp3-player #controls #seek::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  cursor: pointer;
+}
+.wp-block-bpmp-mp3-player #speed {
+  cursor: pointer;
+  position: relative;
+}
+.wp-block-bpmp-mp3-player #speed {
+  position: relative;
+  cursor: pointer;
+  line-height: 32px;
+  min-width: 40px;
+  text-align: center;
+  color: #9499a2;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+.wp-block-bpmp-mp3-player #speed::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #60749a;
+  border-radius: 4px;
+  width: 40px;
+  height: 30px;
+  transition: all 0.2s ease-in-out;
+}
+.wp-block-bpmp-mp3-player #speed:hover {
+  color: #4527a4;
+}
+.wp-block-bpmp-mp3-player #speed:hover::before {
+  border-color: #4527a4;
+}
+.wp-block-bpmp-mp3-player .speed-options {
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+.wp-block-bpmp-mp3-player .speed-options div {
+  padding: 8px 12px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+.wp-block-bpmp-mp3-player .speed-options div:hover {
+  background-color: #f5f5f5;
+}
+.wp-block-bpmp-mp3-player .speed-options.show {
+  opacity: 1;
+  pointer-events: auto;
+  margin-left: 190px;
+  margin-top: -155px;
+}
+.wp-block-bpmp-mp3-player .wave-animation {
+  animation: waveAnimation 4s infinite linear;
+}
+@keyframes waveAnimation {
+  /* 0% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(1.3); 
+    }
+    100% {
+      transform: scaleX(1.7);
+    } */
+  0%, 100% {
+    d: path("M450,40 L0,40 L0,17.3134328 C18.6666667,24.8756219 32,28.6567164 40,28.6567164 C52,28.6567164 71,5.97014925 86,5.97014925 C101,5.97014925 107,19.7014925 122,19.7014925 C137,19.7014925 143,0 156,0 C169,0 177,36.4179104 194,36.4179104 C211,36.4179104 208,20.2985075 220,20.2985075 C232,20.2985075 240,28.6567164 256,28.6567164 C272,28.6567164 276,5.97014925 289,5.97014925 C302,5.97014925 314,23.2835821 326,23.2835821 C338,23.2835821 354,10.7462687 365,10.7462687 C376,10.7462687 397,32.8358209 408,32.8358209 C415.333333,32.8358209 429.333333,27.6616915 450,17.3134328 L450,40 Z");
+  }
+  30% {
+    d: path("M450,40 L0,40 L0,13.3333333 C14.6666667,9.12280702 26,7.01754386 34,7.01754386 C46,7.01754386 53,26.6666667 68,26.6666667 C83,26.6666667 90,16.1403509 105,16.1403509 C120,16.1403509 141,0 154,0 C167,0 173,20.3508772 190,20.3508772 C207,20.3508772 225,0 237,0 C249,0 245,16.1403509 261,16.1403509 C277,16.1403509 278,9.8245614 291,9.8245614 C304,9.8245614 314,28.7719298 326,28.7719298 C338,28.7719298 354,13.3333333 365,13.3333333 C376,13.3333333 397,7.01754386 408,7.01754386 C415.333333,7.01754386 429.333333,9.12280702 450,13.3333333 L450,40 Z");
+  }
+  70% {
+    d: path("M450,40 L0,40 L0,17.3134328 C17.3333333,9.75124378 30,5.97014925 38,5.97014925 C50,5.97014925 57,28.6567164 72,28.6567164 C87,28.6567164 99,2.98507463 114,2.98507463 C129,2.98507463 142,28.6567164 155,28.6567164 C168,28.6567164 166,10.7462687 183,10.7462687 C200,10.7462687 206,32.8358209 218,32.8358209 C230,32.8358209 234,0 250,0 C266,0 270,14.9253731 283,14.9253731 C296,14.9253731 309,5.97014925 321,5.97014925 C333,5.97014925 343,32.8358209 354,32.8358209 C365,32.8358209 387,8.35820896 398,8.35820896 C405.333333,8.35820896 422.666667,11.3432836 450,17.3134328 L450,40 Z");
+  }
+}
+.wp-block-bpmp-mp3-player .backfor {
+  cursor: pointer !important;
+  font-size: 40px;
+  margin-top: 10px;
+}
+.wp-block-bpmp-mp3-player .backfor:hover {
+  color: #4527a4;
+}
+@media (max-width: 767px) {
+  .wp-block-bpmp-mp3-player #controls {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .wp-block-bpmp-mp3-player .first-part,
+  .wp-block-bpmp-mp3-player .second-part {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 10px 0;
+  }
+  .wp-block-bpmp-mp3-player .wave {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .wp-block-bpmp-mp3-player .speed-options.show {
+    margin-left: 135px;
+    margin-top: -163px;
+  }
+}
+.wp-block-bpmp-mp3-player .woodenMediaplayer {
+  background-size: 50%;
+  background-repeat: repeat;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 100px;
+}
+@media (max-width: 450px) {
+  .wp-block-bpmp-mp3-player .woodenMediaplayer {
+    flex-direction: column;
+    border-radius: 50px;
+  }
+}
+.wp-block-bpmp-mp3-player audio {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -99999px;
+}
+.wp-block-bpmp-mp3-player .discarea {
+  margin: 10px;
+}
+@media (max-width: 450px) {
+  .wp-block-bpmp-mp3-player .discarea {
+    margin: 10px auto;
+  }
+  .wp-block-bpmp-mp3-player .disc {
+    margin-left: 40px;
+  }
+}
+@keyframes spinDisc {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.wp-block-bpmp-mp3-player .disc {
+  position: relative;
+  display: block;
+  float: left;
+  width: 110px;
+  height: 110px;
+  background-color: #E0BF57;
+  border-radius: 50%;
+}
+.wp-block-bpmp-mp3-player .woodenMediaplayer.play .disc {
+  animation: spinDisc 2s linear 0.3s infinite forwards;
+}
+.wp-block-bpmp-mp3-player .disc::before,
+.wp-block-bpmp-mp3-player .disc::after {
+  content: " ";
+  position: absolute;
+  border-radius: 50%;
+}
+.wp-block-bpmp-mp3-player .disc::before {
+  background-color: #C43D40;
+  top: 32.5%;
+  left: 32.5%;
+  width: 35%;
+  height: 35%;
+  z-index: 2;
+}
+.wp-block-bpmp-mp3-player .disc::after {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: #222;
+  background: linear-gradient(#222, #222, #444, #222, #222);
+  border-radius: 50%;
+  z-index: 1;
+}
+.wp-block-bpmp-mp3-player .stylus {
+  position: relative;
+  display: block;
+  float: left;
+  width: 30px;
+  height: 100px;
+  margin-left: 5px;
+  transform-origin: 15px 15px;
+  transition: transform 0.3s ease-in-out;
+}
+.wp-block-bpmp-mp3-player .woodenMediaplayer.play .stylus {
+  transform: rotate(34deg);
+}
+.wp-block-bpmp-mp3-player .pivot {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #69727B;
+  border-radius: 50%;
+}
+.wp-block-bpmp-mp3-player .arm {
+  position: absolute;
+  width: 5px;
+  height: 70px;
+  background-color: #8B949D;
+  top: 10px;
+  left: 13px;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.wp-block-bpmp-mp3-player .arm::before {
+  content: " ";
+  position: absolute;
+  border-radius: 50%;
+  background-color: #ACB6BF;
+  top: 0px;
+  left: -2.5px;
+  width: 10px;
+  height: 10px;
+}
+.wp-block-bpmp-mp3-player .head {
+  position: absolute;
+  width: 8px;
+  height: 15px;
+  background-color: #69727B;
+  top: 76px;
+  left: 13px;
+  border-radius: 3px;
+  transform-origin: 50% 0;
+  transform: rotate(30deg);
+}
+.wp-block-bpmp-mp3-player .woodenControls {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.wp-block-bpmp-mp3-player .woodenTitle {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3px 0 3px 10px;
+  font-size: 1rem;
+  color: #7F3A2B;
+  background-color: beige;
+  border-radius: 25px;
+  border: rgba(245, 245, 70, 0.4) 1px solid;
+  overflow: hidden;
+}
+@media (max-width: 450px) {
+  .wp-block-bpmp-mp3-player .woodenTitle {
+    width: 100%;
+    text-align: center;
+  }
+}
+.wp-block-bpmp-mp3-player .buttons {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+}
+.wp-block-bpmp-mp3-player .buttons button {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  border: none;
+  margin-right: 5px;
+  background-color: #69727B;
+  color: white;
+  outline: 0;
+  font-size: 1.2rem;
+  border-top: #bbc 2px solid;
+  border-left: #ccd 2px solid;
+  border-right: #aab 2px solid;
+  border-bottom: #bbc 2px solid;
+}
+.wp-block-bpmp-mp3-player .buttons button:hover {
+  cursor: pointer;
+}
+.wp-block-bpmp-mp3-player .buttons button i::before {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  transition: text-shadow 0.3s ease;
+}
+.wp-block-bpmp-mp3-player .buttons button:hover i::before {
+  text-shadow: 0 0 20px white;
+}
+.wp-block-bpmp-mp3-player .woodenMediaplayer.play .playstate {
+  background-color: #C63C3C;
+}
+.wp-block-bpmp-mp3-player .playstate .fa-pause,
+.wp-block-bpmp-mp3-player .woodenMediaplayer.play .playstate .fa-play {
+  display: none;
+}
+.wp-block-bpmp-mp3-player .woodenMediaplayer.play .fa-pause {
+  display: block;
+}
+@media (max-width: 450px) {
+  .wp-block-bpmp-mp3-player .buttons button {
+    margin: 0 5px;
+  }
+}
+.wp-block-bpmp-mp3-player .subControls {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 450px) {
+  .wp-block-bpmp-mp3-player .subControls {
+    flex-direction: row nowrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+}
+.wp-block-bpmp-mp3-player .woodenDuration {
+  width: 125px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 3px 10px;
+  font-size: 1rem;
+  color: #7F3A2B;
+  background-color: beige;
+  border-radius: 25px;
+  border: rgba(245, 245, 70, 0.4) 1px solid;
+  margin-right: 10px;
+}
+.wp-block-bpmp-mp3-player .volumeSlider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  width: 80px;
+  background: transparent;
+}
+.wp-block-bpmp-mp3-player .volumeSlider:focus {
+  outline: none;
+}
+.wp-block-bpmp-mp3-player .volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #69727B;
+  cursor: pointer;
+  margin-top: -6px;
+  border-top: #bbc 2px solid;
+  border-left: #ccd 2px solid;
+  border-right: #aab 2px solid;
+  border-bottom: #bbc 2px solid;
+}
+.wp-block-bpmp-mp3-player .volumeSlider::-webkit-slider-thumb:active {
+  background-color: #9aa;
+}
+.wp-block-bpmp-mp3-player .volumeSlider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #69727B;
+  cursor: pointer;
+  margin-top: -6px;
+  border-top: #bbc 2px solid;
+  border-left: #ccd 2px solid;
+  border-right: #aab 2px solid;
+  border-bottom: #bbc 2px solid;
+}
+.wp-block-bpmp-mp3-player .volumeSlider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background-color: #8B949D;
+  border-radius: 4px;
+  margin-top: 2px;
+}
+.wp-block-bpmp-mp3-player .volumeSlider::-webkit-slider-runnable-track:active {
+  background-color: #69727B;
+}
+.wp-block-bpmp-mp3-player .volumeSlider::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background-color: #8B949D;
+  border-radius: 4px;
+  margin-top: 2px;
 }
 @keyframes slideIn {
   0%, 100% {
@@ -1010,344 +1406,5 @@ button.swiper-pagination-bullet {
   display: none;
 }
 
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/Components/Common/OneHaashPlayer/OneHaashPlayer.css ***!
-  \*************************************************************************************************************************************************************************************************************/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  #v-player {
-   display: flex;
-   align-items: center;
-   /* justify-content: end; */
-  }
-  
-  .epidode-header {
-    display: flex;
-    justify-content: space-between;
-    color: #879eb4;
-  }
-  .epidode-header p {
-    margin: 0;
-    font-size: 16px;
-  }
-  .episode-download {
-    font-size: 14px;
-    color: #879eb4;
-    transition: all 0.2s ease-in-out;
-  }
-  .episode-download:hover {
-    color: #15284b;
-  }
-  #podcast-player .episode-title {
-    margin: 10px 0 20px;
-    font-size: 25px;
-    font-weight: 400;
-    line-height: 1.2;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  #controls,
-  .second-part {
-    color: #879eb4;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .first-part,
-  .second-part {
-    position: relative;
-    flex: 0 0 auto;
-    width: auto;
-    max-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .second-part {
-    flex-grow: 1;
-  }
-  #controls .playpause {
-    font-size: 20px;
-    margin-top: 5px;
-    cursor: pointer;
-  }
-  #controls .playpause:hover {
-    color: #4527a4;
-  }
-  #play,
-  #pause {
-    transition: all 0.2s ease-in-out;
-    padding: 0 15px;
-    font-size: 36px;
-    color: #15284b;
-  }
-  #play:hover,
-  #pause:hover {
-    color: #4527a4;
-  }
-  #pause {
-    display: none;
-  }
-  #prev-15,
-  #next-30 {
-    position: relative;
-    display: inline-block;
-    color: #15284b;
-    min-width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    background-color: #15284b;
-    margin-right:-10px
-  }
-  #prev-15:hover,
-  #next-30:hover {
-    color: #4527a4;
-    background-color: #4527a4;
-  }
-  #prev-15::before,
-  #next-30::before {
-    content: "";
-    position: absolute;
-    background: url("https://howwesolve.com/wp-content/uploads/2020/04/arrow-sec-white.svg")
-      center no-repeat;
-    background-size: contain;
-    width: 30px;
-    height: 30px;
-    left: 0;
-    top: 0;
-  }
-  #prev-15::before {
-    transform: scaleX(-1);
-  }
-  #prev-15::after,
-  #next-30::after {
-    content: "15";
-    position: absolute;
-    line-height: 32px;
-    width: 30px;
-    text-align: center;
-    top: 0;
-    left: 0;
-    font-size: 14px;
-  }
-  #next-30::after {
-    content: "30";
-  }
-  #controls .time.current {
-    min-width: 45px;
-    text-align: right;
-    font-size: 14px;
-  }
-  #controls .time.till-end {
-    min-width: 50px;
-    text-align: left;
-    font-size: 14px;
-  }
-  #controls .progress-bar {
-    margin: 0 10px;
-    width: 100%;
-    position: relative;
-    height: 10px;
-    border-radius: 50px;
-    overflow: hidden;
-  }
-  #controls .default-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    background-color: #e7e9f0;
-    border-radius: 50px;
-  }
-  #controls .fill-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 10px;
-    background-color: #15284b;
-    border-radius: 50px;
-  }
-  #controls #seek {
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-         appearance: none;
-    width: 100%;
-    height: 10px;
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 50px;
-    outline: none;
-    cursor: pointer;
-  }
-  #controls #seek::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 10px;
-    height: 10px;
-    background: transparent;
-    cursor: pointer;
-  }
-  #controls #seek::-moz-range-thumb {
-    width: 10px;
-    height: 10px;
-    background: transparent;
-    cursor: pointer;
-  }
-  
-  /* play speed style start */
-  
-  #speed {
-    cursor: pointer;
-    position: relative;
-  }
-  
-  #speed{
-      position:relative;
-      cursor:pointer;
-      line-height:32px;
-      min-width:40px;
-      text-align:center;
-      color:#9499a2;
-      font-size:14px;
-      transition:all 0.2s ease-in-out;
-    }
-    #speed::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      border:1px solid #60749a;
-      border-radius:4px;
-      width:40px;
-      height:30px;
-      transition:all 0.2s ease-in-out;
-    }
-    #speed:hover{
-      color:#4527a4;
-    }
-    #speed:hover::before{
-      border-color:#4527a4;
-    }
-  
-  .speed-options {
-    position: absolute;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 5px 0;
-    display: flex;
-    flex-direction: column;
-    top: 120%;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 100;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
-  }
-  
-  .speed-options div {
-    padding: 8px 12px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 14px;
-    color: #333;
-    transition: background-color 0.2s ease;
-  }
-  
-  .speed-options div:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .speed-options.show {
-    opacity: 1;
-    pointer-events: auto;
-    margin-left: 190px;
-    margin-top: -155px;
-  }
-  /* play speed style end  */
-  
-  
-  /* wave style start  */
-  .wave-animation {
-    animation: waveAnimation 4s infinite linear;
-  }
-  
-  @keyframes waveAnimation {
-    /* 0% {
-        transform: scaleX(1);
-      }
-      50% {
-        transform: scaleX(1.3); 
-      }
-      100% {
-        transform: scaleX(1.7);
-      } */
-  
-    0%,
-    100% {
-      d: path(
-        "M450,40 L0,40 L0,17.3134328 C18.6666667,24.8756219 32,28.6567164 40,28.6567164 C52,28.6567164 71,5.97014925 86,5.97014925 C101,5.97014925 107,19.7014925 122,19.7014925 C137,19.7014925 143,0 156,0 C169,0 177,36.4179104 194,36.4179104 C211,36.4179104 208,20.2985075 220,20.2985075 C232,20.2985075 240,28.6567164 256,28.6567164 C272,28.6567164 276,5.97014925 289,5.97014925 C302,5.97014925 314,23.2835821 326,23.2835821 C338,23.2835821 354,10.7462687 365,10.7462687 C376,10.7462687 397,32.8358209 408,32.8358209 C415.333333,32.8358209 429.333333,27.6616915 450,17.3134328 L450,40 Z"
-      );
-    }
-    30% {
-      d: path(
-        "M450,40 L0,40 L0,13.3333333 C14.6666667,9.12280702 26,7.01754386 34,7.01754386 C46,7.01754386 53,26.6666667 68,26.6666667 C83,26.6666667 90,16.1403509 105,16.1403509 C120,16.1403509 141,0 154,0 C167,0 173,20.3508772 190,20.3508772 C207,20.3508772 225,0 237,0 C249,0 245,16.1403509 261,16.1403509 C277,16.1403509 278,9.8245614 291,9.8245614 C304,9.8245614 314,28.7719298 326,28.7719298 C338,28.7719298 354,13.3333333 365,13.3333333 C376,13.3333333 397,7.01754386 408,7.01754386 C415.333333,7.01754386 429.333333,9.12280702 450,13.3333333 L450,40 Z"
-      );
-    }
-    70% {
-      d: path(
-        "M450,40 L0,40 L0,17.3134328 C17.3333333,9.75124378 30,5.97014925 38,5.97014925 C50,5.97014925 57,28.6567164 72,28.6567164 C87,28.6567164 99,2.98507463 114,2.98507463 C129,2.98507463 142,28.6567164 155,28.6567164 C168,28.6567164 166,10.7462687 183,10.7462687 C200,10.7462687 206,32.8358209 218,32.8358209 C230,32.8358209 234,0 250,0 C266,0 270,14.9253731 283,14.9253731 C296,14.9253731 309,5.97014925 321,5.97014925 C333,5.97014925 343,32.8358209 354,32.8358209 C365,32.8358209 387,8.35820896 398,8.35820896 C405.333333,8.35820896 422.666667,11.3432836 450,17.3134328 L450,40 Z"
-      );
-    }
-  }
-  /* wave style end  */
-
-  .backfor{
-    cursor: pointer !important;
-    font-size: 40px;
-    margin-top:10px
-  }
-  .backfor:hover{
-    color: #4527a4;
-  }
-  
-  @media (max-width: 767px) {
-    #controls {
-      flex-wrap: wrap;
-      text-align: center;
-     
-      
-    }
-    .first-part,
-    .second-part {
-      flex: 0 0 100%;
-      max-width: 100%;
-      padding: 10px 0;
-    }
-    .wave {
-      width: 100%;
-      margin: 0 auto;
-    }
-    .speed-options.show {
-      margin-left: 135px;
-      margin-top: -163px;
-    }
-  }
-  
 
 /*# sourceMappingURL=view.css.map*/

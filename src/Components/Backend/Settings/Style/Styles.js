@@ -63,7 +63,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
     cardTitle,
     cardSubTitle,
   } = cardPlayer;
-  console.log(cardShadow);
+  
   return (
     <>
       {songSl === "slider" ? (

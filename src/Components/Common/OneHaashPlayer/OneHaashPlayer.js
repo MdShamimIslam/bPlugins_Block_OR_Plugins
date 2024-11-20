@@ -6,7 +6,6 @@ import {
   mdSkipNext,
   mdSkipPrevious,
 } from "../../../utils/icons";
-import "./OneHaashPlayer.css";
 
 const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
   const { options, style, audioProperties } = attributes;

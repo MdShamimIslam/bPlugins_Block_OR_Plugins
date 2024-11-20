@@ -10,7 +10,7 @@ export const songSlOptions = [
 	{ label: 'Slider', value: 'slider' },
 	{ label: 'OneHaash', value: 'oneHaash' },
 	{ label: 'Card', value: 'card' },
-	{ label: 'Minimal', value: 'minimal' },
+	{ label: 'Wooden', value: 'wooden' },
 ]
 
 export const musicAlignOptions = [

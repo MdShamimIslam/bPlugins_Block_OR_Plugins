@@ -568,12 +568,12 @@
     text-align: center;
   }
 }
-.wp-block-bpmp-mp3-player .buttons {
+.wp-block-bpmp-mp3-player .subCon {
   margin: 10px 0;
   display: flex;
   flex-direction: row;
 }
-.wp-block-bpmp-mp3-player .buttons button {
+.wp-block-bpmp-mp3-player .subCon div {
   width: 50px;
   height: 50px;
   text-align: center;
@@ -589,15 +589,11 @@
   border-right: #aab 2px solid;
   border-bottom: #bbc 2px solid;
 }
-.wp-block-bpmp-mp3-player .buttons button:hover {
+.wp-block-bpmp-mp3-player .subCon div .wooCon {
+  margin-top: 13px;
+}
+.wp-block-bpmp-mp3-player .subCon div:hover {
   cursor: pointer;
-}
-.wp-block-bpmp-mp3-player .buttons button i::before {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  transition: text-shadow 0.3s ease;
-}
-.wp-block-bpmp-mp3-player .buttons button:hover i::before {
-  text-shadow: 0 0 20px white;
 }
 .wp-block-bpmp-mp3-player .woodenMediaplayer.play .playstate {
   background-color: #C63C3C;
@@ -610,7 +606,7 @@
   display: block;
 }
 @media (max-width: 450px) {
-  .wp-block-bpmp-mp3-player .buttons button {
+  .wp-block-bpmp-mp3-player .subCon div {
     margin: 0 5px;
   }
 }

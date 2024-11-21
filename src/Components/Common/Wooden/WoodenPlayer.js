@@ -1,18 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
+import {
+  FaBackward,
+  FaForward,
+  FaPause,
+  FaPlay,
+  FaStop,
+} from "../../../utils/icons";
 
 const WoodenPlayer = () => {
   const songs = [
     {
       title: "LA Chill Tour",
-      songURL: "http://www.pakium.pk/wp-content/uploads/2015/08/Man-Aamadeh-Am-S08E03-PakiUM.Com_.mp3",
+      songURL:
+        "http://www.pakium.pk/wp-content/uploads/2015/08/Man-Aamadeh-Am-S08E03-PakiUM.Com_.mp3",
     },
     {
       title: "This is it band",
-      songURL: "https://dl.dropboxusercontent.com/s/s0xk91uo1gr9ybg/The%20Prince%20of%20Egypt%20-%2001%20-%20Deliver%20US.mp3",
+      songURL:
+        "https://dl.dropboxusercontent.com/s/s0xk91uo1gr9ybg/The%20Prince%20of%20Egypt%20-%2001%20-%20Deliver%20US.mp3",
     },
     {
       title: "LA Fusion Jam",
-      songURL: "https://api.podcache.net/episodes/698d602a-a059-45dc-b42c-a2bdfde19922/stream.mp3",
+      songURL:
+        "https://api.podcache.net/episodes/698d602a-a059-45dc-b42c-a2bdfde19922/stream.mp3",
     },
   ];
   const playerAreaRef = useRef(null);
@@ -138,23 +148,27 @@ const WoodenPlayer = () => {
         </div>
       </div>
       <div className="woodenControls">
-        <span className="woodenTitle" ref={songTitleLabelRef} id="songTitleLabel">
+        <span
+          className="woodenTitle"
+          ref={songTitleLabelRef}
+          id="songTitleLabel"
+        >
           {songs[0].title}
         </span>
-        <div className="buttons">
-          <button id="backItem" ref={prevButtonRef} className="back">
-            <i className="fa fa-backward"></i>
-          </button>
-          <button id="playState" ref={playButtonRef} className="playstate">
-            <i className="fa fa-play"></i>
-            <i className="fa fa-pause"></i>
-          </button>
-          <button id="stopItem" ref={stopButtonRef} className="stop">
-            <i className="fa fa-stop"></i>
-          </button>
-          <button id="nextItem" ref={nextButtonRef} className="next">
-            <i className="fa fa-forward"></i>
-          </button>
+        <div className="subCon">
+          <div id="backItem" ref={prevButtonRef} className="back">
+            <FaBackward />
+          </div>
+          <div id="playState" ref={playButtonRef} className="playstate">
+            <FaPlay />
+            <FaPause />
+          </div>
+          <div id="stopItem" ref={stopButtonRef} className="stop">
+            <FaStop />
+          </div>
+          <div id="nextItem" ref={nextButtonRef} className="next">
+            <FaForward />
+          </div>
         </div>
         <div className="subControls">
           <span
@@ -180,4 +194,3 @@ const WoodenPlayer = () => {
 };
 
 export default WoodenPlayer;
-

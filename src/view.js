@@ -1,10 +1,10 @@
 import "./style.scss";
 import MP3Player from "./Components/Common/MP3Player";
-import AudioSlider from "./Components/FrontEnd/AudioSlider";
 import { createRoot } from "react-dom/client";
-import SliderStyle from "./Components/Common/SliderStyle";
 import OneHaash from "./Components/FrontEnd/OneHaash";
 import AudioCard from "./Components/Common/AudioPlayCard/AudioCard";
+import Wooden from "./Components/Common/Wooden/Wooden";
+import SliderAudio from "./Components/Common/SliderAudio/SliderAudio";
 
 document.addEventListener("DOMContentLoaded", () => {
   const mp3PlayerEls = document.querySelectorAll(".wp-block-bpmp-mp3-player");
@@ -19,16 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
         : createRoot(mp3PlayerEl).render(
             <>
               {songSl === "slider" ? (
-                <>
-                  <SliderStyle attributes={attributes} id={mp3PlayerEl.id} />
-                  <AudioSlider attributes={attributes} />
-                </>
+                <SliderAudio attributes={attributes} id={mp3PlayerEl.id} />
               ) : songSl === "oneHaash" ? (
                 <OneHaash attributes={attributes} id={mp3PlayerEl.id} />
               ) : songSl === "card" ? (
                 <AudioCard attributes={attributes} id={mp3PlayerEl.id} />
+              ) : songSl === "wooden" ? (
+                <Wooden attributes={attributes} id={mp3PlayerEl.id} />
               ) : (
-                "No Player"
+                "No Player Added yet"
               )}
             </>
           );

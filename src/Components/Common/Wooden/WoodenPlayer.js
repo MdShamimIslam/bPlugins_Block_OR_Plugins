@@ -7,24 +7,8 @@ import {
   FaStop,
 } from "../../../utils/icons";
 
-const WoodenPlayer = () => {
-  const songs = [
-    {
-      title: "LA Chill Tour",
-      songURL:
-        "http://www.pakium.pk/wp-content/uploads/2015/08/Man-Aamadeh-Am-S08E03-PakiUM.Com_.mp3",
-    },
-    {
-      title: "This is it band",
-      songURL:
-        "https://dl.dropboxusercontent.com/s/s0xk91uo1gr9ybg/The%20Prince%20of%20Egypt%20-%2001%20-%20Deliver%20US.mp3",
-    },
-    {
-      title: "LA Fusion Jam",
-      songURL:
-        "https://api.podcache.net/episodes/698d602a-a059-45dc-b42c-a2bdfde19922/stream.mp3",
-    },
-  ];
+const WoodenPlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
+  const { audioProperties } = attributes;
   const playerAreaRef = useRef(null);
   const playButtonRef = useRef(null);
   const stopButtonRef = useRef(null);
@@ -34,9 +18,7 @@ const WoodenPlayer = () => {
   const songTitleLabelRef = useRef(null);
   const audioPlayerRef = useRef(null);
   const volumeSliderRef = useRef(null);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [dataAvailable, setDataAvailable] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [currentLength, setCurrentLength] = useState(0);
 
   useEffect(() => {
@@ -58,25 +40,42 @@ const WoodenPlayer = () => {
     };
 
     const updateDurationLabel = () => {
-      if (dataAvailable) {
-        durationLabel.innerText = `${parseTime(
-          audioPlayer.currentTime
-        )} / ${parseTime(currentLength)}`;
-      } else {
-        durationLabel.innerText = parseTime(audioPlayer.currentTime);
+      const currentTime = audioPlayer.currentTime || 0;
+      const totalDuration = currentLength || audioPlayer.duration || 0;
+      if (durationLabel) {
+        durationLabel.innerText = `${parseTime(currentTime)} / ${parseTime(
+          totalDuration
+        )}`;
       }
     };
 
-    const loadNext = (next) => {
+    const loadTrack = (index, autoPlay = false) => {
+      const audioPlayer = audioPlayerRef.current;
       audioPlayer.pause();
-      let newIndex = next
-        ? (currentIndex + 1) % songs.length
-        : (currentIndex - 1 + songs.length) % songs.length;
-      setCurrentIndex(newIndex);
-      const newSong = songs[newIndex];
-      audioPlayer.src = newSong.songURL;
-      songTitleLabel.innerHTML = newSong.title;
-      audioPlayer.play();
+      setCurrentIndex(index);
+
+      const newSong = audioProperties[index];
+      if (newSong?.audio?.url) {
+        audioPlayer.src = newSong.audio.url;
+      } else {
+        console.error("Invalid or empty audio URL");
+        // reset error
+        audioPlayer.src = "";
+      }
+
+      if (songTitleLabel) {
+        songTitleLabel.innerHTML = newSong.title;
+      }
+
+      if (autoPlay) {
+        setTimeout(() => {
+          audioPlayer.play().catch((error) => {
+            console.error("Shamim audio:", error);
+          });
+        }, 100);
+      } else {
+        updateDurationLabel();
+      }
     };
 
     const onVolumeChange = () => {
@@ -84,13 +83,21 @@ const WoodenPlayer = () => {
     };
 
     const onPlayPauseClick = () => {
+      if (!audioPlayerRef.current.src) {
+        console.error("Audio url nai.");
+        return;
+      }
+
       playerAreaRef.current.classList.toggle("play");
-      if (audioPlayer.paused) {
+
+      if (audioPlayerRef.current.paused) {
         setTimeout(() => {
-          audioPlayer.play();
+          audioPlayerRef.current.play();
         }, 300);
+        setIsPlaying(true);
       } else {
-        audioPlayer.pause();
+        audioPlayerRef.current.pause();
+        setIsPlaying(false);
       }
     };
 
@@ -99,22 +106,34 @@ const WoodenPlayer = () => {
       audioPlayer.pause();
       audioPlayer.currentTime = 0;
       updateDurationLabel();
+      setIsPlaying(false);
+    };
+
+    const onNextClick = () => {
+      const nextIndex = (currentIndex + 1) % audioProperties?.length;
+      loadTrack(nextIndex, !audioPlayer.paused);
+    };
+
+    const onPrevClick = () => {
+      const prevIndex =
+        (currentIndex - 1 + audioProperties.length) % audioProperties.length;
+      loadTrack(prevIndex, !audioPlayer.paused);
     };
 
     const onLoadedData = () => {
-      setDataAvailable(true);
       setCurrentLength(audioPlayer.duration);
     };
 
     const onAudioEnded = () => {
       audioPlayer.currentTime = 0;
+      setIsPlaying(false);
     };
 
     volumeSlider.addEventListener("input", onVolumeChange);
     playButton.addEventListener("click", onPlayPauseClick);
     stopButton.addEventListener("click", onStopClick);
-    nextButton.addEventListener("click", () => loadNext(true));
-    prevButton.addEventListener("click", () => loadNext(false));
+    nextButton.addEventListener("click", onNextClick);
+    prevButton.addEventListener("click", onPrevClick);
     audioPlayer.addEventListener("loadeddata", onLoadedData);
     audioPlayer.addEventListener("ended", onAudioEnded);
 
@@ -125,19 +144,19 @@ const WoodenPlayer = () => {
       volumeSlider.removeEventListener("input", onVolumeChange);
       playButton.removeEventListener("click", onPlayPauseClick);
       stopButton.removeEventListener("click", onStopClick);
-      nextButton.removeEventListener("click", () => loadNext(true));
-      prevButton.removeEventListener("click", () => loadNext(false));
+      nextButton.removeEventListener("click", onNextClick);
+      prevButton.removeEventListener("click", onPrevClick);
       audioPlayer.removeEventListener("loadeddata", onLoadedData);
       audioPlayer.removeEventListener("ended", onAudioEnded);
     };
-  }, [currentIndex, dataAvailable, currentLength]);
+  }, [currentIndex, isPlaying, currentLength, audioProperties]);
 
   return (
     <div className="woodenMediaplayer" ref={playerAreaRef} id="mediaPlayer">
       <audio
         id="audioPlayer"
         ref={audioPlayerRef}
-        src={songs[0].songURL}
+        src={audioProperties[0]?.audio?.url}
       ></audio>
       <div className="discarea">
         <div className="disc"></div>
@@ -153,15 +172,14 @@ const WoodenPlayer = () => {
           ref={songTitleLabelRef}
           id="songTitleLabel"
         >
-          {songs[0].title}
+          {audioProperties[0].title}
         </span>
         <div className="subCon">
           <div id="backItem" ref={prevButtonRef} className="back">
             <FaBackward />
           </div>
           <div id="playState" ref={playButtonRef} className="playstate">
-            <FaPlay />
-            <FaPause />
+            {isPlaying ? <FaPause /> : <FaPlay />}
           </div>
           <div id="stopItem" ref={stopButtonRef} className="stop">
             <FaStop />
@@ -190,6 +208,7 @@ const WoodenPlayer = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 

@@ -252,9 +252,9 @@ const MusicPlayerBack = ({
     const handleLoadedMetadata = () => {
       setDuration(audio.duration);
     };
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     return () => {
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
     };
   }, [audioRef, audioProperties[activeIndex]?.audio.url]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -269,9 +269,9 @@ const MusicPlayerBack = ({
   const changeMusic = direction => {
     const audio = audioRef.current;
     let newIndex = activeIndex;
-    if (direction === 'forward') {
+    if (direction === "forward") {
       newIndex = (activeIndex + 1) % audioProperties.length;
-    } else if (direction === 'backward') {
+    } else if (direction === "backward") {
       newIndex = (activeIndex - 1 + audioProperties.length) % audioProperties.length;
     }
     setActiveIndex(newIndex);
@@ -295,7 +295,7 @@ const MusicPlayerBack = ({
   const formatTime = time => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
   const playPauseMusic = () => {
     const audio = audioRef.current;
@@ -329,9 +329,9 @@ const MusicPlayerBack = ({
         setShowVolumeControl(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -348,7 +348,7 @@ const MusicPlayerBack = ({
     key: audioProperties[activeIndex]?.audio?.url,
     onEnded: () => {
       if (options.isAutoPlay) {
-        changeMusic('forward');
+        changeMusic("forward");
       } else {
         setIsPlaying(false);
       }
@@ -391,14 +391,14 @@ const MusicPlayerBack = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "backward",
     onClick: () => {
-      changeMusic('backward');
+      changeMusic("backward");
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaBackward, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     onClick: playPauseMusic
   }, isPlaying ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaPause, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaPlay, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "forward",
     onClick: () => {
-      changeMusic('forward');
+      changeMusic("forward");
     }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaForward, null))));
 };
@@ -1348,6 +1348,40 @@ const OneHaashStyle = ({
 
 /***/ }),
 
+/***/ "./src/Components/Common/SliderAudio/SliderAudio.js":
+/*!**********************************************************!*\
+  !*** ./src/Components/Common/SliderAudio/SliderAudio.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../FrontEnd/AudioSlider */ "./src/Components/FrontEnd/AudioSlider.js");
+/* harmony import */ var _SliderStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../SliderStyle */ "./src/Components/Common/SliderStyle.js");
+
+
+
+const SliderAudio = ({
+  attributes,
+  id,
+  device
+}) => {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SliderStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    id: id,
+    device: device
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    attributes: attributes
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SliderAudio);
+
+/***/ }),
+
 /***/ "./src/Components/Common/SliderStyle.js":
 /*!**********************************************!*\
   !*** ./src/Components/Common/SliderStyle.js ***!
@@ -1546,6 +1580,314 @@ const SliderStyle = ({
 
 /***/ }),
 
+/***/ "./src/Components/Common/Wooden/Wooden.js":
+/*!************************************************!*\
+  !*** ./src/Components/Common/Wooden/Wooden.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _WoodenPlayer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WoodenPlayer */ "./src/Components/Common/Wooden/WoodenPlayer.js");
+/* harmony import */ var _WoodenPlayerStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WoodenPlayerStyle */ "./src/Components/Common/Wooden/WoodenPlayerStyle.js");
+
+
+
+
+const Wooden = ({
+  attributes,
+  id,
+  device
+}) => {
+  const [currentIndex, setCurrentIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_WoodenPlayerStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    id: id,
+    device: device
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_WoodenPlayer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    attributes: attributes,
+    currentIndex: currentIndex,
+    setCurrentIndex: setCurrentIndex
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Wooden);
+
+/***/ }),
+
+/***/ "./src/Components/Common/Wooden/WoodenPlayer.js":
+/*!******************************************************!*\
+  !*** ./src/Components/Common/Wooden/WoodenPlayer.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/icons */ "./src/utils/icons.js");
+
+
+
+const WoodenPlayer = ({
+  attributes,
+  currentIndex,
+  setCurrentIndex
+}) => {
+  const {
+    audioProperties
+  } = attributes;
+  const playerAreaRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const playButtonRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const stopButtonRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const nextButtonRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const prevButtonRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const durationLabelRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const songTitleLabelRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const audioPlayerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const volumeSliderRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [currentLength, setCurrentLength] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const audioPlayer = audioPlayerRef.current;
+    const volumeSlider = volumeSliderRef.current;
+    const playButton = playButtonRef.current;
+    const stopButton = stopButtonRef.current;
+    const nextButton = nextButtonRef.current;
+    const prevButton = prevButtonRef.current;
+    const durationLabel = durationLabelRef.current;
+    const songTitleLabel = songTitleLabelRef.current;
+    const parseTime = time => {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time - minutes * 60);
+      const secondsZero = seconds < 10 ? "0" : "";
+      const minutesZero = minutes < 10 ? "0" : "";
+      return `${minutesZero}${minutes}:${secondsZero}${seconds}`;
+    };
+    const updateDurationLabel = () => {
+      const currentTime = audioPlayer.currentTime || 0;
+      const totalDuration = currentLength || audioPlayer.duration || 0;
+      if (durationLabel) {
+        durationLabel.innerText = `${parseTime(currentTime)} / ${parseTime(totalDuration)}`;
+      }
+    };
+    const loadTrack = (index, autoPlay = false) => {
+      const audioPlayer = audioPlayerRef.current;
+      audioPlayer.pause();
+      setCurrentIndex(index);
+      const newSong = audioProperties[index];
+      if (newSong?.audio?.url) {
+        audioPlayer.src = newSong.audio.url;
+      } else {
+        console.error("Invalid or empty audio URL");
+        // reset error
+        audioPlayer.src = "";
+      }
+      if (songTitleLabel) {
+        songTitleLabel.innerHTML = newSong.title;
+      }
+      if (autoPlay) {
+        setTimeout(() => {
+          audioPlayer.play().catch(error => {
+            console.error("Shamim audio:", error);
+          });
+        }, 100);
+      } else {
+        updateDurationLabel();
+      }
+    };
+    const onVolumeChange = () => {
+      audioPlayer.volume = parseFloat(volumeSlider.value);
+    };
+    const onPlayPauseClick = () => {
+      if (!audioPlayerRef.current.src) {
+        console.error("Audio url nai.");
+        return;
+      }
+      playerAreaRef.current.classList.toggle("play");
+      if (audioPlayerRef.current.paused) {
+        setTimeout(() => {
+          audioPlayerRef.current.play();
+        }, 300);
+        setIsPlaying(true);
+      } else {
+        audioPlayerRef.current.pause();
+        setIsPlaying(false);
+      }
+    };
+    const onStopClick = () => {
+      playerAreaRef.current.classList.remove("play");
+      audioPlayer.pause();
+      audioPlayer.currentTime = 0;
+      updateDurationLabel();
+      setIsPlaying(false);
+    };
+    const onNextClick = () => {
+      const nextIndex = (currentIndex + 1) % audioProperties?.length;
+      loadTrack(nextIndex, !audioPlayer.paused);
+    };
+    const onPrevClick = () => {
+      const prevIndex = (currentIndex - 1 + audioProperties.length) % audioProperties.length;
+      loadTrack(prevIndex, !audioPlayer.paused);
+    };
+    const onLoadedData = () => {
+      setCurrentLength(audioPlayer.duration);
+    };
+    const onAudioEnded = () => {
+      audioPlayer.currentTime = 0;
+      setIsPlaying(false);
+    };
+    volumeSlider.addEventListener("input", onVolumeChange);
+    playButton.addEventListener("click", onPlayPauseClick);
+    stopButton.addEventListener("click", onStopClick);
+    nextButton.addEventListener("click", onNextClick);
+    prevButton.addEventListener("click", onPrevClick);
+    audioPlayer.addEventListener("loadeddata", onLoadedData);
+    audioPlayer.addEventListener("ended", onAudioEnded);
+    const timer = setInterval(updateDurationLabel, 100);
+    return () => {
+      clearInterval(timer);
+      volumeSlider.removeEventListener("input", onVolumeChange);
+      playButton.removeEventListener("click", onPlayPauseClick);
+      stopButton.removeEventListener("click", onStopClick);
+      nextButton.removeEventListener("click", onNextClick);
+      prevButton.removeEventListener("click", onPrevClick);
+      audioPlayer.removeEventListener("loadeddata", onLoadedData);
+      audioPlayer.removeEventListener("ended", onAudioEnded);
+    };
+  }, [currentIndex, isPlaying, currentLength, audioProperties]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "woodenMediaplayer",
+    ref: playerAreaRef,
+    id: "mediaPlayer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("audio", {
+    id: "audioPlayer",
+    ref: audioPlayerRef,
+    src: audioProperties[0]?.audio?.url
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "discarea"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "disc"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "stylus"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "pivot"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "arm"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "head"
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "woodenControls"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "woodenTitle",
+    ref: songTitleLabelRef,
+    id: "songTitleLabel"
+  }, audioProperties[0].title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "subCon"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "backItem",
+    ref: prevButtonRef,
+    className: "back"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaBackward, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "playState",
+    ref: playButtonRef,
+    className: "playstate"
+  }, isPlaying ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaPause, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaPlay, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "stopItem",
+    ref: stopButtonRef,
+    className: "stop"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaStop, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "nextItem",
+    ref: nextButtonRef,
+    className: "next"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaForward, null))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "subControls"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "woodenDuration",
+    ref: durationLabelRef,
+    id: "currentDuration"
+  }, "00:00"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    className: "volumeSlider",
+    ref: volumeSliderRef,
+    type: "range",
+    id: "volumeSlider",
+    min: "0",
+    max: "1",
+    step: "0.01"
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WoodenPlayer);
+
+/***/ }),
+
+/***/ "./src/Components/Common/Wooden/WoodenPlayerStyle.js":
+/*!***********************************************************!*\
+  !*** ./src/Components/Common/Wooden/WoodenPlayerStyle.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../Components/utils/getCSS */ "../Components/utils/getCSS.js");
+
+
+const WoodenPlayerStyle = ({
+  attributes,
+  id,
+  device = "desktop"
+}) => {
+  const {
+    woWidth,
+    woHeight,
+    woBorder,
+    woShadow,
+    woPadding
+  } = attributes.style.woodenPlayer;
+  const idSl = `#${id}`;
+  const woodenMediaplayerSl = `${idSl} .woodenMediaplayer`;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+
+
+          ${woodenMediaplayerSl}{
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(woBorder)}
+            box-shadow: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getMultiShadowCSS)(woShadow)};
+            padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(woPadding[device])};
+            width: ${woWidth[device]};
+            height: ${woHeight[device]};
+          }
+         
+            
+          @media only screen and (min-width:641px) and (max-width: 1024px) {
+            
+
+          }
+  
+  
+          @media only screen and (max-width:640px) {
+               
+
+          }
+  
+  
+          `
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WoodenPlayerStyle);
+
+/***/ }),
+
 /***/ "./src/Components/FrontEnd/AudioSlider.js":
 /*!************************************************!*\
   !*** ./src/Components/FrontEnd/AudioSlider.js ***!
@@ -1568,7 +1910,7 @@ const AudioSlider = ({
   attributes
 }) => {
   const {
-    musics
+    audioProperties
   } = attributes;
   const [activeIndex, setActiveIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -1577,7 +1919,7 @@ const AudioSlider = ({
   const playTrack = index => {
     const audio = audioRef.current;
     setActiveIndex(index);
-    audio.src = musics[index].source;
+    audio.src = audioProperties[index].audio.url;
     if (isPlaying) {
       audio.play();
     }
@@ -13328,11 +13670,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _Components_Common_MP3Player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Components/Common/MP3Player */ "./src/Components/Common/MP3Player.js");
-/* harmony import */ var _Components_FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Components/FrontEnd/AudioSlider */ "./src/Components/FrontEnd/AudioSlider.js");
-/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var _Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Common/SliderStyle */ "./src/Components/Common/SliderStyle.js");
-/* harmony import */ var _Components_FrontEnd_OneHaash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Components/FrontEnd/OneHaash */ "./src/Components/FrontEnd/OneHaash.js");
-/* harmony import */ var _Components_Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Components/Common/AudioPlayCard/AudioCard */ "./src/Components/Common/AudioPlayCard/AudioCard.js");
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _Components_FrontEnd_OneHaash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Components/FrontEnd/OneHaash */ "./src/Components/FrontEnd/OneHaash.js");
+/* harmony import */ var _Components_Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Components/Common/AudioPlayCard/AudioCard */ "./src/Components/Common/AudioPlayCard/AudioCard.js");
+/* harmony import */ var _Components_Common_Wooden_Wooden__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Components/Common/Wooden/Wooden */ "./src/Components/Common/Wooden/Wooden.js");
+/* harmony import */ var _Components_Common_SliderAudio_SliderAudio__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Components/Common/SliderAudio/SliderAudio */ "./src/Components/Common/SliderAudio/SliderAudio.js");
 
 
 
@@ -13353,18 +13695,19 @@ document.addEventListener("DOMContentLoaded", () => {
       songSl
     } = options;
     {
-      songSl === "default" ? (0,_Components_Common_MP3Player__WEBPACK_IMPORTED_MODULE_2__["default"])(mp3PlayerEl, audioProperties) : (0,react_dom_client__WEBPACK_IMPORTED_MODULE_4__.createRoot)(mp3PlayerEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === "slider" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_SliderStyle__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      songSl === "default" ? (0,_Components_Common_MP3Player__WEBPACK_IMPORTED_MODULE_2__["default"])(mp3PlayerEl, audioProperties) : (0,react_dom_client__WEBPACK_IMPORTED_MODULE_3__.createRoot)(mp3PlayerEl).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === "slider" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_SliderAudio_SliderAudio__WEBPACK_IMPORTED_MODULE_7__["default"], {
         attributes: attributes,
         id: mp3PlayerEl.id
-      }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_FrontEnd_AudioSlider__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        attributes: attributes
-      })) : songSl === "oneHaash" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_FrontEnd_OneHaash__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }) : songSl === "oneHaash" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_FrontEnd_OneHaash__WEBPACK_IMPORTED_MODULE_4__["default"], {
         attributes: attributes,
         id: mp3PlayerEl.id
-      }) : songSl === "card" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      }) : songSl === "card" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_5__["default"], {
         attributes: attributes,
         id: mp3PlayerEl.id
-      }) : "No Player"));
+      }) : songSl === "wooden" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Common_Wooden_Wooden__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        attributes: attributes,
+        id: mp3PlayerEl.id
+      }) : "No Player Added yet"));
     }
     mp3PlayerEl?.removeAttribute("data-attributes");
   });

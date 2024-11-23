@@ -7,21 +7,16 @@ import MP3Player from "../Common/MP3Player";
 import Style from "../Common/Style";
 import Setting from "./Settings/Setting";
 import Settings from "./Settings/Settings";
-import SliderStyle from "../Common/SliderStyle";
-import MusicPlayerBack from "./MusicPlayerBack/MusicPlayerBack";
-import SwiperSlider from "./SwiperSlider/SwiperSlider";
 import OneHaashPlayer from "../Common/OneHaashPlayer/OneHaashPlayer";
 import OneHaashStyle from "../Common/OneHaashPlayer/OneHaashStyle";
 import AudioCard from "../Common/AudioPlayCard/AudioCard";
-import WoodenPlayer from "../Common/Wooden/WoodenPlayer";
+import Wooden from "../Common/Wooden/Wooden";
+import SliderAudio from "../Common/SliderAudio/SliderAudio";
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
   const { audioProperties, options } = attributes;
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
-  const swiperRef = useRef(null);
   const { songSl } = options;
   const id = `bpMp3Player-${clientId}`;
   const blockRef = useRef(null);
@@ -31,15 +26,6 @@ const Edit = (props) => {
       MP3Player(blockRef.current, audioProperties);
     }
   }, [audioProperties, options, songSl]);
-
-  const playTrack = (index) => {
-    const audio = audioRef.current;
-    setActiveIndex(index);
-    audio.src = audioProperties[index].audio.url;
-    if (isPlaying) {
-      audio.play();
-    }
-  };
 
   return (
     <>
@@ -104,28 +90,11 @@ const Edit = (props) => {
             )}
           </>
         ) : songSl === "slider" ? (
-          <>
-            <SliderStyle
-              attributes={attributes}
-              device={device}
-              id={`block-${clientId}`}
-            />
-            <div className="bpMp3Player">
-              <SwiperSlider
-                ref={swiperRef}
-                playTrack={playTrack}
-                attributes={attributes}
-              />
-              <MusicPlayerBack
-                attributes={attributes}
-                audioRef={audioRef}
-                setIsPlaying={setIsPlaying}
-                activeIndex={activeIndex}
-                setActiveIndex={setActiveIndex}
-                swiperRef={swiperRef}
-              />
-            </div>
-          </>
+          <SliderAudio
+            attributes={attributes}
+            device={device}
+            id={`block-${clientId}`}
+          />
         ) : songSl === "oneHaash" ? (
           <>
             <OneHaashStyle
@@ -141,7 +110,7 @@ const Edit = (props) => {
           </>
         ) : songSl === "wooden" ? (
           <>
-          <WoodenPlayer/>
+            <Wooden attributes={attributes} id={`block-${clientId}`} device={device} />
           </>
         ) : songSl === "card" ? (
           <AudioCard
@@ -150,7 +119,7 @@ const Edit = (props) => {
             device={device}
           />
         ) : (
-          "No Player"
+          "No Player Added Yet!"
         )}
       </div>
     </>

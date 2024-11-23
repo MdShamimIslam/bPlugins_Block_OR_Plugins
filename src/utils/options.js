@@ -7,10 +7,10 @@ export const generalStyleTabs = [
 
 export const songSlOptions = [
 	{ label: 'Default', value: 'default' },
-	{ label: 'Slider', value: 'slider' },
-	{ label: 'OneHaash', value: 'oneHaash' },
-	{ label: 'Card', value: 'card' },
 	{ label: 'Wooden', value: 'wooden' },
+	{ label: 'Card', value: 'card' },
+	{ label: 'OneHaash', value: 'oneHaash' },
+	{ label: 'Slider', value: 'slider' },
 ]
 
 export const musicAlignOptions = [
@@ -19,17 +19,20 @@ export const musicAlignOptions = [
 	{ label: 'Right', value: 'end' },
 ]
 
-// export const musics = [
-//     {
-//       title: "The One Haas Experience",
-//       src: "https://api.podcache.net/episodes/698d602a-a059-45dc-b42c-a2bdfde19922/stream.mp3",
-//     },
-//     {
-//       title: "Another Episode",
-//       src: "http://www.pakium.pk/wp-content/uploads/2015/08/Man-Aamadeh-Am-S08E03-PakiUM.Com_.mp3",
-//     },
-//     {
-//       title: "Yet Another Episode",
-//       src: "https://dl.dropboxusercontent.com/s/s0xk91uo1gr9ybg/The%20Prince%20of%20Egypt%20-%2001%20-%20Deliver%20US.mp3",
-//     },
-//   ];
+export const songs = [
+    {
+      title: "Title 1",
+      songURL:
+        "http://www.pakium.pk/wp-content/uploads/2015/08/Man-Aamadeh-Am-S08E03-PakiUM.Com_.mp3",
+    },
+    {
+      title: "Title 2",
+      songURL:
+        "https://dl.dropboxusercontent.com/s/s0xk91uo1gr9ybg/The%20Prince%20of%20Egypt%20-%2001%20-%20Deliver%20US.mp3",
+    },
+    {
+      title: "Title 3",
+      songURL:
+        "https://api.podcache.net/episodes/698d602a-a059-45dc-b42c-a2bdfde19922/stream.mp3",
+    },
+  ];

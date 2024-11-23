@@ -76,7 +76,6 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
     });
   };
 
-
   return (
     <>
       <div className="bpmpInspectorInfo mt10">
@@ -105,9 +104,9 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
             setAttributes({ options: updateData(options, v, "songSl") })
           }
         />
+
         {audioProperties.map((item, index) => {
           const { title, artist, cover, audio } = item;
-
           return (
             <PanelBody
               key={index}
@@ -123,13 +122,16 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
                 />
               </PanelRow>
 
-              <PanelRow>
+              {
+                songSl !== "wooden" &&    <PanelRow>
                 <Label className="">{__("Artist:", "mp3player-block")}</Label>
                 <TextControl
                   value={artist}
                   onChange={(val) => updateAudioProperty(index, "artist", val)}
                 />
               </PanelRow>
+              }
+           
 
               <Label>{__("Audio File:", "mp3player-block")}</Label>
               <InlineDetailMediaUpload
@@ -141,7 +143,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
                 placeholder={__("Enter Audio URL", "mp3player-block")}
               />
 
-              {songSl !== "oneHaash" && (
+              {songSl !== "oneHaash" && songSl !== "wooden"  && (
                 <>
                   <Label>{__("Cover Photo:", "mp3player-block")}</Label>
                   <InlineDetailMediaUpload

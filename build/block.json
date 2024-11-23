@@ -185,10 +185,56 @@
             }
           }
         },
+        "woodenPlayer": {
+          "woWidth": {
+            "desktop": "100%",
+            "tablet": "100%",
+            "mobile": "100%"
+          },
+          "woHeight": {
+            "desktop": "100%",
+            "tablet": "100%",
+            "mobile": "100%"
+          },
+          "woColors": {},
+          "woShadow": [
+            {
+              "blur": "20px",
+              "color": "#0000004D",
+              "hOffset": "0px",
+              "isInset": false,
+              "spreed": "0px",
+              "vOffset": "5px"
+            }
+          ],
+          "woBorder": {
+            "radius": "100px"
+          },
+          "woPadding": {
+            "desktop": {
+              "top": "20px",
+              "right": "20px",
+              "bottom": "20px",
+              "left": "20px"
+            },
+            "tablet": {
+              "top": "20px",
+              "right": "20px",
+              "bottom": "20px",
+              "left": "20px"
+            },
+            "mobile": {
+              "top": "20px",
+              "right": "20px",
+              "bottom": "20px",
+              "left": "20px"
+            }
+          }
+        },
         "align": {
-          "desktop": "start",
-          "tablet": "start",
-          "mobile": "start"
+          "desktop": "center",
+          "tablet": "center",
+          "mobile": "center"
         },
         "width": {
           "desktop": "",

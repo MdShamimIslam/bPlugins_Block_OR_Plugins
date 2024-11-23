@@ -1,29 +1,42 @@
 $primaryColor: #4527a4;
 
 .bpmpInspectorInfo {
-	padding: 6px;
+  padding: 6px;
 
-	a {
-		text-decoration: none;
-		font-weight: bold;
-	}
+  a {
+    text-decoration: none;
+    font-weight: bold;
+  }
 }
 
-.components-button.button.button-primary.has-icon{
-	border-radius: 0px;
-	height: 32px;
+.components-button.button.button-primary.has-icon {
+  border-radius: 0px;
+  height: 32px;
 }
-.addItem Button:hover{
-	background-color: #{$primaryColor};
-    color: white !important;
+.addItem Button:hover {
+  background-color: #{$primaryColor};
+  color: white !important;
 }
 
 .bpMp3PlayerError {
-	color: red !important;
-	text-align: center;
-	font-size: 20px;
+  color: red !important;
+  text-align: center;
+  font-size: 20px;
 }
 
-.em5sgkm7{
-	background-color: #4527a4;
+.em5sgkm7 {
+  background-color: #4527a4;
+  color: white;
+}
+
+.colorSchema {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.colorSchema p {
+  margin-top: 10px;
+}
+.div1{
+	margin-left: 10px;
 }

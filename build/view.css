@@ -415,7 +415,11 @@
     margin-top: -163px;
   }
 }
+.wp-block-bpmp-mp3-player .woodenWrap {
+  display: flex;
+}
 .wp-block-bpmp-mp3-player .woodenMediaplayer {
+  display: flex;
   background-size: 50%;
   background-repeat: repeat;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
@@ -710,6 +714,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* Volume control styling */
+  /* Responsive styles */
 }
 .wp-block-bpmp-mp3-player .bpMp3Player .volume-control {
   position: absolute;
@@ -924,7 +930,7 @@
 }
 .wp-block-bpmp-mp3-player .bpMp3Player .current-time,
 .wp-block-bpmp-mp3-player .bpMp3Player .duration-time {
-  width: 40px;
+  width: 48px;
   text-align: center;
 }
 .wp-block-bpmp-mp3-player .bpMp3Player #progresses {
@@ -977,6 +983,41 @@
   color: red;
   cursor: pointer;
   width: 20px;
+}
+.wp-block-bpmp-mp3-player .bpMp3Player .volume-control {
+  width: 100px;
+  cursor: pointer;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  height: 5px;
+  background: #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+.wp-block-bpmp-mp3-player .bpMp3Player .volume-control::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #333;
+  border-radius: 50%;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .wp-block-bpmp-mp3-player .bpMp3Player .progress-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .wp-block-bpmp-mp3-player .bpMp3Player .current-time,
+  .wp-block-bpmp-mp3-player .bpMp3Player .duration-time {
+    width: auto;
+    margin: 5px 0;
+    text-align: center;
+  }
+  .wp-block-bpmp-mp3-player .bpMp3Player #progresses {
+    margin: 10px 0;
+  }
 }
 /*!************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/swiper/swiper.css ***!

@@ -147,7 +147,7 @@ const ColorSchema = () => {
 
       {activeVariant && (
         <div style={{display:"flex",justifyContent:"space-between"}}>
-          <p style={{marginLeft:"-48px", marginTop:"5px"}}>Change color for {activeVariant}</p>
+          <p style={{marginLeft:"-45px", marginTop:"5px"}}>{activeVariant}</p>
           <div className="color-picker" ref={pickrRef}></div>
         </div>
       )}

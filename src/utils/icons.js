@@ -273,7 +273,7 @@ export function FaYoutube(props) {
 export function FaVolumeUp(props) {
   return (
     <svg
-      style={{ marginTop: "6px", marginRight: "5px" }}
+      style={{ marginTop: "6px", marginRight: "6px" }}
       stroke="currentColor"
       fill="currentColor"
       strokeWidth={0}
@@ -290,7 +290,7 @@ export function FaVolumeUp(props) {
 export function BiVolumeMute(props) {
   return (
     <svg
-      style={{ marginTop: "6px", marginRight: "5px" }}
+      style={{ marginTop: "6px", marginRight: "6px" }}
       stroke="currentColor"
       fill="currentColor"
       strokeWidth={0}

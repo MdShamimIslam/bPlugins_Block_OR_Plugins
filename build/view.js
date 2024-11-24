@@ -244,9 +244,6 @@ const MusicPlayerBack = ({
   const [progress, setProgress] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [currentTime, setCurrentTime] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
-  const [volume, setVolume] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-  const [showVolumeControl, setShowVolumeControl] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const volumeControlRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const audio = audioRef.current;
     const handleLoadedMetadata = () => {
@@ -317,23 +314,6 @@ const MusicPlayerBack = ({
   const progressStyle = {
     background: `linear-gradient(to right, ${progressBg} ${progress}%, ${bg} ${progress}%)`
   };
-  const handleVolumeChange = event => {
-    const audio = audioRef.current;
-    const newVolume = event.target.value / 100;
-    setVolume(newVolume);
-    audio.volume = newVolume;
-  };
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const handleClickOutside = event => {
-      if (volumeControlRef.current && !volumeControlRef.current.contains(event.target)) {
-        setShowVolumeControl(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "music-player"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
@@ -356,16 +336,6 @@ const MusicPlayerBack = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("source", {
     src: audioProperties[activeIndex]?.audio.url,
     type: "audio/mpeg"
-  })), showVolumeControl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ref: volumeControlRef
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "range",
-    value: volume * 100,
-    onChange: handleVolumeChange,
-    min: "0",
-    max: "100",
-    step: "1",
-    className: "volume-control"
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "progress-container"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
@@ -379,12 +349,7 @@ const MusicPlayerBack = ({
     max: "100",
     step: "0.1",
     style: progressStyle
-  }), options.isVolume && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    onClick: e => {
-      e.stopPropagation();
-      setShowVolumeControl(!showVolumeControl);
-    }
-  }, volume === 0 ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.BiVolumeMute, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaVolumeUp, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "duration-time"
   }, formatTime(duration))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "controls"
@@ -1604,7 +1569,9 @@ const Wooden = ({
   device
 }) => {
   const [currentIndex, setCurrentIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_WoodenPlayerStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "woodenWrap"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_WoodenPlayerStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
     attributes: attributes,
     id: id,
     device: device
@@ -1846,6 +1813,10 @@ const WoodenPlayerStyle = ({
   device = "desktop"
 }) => {
   const {
+    align
+  } = attributes.style;
+  const {
+    woAlign,
     woWidth,
     woHeight,
     woBorder,
@@ -1853,11 +1824,16 @@ const WoodenPlayerStyle = ({
     woPadding
   } = attributes.style.woodenPlayer;
   const idSl = `#${id}`;
-  const woodenMediaplayerSl = `${idSl} .woodenMediaplayer`;
+  const woodenWrapSl = `${idSl} .woodenWrap`;
+  const woodenMediaplayerSl = `${woodenWrapSl} .woodenMediaplayer`;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
     dangerouslySetInnerHTML: {
       __html: `
 
+
+          ${woodenWrapSl}{
+            justify-content: ${align[device]};
+          }
 
           ${woodenMediaplayerSl}{
             ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(woBorder)}
@@ -1865,17 +1841,36 @@ const WoodenPlayerStyle = ({
             padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(woPadding[device])};
             width: ${woWidth[device]};
             height: ${woHeight[device]};
+            justify-content: ${woAlign[device]};
           }
          
             
           @media only screen and (min-width:641px) and (max-width: 1024px) {
-            
+            ${woodenWrapSl}{
+              justify-content: ${align.tablet};
+            }
+  
+            ${woodenMediaplayerSl}{
+              padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(woPadding.tablet)};
+              width: ${woWidth.tablet};
+              height: ${woHeight.tablet};
+              justify-content: ${woAlign.tablet};
+            }
 
           }
   
   
           @media only screen and (max-width:640px) {
-               
+            ${woodenWrapSl}{
+              justify-content: ${align.mobile};
+            }
+  
+            ${woodenMediaplayerSl}{
+              padding: ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBoxCSS)(woPadding.mobile)};
+              width: ${woWidth.mobile};
+              height: ${woHeight.mobile};
+              justify-content: ${woAlign.mobile};
+            }
 
           }
   
@@ -2272,7 +2267,7 @@ function FaVolumeUp(props) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     style: {
       marginTop: "6px",
-      marginRight: "5px"
+      marginRight: "6px"
     },
     stroke: "currentColor",
     fill: "currentColor",
@@ -2289,7 +2284,7 @@ function BiVolumeMute(props) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     style: {
       marginTop: "6px",
-      marginRight: "5px"
+      marginRight: "6px"
     },
     stroke: "currentColor",
     fill: "currentColor",

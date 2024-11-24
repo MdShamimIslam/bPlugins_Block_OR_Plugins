@@ -22,7 +22,7 @@ import { gearIcon } from "../../../../../../Components/utils/icons";
 const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
   const { audioProperties, options, style } = attributes;
   const { align } = style;
-  const { songSl, isOverlayIcon, isThumb, isVolume, isAutoPlay, oneHaash } =
+  const { songSl, isOverlayIcon, isThumb, isAutoPlay, oneHaash } =
     options;
   const {
     isBackForIcon,
@@ -243,14 +243,6 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
             label={__("Auto Play", "mp3player-block")}
             onChange={(v) =>
               setAttributes({ options: updateData(options, v, "isAutoPlay") })
-            }
-          />
-          <ToggleControl
-            className="mt5"
-            checked={isVolume}
-            label={__("Display Volume", "mp3player-block")}
-            onChange={(v) =>
-              setAttributes({ options: updateData(options, v, "isVolume") })
             }
           />
         </PanelBody>

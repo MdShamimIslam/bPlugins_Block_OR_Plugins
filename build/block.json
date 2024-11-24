@@ -45,7 +45,6 @@
         "textSl": "title",
         "rangeSl": "input",
         "isThumb": true,
-        "isVolume": true,
         "isOverlayIcon": false,
         "isAutoPlay": true,
         "newTab": true,
@@ -186,6 +185,11 @@
           }
         },
         "woodenPlayer": {
+          "woAlign": {
+            "desktop": "center",
+            "tablet": "center",
+            "mobile": "center"
+          },
           "woWidth": {
             "desktop": "100%",
             "tablet": "100%",

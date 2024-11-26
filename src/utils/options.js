@@ -8,9 +8,9 @@ export const generalStyleTabs = [
 export const songSlOptions = [
 	{ label: 'Default', value: 'default' },
 	{ label: 'Wooden', value: 'wooden' },
+	{ label: 'Lite', value: 'lite' },
 	{ label: 'Card', value: 'card' },
 	{ label: 'OneHaash', value: 'oneHaash' },
-	{ label: 'Lite', value: 'lite' },
 	{ label: 'Slider', value: 'slider' },
 ]
 

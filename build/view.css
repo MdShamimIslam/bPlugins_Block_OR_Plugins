@@ -680,6 +680,96 @@
   border-radius: 4px;
   margin-top: 2px;
 }
+.wp-block-bpmp-mp3-player #myProgress {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.wp-block-bpmp-mp3-player #myBar {
+  width: 0%;
+  height: 5px;
+  border-radius: 10px;
+}
+.wp-block-bpmp-mp3-player .btn-action {
+  cursor: pointer;
+  padding-top: 10px;
+  width: 30px;
+  text-align: center;
+}
+.wp-block-bpmp-mp3-player .infos-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.wp-block-bpmp-mp3-player .btn-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 10px !important;
+}
+.wp-block-bpmp-mp3-player .infos-ctn {
+  padding-top: 20px;
+}
+.wp-block-bpmp-mp3-player .btn-ctn > div {
+  padding: 5px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+.wp-block-bpmp-mp3-player .infos-ctn > div {
+  margin-bottom: 8px;
+  color: #555;
+}
+.wp-block-bpmp-mp3-player .first-btn {
+  margin-left: 3px;
+}
+.wp-block-bpmp-mp3-player .duration {
+  margin-left: 10px;
+}
+.wp-block-bpmp-mp3-player .title2 {
+  margin-left: 10px;
+  width: 210px;
+  text-align: center;
+}
+.wp-block-bpmp-mp3-player .playlist-track-ctn {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.wp-block-bpmp-mp3-player .playlist-track-ctn > div {
+  margin: 10px;
+}
+.wp-block-bpmp-mp3-player .playlist-info-track {
+  width: 80%;
+}
+.wp-block-bpmp-mp3-player .playlist-info-track, .wp-block-bpmp-mp3-player .playlist-duration {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: #555;
+  font-size: 14px;
+  pointer-events: none;
+}
+.wp-block-bpmp-mp3-player .playlist-ctn {
+  padding-bottom: 10px;
+  margin-top: 20px;
+}
+.wp-block-bpmp-mp3-player .active-track {
+  background: #fff;
+  color: #999 !important;
+  font-weight: bold;
+}
+.wp-block-bpmp-mp3-player .active-track > .playlist-info-track,
+.wp-block-bpmp-mp3-player .active-track > .playlist-duration {
+  color: #888 !important;
+}
+.wp-block-bpmp-mp3-player .fas {
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 5px;
+}
 @keyframes slideIn {
   0%, 100% {
     background-position: 20% 0%;
@@ -1004,6 +1094,9 @@
   .wp-block-bpmp-mp3-player .bpMp3Player #progresses {
     margin: 10px 0;
   }
+}
+.wp-block-bpmp-mp3-player .LiteAudioPlayer {
+  display: flex;
 }
 /*!************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/swiper/swiper.css ***!

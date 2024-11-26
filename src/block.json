@@ -57,6 +57,41 @@
     "style": {
       "type": "object",
       "default": {
+        "litePlayer": {
+          "liteWidth": {
+            "desktop": "100%",
+            "tablet": "100%",
+            "mobile": "100%"
+          },
+          "liteBorder":{"radius":"15px"},
+          "liteBg":"#ededed",
+          "liteControlsBg":"#A29C98",
+          "liteRunningProgressBg":"purple",
+          "liteInfosColor":"#A29C98",
+          "litePadding": {
+            "desktop": {
+              "top": "30px",
+              "right": "30px",
+              "bottom": "30px",
+              "left": "30px"
+            },
+            "tablet": {
+              "top": "30px",
+              "right": "30px",
+              "bottom": "30px",
+              "left": "30px"
+            },
+            "mobile": {
+              "top": "30px",
+              "right": "30px",
+              "bottom": "30px",
+              "left": "30px"
+            }
+          },
+          "liteControlsTypo":{"fontSize":"20px"},
+          "liteListColors":{"bg":"#e5e5e5", "color":"#999"},
+          "liteListBorder":{"radius":"5px"}
+        },
         "oneHaashPlayer": {
           "waveBg": "#4527a4",
           "haashAlign": {
@@ -196,11 +231,11 @@
             "tablet": "100%",
             "mobile": "100%"
           },
-          "woBg":"#1C1717",
-          "woColors":{},
-          "woTDColors":{"bg":"#A4A4A4", "color":"#121212DE"},
-          "woTDBorder":{"radius":"20px"},
-          "woTDTypo":{"fontSize":"15px"},
+          "woBg": "#1C1717",
+          "woColors": {},
+          "woTDColors": { "bg": "#A4A4A4", "color": "#121212DE" },
+          "woTDBorder": { "radius": "20px" },
+          "woTDTypo": { "fontSize": "15px" },
           "woShadow": [
             {
               "blur": "20px",

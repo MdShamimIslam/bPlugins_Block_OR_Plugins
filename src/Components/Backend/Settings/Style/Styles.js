@@ -37,6 +37,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
     oneHaashPlayer,
     cardPlayer,
     woodenPlayer,
+    litePlayer,
   } = style;
   const { sliderWidth, sliderHeight, border, overlayBg } = musicSlider;
   const { width, height, bg, progressBg, timeBg, radius, margin } = rangeInput;
@@ -65,7 +66,6 @@ const Styles = ({ attributes, setAttributes, device }) => {
     cardTitle,
     cardSubTitle,
   } = cardPlayer;
-
   const {
     woWidth,
     woHeight,
@@ -78,6 +78,18 @@ const Styles = ({ attributes, setAttributes, device }) => {
     woTDBorder,
     woTDTypo,
   } = woodenPlayer;
+  const {
+    liteWidth,
+    liteBg,
+    liteBorder,
+    litePadding,
+    liteControlsBg,
+    liteInfosColor,
+    liteRunningProgressBg,
+    liteControlsTypo,
+    liteListColors,
+    liteListBorder
+  } = litePlayer;
 
   return (
     <>
@@ -1112,6 +1124,156 @@ const Styles = ({ attributes, setAttributes, device }) => {
                 })
               }
               defaults={{ radius: 20 }}
+            />
+          </PanelBody>
+        </>
+      ) : songSl === "lite" ? (
+        <>
+          <PanelBody
+            className="bPlPanelBody"
+            title={__("Player Wrapper", "mp3player-block")}
+          >
+            <PanelRow>
+              <Label>{__("Width", "mp3player-block")}</Label>
+              <Device />
+            </PanelRow>
+            <UnitControl
+              value={liteWidth[device]}
+              units={[pxUnit(), perUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "litePlayer",
+                    "liteWidth",
+                    device
+                  ),
+                })
+              }
+            />
+            <BColor
+              className="mt10"
+              label={__("Background", "mp3player-block")}
+              value={liteBg}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "litePlayer", "liteBg"),
+                })
+              }
+            />
+            <BorderControl
+              label={__("Border", "mp3player-block")}
+              value={liteBorder}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "litePlayer", "liteBorder"),
+                })
+              }
+              defaults={{ radius: "15px" }}
+            />
+            <PanelRow>
+              <Label>{__("Padding", "mp3player-block")}</Label>
+              <Device />
+            </PanelRow>
+            <BBoxControl
+              label=""
+              values={litePadding[device]}
+              units={[pxUnit(), perUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: produce(style, (draft) => {
+                    draft.litePlayer.litePadding[device] = v;
+                  }),
+                })
+              }
+            />
+          </PanelBody>
+          <PanelBody
+            className="bPlPanelBody"
+            title={__("Controls", "mp3player-block")}
+          >
+            <BColor
+              className="mt10"
+              label={__("Color", "mp3player-block")}
+              value={liteControlsBg}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "litePlayer", "liteControlsBg"),
+                })
+              }
+            />
+            <BColor
+              className="mt10"
+              label={__("Running Progress Color", "mp3player-block")}
+              value={liteRunningProgressBg}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "litePlayer",
+                    "liteRunningProgressBg"
+                  ),
+                })
+              }
+            />
+            <BColor
+              className="mt10"
+              label={__("Infos Color", "mp3player-block")}
+              value={liteInfosColor}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "litePlayer",
+                    "liteInfosColor"
+                  ),
+                })
+              }
+            />
+            <Typography
+              label={__("Infos Typography", "mp3player-block")}
+              value={liteControlsTypo}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "litePlayer",
+                    "liteControlsTypo"
+                  ),
+                })
+              }
+              defaults={{ fontSize: 20 }}
+            />
+          </PanelBody>
+          <PanelBody
+            className="bPlPanelBody"
+            title={__("Playlist", "mp3player-block")}
+          >
+             <ColorsControl
+              className="mt20"
+              label={__("Colors", "mp3player-block")}
+              value={liteListColors}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "litePlayer", "liteListColors"),
+                })
+              }
+              defaults={{ color: "#999", bg: "#e5e5e5" }}
+            />
+             <BorderControl
+             className="mt10"
+              label={__("Border", "mp3player-block")}
+              value={liteListBorder}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "litePlayer", "liteListBorder"),
+                })
+              }
+              defaults={{ radius: 5 }}
             />
           </PanelBody>
         </>

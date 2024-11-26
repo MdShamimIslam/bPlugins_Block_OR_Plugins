@@ -13,6 +13,11 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
   const [trackDurations, setTrackDurations] = useState([]);
+  const [showAllTracks, setShowAllTracks] = useState(false);
+
+  const visibleTracks = showAllTracks
+    ? audioProperties
+    : audioProperties.slice(0, 5);
 
   useEffect(() => {
     const loadDurations = async () => {
@@ -21,8 +26,9 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
           return new Promise((resolve) => {
             const audio = new Audio(track.audio.url);
             audio.addEventListener("loadedmetadata", () => {
-              resolve(audio.duration);
+              resolve(audio.duration || 0);
             });
+            audio.addEventListener("error", () => resolve(0));
           });
         })
       );
@@ -32,17 +38,24 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
   }, [audioProperties]);
 
   const playTrack = (index) => {
+    const selectedTrack = audioProperties[index];
     setCurrentIndex(index);
-    setIsPlaying(true);
+    if (selectedTrack?.audio?.url) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
   };
 
   const togglePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
+    if (audioProperties[currentIndex]?.audio?.url) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleTimeUpdate = () => {
@@ -50,7 +63,11 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
   };
 
   const handleLoadedMetadata = () => {
-    setDuration(audioRef.current.duration);
+    if (audioRef.current?.duration) {
+      setDuration(audioRef.current.duration);
+    } else {
+      setDuration(0);
+    }
   };
 
   const seek = (e) => {
@@ -60,6 +77,7 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
   };
 
   const formatTime = (time) => {
+    if (!time || time === 0) return "00:00";
     const minutes = Math.floor(time / 60)
       .toString()
       .padStart(2, "0");
@@ -72,23 +90,28 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.load();
-      if (isPlaying) {
-        audioRef.current.play();
+      if (audioProperties[currentIndex]?.audio?.url) {
+        audioRef.current.onloadedmetadata = handleLoadedMetadata;
+        if (isPlaying) {
+          audioRef.current.play();
+        }
+      } else {
+        setDuration(0);
       }
     }
-  }, [currentIndex]);
+  }, [currentIndex, isPlaying]);
 
   return (
     <div className="player-ctn">
       <audio
         ref={audioRef}
-        src={audioProperties[currentIndex]?.audio?.url}
+        src={audioProperties[currentIndex]?.audio?.url || ""}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
       ></audio>
       <div className="infos-ctn">
         <div className="timer">{formatTime(currentTime)}</div>
-        <div className="title">{audioProperties[currentIndex]?.title}</div>
+        <div className="title2">{audioProperties[currentIndex]?.title}</div>
         <div className="duration">{formatTime(duration)}</div>
       </div>
       <div id="myProgress" onClick={seek}>
@@ -121,7 +144,7 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
         </span>
       </div>
       <div className="playlist-ctn">
-        {audioProperties?.map((item, index) => (
+        {visibleTracks?.map((item, index) => (
           <div
             key={index}
             className={`playlist-track-ctn ${
@@ -138,12 +161,28 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
             </div>
             <div className="playlist-info-track">{item.title}</div>
             <div className="playlist-duration">
-              {trackDurations[index]
+              {trackDurations[index] && trackDurations[index] > 0
                 ? formatTime(trackDurations[index])
                 : "00:00"}
             </div>
           </div>
         ))}
+        {audioProperties.length > 5 && !showAllTracks && (
+          <button
+            onClick={() => setShowAllTracks(true)}
+            style={{
+              marginTop: "10px",
+              padding: "8px 12px",
+              backgroundColor: "#BEAB8B",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            See More Music
+          </button>
+        )}
       </div>
     </div>
   );

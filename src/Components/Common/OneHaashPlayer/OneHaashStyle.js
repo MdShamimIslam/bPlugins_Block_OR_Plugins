@@ -48,7 +48,7 @@ const OneHaashStyle = ({ attributes, id, device = "desktop" }) => {
 
         ${episodeParaSl}{
             color:${haashSubTitle.color};
-			opacity:${haashSubTitle.opacity};
+			      opacity:${haashSubTitle.opacity};
         }
 
         ${episodeTitleSl}{

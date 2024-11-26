@@ -17,6 +17,8 @@ $primary-clr: rgba(228, 228, 229, 1);
 	@import './custom-scss/oneHaash';
 	// wooden player style
 	@import './custom-scss/wooden';
+	// wooden player style
+	@import './custom-scss/litePlayer';
 
 	@import './custom-scss/keyFrames';
 
@@ -199,6 +201,10 @@ $primary-clr: rgba(228, 228, 229, 1);
 			@import './custom-scss/controlsBtn';
 
 			
+	}
+
+	.LiteAudioPlayer{
+		display: flex;
 	}
 }
 

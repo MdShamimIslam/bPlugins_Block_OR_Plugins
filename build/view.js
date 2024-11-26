@@ -1265,7 +1265,7 @@ const OneHaashStyle = ({
 
         ${episodeParaSl}{
             color:${haashSubTitle.color};
-			opacity:${haashSubTitle.opacity};
+			      opacity:${haashSubTitle.opacity};
         }
 
         ${episodeTitleSl}{

@@ -1,0 +1,125 @@
+#myProgress {
+    width: 100%;
+    background-color: #BEAB8B; 
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  #myBar {
+    width: 0%;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  .btn-action {
+    cursor: pointer;
+    padding-top: 10px;
+    width: 30px;
+    text-align: center;
+  }
+  
+  .infos-ctn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:15px;
+    
+  }
+  .btn-ctn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:15px;
+    gap: 10px !important;
+    
+  }
+  
+  .infos-ctn {
+    padding-top: 20px;
+  }
+  
+  .btn-ctn > div {
+    padding: 5px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+  }
+  
+  .infos-ctn > div {
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .first-btn {
+    margin-left: 3px;
+  }
+  
+  .duration {
+    margin-left: 10px;
+  }
+  
+  .title {
+    margin-left: 10px;
+    width: 210px;
+    text-align: center;
+  }
+  
+  .player-ctn {
+    border-radius: 15px;
+    /* width: 420px; */
+    /* margin: auto;
+    margin-top: 100px; */
+    width: 100%;
+    padding: 10px;
+    background-color: #ededed;
+   
+  }
+  
+  .playlist-track-ctn {
+    display: flex;
+    align-items: center;
+    background-color: #e5e5e5;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .playlist-track-ctn > div {
+    margin: 10px;
+  }
+  
+  .playlist-info-track {
+    width: 80%;
+  }
+  
+  .playlist-info-track, .playlist-duration {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: #555;
+    font-size: 14px;
+    pointer-events: none;
+  }
+  
+  .playlist-ctn {
+    padding-bottom: 10px;
+    margin-top: 20px;
+  }
+  
+  .active-track {
+    background: #fff;
+    color: #999 !important;
+    font-weight: bold;
+  }
+  
+  .active-track > .playlist-info-track, 
+  .active-track > .playlist-duration {
+    color: #888 !important;
+  }
+  
+  .fas {
+    color: #BEAB8B;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  

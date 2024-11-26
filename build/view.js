@@ -1821,15 +1821,35 @@ const WoodenPlayerStyle = ({
     woHeight,
     woBorder,
     woShadow,
-    woPadding
+    woPadding,
+    woColors,
+    woBg,
+    woTDColors,
+    woTDBorder,
+    woTDTypo
   } = attributes.style.woodenPlayer;
   const idSl = `#${id}`;
   const woodenWrapSl = `${idSl} .woodenWrap`;
   const woodenMediaplayerSl = `${woodenWrapSl} .woodenMediaplayer`;
+  const discareaSl = `${woodenMediaplayerSl} .discarea`;
+  // const discSl = `${discareaSl} .disc`;
+  const stylusSl = `${discareaSl} .stylus `;
+  const pivotSl = `${stylusSl} .pivot`;
+  const headSl = `${stylusSl} .head`;
+  const armSl = `${stylusSl} .arm`;
+  const armBeforeSl = `${stylusSl} .arm::before`;
+  const woodenControlsSvgSl = `${woodenMediaplayerSl} .woodenControls .subCon div`;
+  const woodenTitleSl = `${woodenMediaplayerSl} .woodenControls .woodenTitle`;
+  const woodenDurationSl = `${woodenMediaplayerSl} .woodenControls .subControls .woodenDuration`;
+  const thumbSl = `${woodenMediaplayerSl} .woodenControls .subControls .volumeSlider::-webkit-slider-thumb`;
+  const truckSl = `${woodenMediaplayerSl} .woodenControls .subControls .volumeSlider::-webkit-slider-runnable-track`;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
     dangerouslySetInnerHTML: {
       __html: `
 
+        
+          ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', woTDTypo)?.googleFontLink}
+          ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(woodenTitleSl, woTDTypo)?.styles}
 
           ${woodenWrapSl}{
             justify-content: ${align[device]};
@@ -1842,9 +1862,26 @@ const WoodenPlayerStyle = ({
             width: ${woWidth[device]};
             height: ${woHeight[device]};
             justify-content: ${woAlign[device]};
+            background: ${woBg}
           }
-         
-            
+      
+          ${woodenTitleSl},${woodenDurationSl}{
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getColorsCSS)(woTDColors)}
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(woTDBorder)}
+          }
+
+          ${pivotSl},${headSl},${woodenControlsSvgSl},${thumbSl}{
+            background: ${woColors.variant1};
+          }
+
+          ${truckSl},${armSl}{
+            background: ${woColors.variant5};
+          }
+
+          ${armBeforeSl}{
+            background: ${woColors.variant8};
+          }
+
           @media only screen and (min-width:641px) and (max-width: 1024px) {
             ${woodenWrapSl}{
               justify-content: ${align.tablet};
@@ -1985,11 +2022,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BiVolumeMute: () => (/* binding */ BiVolumeMute),
 /* harmony export */   FaBackward: () => (/* binding */ FaBackward),
+/* harmony export */   FaBackwardLite: () => (/* binding */ FaBackwardLite),
 /* harmony export */   FaForward: () => (/* binding */ FaForward),
+/* harmony export */   FaForwardLite: () => (/* binding */ FaForwardLite),
 /* harmony export */   FaOnePause: () => (/* binding */ FaOnePause),
 /* harmony export */   FaOnePlay: () => (/* binding */ FaOnePlay),
 /* harmony export */   FaPause: () => (/* binding */ FaPause),
+/* harmony export */   FaPauseLite: () => (/* binding */ FaPauseLite),
 /* harmony export */   FaPlay: () => (/* binding */ FaPlay),
+/* harmony export */   FaPlayLite: () => (/* binding */ FaPlayLite),
 /* harmony export */   FaStop: () => (/* binding */ FaStop),
 /* harmony export */   FaVolumeUp: () => (/* binding */ FaVolumeUp),
 /* harmony export */   FaYoutube: () => (/* binding */ FaYoutube),
@@ -2180,20 +2221,6 @@ const nextIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
   d: "M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
 }));
-function FaForward(props) {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-    className: "wooCon",
-    stroke: "currentColor",
-    fill: "currentColor",
-    strokeWidth: 0,
-    viewBox: "0 0 512 512",
-    height: "1em",
-    width: "1em",
-    ...props
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
-  }));
-}
 function FaStop(props) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     className: "wooCon",
@@ -2206,6 +2233,76 @@ function FaStop(props) {
     ...props
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"
+  }));
+}
+function FaForwardLite(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fas",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
+  }));
+}
+function FaBackwardLite(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fas",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"
+  }));
+}
+function FaPlayLite(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fas",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+  }));
+}
+function FaPauseLite(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fas",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"
+  }));
+}
+function FaForward(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "wooCon",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
   }));
 }
 function FaBackward(props) {

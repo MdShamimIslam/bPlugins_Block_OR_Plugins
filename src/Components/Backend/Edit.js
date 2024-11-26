@@ -12,6 +12,7 @@ import OneHaashStyle from "../Common/OneHaashPlayer/OneHaashStyle";
 import AudioCard from "../Common/AudioPlayCard/AudioCard";
 import Wooden from "../Common/Wooden/Wooden";
 import SliderAudio from "../Common/SliderAudio/SliderAudio";
+import LiteAudioPlayer from "../Common/LitePlayer/LiteAudioPlayer";
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
@@ -118,7 +119,7 @@ const Edit = (props) => {
             id={`block-${clientId}`}
             device={device}
           />
-        ) : (
+        ) : songSl === "lite" ? <LiteAudioPlayer attributes={attributes} id={`block-${clientId}`} device={device} /> : (
           "No Player Added Yet!"
         )}
       </div>

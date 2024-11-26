@@ -422,14 +422,9 @@
   display: flex;
   background-size: 50%;
   background-repeat: repeat;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  width: auto;
-  height: auto;
   display: flex;
   flex-direction: row;
-  padding: 20px;
   box-sizing: border-box;
-  border-radius: 100px;
 }
 @media (max-width: 450px) {
   .wp-block-bpmp-mp3-player .woodenMediaplayer {
@@ -559,11 +554,6 @@
   width: 99%;
   box-sizing: border-box;
   padding: 3px 0 3px 10px;
-  font-size: 1rem;
-  color: #7F3A2B;
-  background-color: beige;
-  border-radius: 25px;
-  border: rgba(245, 245, 70, 0.4) 1px solid;
   overflow: hidden;
 }
 @media (max-width: 450px) {
@@ -630,12 +620,8 @@
   text-align: center;
   box-sizing: border-box;
   padding: 3px 10px;
-  font-size: 1rem;
-  color: #7F3A2B;
-  background-color: beige;
-  border-radius: 25px;
-  border: rgba(245, 245, 70, 0.4) 1px solid;
   margin-right: 10px;
+  font-size: 1rem;
 }
 .wp-block-bpmp-mp3-player .volumeSlider {
   -webkit-appearance: none;

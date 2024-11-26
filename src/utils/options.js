@@ -10,6 +10,7 @@ export const songSlOptions = [
 	{ label: 'Wooden', value: 'wooden' },
 	{ label: 'Card', value: 'card' },
 	{ label: 'OneHaash', value: 'oneHaash' },
+	{ label: 'Lite', value: 'lite' },
 	{ label: 'Slider', value: 'slider' },
 ]
 

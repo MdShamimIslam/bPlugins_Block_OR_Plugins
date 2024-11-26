@@ -196,7 +196,11 @@
             "tablet": "100%",
             "mobile": "100%"
           },
+          "woBg":"#1C1717",
           "woColors":{},
+          "woTDColors":{"bg":"#A4A4A4", "color":"#121212DE"},
+          "woTDBorder":{"radius":"20px"},
+          "woTDTypo":{"fontSize":"15px"},
           "woShadow": [
             {
               "blur": "20px",

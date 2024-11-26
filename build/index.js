@@ -10942,7 +10942,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const ColorSchema = () => {
+const ColorSchema = ({
+  attributes,
+  setAttributes
+}) => {
   const [colorVariants, setColorVariants] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)({});
   const [activeVariant, setActiveVariant] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
   const pickrRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
@@ -11032,14 +11035,26 @@ const ColorSchema = () => {
       };
     }
   }, [activeVariant, colorVariants]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (Object.keys(colorVariants).length > 0) {
+      setAttributes({
+        style: {
+          ...attributes.style,
+          woodenPlayer: {
+            ...attributes.style?.woodenPlayer,
+            woColors: colorVariants
+          }
+        }
+      });
+    }
+  }, [colorVariants]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "color-picker div1"
+    className: "color-picker"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "color-variants"
   }, Object.keys(colorVariants).length > 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     style: {
-      display: "flex",
-      marginLeft: "-40px"
+      display: "flex"
     }
   }, Object.keys(colorVariants).map((key, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     key: index,
@@ -11053,18 +11068,15 @@ const ColorSchema = () => {
     },
     onClick: () => handleVariantClick(key),
     title: colorVariants[key]
-  })))), activeVariant && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })))), activeVariant && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     style: {
-      display: "flex",
-      justifyContent: "space-between"
-    }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    style: {
-      marginLeft: "-45px",
       marginTop: "5px"
     }
   }, activeVariant), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "color-picker",
+    style: {
+      marginLeft: "-50px"
+    },
+    className: "color-picker activeVar",
     ref: pickrRef
   })));
 };
@@ -11101,6 +11113,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../Common/AudioPlayCard/AudioCard */ "./src/Components/Common/AudioPlayCard/AudioCard.js");
 /* harmony import */ var _Common_Wooden_Wooden__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../Common/Wooden/Wooden */ "./src/Components/Common/Wooden/Wooden.js");
 /* harmony import */ var _Common_SliderAudio_SliderAudio__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../Common/SliderAudio/SliderAudio */ "./src/Components/Common/SliderAudio/SliderAudio.js");
+/* harmony import */ var _Common_LitePlayer_LiteAudioPlayer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../Common/LitePlayer/LiteAudioPlayer */ "./src/Components/Common/LitePlayer/LiteAudioPlayer.js");
+
 
 
 
@@ -11210,6 +11224,10 @@ const Edit = props => {
     id: `block-${clientId}`,
     device: device
   })) : songSl === "card" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_AudioPlayCard_AudioCard__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    attributes: attributes,
+    id: `block-${clientId}`,
+    device: device
+  }) : songSl === "lite" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_LitePlayer_LiteAudioPlayer__WEBPACK_IMPORTED_MODULE_14__["default"], {
     attributes: attributes,
     id: `block-${clientId}`,
     device: device
@@ -11528,7 +11546,7 @@ const General = ({
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
       value: title,
       onChange: val => updateAudioProperty(index, "title", val)
-    })), songSl !== "wooden" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, {
+    })), songSl !== "wooden" && songSl !== "lite" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, {
       className: ""
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Artist:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
       value: artist,
@@ -11540,7 +11558,7 @@ const General = ({
         updateAudioProperty(index, "audio", val);
       },
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Enter Audio URL", "mp3player-block")
-    }), songSl !== "oneHaash" && songSl !== "wooden" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Cover Photo:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.InlineDetailMediaUpload, {
+    }), songSl !== "oneHaash" && songSl !== "wooden" && songSl !== "lite" && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Cover Photo:", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_6__.InlineDetailMediaUpload, {
       value: cover,
       types: ["image"],
       onChange: val => updateAudioProperty(index, "cover", val),
@@ -12048,7 +12066,11 @@ const Styles = ({
     woShadow,
     woBorder,
     woPadding,
-    woAlign
+    woAlign,
+    woBg,
+    woTDColors,
+    woTDBorder,
+    woTDTypo
   } = woodenPlayer;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, songSl === "slider" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
@@ -12513,9 +12535,9 @@ const Styles = ({
     defaults: {
       fontSize: 20
     }
-  })))) : songSl === "wooden" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  })))) : songSl === "wooden" ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     className: "bPlPanelBody",
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Wooden Player Style", "mp3player-block")
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Player Wrapper", "mp3player-block")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Label, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Width", "mp3player-block")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components_Device_Device__WEBPACK_IMPORTED_MODULE_4__.Device, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalUnitControl, {
     value: woWidth[device],
     units: [(0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.pxUnit)(), (0,_Components_utils_options__WEBPACK_IMPORTED_MODULE_8__.perUnit)()],
@@ -12528,9 +12550,13 @@ const Styles = ({
     onChange: v => setAttributes({
       style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "woodenPlayer", "woHeight", device)
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "colorSchema"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Colors"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ColorSchema_ColorSchema__WEBPACK_IMPORTED_MODULE_10__["default"], null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.MultiShadowControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BColor, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Background", "mp3player-block"),
+    value: woBg,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "woodenPlayer", "woBg")
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.MultiShadowControl, {
     label: "Shadow",
     value: woShadow,
     onChange: val => setAttributes({
@@ -12544,7 +12570,7 @@ const Styles = ({
     })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "mt10"
-  }, "Player Alignment"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Tab__WEBPACK_IMPORTED_MODULE_9__.Tab, {
+  }, "Alignment"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Tab__WEBPACK_IMPORTED_MODULE_9__.Tab, {
     options: ["left", "center", "right"],
     value: woAlign[device],
     onChange: v => setAttributes({
@@ -12559,7 +12585,47 @@ const Styles = ({
         draft.woodenPlayer.woPadding[device] = v;
       })
     })
-  })) : "No style");
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Controls", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "colorSchema"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Controls Background "), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ColorSchema_ColorSchema__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    className: "bPlPanelBody",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title and Time Duration", "mp3player-block")
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.ColorsControl, {
+    className: "mt20",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Colors", "mp3player-block"),
+    value: woTDColors,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "woodenPlayer", "woTDColors")
+    }),
+    defaults: {
+      color: "white",
+      bg: "rgba(163, 162, 164, 0.3)"
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.Typography, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Typography", "mp3player-block"),
+    value: woTDTypo,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "woodenPlayer", "woTDTypo")
+    }),
+    defaults: {
+      fontSize: 15
+    }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Components__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Border", "mp3player-block"),
+    value: woTDBorder,
+    onChange: v => setAttributes({
+      style: (0,_utils_functions__WEBPACK_IMPORTED_MODULE_5__.updateData)(style, v, "woodenPlayer", "woTDBorder")
+    }),
+    defaults: {
+      radius: 20
+    }
+  }))) : "No style");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Styles);
 
@@ -13044,6 +13110,217 @@ const AudioPlayCardStyle = ({
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayCardStyle);
+
+/***/ }),
+
+/***/ "./src/Components/Common/LitePlayer/LiteAudioPlayer.js":
+/*!*************************************************************!*\
+  !*** ./src/Components/Common/LitePlayer/LiteAudioPlayer.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _LitePlayer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LitePlayer */ "./src/Components/Common/LitePlayer/LitePlayer.js");
+/* harmony import */ var _LitePlayerStyle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LitePlayerStyle */ "./src/Components/Common/LitePlayer/LitePlayerStyle.js");
+
+
+
+
+const LiteAudioPlayer = ({
+  attributes,
+  id,
+  device
+}) => {
+  const [currentIndex, setCurrentIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_LitePlayerStyle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    id: id,
+    device: device
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_LitePlayer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    attributes: attributes,
+    currentIndex: currentIndex,
+    setCurrentIndex: setCurrentIndex
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LiteAudioPlayer);
+
+/***/ }),
+
+/***/ "./src/Components/Common/LitePlayer/LitePlayer.js":
+/*!********************************************************!*\
+  !*** ./src/Components/Common/LitePlayer/LitePlayer.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/icons */ "./src/utils/icons.js");
+
+
+
+const LitePlayer = ({
+  attributes,
+  currentIndex,
+  setCurrentIndex
+}) => {
+  const {
+    audioProperties
+  } = attributes;
+  const [isPlaying, setIsPlaying] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [currentTime, setCurrentTime] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [duration, setDuration] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const audioRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const [trackDurations, setTrackDurations] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const loadDurations = async () => {
+      const durations = await Promise.all(audioProperties.map(track => {
+        return new Promise(resolve => {
+          const audio = new Audio(track.audio.url);
+          audio.addEventListener("loadedmetadata", () => {
+            resolve(audio.duration);
+          });
+        });
+      }));
+      setTrackDurations(durations);
+    };
+    loadDurations();
+  }, [audioProperties]);
+  const playTrack = index => {
+    setCurrentIndex(index);
+    setIsPlaying(true);
+  };
+  const togglePlayPause = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+  const handleTimeUpdate = () => {
+    setCurrentTime(audioRef.current.currentTime);
+  };
+  const handleLoadedMetadata = () => {
+    setDuration(audioRef.current.duration);
+  };
+  const seek = e => {
+    const percent = e.nativeEvent.offsetX / e.target.offsetWidth;
+    audioRef.current.currentTime = percent * duration;
+    setCurrentTime(audioRef.current.currentTime);
+  };
+  const formatTime = time => {
+    const minutes = Math.floor(time / 60).toString().padStart(2, "0");
+    const seconds = Math.floor(time % 60).toString().padStart(2, "0");
+    return `${minutes}:${seconds}`;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (audioRef.current) {
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play();
+      }
+    }
+  }, [currentIndex]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player-ctn"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("audio", {
+    ref: audioRef,
+    src: audioProperties[currentIndex]?.audio?.url,
+    onTimeUpdate: handleTimeUpdate,
+    onLoadedMetadata: handleLoadedMetadata
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "infos-ctn"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "timer"
+  }, formatTime(currentTime)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "title"
+  }, audioProperties[currentIndex]?.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "duration"
+  }, formatTime(duration))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "myProgress",
+    onClick: seek
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    id: "myBar",
+    style: {
+      width: `${currentTime / duration * 100}%`
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "btn-ctn"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    onClick: () => playTrack(currentIndex - 1 >= 0 ? currentIndex - 1 : 0)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaBackwardLite, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    style: {
+      padding: "0 20px"
+    },
+    onClick: togglePlayPause
+  }, isPlaying ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaPauseLite, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaPlayLite, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    onClick: () => playTrack(currentIndex + 1 < audioProperties?.length ? currentIndex + 1 : currentIndex)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaForwardLite, null))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "playlist-ctn"
+  }, audioProperties?.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: index,
+    className: `playlist-track-ctn ${index === currentIndex ? "active-track" : ""}`,
+    onClick: () => playTrack(index)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: togglePlayPause,
+    className: "playlist-btn-play"
+  }, index === currentIndex && isPlaying ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaPauseLite, null) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_utils_icons__WEBPACK_IMPORTED_MODULE_1__.FaPlayLite, null)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "playlist-info-track"
+  }, item.title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "playlist-duration"
+  }, trackDurations[index] ? formatTime(trackDurations[index]) : "00:00")))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LitePlayer);
+
+/***/ }),
+
+/***/ "./src/Components/Common/LitePlayer/LitePlayerStyle.js":
+/*!*************************************************************!*\
+  !*** ./src/Components/Common/LitePlayer/LitePlayerStyle.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const LitePlayerStyle = () => {
+  // { attributes, id, device = "desktop" }
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    dangerouslySetInnerHTML: {
+      __html: `
+
+        
+
+        @media only screen and (min-width:641px) and (max-width: 1024px){
+                
+        }
+
+
+        @media only screen and (max-width:640px){
+            
+        }
+
+		`
+    }
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LitePlayerStyle);
 
 /***/ }),
 
@@ -14136,15 +14413,35 @@ const WoodenPlayerStyle = ({
     woHeight,
     woBorder,
     woShadow,
-    woPadding
+    woPadding,
+    woColors,
+    woBg,
+    woTDColors,
+    woTDBorder,
+    woTDTypo
   } = attributes.style.woodenPlayer;
   const idSl = `#${id}`;
   const woodenWrapSl = `${idSl} .woodenWrap`;
   const woodenMediaplayerSl = `${woodenWrapSl} .woodenMediaplayer`;
+  const discareaSl = `${woodenMediaplayerSl} .discarea`;
+  // const discSl = `${discareaSl} .disc`;
+  const stylusSl = `${discareaSl} .stylus `;
+  const pivotSl = `${stylusSl} .pivot`;
+  const headSl = `${stylusSl} .head`;
+  const armSl = `${stylusSl} .arm`;
+  const armBeforeSl = `${stylusSl} .arm::before`;
+  const woodenControlsSvgSl = `${woodenMediaplayerSl} .woodenControls .subCon div`;
+  const woodenTitleSl = `${woodenMediaplayerSl} .woodenControls .woodenTitle`;
+  const woodenDurationSl = `${woodenMediaplayerSl} .woodenControls .subControls .woodenDuration`;
+  const thumbSl = `${woodenMediaplayerSl} .woodenControls .subControls .volumeSlider::-webkit-slider-thumb`;
+  const truckSl = `${woodenMediaplayerSl} .woodenControls .subControls .volumeSlider::-webkit-slider-runnable-track`;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
     dangerouslySetInnerHTML: {
       __html: `
 
+        
+          ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)('', woTDTypo)?.googleFontLink}
+          ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getTypoCSS)(woodenTitleSl, woTDTypo)?.styles}
 
           ${woodenWrapSl}{
             justify-content: ${align[device]};
@@ -14157,9 +14454,26 @@ const WoodenPlayerStyle = ({
             width: ${woWidth[device]};
             height: ${woHeight[device]};
             justify-content: ${woAlign[device]};
+            background: ${woBg}
           }
-         
-            
+      
+          ${woodenTitleSl},${woodenDurationSl}{
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getColorsCSS)(woTDColors)}
+            ${(0,_Components_utils_getCSS__WEBPACK_IMPORTED_MODULE_1__.getBorderCSS)(woTDBorder)}
+          }
+
+          ${pivotSl},${headSl},${woodenControlsSvgSl},${thumbSl}{
+            background: ${woColors.variant1};
+          }
+
+          ${truckSl},${armSl}{
+            background: ${woColors.variant5};
+          }
+
+          ${armBeforeSl}{
+            background: ${woColors.variant8};
+          }
+
           @media only screen and (min-width:641px) and (max-width: 1024px) {
             ${woodenWrapSl}{
               justify-content: ${align.tablet};
@@ -14299,11 +14613,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BiVolumeMute: () => (/* binding */ BiVolumeMute),
 /* harmony export */   FaBackward: () => (/* binding */ FaBackward),
+/* harmony export */   FaBackwardLite: () => (/* binding */ FaBackwardLite),
 /* harmony export */   FaForward: () => (/* binding */ FaForward),
+/* harmony export */   FaForwardLite: () => (/* binding */ FaForwardLite),
 /* harmony export */   FaOnePause: () => (/* binding */ FaOnePause),
 /* harmony export */   FaOnePlay: () => (/* binding */ FaOnePlay),
 /* harmony export */   FaPause: () => (/* binding */ FaPause),
+/* harmony export */   FaPauseLite: () => (/* binding */ FaPauseLite),
 /* harmony export */   FaPlay: () => (/* binding */ FaPlay),
+/* harmony export */   FaPlayLite: () => (/* binding */ FaPlayLite),
 /* harmony export */   FaStop: () => (/* binding */ FaStop),
 /* harmony export */   FaVolumeUp: () => (/* binding */ FaVolumeUp),
 /* harmony export */   FaYoutube: () => (/* binding */ FaYoutube),
@@ -14494,20 +14812,6 @@ const nextIcon = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
   d: "M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
 }));
-function FaForward(props) {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-    className: "wooCon",
-    stroke: "currentColor",
-    fill: "currentColor",
-    strokeWidth: 0,
-    viewBox: "0 0 512 512",
-    height: "1em",
-    width: "1em",
-    ...props
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-    d: "M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
-  }));
-}
 function FaStop(props) {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     className: "wooCon",
@@ -14520,6 +14824,76 @@ function FaStop(props) {
     ...props
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"
+  }));
+}
+function FaForwardLite(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fas",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
+  }));
+}
+function FaBackwardLite(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fas",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"
+  }));
+}
+function FaPlayLite(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fas",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+  }));
+}
+function FaPauseLite(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "fas",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 448 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"
+  }));
+}
+function FaForward(props) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    className: "wooCon",
+    stroke: "currentColor",
+    fill: "currentColor",
+    strokeWidth: 0,
+    viewBox: "0 0 512 512",
+    height: "1em",
+    width: "1em",
+    ...props
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"
   }));
 }
 function FaBackward(props) {
@@ -14650,6 +15024,9 @@ const songSlOptions = [{
 }, {
   label: 'OneHaash',
   value: 'oneHaash'
+}, {
+  label: 'Lite',
+  value: 'lite'
 }, {
   label: 'Slider',
   value: 'slider'
@@ -29265,7 +29642,7 @@ SwiperSlide.displayName = 'SwiperSlide';
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"center","tablet":"center","mobile":"center"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"cardPlayer":{"cardBg":"#fff","cardBorder":{},"cardAlign":{"desktop":"center","tablet":"center","mobile":"center"},"cardWidth":{"desktop":"300px","tablet":"300px","mobile":"270px"},"cardHeight":{"desktop":"550px","tablet":"550px","mobile":"500px"},"cardImgHeight":{"desktop":"300px","tablet":"300px","mobile":"300px"},"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":10,"tablet":10,"mobile":0},"wave3Top":{"desktop":10,"tablet":10,"mobile":0},"cardShadow":[{"blur":"15px","color":"#7090b0","hOffset":"0px","isInset":false,"spreed":"0px","vOffset":"0px"}],"cardTitle":{"color":"#000","typo":{"fontSize":30}},"cardSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}}},"woodenPlayer":{"woAlign":{"desktop":"center","tablet":"center","mobile":"center"},"woWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"woHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"woColors":{},"woShadow":[{"blur":"20px","color":"#0000004D","hOffset":"0px","isInset":false,"spreed":"0px","vOffset":"5px"}],"woBorder":{"radius":"100px"},"woPadding":{"desktop":{"top":"20px","right":"20px","bottom":"20px","left":"20px"},"tablet":{"top":"20px","right":"20px","bottom":"20px","left":"20px"},"mobile":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}}},"align":{"desktop":"center","tablet":"center","mobile":"center"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bpmp/mp3-player","title":"Audio Player","description":"Listen music on the web.","category":"widgets","keywords":["music player","audio player","mp3 player block"],"textdomain":"mp3player-block","attributes":{"align":{"type":"string","default":""},"audioProperties":{"type":"array","default":[{"title":"Green Chair","artist":"Diego Nava","cover":{"id":null,"url":"","alt":"","title":"","link":""},"audio":{"id":null,"url":"","title":""},"link":""}]},"options":{"type":"object","default":{"songSl":"default","textSl":"title","rangeSl":"input","isThumb":true,"isOverlayIcon":false,"isAutoPlay":true,"newTab":true,"oneHaash":{"isBackForIcon":true,"isPrevNextIcon":true,"isOldTime":true,"isRunningTime":true,"isPlaySpeed":true,"isDownloadIcon":true}}},"style":{"type":"object","default":{"oneHaashPlayer":{"waveBg":"#4527a4","haashAlign":{"desktop":"center","tablet":"center","mobile":"center"},"haashWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"haashBorder":{"radius":"5px","width":"1px","style":"solid","color":"#ccc"},"hasshPadding":{"desktop":{"top":"20px","right":"25px","bottom":"10px","left":"25px"},"tablet":{"top":"20px","left":"25px","right":"25px","bottom":"10px"},"mobile":{"top":"20px","left":"25px","right":"25px","bottom":"10px"}},"haashTitle":{"color":"#000","typo":{"fontSize":30}},"haashSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}},"haashInputRange":{"staticColor":"#ccc","progressColor":"#4527a4"}},"cardPlayer":{"cardBg":"#fff","cardBorder":{},"cardAlign":{"desktop":"center","tablet":"center","mobile":"center"},"cardWidth":{"desktop":"300px","tablet":"300px","mobile":"270px"},"cardHeight":{"desktop":"550px","tablet":"550px","mobile":"500px"},"cardImgHeight":{"desktop":"300px","tablet":"300px","mobile":"300px"},"waveTop":{"desktop":-130,"tablet":-130,"mobile":-160},"wave2Top":{"desktop":10,"tablet":10,"mobile":0},"wave3Top":{"desktop":10,"tablet":10,"mobile":0},"cardShadow":[{"blur":"15px","color":"#7090b0","hOffset":"0px","isInset":false,"spreed":"0px","vOffset":"0px"}],"cardTitle":{"color":"#000","typo":{"fontSize":30}},"cardSubTitle":{"color":"#879eb4","opacity":0.6,"typo":{"fontSize":20}}},"woodenPlayer":{"woAlign":{"desktop":"center","tablet":"center","mobile":"center"},"woWidth":{"desktop":"100%","tablet":"100%","mobile":"100%"},"woHeight":{"desktop":"100%","tablet":"100%","mobile":"100%"},"woBg":"#1C1717","woColors":{},"woTDColors":{"bg":"#A4A4A4","color":"#121212DE"},"woTDBorder":{"radius":"20px"},"woTDTypo":{"fontSize":"15px"},"woShadow":[{"blur":"20px","color":"#0000004D","hOffset":"0px","isInset":false,"spreed":"0px","vOffset":"5px"}],"woBorder":{"radius":"100px"},"woPadding":{"desktop":{"top":"20px","right":"20px","bottom":"20px","left":"20px"},"tablet":{"top":"20px","right":"20px","bottom":"20px","left":"20px"},"mobile":{"top":"20px","right":"20px","bottom":"20px","left":"20px"}}},"align":{"desktop":"center","tablet":"center","mobile":"center"},"width":{"desktop":"","tablet":"","mobile":""},"height":{"desktop":"","tablet":"","mobile":""},"border":{"radius":"5px"},"bg":"#3F2A25","musicSlider":{"sliderWidth":{"desktop":"100px","tablet":"80px","mobile":"70px"},"sliderHeight":{"desktop":"80px","tablet":"60px","mobile":"40px"},"border":{"radius":"3px"},"overlayBg":"rgba(28, 22, 37, 0.6)"},"musicTitle":{"color":"#fff","typo":{"fontSize":30}},"musicName":{"color":"#ddd","opacity":0.6,"typo":{"fontSize":20}},"rangeInput":{"width":{"desktop":"400px","tablet":"380px","mobile":"160px"},"height":{"desktop":"7px","tablet":"6px","mobile":"6px"},"margin":{"desktop":{"top":"15px"},"tablet":{"top":"10px"},"mobile":{"top":"7px"}},"radius":4,"bg":"#FFFFFF5E","progressBg":"#EE714B","timeBg":"white"},"rangeThumb":{"thumbWidth":{"desktop":"16px","tablet":"15px","mobile":"14px"},"thumbBg":"#EE714B","thumbShadow":[],"thumbOutline":{"width":"4px","style":"solid","color":"white","radius":"50%"}},"controlsBtn":{"width":{"desktop":"50px","tablet":"45px","mobile":"40px"},"colors":{"color":"white","bg":"rgba(163, 162, 164, 0.3)"},"border":{"width":"1px","style":"solid","color":"rgba(255, 255, 255, 0.3)","radius":"50%"}}}},"width":{"type":"string","default":"290px"},"alignment":{"type":"string","default":"center"}},"supports":{"align":["wide","full"],"html":false},"example":{"attributes":{}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./view.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

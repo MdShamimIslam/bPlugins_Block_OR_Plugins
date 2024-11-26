@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "@wordpress/element";
 
-const ColorSchema = () => {
+const ColorSchema = ({ attributes, setAttributes }) => {
+ 
   const [colorVariants, setColorVariants] = useState({});
   const [activeVariant, setActiveVariant] = useState(null);
   const pickrRef = useRef(null);
@@ -120,12 +121,27 @@ const ColorSchema = () => {
     }
   }, [activeVariant, colorVariants]);
 
+  useEffect(() => {
+    if (Object.keys(colorVariants).length > 0) {
+      setAttributes({
+        style: {
+          ...attributes.style,
+          woodenPlayer: {
+            ...attributes.style?.woodenPlayer,
+            woColors: colorVariants,
+          },
+        },
+      });
+    }
+  }, [colorVariants]);
+
+
   return (
     <div>
-      <div className="color-picker div1"></div>
+      <div className="color-picker"></div>
       <div className="color-variants">
         {Object.keys(colorVariants).length > 0 && (
-          <ul style={{display:"flex", marginLeft:"-40px"}}>
+          <ul style={{ display: "flex" }}>
             {Object.keys(colorVariants).map((key, index) => (
               <li
                 key={index}
@@ -146,9 +162,11 @@ const ColorSchema = () => {
       </div>
 
       {activeVariant && (
-        <div style={{display:"flex",justifyContent:"space-between"}}>
-          <p style={{marginLeft:"-45px", marginTop:"5px"}}>{activeVariant}</p>
-          <div className="color-picker" ref={pickrRef}></div>
+        <div>
+          <p style={{ marginTop: "5px" }}>
+            {activeVariant}
+          </p>
+          <div style={{marginLeft:"-50px"}} className="color-picker activeVar" ref={pickrRef}></div>
         </div>
       )}
     </div>

@@ -66,7 +66,18 @@ const Styles = ({ attributes, setAttributes, device }) => {
     cardSubTitle,
   } = cardPlayer;
 
-  const { woWidth, woHeight, woShadow, woBorder, woPadding, woAlign } = woodenPlayer;
+  const {
+    woWidth,
+    woHeight,
+    woShadow,
+    woBorder,
+    woPadding,
+    woAlign,
+    woBg,
+    woTDColors,
+    woTDBorder,
+    woTDTypo,
+  } = woodenPlayer;
 
   return (
     <>
@@ -952,59 +963,77 @@ const Styles = ({ attributes, setAttributes, device }) => {
           </PanelBody>
         </>
       ) : songSl === "wooden" ? (
-        <PanelBody
-          className="bPlPanelBody"
-          title={__("Wooden Player Style", "mp3player-block")}
-        >
-          <PanelRow>
-            <Label>{__("Width", "mp3player-block")}</Label>
-            <Device />
-          </PanelRow>
-          <UnitControl
-            value={woWidth[device]}
-            units={[pxUnit(), perUnit()]}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(style, v, "woodenPlayer", "woWidth", device),
-              })
-            }
-          />
-          <PanelRow>
-            <Label>{__("Height", "mp3player-block")}</Label>
-            <Device />
-          </PanelRow>
-          <UnitControl
-            value={woHeight[device]}
-            units={[pxUnit(), perUnit()]}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(style, v, "woodenPlayer", "woHeight", device),
-              })
-            }
-          />
-          <div className="colorSchema">
-            <p>Colors</p>
-            <ColorSchema />
-          </div>
-          <MultiShadowControl
-            label="Shadow"
-            value={woShadow}
-            onChange={(val) =>
-              setAttributes({
-                style: updateData(style, val, "woodenPlayer", "woShadow"),
-              })
-            }
-          />
-          <BorderControl
-            label={__("Border", "mp3player-block")}
-            value={woBorder}
-            onChange={(v) =>
-              setAttributes({
-                style: updateData(style, v, "woodenPlayer", "woBorder"),
-              })
-            }
-          />
-          <p className="mt10">Player Alignment</p>
+        <>
+          <PanelBody
+            className="bPlPanelBody"
+            title={__("Player Wrapper", "mp3player-block")}
+          >
+            <PanelRow>
+              <Label>{__("Width", "mp3player-block")}</Label>
+              <Device />
+            </PanelRow>
+            <UnitControl
+              value={woWidth[device]}
+              units={[pxUnit(), perUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "woodenPlayer",
+                    "woWidth",
+                    device
+                  ),
+                })
+              }
+            />
+            <PanelRow>
+              <Label>{__("Height", "mp3player-block")}</Label>
+              <Device />
+            </PanelRow>
+            <UnitControl
+              value={woHeight[device]}
+              units={[pxUnit(), perUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(
+                    style,
+                    v,
+                    "woodenPlayer",
+                    "woHeight",
+                    device
+                  ),
+                })
+              }
+            />
+            <BColor
+              label={__("Background", "mp3player-block")}
+              value={woBg}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "woodenPlayer", "woBg"),
+                })
+              }
+            />
+            <MultiShadowControl
+              label="Shadow"
+              value={woShadow}
+              onChange={(val) =>
+                setAttributes({
+                  style: updateData(style, val, "woodenPlayer", "woShadow"),
+                })
+              }
+            />
+            <BorderControl
+              label={__("Border", "mp3player-block")}
+              value={woBorder}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "woodenPlayer", "woBorder"),
+                })
+              }
+            />
+            <p className="mt10">Alignment</p>
             <Tab
               options={["left", "center", "right"]}
               value={woAlign[device]}
@@ -1020,23 +1049,72 @@ const Styles = ({ attributes, setAttributes, device }) => {
                 })
               }
             />
-          <PanelRow>
-            <Label>{__("Padding", "mp3player-block")}</Label>
-            <Device />
-          </PanelRow>
-          <BBoxControl
-            label=""
-            values={woPadding[device]}
-            units={[pxUnit(), perUnit()]}
-            onChange={(v) =>
-              setAttributes({
-                style: produce(style, (draft) => {
-                  draft.woodenPlayer.woPadding[device] = v;
-                }),
-              })
-            }
-          />
-        </PanelBody>
+            <PanelRow>
+              <Label>{__("Padding", "mp3player-block")}</Label>
+              <Device />
+            </PanelRow>
+            <BBoxControl
+              label=""
+              values={woPadding[device]}
+              units={[pxUnit(), perUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: produce(style, (draft) => {
+                    draft.woodenPlayer.woPadding[device] = v;
+                  }),
+                })
+              }
+            />
+          </PanelBody>
+          <PanelBody
+            className="bPlPanelBody"
+            title={__("Controls", "mp3player-block")}
+          >
+            <div className="colorSchema">
+              <p>Controls Background </p>
+              <ColorSchema
+                attributes={attributes}
+                setAttributes={setAttributes}
+              />
+            </div>
+          </PanelBody>
+          <PanelBody
+            className="bPlPanelBody"
+            title={__("Title and Time Duration", "mp3player-block")}
+          >
+            <ColorsControl
+              className="mt20"
+              label={__("Colors", "mp3player-block")}
+              value={woTDColors}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "woodenPlayer", "woTDColors"),
+                })
+              }
+              defaults={{ color: "white", bg: "rgba(163, 162, 164, 0.3)" }}
+            />
+            <Typography
+              label={__("Typography", "mp3player-block")}
+              value={woTDTypo}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "woodenPlayer", "woTDTypo"),
+                })
+              }
+              defaults={{ fontSize: 15 }}
+            />
+            <BorderControl
+              label={__("Border", "mp3player-block")}
+              value={woTDBorder}
+              onChange={(v) =>
+                setAttributes({
+                  style: updateData(style, v, "woodenPlayer", "woTDBorder"),
+                })
+              }
+              defaults={{ radius: 20 }}
+            />
+          </PanelBody>
+        </>
       ) : (
         "No style"
       )}

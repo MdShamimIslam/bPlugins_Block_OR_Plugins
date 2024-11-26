@@ -123,7 +123,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
               </PanelRow>
 
               {
-                songSl !== "wooden" &&    <PanelRow>
+                songSl !== "wooden" && songSl !== "lite" &&    <PanelRow>
                 <Label className="">{__("Artist:", "mp3player-block")}</Label>
                 <TextControl
                   value={artist}
@@ -131,7 +131,6 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
                 />
               </PanelRow>
               }
-           
 
               <Label>{__("Audio File:", "mp3player-block")}</Label>
               <InlineDetailMediaUpload
@@ -143,7 +142,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
                 placeholder={__("Enter Audio URL", "mp3player-block")}
               />
 
-              {songSl !== "oneHaash" && songSl !== "wooden"  && (
+              {songSl !== "oneHaash" && songSl !== "wooden" && songSl !== "lite"   && (
                 <>
                   <Label>{__("Cover Photo:", "mp3player-block")}</Label>
                   <InlineDetailMediaUpload

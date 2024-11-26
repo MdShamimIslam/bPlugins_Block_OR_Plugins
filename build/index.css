@@ -31,17 +31,12 @@
 }
 
 .colorSchema {
-  display: flex;
-  justify-content: space-between;
   margin-top: 20px;
 }
 
-.colorSchema p {
-  margin-top: 10px;
-}
-
-.div1 {
-  margin-left: 10px;
+.pickr {
+  margin-top: -35px;
+  margin-left: 34px;
 }
 
 .pcr-button {

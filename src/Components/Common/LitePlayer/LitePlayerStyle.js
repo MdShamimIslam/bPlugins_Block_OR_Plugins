@@ -43,7 +43,7 @@ const LitePlayerStyle = ({ attributes, id, device = "desktop" }) => {
         ${getTypoCSS(infosSl, liteControlsTypo)?.styles}
 
         ${liteAudioPlayerSl} {
-         justify-content: ${align[device]}
+         justify-content: ${align[device]};
         }
 
         ${playlistSl} {
@@ -84,7 +84,7 @@ const LitePlayerStyle = ({ attributes, id, device = "desktop" }) => {
 
         @media only screen and (min-width:641px) and (max-width: 1024px){
           ${liteAudioPlayerSl} {
-            justify-content: ${align.tablet}
+            justify-content: ${align.tablet};
            }
           ${playerSl} {
             padding: ${getBoxCSS(litePadding.tablet)};
@@ -93,10 +93,9 @@ const LitePlayerStyle = ({ attributes, id, device = "desktop" }) => {
            
         }
 
-
         @media only screen and (max-width:640px){
           ${liteAudioPlayerSl} {
-            justify-content: ${align.mobile}
+            justify-content: ${align.mobile};
            }
 
            ${playerSl} {

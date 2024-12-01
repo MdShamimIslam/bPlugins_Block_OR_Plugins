@@ -5,6 +5,7 @@ import OneHaash from "./Components/FrontEnd/OneHaash";
 import AudioCard from "./Components/Common/AudioPlayCard/AudioCard";
 import Wooden from "./Components/Common/Wooden/Wooden";
 import SliderAudio from "./Components/Common/SliderAudio/SliderAudio";
+import LiteAudioPlayer from "./Components/Common/LitePlayer/LiteAudioPlayer";
 
 document.addEventListener("DOMContentLoaded", () => {
   const mp3PlayerEls = document.querySelectorAll(".wp-block-bpmp-mp3-player");
@@ -26,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <AudioCard attributes={attributes} id={mp3PlayerEl.id} />
               ) : songSl === "wooden" ? (
                 <Wooden attributes={attributes} id={mp3PlayerEl.id} />
+              ) : songSl === "lite" ? (
+                <LiteAudioPlayer attributes={attributes} id={mp3PlayerEl.id} />
               ) : (
                 "No Player Added yet"
               )}

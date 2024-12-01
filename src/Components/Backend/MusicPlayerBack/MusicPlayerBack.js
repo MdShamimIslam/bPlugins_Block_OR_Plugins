@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  FaBackward,
-  FaForward,
-  FaPause,
-  FaPlay,
-} from "../../../utils/icons";
+import { FaBackward, FaForward, FaPause, FaPlay } from "../../../utils/icons";
 
 const MusicPlayerBack = ({
   audioRef,
@@ -62,11 +57,17 @@ const MusicPlayerBack = ({
     setProgress(0);
     setCurrentTime(0);
 
-    audio.src = audioProperties[newIndex].audio?.url;
-
-    if (isPlaying) {
-      audio.play();
+    const nextAudioUrl = audioProperties[newIndex]?.audio?.url;
+    if (nextAudioUrl) {
+      audio.src = nextAudioUrl;
+      if (isPlaying) {
+        audio.play();
+      }
+    } else {
+      audio.pause();
+      setIsPlaying(false);
     }
+
     if (swiperRef.current) {
       swiperRef.current.slideTo(newIndex);
     }
@@ -78,10 +79,12 @@ const MusicPlayerBack = ({
     setCurrentTime(currentTime);
 
     const progress = (currentTime / audio.duration) * 100;
+    
     setProgress(progress);
   };
 
   const formatTime = (time) => {
+    if (!time || isNaN(time)) return "00:00";
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
@@ -97,6 +100,8 @@ const MusicPlayerBack = ({
         audio.pause();
         setIsPlaying(false);
       }
+    } else {
+      setIsPlaying(false);
     }
   };
 
@@ -148,7 +153,12 @@ const MusicPlayerBack = ({
           step="0.1"
           style={progressStyle}
         />
-        <span className="duration-time">{formatTime(duration)}</span>
+        <span className="duration-time">
+          {audioProperties[activeIndex]?.audio?.url
+            ? formatTime(duration)
+            : "00:00"}
+        </span>
+        {/* <span className="duration-time">{formatTime(duration)}</span> */}
       </div>
 
       <div className="controls">

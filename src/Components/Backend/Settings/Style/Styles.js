@@ -20,10 +20,11 @@ import { BBoxControl } from "../../../BBoxControl/BBoxControl";
 import { musicAlignOptions } from "../../../../utils/options";
 import { produce } from "immer";
 import { perUnit, pxUnit } from "../../../../../../Components/utils/options";
+import { BControlPro } from "../../../../../../Components/Pro";
 import { Tab } from "./Tab";
 import ColorSchema from "../../ColorSchema/ColorSchema";
 
-const Styles = ({ attributes, setAttributes, device }) => {
+const Styles = ({ attributes, setAttributes, device, isPremium, setOpen }) => {
   const { style, options } = attributes;
   const { songSl, textSl, rangeSl, isOverlayIcon } = options;
   const {
@@ -88,7 +89,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
     liteRunningProgressBg,
     liteControlsTypo,
     liteListColors,
-    liteListBorder
+    liteListBorder,
   } = litePlayer;
 
   return (
@@ -1103,7 +1104,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
                   style: updateData(style, v, "woodenPlayer", "woTDColors"),
                 })
               }
-              defaults={{ color: "white", bg: "rgba(163, 162, 164, 0.3)" }}
+              defaults={{ color: "#FFFFFF", bg: "#642E2E" }}
             />
             <Typography
               label={__("Typography", "mp3player-block")}
@@ -1176,7 +1177,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
               <Label>{__("Padding", "mp3player-block")}</Label>
               <Device />
             </PanelRow>
-            <BBoxControl
+            {/* <BBoxControl
               label=""
               values={litePadding[device]}
               units={[pxUnit(), perUnit()]}
@@ -1187,6 +1188,22 @@ const Styles = ({ attributes, setAttributes, device }) => {
                   }),
                 })
               }
+            /> */}
+
+            <BControlPro
+              label=""
+              values={litePadding[device]}
+              units={[pxUnit(), perUnit()]}
+              onChange={(v) =>
+                setAttributes({
+                  style: produce(style, (draft) => {
+                    draft.litePlayer.litePadding[device] = v;
+                  }),
+                })
+              }
+              Component={BBoxControl}
+              isPremium={isPremium}
+              setOpen={setOpen}
             />
           </PanelBody>
           <PanelBody
@@ -1224,12 +1241,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
               value={liteInfosColor}
               onChange={(v) =>
                 setAttributes({
-                  style: updateData(
-                    style,
-                    v,
-                    "litePlayer",
-                    "liteInfosColor"
-                  ),
+                  style: updateData(style, v, "litePlayer", "liteInfosColor"),
                 })
               }
             />
@@ -1238,12 +1250,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
               value={liteControlsTypo}
               onChange={(v) =>
                 setAttributes({
-                  style: updateData(
-                    style,
-                    v,
-                    "litePlayer",
-                    "liteControlsTypo"
-                  ),
+                  style: updateData(style, v, "litePlayer", "liteControlsTypo"),
                 })
               }
               defaults={{ fontSize: 20 }}
@@ -1253,7 +1260,7 @@ const Styles = ({ attributes, setAttributes, device }) => {
             className="bPlPanelBody"
             title={__("Playlist", "mp3player-block")}
           >
-             <ColorsControl
+            <ColorsControl
               className="mt20"
               label={__("Colors", "mp3player-block")}
               value={liteListColors}
@@ -1262,10 +1269,10 @@ const Styles = ({ attributes, setAttributes, device }) => {
                   style: updateData(style, v, "litePlayer", "liteListColors"),
                 })
               }
-              defaults={{ color: "#999", bg: "#e5e5e5" }}
+              defaults={{ color: "#1C0568", bg: "#FFFFFF" }}
             />
-             <BorderControl
-             className="mt10"
+            <BorderControl
+              className="mt10"
               label={__("Border", "mp3player-block")}
               value={liteListBorder}
               onChange={(v) =>

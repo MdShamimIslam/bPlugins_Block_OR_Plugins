@@ -13,6 +13,7 @@ import AudioCard from "../Common/AudioPlayCard/AudioCard";
 import Wooden from "../Common/Wooden/Wooden";
 import SliderAudio from "../Common/SliderAudio/SliderAudio";
 import LiteAudioPlayer from "../Common/LitePlayer/LiteAudioPlayer";
+import usePremiumInEditor from "../../hooks/usePremiumInEditor";
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
@@ -21,6 +22,9 @@ const Edit = (props) => {
   const { songSl } = options;
   const id = `bpMp3Player-${clientId}`;
   const blockRef = useRef(null);
+
+  const {isPremium} = usePremiumInEditor();
+	const [open,setOpen] = useState(false)
 
   useEffect(() => {
     if (songSl === "default" && audioProperties?.length) {
@@ -42,6 +46,9 @@ const Edit = (props) => {
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
           device={device}
+          isPremium={isPremium}
+          open={open}
+          setOpen={setOpen}
         />
       )}
 

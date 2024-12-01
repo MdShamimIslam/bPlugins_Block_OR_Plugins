@@ -89,7 +89,7 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.load();
+      // audioRef.current.load();
       if (audioProperties[currentIndex]?.audio?.url) {
         audioRef.current.onloadedmetadata = handleLoadedMetadata;
         if (isPlaying) {
@@ -168,18 +168,7 @@ const LitePlayer = ({ attributes, currentIndex, setCurrentIndex }) => {
           </div>
         ))}
         {audioProperties.length > 5 && !showAllTracks && (
-          <button
-            onClick={() => setShowAllTracks(true)}
-            style={{
-              marginTop: "10px",
-              padding: "8px 12px",
-              backgroundColor: "#BEAB8B",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
+          <button className="seeMore" onClick={() => setShowAllTracks(true)}>
             See More Music
           </button>
         )}

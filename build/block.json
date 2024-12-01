@@ -70,10 +70,10 @@
           "liteBorder": {
             "radius": "15px"
           },
-          "liteBg": "#ededed",
-          "liteControlsBg": "#A29C98",
-          "liteRunningProgressBg": "purple",
-          "liteInfosColor": "#A29C98",
+          "liteBg": "#1C1C4A",
+          "liteControlsBg": "#FFFFFF",
+          "liteRunningProgressBg": "#06A62C",
+          "liteInfosColor": "#FFFFFF",
           "litePadding": {
             "desktop": {
               "top": "30px",
@@ -98,8 +98,8 @@
             "fontSize": "20px"
           },
           "liteListColors": {
-            "bg": "#e5e5e5",
-            "color": "#999"
+            "bg": "#FFFFFF",
+            "color": "#1C0568"
           },
           "liteListBorder": {
             "radius": "5px"
@@ -244,11 +244,11 @@
             "tablet": "100%",
             "mobile": "100%"
           },
-          "woBg": "#1C1717",
+          "woBg": "#3C1919",
           "woColors": {},
           "woTDColors": {
-            "bg": "#A4A4A4",
-            "color": "#121212DE"
+            "bg": "#642E2E",
+            "color": "#FFFFFF"
           },
           "woTDBorder": {
             "radius": "20px"
@@ -259,7 +259,7 @@
           "woShadow": [
             {
               "blur": "20px",
-              "color": "#0000004D",
+              "color": "#571A0EE3",
               "hOffset": "0px",
               "isInset": false,
               "spreed": "0px",
@@ -418,7 +418,10 @@
   "example": {
     "attributes": {}
   },
-  "editorScript": "file:./index.js",
+  "editorScript": [
+    "file:./index.js",
+    "wp-api"
+  ],
   "editorStyle": "file:./index.css",
   "style": "file:./view.css",
   "render": "file:./render.php",

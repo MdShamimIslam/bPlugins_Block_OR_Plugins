@@ -35,18 +35,22 @@ if ( function_exists( 'bpmp_fs' ) ) {
 				require_once dirname(__FILE__) . '/freemius/start.php';
 	
 				$bpmp_fs = fs_dynamic_init( array(
-					'id'                  => '17215',
-					'slug'                => 'audio-player',
-					'premium_slug'        => 'audio-player-pro',
+					'id'                  => '17222',
+					'slug'                => 'audio-player-block',
 					'type'                => 'plugin',
-					'public_key'          => 'pk_08506b57e15504705e562528a613f',
+					'public_key'          => 'pk_44dc77a45966f6bb4960f3efe87d5',
 					'is_premium'          => true,
 					'premium_suffix'      => 'Pro',
+					// If your plugin is a serviceware, set this option to false.
 					'has_premium_version' => true,
 					'has_addons'          => false,
 					'has_paid_plans'      => true,
+					'trial'               => array(
+						'days'               => 7,
+						'is_require_payment' => true,
+					),
 					'menu'                => array(
-						'slug'           => 'edit.php?post_type=audio_player',
+						'slug'           => 'edit.php?post_type=audio_player&page=bpmp_demo_page',
 						'support'        => false,
 					),
 				) );
@@ -75,7 +79,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
 				add_action( 'init', [$this, 'onInit'] );
 				add_action('enqueue_block_editor_assets', [$this, 'bpmp_enqueueCssAndJsOfColorSchema']);
 				add_action('init', [$this, 'bpmp_register_audio_player_post_type']);
-				add_shortcode('audio_player_shortcode', [$this, 'bpmp_audio_player_shortcode']);
+				add_shortcode('audio_player', [$this, 'bpmp_audio_player_shortcode']);
 				add_filter('manage_audio_player_posts_columns', [$this, 'bpmp_audioPlayerManageColumns'], 10);
 				add_action('manage_audio_player_posts_custom_column', [$this, 'bpmp_audioPlayerManageCustomColumns'], 10, 2);
 				add_action('admin_enqueue_scripts', [$this, 'bpmp_admin_enqueue_script']);
@@ -83,6 +87,7 @@ if ( function_exists( 'bpmp_fs' ) ) {
 				add_action( 'wp_ajax_nopriv_bpmpPremiumChecker', [$this, 'bpmp_PremiumChecker'] );
 				add_action( 'admin_init', [$this, 'registerSettings'] );
 			    add_action( 'rest_api_init', [$this, 'registerSettings']);
+				add_action( 'admin_menu', [ $this, 'bpmp_add_demo_submenu' ] );
 			}
 	
 			function onInit() {
@@ -147,16 +152,37 @@ if ( function_exists( 'bpmp_fs' ) ) {
 					],
 					'show_in_rest' => true,
 					'public' => true,
+					'publicly_queryable' => false,
 					'menu_icon' => 'dashicons-format-audio',
 					'template' => [['bpmp/mp3-player']],
 					'template_lock' => 'all',
 				]);
+			}
+
+			function bpmp_add_demo_submenu() {
+				add_submenu_page(
+					'edit.php?post_type=audio_player',
+					'Demo Page',                       
+					'Player Demo',                            
+					'manage_options',                 
+					'bpmp_demo_page',                  
+					[ $this, 'bpmp_render_demo_page' ] 
+				);
+			}
+
+			function bpmp_render_demo_page() {
+				?>
+				<div class="wrap">
+					<h1><?php echo esc_html__( 'Welcome to Audio Player Demos', 'mp3player-block' ); ?></h1>
+				</div>
+				<?php
 			}
 	
 			function bpmp_audio_player_shortcode($attributes){
 				$postID = $attributes['id'];
 				$post = get_post($postID);
 				$blocks = parse_blocks($post->post_content);
+				
 				ob_start();
 				echo render_block($blocks[0]);
 				return ob_get_clean();
@@ -196,10 +222,30 @@ if ( function_exists( 'bpmp_fs' ) ) {
 					);
 				}
 			}
-	
-			
 		}
 		new BPMPPlugin;
 	}
+
+			register_activation_hook(__FILE__, 'audio_player_activate');
+
+			function audio_player_activate(){
+				set_transient('audio_player_redirect', true, 30); 
+			}
+
+			add_action('admin_init', 'audio_player_redirect_after_activation');
+
+			function audio_player_redirect_after_activation(){
+				if (get_transient('audio_player_redirect')) {
+					delete_transient('audio_player_redirect');
+
+					if (is_admin() && current_user_can('manage_options')) {
+						wp_safe_redirect(admin_url('edit.php?post_type=audio_player&page=bpmp_demo_page'));
+						exit;
+					}
+				}
+			}
+
 }
+
+
 

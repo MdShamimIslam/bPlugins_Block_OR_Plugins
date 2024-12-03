@@ -20,11 +20,13 @@ import { BBoxControl } from "../../../BBoxControl/BBoxControl";
 import { musicAlignOptions } from "../../../../utils/options";
 import { produce } from "immer";
 import { perUnit, pxUnit } from "../../../../../../Components/utils/options";
-import { BControlPro } from "../../../../../../Components/Pro";
+import { BControlPro } from "../../../../../../bpl-tools/ProControls";
+
 import { Tab } from "./Tab";
 import ColorSchema from "../../ColorSchema/ColorSchema";
+import usePremiumInEditor from "../../../../hooks/usePremiumInEditor";
 
-const Styles = ({ attributes, setAttributes, device, isPremium, setOpen }) => {
+const Styles = ({ attributes, setAttributes, device, setOpen }) => {
   const { style, options } = attributes;
   const { songSl, textSl, rangeSl, isOverlayIcon } = options;
   const {
@@ -91,6 +93,10 @@ const Styles = ({ attributes, setAttributes, device, isPremium, setOpen }) => {
     liteListColors,
     liteListBorder,
   } = litePlayer;
+
+  const { isPremium } = usePremiumInEditor();
+  const premiumProps = { isPremium, setOpen};
+
 
   return (
     <>
@@ -1138,7 +1144,7 @@ const Styles = ({ attributes, setAttributes, device, isPremium, setOpen }) => {
               <Label>{__("Width", "mp3player-block")}</Label>
               <Device />
             </PanelRow>
-            <UnitControl
+            <BControlPro
               value={liteWidth[device]}
               units={[pxUnit(), perUnit()]}
               onChange={(v) =>
@@ -1152,6 +1158,8 @@ const Styles = ({ attributes, setAttributes, device, isPremium, setOpen }) => {
                   ),
                 })
               }
+              Component={UnitControl}
+              {...premiumProps}
             />
             <BColor
               className="mt10"
@@ -1177,19 +1185,6 @@ const Styles = ({ attributes, setAttributes, device, isPremium, setOpen }) => {
               <Label>{__("Padding", "mp3player-block")}</Label>
               <Device />
             </PanelRow>
-            {/* <BBoxControl
-              label=""
-              values={litePadding[device]}
-              units={[pxUnit(), perUnit()]}
-              onChange={(v) =>
-                setAttributes({
-                  style: produce(style, (draft) => {
-                    draft.litePlayer.litePadding[device] = v;
-                  }),
-                })
-              }
-            /> */}
-
             <BControlPro
               label=""
               values={litePadding[device]}
@@ -1202,8 +1197,7 @@ const Styles = ({ attributes, setAttributes, device, isPremium, setOpen }) => {
                 })
               }
               Component={BBoxControl}
-              isPremium={isPremium}
-              setOpen={setOpen}
+              {...premiumProps}
             />
           </PanelBody>
           <PanelBody
@@ -1250,7 +1244,7 @@ const Styles = ({ attributes, setAttributes, device, isPremium, setOpen }) => {
               value={liteControlsTypo}
               onChange={(v) =>
                 setAttributes({
-                  style: updateData(style, v, "litePlayer", "liteControlsTypo"),
+                style: updateData(style, v, "litePlayer", "liteControlsTypo"),
                 })
               }
               defaults={{ fontSize: 20 }}

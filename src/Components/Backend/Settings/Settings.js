@@ -1,22 +1,15 @@
-import React from "react";
+import {useState} from "react";
 import { InspectorControls } from "@wordpress/block-editor";
 import { TabPanel } from "@wordpress/components";
 import { generalStyleTabs } from "../../../utils/options";
 import { tabController } from "../../../../../Components/utils/functions";
-import { AboutPro } from "../../../../../Components/Pro";
+import { AboutProModal } from "../../../../../bpl-tools/ProControls";
 import General from "./General/General";
 import Styles from "./Style/Styles";
 
-const Settings = ({
-  attributes,
-  setAttributes,
-  activeIndex,
-  setActiveIndex,
-  device,
-  isPremium,
-  setOpen,
-  open,
-}) => {
+const Settings = ({attributes, setAttributes,activeIndex, setActiveIndex, device}) => {
+	const [open,setOpen] = useState(false);
+
   return (
     <>
       <InspectorControls>
@@ -44,8 +37,7 @@ const Settings = ({
                     {...{ attributes, setAttributes, device }}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
-					isPremium={isPremium}
-					setOpen={setOpen}
+                    setOpen={setOpen}
                   />
                 </>
               )}
@@ -53,14 +45,14 @@ const Settings = ({
           )}
         </TabPanel>
       </InspectorControls>
-      <AboutPro
+      <AboutProModal
         aboutProOpen={open}
         setAboutProOpen={setOpen}
         link="https://checkout.freemius.com/plugin/17215/plan/28698/"
       >
         <li>Add Audio Player Background</li>
         <li>Add Audio Player Padding</li>
-      </AboutPro>
+      </AboutProModal>
     </>
   );
 };

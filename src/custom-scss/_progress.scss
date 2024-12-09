@@ -1,12 +1,14 @@
 .progress-container {
     align-items: center;
     display: flex;
+    gap: 10px;
 }
 
 .current-time,
 .duration-time {
-    width: 48px;
+    width: 60px;
     text-align: center;
+    margin-top: 10px;
 }
 
 #progresses {

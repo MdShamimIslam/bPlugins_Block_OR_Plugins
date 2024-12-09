@@ -1,14 +1,30 @@
-import {useState} from "react";
+import { useState } from "react";
 import { InspectorControls } from "@wordpress/block-editor";
 import { TabPanel } from "@wordpress/components";
 import { generalStyleTabs } from "../../../utils/options";
-import { tabController } from "../../../../../Components/utils/functions";
+import { tabController } from "../../../../../bpl-tools/utils/functions";
 import { AboutProModal } from "../../../../../bpl-tools/ProControls";
 import General from "./General/General";
 import Styles from "./Style/Styles";
+import { __ } from "@wordpress/i18n";
+import { usePremiumInEditor } from "../../../../../bpl-tools/hooks";
 
-const Settings = ({attributes, setAttributes,activeIndex, setActiveIndex, device}) => {
-	const [open,setOpen] = useState(false);
+const Settings = ({
+  attributes,
+  setAttributes,
+  activeIndex,
+  setActiveIndex,
+  device
+}) => {
+  
+  const [isProModalOpen, setIsProModalOpen] = useState(false);
+  const { isPremium } = usePremiumInEditor("bpmpUtils", "bpmpPremiumChecker");
+
+  const premiumProps = {
+    isPremium,
+    setIsProModalOpen,
+  };
+
 
   return (
     <>
@@ -24,7 +40,8 @@ const Settings = ({attributes, setAttributes,activeIndex, setActiveIndex, device
               {"general" === tab.name && (
                 <>
                   <General
-                    {...{ attributes, setAttributes }}
+                    attributes={attributes}
+                    setAttributes={setAttributes}
                     device={device}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
@@ -34,10 +51,12 @@ const Settings = ({attributes, setAttributes,activeIndex, setActiveIndex, device
               {"style" === tab.name && (
                 <>
                   <Styles
-                    {...{ attributes, setAttributes, device }}
+                    attributes={attributes}
+                    setAttributes={setAttributes}
+                    device={device}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
-                    setOpen={setOpen}
+                    premiumProps={premiumProps}
                   />
                 </>
               )}
@@ -45,13 +64,22 @@ const Settings = ({attributes, setAttributes,activeIndex, setActiveIndex, device
           )}
         </TabPanel>
       </InspectorControls>
+
       <AboutProModal
-        aboutProOpen={open}
-        setAboutProOpen={setOpen}
-        link="https://checkout.freemius.com/plugin/17215/plan/28698/"
+        isProModalOpen={isProModalOpen}
+        setIsProModalOpen={setIsProModalOpen}
+        link="https://bplugins.com/products/advance-custom-html/#pricing"
       >
-        <li>Add Audio Player Background</li>
-        <li>Add Audio Player Padding</li>
+        <li>
+          &emsp;
+          <strong>
+            {__("Set Audio Player Padding : ", "mp3player-block")}
+          </strong>
+          {__(
+            "By adding this feature you can customize padding of the player.",
+            "mp3player-block"
+          )}
+        </li>
       </AboutProModal>
     </>
   );

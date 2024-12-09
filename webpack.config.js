@@ -12,7 +12,8 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		...defaultConfig.entry(),
-		'admin-post': './src/admin/post.js'
+		'admin-post': './src/admin/post.js',
+		'admin-help': './src/admin/help.js'
 	},
 	plugins: [
 		...plugins,

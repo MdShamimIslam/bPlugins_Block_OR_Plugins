@@ -22,7 +22,7 @@ const SwiperSlider = forwardRef(({ playTrack, attributes }, ref) => {
   }));
 
 
-  return <div className="swiper">
+  return <div className="slider">
     <Swiper
       modules={[EffectCoverflow, A11y]}
       effect={'coverflow'}
@@ -38,7 +38,7 @@ const SwiperSlider = forwardRef(({ playTrack, attributes }, ref) => {
         slideShadows: true,
       }}
       spaceBetween={50}
-      slidesPerView={5}
+      slidesPerView={3}
     >
       {audioProperties.map((music, index) => (
         <SwiperSlide key={index}>

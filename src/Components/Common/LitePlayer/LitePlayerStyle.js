@@ -2,7 +2,7 @@ import {
   getBorderCSS,
   getBoxCSS,
   getTypoCSS,
-} from "../../../../../Components/utils/getCSS";
+} from "../../../../../bpl-tools/utils/getCSS";
 
 const LitePlayerStyle = ({ attributes, id, device = "desktop" }) => {
   const {

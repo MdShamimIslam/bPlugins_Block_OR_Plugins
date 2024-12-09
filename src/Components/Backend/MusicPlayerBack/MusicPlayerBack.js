@@ -142,7 +142,7 @@ const MusicPlayerBack = ({
         />
       </audio>
       <div className="progress-container">
-        <span className="current-time">{formatTime(currentTime)}</span>
+        <p className="current-time">{formatTime(currentTime)}</p>
         <input
           type="range"
           value={progress ? progress : 0}
@@ -153,12 +153,11 @@ const MusicPlayerBack = ({
           step="0.1"
           style={progressStyle}
         />
-        <span className="duration-time">
+        <p className="duration-time">
           {audioProperties[activeIndex]?.audio?.url
             ? formatTime(duration)
             : "00:00"}
-        </span>
-        {/* <span className="duration-time">{formatTime(duration)}</span> */}
+        </p>
       </div>
 
       <div className="controls">

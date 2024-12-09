@@ -66,7 +66,7 @@ const ColorSchema = ({ attributes, setAttributes }) => {
     };
 
     pickrInstance.on("save", (color) => {
-      const selectedHexColor = color.toHEXA().toString();
+      const selectedHexColor = color?.toHEXA().toString();
       const variants = generateColorVariants(selectedHexColor);
       setColorVariants(variants);
     });
@@ -84,7 +84,7 @@ const ColorSchema = ({ attributes, setAttributes }) => {
     if (activeVariant) {
       setColorVariants((prevVariants) => ({
         ...prevVariants,
-        [activeVariant]: color.toHEXA().toString(),
+        [activeVariant]: color?.toHEXA().toString(),
       }));
       setActiveVariant(null);
     }

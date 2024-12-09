@@ -4,7 +4,7 @@ import {
   getBoxCSS,
   getColorsCSS,
   getTypoCSS
-} from "../../../../../Components/utils/getCSS";
+} from "../../../../../bpl-tools/utils/getCSS";
 
 const WoodenPlayerStyle = ({ attributes, id, device = "desktop" }) => {
   const { align } = attributes.style;

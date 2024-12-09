@@ -2,35 +2,29 @@ import { __ } from "@wordpress/i18n";
 import {
   PanelBody,
   PanelRow,
-  SelectControl,
   __experimentalUnitControl as UnitControl,
   RangeControl,
 } from "@wordpress/components";
 import {
-  BColor,
-  BorderControl,
+  ColorControl,
   Label,
-  MultiShadowControl,
+  ShadowControl,
   Typography,
   ColorsControl,
-} from "../../../../../../Components";
-import { Device } from "../../../../../../Components/Device/Device";
+} from "../../../../../../bpl-tools/Components";
+import { BorderControl } from "../../../../../../bpl-tools/Components/Deprecated";
+import { Device, BoxControl } from "../../../../../../bpl-tools/Components";
 import { updateData } from "../../../../utils/functions";
-import { BBoxControl } from "../../../BBoxControl/BBoxControl";
-import { musicAlignOptions } from "../../../../utils/options";
 import { produce } from "immer";
-import { perUnit, pxUnit } from "../../../../../../Components/utils/options";
+import { perUnit, pxUnit } from "../../../../../../bpl-tools/utils/options";
 import { BControlPro } from "../../../../../../bpl-tools/ProControls";
-
 import { Tab } from "./Tab";
 import ColorSchema from "../../ColorSchema/ColorSchema";
-import usePremiumInEditor from "../../../../hooks/usePremiumInEditor";
 
-const Styles = ({ attributes, setAttributes, device, setOpen }) => {
+const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
   const { style, options } = attributes;
   const { songSl, textSl, rangeSl, isOverlayIcon } = options;
   const {
-    align,
     musicSlider,
     musicTitle,
     musicName,
@@ -94,30 +88,14 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
     liteListBorder,
   } = litePlayer;
 
-  const { isPremium } = usePremiumInEditor();
-  const premiumProps = { isPremium, setOpen};
-
-
   return (
     <>
       {songSl === "slider" ? (
         <>
           <PanelBody
-            className="bPlPanelBody"
-            title={__("Audio Player Wrapper", "mp3player-block")}
+            className=" "
+            title={__("Player Wrapper", "mp3player-block")}
           >
-            <PanelRow>
-              <Label>{__("Alignment", "mp3player-block")}</Label>
-              <Device />
-            </PanelRow>
-            <SelectControl
-              value={align[device]}
-              options={musicAlignOptions}
-              onChange={(v) =>
-                setAttributes({ style: updateData(style, v, "align", device) })
-              }
-            />
-
             <PanelRow>
               <Label>{__("Width", "mp3player-block")}</Label>
               <Device />
@@ -142,7 +120,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               }
             />
 
-            <BColor
+            <ColorControl
               label={__("Background", "mp3player-block")}
               value={style.bg}
               onChange={(v) =>
@@ -150,18 +128,20 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               }
             />
 
-            <BorderControl
+            <BControlPro
               label={__("Border", "mp3player-block")}
               value={style.border}
               onChange={(v) =>
                 setAttributes({ style: updateData(style, v, "border") })
               }
               defaults={{ radius: "5px" }}
+              Component={BorderControl}
+              {...premiumProps}
             />
           </PanelBody>
           <PanelBody
             className="bPlPanelBody"
-            title={__("Audio Slider", "mp3player-block")}
+            title={__("Slider Style", "mp3player-block")}
             initialOpen={false}
           >
             <PanelRow>
@@ -205,7 +185,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
             />
 
             {isOverlayIcon && (
-              <BColor
+              <ColorControl
                 label={__("Overlay Background", "mp3player-block")}
                 value={overlayBg}
                 onChange={(v) =>
@@ -216,7 +196,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               />
             )}
 
-            <BorderControl
+            <BControlPro
               label={__("Border", "mp3player-block")}
               value={border}
               onChange={(v) =>
@@ -225,11 +205,13 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
               defaults={{ radius: "3px" }}
+              Component={BorderControl}
+              {...premiumProps}
             />
           </PanelBody>
           <PanelBody
             className="bPlPanelBody"
-            title={__("Audio Player", "mp3player-block")}
+            title={__("Player Style", "mp3player-block")}
             initialOpen={false}
           >
             <Tab
@@ -242,7 +224,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
 
             {textSl === "title" ? (
               <>
-                <BColor
+                <ColorControl
                   label={__("Color", "mp3player-block")}
                   value={musicTitle.color}
                   onChange={(v) =>
@@ -251,7 +233,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <Typography
+                <BControlPro
                   label={__("Typography", "mp3player-block")}
                   value={musicTitle.typo}
                   onChange={(v) =>
@@ -260,11 +242,13 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                   defaults={{ fontSize: 30 }}
+                  Component={Typography}
+              {...premiumProps}
                 />
               </>
             ) : (
               <>
-                <BColor
+                <ColorControl
                   label={__("Color", "mp3player-block")}
                   value={musicName.color}
                   onChange={(v) =>
@@ -273,7 +257,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <RangeControl
+                <BControlPro
                   className="mt5"
                   label={__("Opacity", "mp3player-block")}
                   value={musicName.opacity}
@@ -286,8 +270,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   min={0}
                   max={1}
                   step={0.1}
+                  Component={RangeControl}
+              {...premiumProps}
                 />
-                <Typography
+                <BControlPro
                   label={__("Typography", "mp3player-block")}
                   value={musicName.typo}
                   onChange={(v) =>
@@ -296,6 +282,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                   defaults={{ fontSize: 20 }}
+                  Component={Typography}
+              {...premiumProps}
                 />
               </>
             )}
@@ -309,7 +297,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
             />
             {rangeSl === "input" ? (
               <>
-                <BColor
+                <ColorControl
                   label={__("Static Background", "mp3player-block")}
                   value={bg}
                   onChange={(v) =>
@@ -318,7 +306,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <BColor
+                <ColorControl
                   label={__("Progress Background", "mp3player-block")}
                   value={progressBg}
                   onChange={(v) =>
@@ -327,7 +315,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <BColor
+                <ColorControl
                   label={__("Progress Time Color", "mp3player-block")}
                   value={timeBg}
                   onChange={(v) =>
@@ -381,7 +369,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   <Label>{__("Margin", "mp3player-block")}</Label>
                   <Device />
                 </PanelRow>
-                <BBoxControl
+                <BControlPro
                   label=""
                   values={margin[device]}
                   units={[pxUnit(), perUnit()]}
@@ -392,9 +380,11 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                       }),
                     })
                   }
+                  Component={BoxControl}
+              {...premiumProps}
                 />
 
-                <RangeControl
+                <BControlPro
                   label={__("Border radius", "mp3player-block")}
                   value={radius}
                   allowReset
@@ -405,11 +395,13 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   }
                   min={0}
                   max={20}
+                  Component={BorderControl}
+              {...premiumProps}
                 />
               </>
             ) : (
               <>
-                <BColor
+                <ColorControl
                   label={__("Background", "mp3player-block")}
                   value={thumbBg}
                   onChange={(v) =>
@@ -438,7 +430,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <MultiShadowControl
+                <BControlPro
                   className="mt15"
                   label={__("Shadow", "mp3player-block")}
                   value={thumbShadow}
@@ -447,9 +439,11 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                       style: updateData(style, v, "rangeThumb", "thumbShadow"),
                     })
                   }
+                  Component={ShadowControl}
+              {...premiumProps}
                 />
 
-                <BorderControl
+                <BControlPro
                   label={__("Outline", "mp3player-block")}
                   value={thumbOutline}
                   onChange={(v) =>
@@ -458,13 +452,15 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                   defaults={{ radius: "50%" }}
+                  Component={BorderControl}
+              {...premiumProps}
                 />
               </>
             )}
           </PanelBody>
           <PanelBody
             className="bPlPanelBody"
-            title={__("Audio Controls Button", "mp3player-block")}
+            title={__("Controls Button", "mp3player-block")}
             initialOpen={false}
           >
             <PanelRow>
@@ -492,7 +488,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               defaults={{ color: "white", bg: "rgba(163, 162, 164, 0.3)" }}
             />
 
-            <BorderControl
+            <BControlPro
               label={__("Border", "mp3player-block")}
               value={controlsBtn.border}
               onChange={(v) =>
@@ -501,6 +497,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
               defaults={{ radius: "50%" }}
+              Component={BorderControl}
+              {...premiumProps}
             />
           </PanelBody>
         </>
@@ -549,7 +547,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <BorderControl
+            <BControlPro
               label={__("Border", "mp3player-block")}
               value={haashBorder}
               onChange={(v) =>
@@ -558,12 +556,14 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
               defaults={{ radius: "5px" }}
+              Component={BorderControl}
+              {...premiumProps}
             />
             <PanelRow>
               <Label>{__("Padding", "mp3player-block")}</Label>
               <Device />
             </PanelRow>
-            <BBoxControl
+            <BControlPro
               label=""
               values={hasshPadding[device]}
               units={[pxUnit(), perUnit()]}
@@ -574,6 +574,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   }),
                 })
               }
+              Component={BoxControl}
+              {...premiumProps}
             />
           </PanelBody>
           <PanelBody
@@ -589,7 +591,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
             />
             {textSl === "title" ? (
               <>
-                <BColor
+                <ColorControl
                   label={__("Color", "mp3player-block")}
                   value={haashTitle.color}
                   onChange={(v) =>
@@ -604,7 +606,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <Typography
+                <BControlPro
                   label={__("Typography", "mp3player-block")}
                   value={haashTitle.typo}
                   onChange={(v) =>
@@ -619,11 +621,13 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                   defaults={{ fontSize: 30 }}
+                  Component={Typography}
+              {...premiumProps}
                 />
               </>
             ) : (
               <>
-                <BColor
+                <ColorControl
                   label={__("Color", "mp3player-block")}
                   value={haashSubTitle.color}
                   onChange={(v) =>
@@ -638,7 +642,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <RangeControl
+                <BControlPro
                   className="mt5"
                   label={__("Opacity", "mp3player-block")}
                   value={haashSubTitle.opacity}
@@ -657,8 +661,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   min={0}
                   max={1}
                   step={0.1}
+                  Component={RangeControl}
+              {...premiumProps}
                 />
-                <Typography
+                <BControlPro
                   label={__("Typography", "mp3player-block")}
                   value={haashSubTitle.typo}
                   onChange={(v) =>
@@ -673,6 +679,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                   defaults={{ fontSize: 20 }}
+                  Component={Typography}
+              {...premiumProps}
                 />
               </>
             )}
@@ -681,7 +689,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
             className="bPlPanelBody"
             title={__("Wave Style", "mp3player-block")}
           >
-            <BColor
+            <ColorControl
               label={__("Background", "mp3player-block")}
               value={waveBg}
               onChange={(v) =>
@@ -695,7 +703,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
             className="bPlPanelBody"
             title={__("Controls Style", "mp3player-block")}
           >
-            <BColor
+            <ColorControl
               label={__("Input range static Color", "mp3player-block")}
               value={haashInputRange.staticColor}
               onChange={(v) =>
@@ -710,7 +718,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <BColor
+            <ColorControl
               label={__("Input range progress Color", "mp3player-block")}
               value={haashInputRange.progressColor}
               onChange={(v) =>
@@ -791,7 +799,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <BColor
+            <ColorControl
               label={__("Background", "mp3player-block")}
               value={cardBg}
               onChange={(v) =>
@@ -800,7 +808,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <MultiShadowControl
+            <BControlPro
               label="Shadow"
               value={cardShadow}
               onChange={(val) =>
@@ -808,8 +816,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   style: updateData(style, val, "cardPlayer", "cardShadow"),
                 })
               }
+              Component={ShadowControl}
+              {...premiumProps}
             />
-            <BorderControl
+            <BControlPro
               label={__("Border", "mp3player-block")}
               value={cardBorder}
               onChange={(v) =>
@@ -817,8 +827,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   style: updateData(style, v, "cardPlayer", "cardBorder"),
                 })
               }
+              Component={BorderControl}
+              {...premiumProps}
             />
-            <RangeControl
+            <BControlPro
               className="mt20"
               label={__("Wave", "mp3player-block")}
               value={waveTop}
@@ -836,8 +848,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               min={-300}
               max={0}
               step={1}
+              Component={RangeControl}
+              {...premiumProps}
             />
-            <RangeControl
+            <BControlPro
               className="mt10"
               label={__("Wave-2", "mp3player-block")}
               value={wave2Top}
@@ -848,8 +862,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               }
               min={0}
               max={300}
+              Component={RangeControl}
+              {...premiumProps}
             />
-            <RangeControl
+            <BControlPro
               className="mt10"
               label={__("Wave-3", "mp3player-block")}
               value={wave3Top}
@@ -860,6 +876,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               }
               min={0}
               max={300}
+              Component={RangeControl}
+              {...premiumProps}
             />
 
             <p className="mt10">Control Alignment</p>
@@ -892,7 +910,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
             />
             {textSl === "title" ? (
               <>
-                <BColor
+                <ColorControl
                   label={__("Color", "mp3player-block")}
                   value={cardTitle.color}
                   onChange={(v) =>
@@ -907,7 +925,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <Typography
+                <BControlPro
                   label={__("Typography", "mp3player-block")}
                   value={cardTitle.typo}
                   onChange={(v) =>
@@ -922,11 +940,13 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                   defaults={{ fontSize: 30 }}
+                  Component={Typography}
+              {...premiumProps}
                 />
               </>
             ) : (
               <>
-                <BColor
+                <ColorControl
                   label={__("Color", "mp3player-block")}
                   value={cardSubTitle.color}
                   onChange={(v) =>
@@ -941,7 +961,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                 />
-                <RangeControl
+                <BControlPro
                   className="mt5"
                   label={__("Opacity", "mp3player-block")}
                   value={cardSubTitle.opacity}
@@ -960,8 +980,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   min={0}
                   max={1}
                   step={0.1}
+                  Component={RangeControl}
+              {...premiumProps}
                 />
-                <Typography
+                <BControlPro
                   label={__("Typography", "mp3player-block")}
                   value={cardSubTitle.typo}
                   onChange={(v) =>
@@ -976,12 +998,15 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                     })
                   }
                   defaults={{ fontSize: 20 }}
+                  Component={Typography}
+              {...premiumProps}
                 />
               </>
             )}
           </PanelBody>
         </>
       ) : songSl === "wooden" ? (
+
         <>
           <PanelBody
             className="bPlPanelBody"
@@ -1025,7 +1050,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <BColor
+            <ColorControl
               label={__("Background", "mp3player-block")}
               value={woBg}
               onChange={(v) =>
@@ -1034,7 +1059,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <MultiShadowControl
+            <BControlPro
               label="Shadow"
               value={woShadow}
               onChange={(val) =>
@@ -1042,8 +1067,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   style: updateData(style, val, "woodenPlayer", "woShadow"),
                 })
               }
+              Component={ShadowControl}
+              {...premiumProps}
             />
-            <BorderControl
+            <BControlPro
               label={__("Border", "mp3player-block")}
               value={woBorder}
               onChange={(v) =>
@@ -1051,9 +1078,13 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   style: updateData(style, v, "woodenPlayer", "woBorder"),
                 })
               }
+              Component={BorderControl}
+              {...premiumProps}
             />
+
             <p className="mt10">Alignment</p>
             <Tab
+              label={__("Alignment", "mp3player-block")}
               options={["left", "center", "right"]}
               value={woAlign[device]}
               onChange={(v) =>
@@ -1072,7 +1103,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               <Label>{__("Padding", "mp3player-block")}</Label>
               <Device />
             </PanelRow>
-            <BBoxControl
+            <BControlPro
               label=""
               values={woPadding[device]}
               units={[pxUnit(), perUnit()]}
@@ -1083,6 +1114,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   }),
                 })
               }
+              Component={BoxControl}
+              {...premiumProps}
             />
           </PanelBody>
           <PanelBody
@@ -1112,7 +1145,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               }
               defaults={{ color: "#FFFFFF", bg: "#642E2E" }}
             />
-            <Typography
+            <BControlPro
               label={__("Typography", "mp3player-block")}
               value={woTDTypo}
               onChange={(v) =>
@@ -1121,8 +1154,10 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
               defaults={{ fontSize: 15 }}
+              Component={Typography}
+              {...premiumProps}
             />
-            <BorderControl
+            <BControlPro
               label={__("Border", "mp3player-block")}
               value={woTDBorder}
               onChange={(v) =>
@@ -1131,6 +1166,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
               defaults={{ radius: 20 }}
+              Component={BorderControl}
+              {...premiumProps}
             />
           </PanelBody>
         </>
@@ -1144,7 +1181,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               <Label>{__("Width", "mp3player-block")}</Label>
               <Device />
             </PanelRow>
-            <BControlPro
+            <UnitControl
               value={liteWidth[device]}
               units={[pxUnit(), perUnit()]}
               onChange={(v) =>
@@ -1158,10 +1195,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   ),
                 })
               }
-              Component={UnitControl}
-              {...premiumProps}
             />
-            <BColor
+            <ColorControl
               className="mt10"
               label={__("Background", "mp3player-block")}
               value={liteBg}
@@ -1171,7 +1206,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <BorderControl
+
+            <BControlPro
               label={__("Border", "mp3player-block")}
               value={liteBorder}
               onChange={(v) =>
@@ -1180,15 +1216,18 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
               defaults={{ radius: "15px" }}
+              Component={BorderControl}
+              {...premiumProps}
             />
-            <PanelRow>
-              <Label>{__("Padding", "mp3player-block")}</Label>
+
+            <PanelRow className="mt20">
+              <Label className="">{__("Padding", "mp3player-block")}</Label>
               <Device />
             </PanelRow>
             <BControlPro
               label=""
               values={litePadding[device]}
-              units={[pxUnit(), perUnit()]}
+              units={[pxUnit()]}
               onChange={(v) =>
                 setAttributes({
                   style: produce(style, (draft) => {
@@ -1196,7 +1235,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                   }),
                 })
               }
-              Component={BBoxControl}
+              Component={BoxControl}
               {...premiumProps}
             />
           </PanelBody>
@@ -1204,7 +1243,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
             className="bPlPanelBody"
             title={__("Controls", "mp3player-block")}
           >
-            <BColor
+            <ColorControl
               className="mt10"
               label={__("Color", "mp3player-block")}
               value={liteControlsBg}
@@ -1214,7 +1253,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <BColor
+            <ColorControl
               className="mt10"
               label={__("Running Progress Color", "mp3player-block")}
               value={liteRunningProgressBg}
@@ -1229,7 +1268,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <BColor
+            <ColorControl
               className="mt10"
               label={__("Infos Color", "mp3player-block")}
               value={liteInfosColor}
@@ -1239,15 +1278,17 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
             />
-            <Typography
+            <BControlPro
               label={__("Infos Typography", "mp3player-block")}
               value={liteControlsTypo}
               onChange={(v) =>
                 setAttributes({
-                style: updateData(style, v, "litePlayer", "liteControlsTypo"),
+                  style: updateData(style, v, "litePlayer", "liteControlsTypo"),
                 })
               }
               defaults={{ fontSize: 20 }}
+              Component={Typography}
+              {...premiumProps}
             />
           </PanelBody>
           <PanelBody
@@ -1265,7 +1306,7 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
               }
               defaults={{ color: "#1C0568", bg: "#FFFFFF" }}
             />
-            <BorderControl
+            <BControlPro
               className="mt10"
               label={__("Border", "mp3player-block")}
               value={liteListBorder}
@@ -1275,6 +1316,8 @@ const Styles = ({ attributes, setAttributes, device, setOpen }) => {
                 })
               }
               defaults={{ radius: 5 }}
+              Component={BorderControl}
+              {...premiumProps}
             />
           </PanelBody>
         </>

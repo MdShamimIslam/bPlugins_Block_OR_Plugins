@@ -1,4 +1,4 @@
-import { getBorderCSS,getBoxCSS, getMultiShadowCSS,getTypoCSS,getColorsCSS } from '../../../../Components/utils/getCSS';
+import { getBorderCSS,getBoxCSS, getMultiShadowCSS,getTypoCSS,getColorsCSS } from '../../../../bpl-tools/utils/getCSS';
 
 const SliderStyle = ({ attributes, id, device = "desktop" }) => {
 	const { style,options } = attributes;
@@ -42,8 +42,6 @@ const SliderStyle = ({ attributes, id, device = "desktop" }) => {
 
 				${activeSlideSl}{
 					${getBorderCSS(border)};
-					width:${sliderWidth[device]};
-					height:${sliderHeight[device]};
 				}
 
 				${activeOverlaySl} {

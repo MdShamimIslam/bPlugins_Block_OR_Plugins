@@ -18,10 +18,9 @@ const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
   const { audioProperties, options } = attributes;
   const [activeIndex, setActiveIndex] = useState(0);
-  const { songSl } = options;
+  const { songSl= 'default' } = options;
   const id = `bpMp3Player-${clientId}`;
   const blockRef = useRef(null);
-	
 
   useEffect(() => {
     if (songSl === "default" && audioProperties?.length) {
@@ -32,17 +31,16 @@ const Edit = (props) => {
   return (
     <>
       {songSl === "default" ? (
-        <Setting
-          attributes={attributes}
-          setAttributes={setAttributes}
-          setActiveIndex={setActiveIndex}
-        />
+        <Setting {...{ attributes, setAttributes, setActiveIndex }} />
       ) : (
         <Settings
-          {...{ attributes, setAttributes, device }}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-          device={device}
+          {...{
+            attributes,
+            setAttributes,
+            device,
+            activeIndex,
+            setActiveIndex,
+          }}
         />
       )}
 
@@ -112,7 +110,11 @@ const Edit = (props) => {
           </>
         ) : songSl === "wooden" ? (
           <>
-            <Wooden attributes={attributes} id={`block-${clientId}`} device={device} />
+            <Wooden
+              attributes={attributes}
+              id={`block-${clientId}`}
+              device={device}
+            />
           </>
         ) : songSl === "card" ? (
           <AudioCard
@@ -120,7 +122,13 @@ const Edit = (props) => {
             id={`block-${clientId}`}
             device={device}
           />
-        ) : songSl === "lite" ? <LiteAudioPlayer attributes={attributes} id={`block-${clientId}`} device={device} /> : (
+        ) : songSl === "lite" ? (
+          <LiteAudioPlayer
+            attributes={attributes}
+            id={`block-${clientId}`}
+            device={device}
+          />
+        ) : (
           "No Player Added Yet!"
         )}
       </div>
@@ -135,3 +143,11 @@ export default withSelect((select) => {
       ?.toLowerCase(),
   };
 })(Edit);
+
+// export default withSelect((select) => {
+//   const {getDeviceType} = select('core/editor');
+
+// return {
+//   device: getDeviceType()?.toLowerCase(),
+// }
+// })(Edit);

@@ -15,9 +15,9 @@ import {
   HelpPanel,
   InlineDetailMediaUpload,
   Label,
-} from "../../../../../../Components";
+} from "../../../../../../bpl-tools/Components";
 import { produce } from "immer";
-import { gearIcon } from "../../../../../../Components/utils/icons";
+import { gearIcon } from "../../../../../../bpl-tools/utils/icons";
 
 const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
   const { audioProperties, options, style } = attributes;
@@ -96,14 +96,17 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
         title={__("Add or Remove Audios", "mp3player-block")}
       >
         <SelectControl
-          label={__("Choose Player", "mp3player-block")}
-          labelPosition="left"
-          value={songSl}
-          options={songSlOptions}
-          onChange={(v) =>
-            setAttributes({ options: updateData(options, v, "songSl") })
-          }
-        />
+            label={__("Select Theme", "mp3player-block")}
+            labelPosition="left"
+            value={songSl}
+            options={songSlOptions}
+            onChange={(v) =>
+              setAttributes({ 
+                options: updateData(options, v, "songSl"),
+                // width: 'default'===v ? '290px':'700px'
+              })
+            }
+          />
 
         {audioProperties.map((item, index) => {
           const { title, artist, cover, audio } = item;

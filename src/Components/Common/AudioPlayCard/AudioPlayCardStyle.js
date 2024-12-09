@@ -1,4 +1,4 @@
-import { getBorderCSS, getMultiShadowCSS, getTypoCSS } from "../../../../../Components/utils/getCSS";
+import { getBorderCSS, getMultiShadowCSS, getTypoCSS } from "../../../../../bpl-tools/utils/getCSS";
 
 const AudioPlayCardStyle = ({ attributes, id, device = "desktop" }) => {
   const {

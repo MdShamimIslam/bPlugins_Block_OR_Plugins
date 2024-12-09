@@ -62,8 +62,8 @@ if ( function_exists( 'bpmp_fs' ) ) {
 						'is_require_payment' => true,
 					),
 					'menu'                => array(
-						'slug'           => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page',
-						"first-path"     => 'edit.php?post_type=audio_player_block&page=bpmp_demo_page',
+						'slug'           => BPMP_HAS_FREE ? 'edit.php?post_type=audio_player_block&page=bpmp_demo_page' : 'edit.php?post_type=audio_player_block',
+						"first-path"     => BPMP_HAS_FREE ? 'edit.php?post_type=audio_player_block&page=bpmp_demo_page' : 'edit.php?post_type=audio_player_block',
 						'support'        => false,
 					),
 				);
@@ -171,14 +171,16 @@ if ( function_exists( 'bpmp_fs' ) ) {
 			}
 
 			function bpmp_add_demo_submenu() {
-				add_submenu_page(
-					'edit.php?post_type=audio_player_block',
-					'Demo Page',                       
-					'Player Demo',                            
-					'manage_options',                 
-					'bpmp_demo_page',                  
-					[ $this, 'bpmp_render_demo_page' ] 
-				);
+				if( !bpmpIsPremium() ){
+					add_submenu_page(
+						'edit.php?post_type=audio_player_block',
+						'Demo Page',                       
+						'Player Demo',                            
+						'manage_options',                 
+						'bpmp_demo_page',                  
+						[ $this, 'bpmp_render_demo_page' ] 
+					);
+				}
 			}
 
 			function bpmp_render_demo_page() {
@@ -219,14 +221,14 @@ if ( function_exists( 'bpmp_fs' ) ) {
 					wp_enqueue_script(
 						'admin-post-js',
 						BPMP_DIR_URL . 'build/admin-post.js',
-						['jquery'],
+						[],
 						BPMP_VERSION,
 						true 
 					);
 					wp_enqueue_script(
 						'adminHelpJs',
 						BPMP_DIR_URL . 'build/admin-help.js',
-						[],
+						['react', 'react-dom'],
 						BPMP_VERSION,
 						true 
 					);

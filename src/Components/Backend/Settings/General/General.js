@@ -18,8 +18,9 @@ import {
 } from "../../../../../../bpl-tools/Components";
 import { produce } from "immer";
 import { gearIcon } from "../../../../../../bpl-tools/utils/icons";
+import { BControlPro } from "../../../../../../bpl-tools/ProControls";
 
-const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
+const General = ({ attributes, setAttributes, setActiveIndex, device, premiumProps }) => {
   const { audioProperties, options, style } = attributes;
   const { align } = style;
   const { songSl, isOverlayIcon, isThumb, isAutoPlay, oneHaash } =
@@ -102,8 +103,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device }) => {
             options={songSlOptions}
             onChange={(v) =>
               setAttributes({ 
-                options: updateData(options, v, "songSl"),
-                // width: 'default'===v ? '290px':'700px'
+                options: updateData(options, v, "songSl")
               })
             }
           />

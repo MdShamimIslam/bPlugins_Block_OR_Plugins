@@ -45,6 +45,7 @@ const Settings = ({
                     device={device}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
+                    premiumProps={premiumProps}
                   />
                 </>
               )}

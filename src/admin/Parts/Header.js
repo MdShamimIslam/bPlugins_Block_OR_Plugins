@@ -24,7 +24,7 @@ const Header = ({ navigation, secondaryNav }) => {
       </div>
 
       {/* Links */}
-      <div className="navLinks">
+      {/* <div className="navLinks">
         <div className='firstLinks'>
           {
             navigation.map((item, index) => {
@@ -52,7 +52,7 @@ const Header = ({ navigation, secondaryNav }) => {
             </NavLink>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

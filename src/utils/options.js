@@ -22,46 +22,41 @@ export const musicAlignOptions = [
 
 export const proFeatures = [
   {
-    name: "Embed The Code To Frontend",
+    name: "Customize 5 Different Themes",
+    description:"Add 5 new themes with different looks and settings.",
+  },
+  {
+    name: "Include some incredible options",
+    description: "Add feature of each themes like autoplay, social link, range thumb and a lot of things.",
+  },
+  {
+    name: "Show/Hide options",
+    description: "Can show/hide all the options indivisually.",
+  },
+  {
+    name: "Added some animation",
+    description: "On card theme we have added some awesome animation and you can also customize these animation on your own.",
+  },
+  {
+    name: "Set position of player controller",
     description:
-      "By adding this awesome feature you can embed the code to frontend easily with a beautiful way.",
+      "Set position of controller dynamically like (left, center, right).",
   },
   {
-    name: "Hide/Show Heading",
-    description:
-      "You can toggle the heading like if you don't want to display the heading you can hide this easily.",
+    name: "Edit all the stuff on themes",
+    description: "You can edit and customize all the stuff that include on all themes dynamically.",
   },
   {
-    name: "Hide/Show Copy Button and Type",
-    description:
-      "Because of this feature, you can show or hide the copy button on your own easily. And you can change copy button type also like you can keep icon or text.",
+    name: "Style themes dynimacally",
+    description: "Style themes like shadow, background, padding, icon size, border etc.",
   },
   {
-    name: "Position of Copy Button and Styles",
-    description:
-      "Without heading you can change the position of the copy button like topRight or bottomRight. and you can give style to the copy button whatever you like",
+    name: "Width & Height",
+    description: "You can customize width and height of audio player.",
   },
   {
-    name: "Hide/Show Line Numbers",
-    description:
-      "By adding this feature you can hide or show the line numbers.",
-  },
-  {
-    name: "Wrap Enable/Disable",
-    description: "You can enable or disable wrap functionality.",
-  },
-  {
-    name: "Edit Editor Height and Width",
-    description:
-      "Edit your editor height and width and align this like left or right or center.",
-  },
-  {
-    name: "Fold Gutter",
-    description: "Enable or disable fold gutter.",
-  },
-  {
-    name: "Disable/Enable Highlight Active Line",
-    description: "Enable or disable highlight active line.",
+    name: "Shortcode Functionality",
+    description: "Add this block anywhere with shortcode.",
   },
 ];
 

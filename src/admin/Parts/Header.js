@@ -1,9 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
 import '../help.scss';
 
-const Header = ({ navigation, secondaryNav }) => {
+const Header = () => {
   
   return (
     <div className="dashboard-heading-container">

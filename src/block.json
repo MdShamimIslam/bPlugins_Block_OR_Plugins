@@ -40,17 +40,17 @@
         "songSl": "default",
         "textSl": "title",
         "rangeSl": "input",
-        "isThumb": true,
+        "isThumb": false,
         "isOverlayIcon": false,
-        "isAutoPlay": true,
+        "isAutoPlay": false,
         "newTab": true,
         "oneHaash": {
           "isBackForIcon": true,
-          "isPrevNextIcon": true,
-          "isOldTime": true,
+          "isPrevNextIcon": false,
+          "isOldTime": false,
           "isRunningTime": true,
-          "isPlaySpeed": true,
-          "isDownloadIcon": true
+          "isPlaySpeed": false,
+          "isDownloadIcon": false
         }
       }
     },

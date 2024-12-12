@@ -18,7 +18,7 @@ import {
 } from "../../../../../../bpl-tools/Components";
 import { produce } from "immer";
 import { gearIcon } from "../../../../../../bpl-tools/utils/icons";
-import { BControlPro } from "../../../../../../bpl-tools/ProControls";
+import { BControlPro, SelectControlPro } from "../../../../../../bpl-tools/ProControls";
 
 const General = ({ attributes, setAttributes, setActiveIndex, device, premiumProps }) => {
   const { audioProperties, options, style } = attributes;
@@ -96,7 +96,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device, premiumPro
         className="bPlPanelBody addRemoveItems"
         title={__("Add or Remove Audios", "mp3player-block")}
       >
-        <SelectControl
+        <SelectControlPro
             label={__("Select Theme", "mp3player-block")}
             labelPosition="left"
             value={songSl}
@@ -106,6 +106,9 @@ const General = ({ attributes, setAttributes, setActiveIndex, device, premiumPro
                 options: updateData(options, v, "songSl")
               })
             }
+            Component={SelectControl}
+            {...premiumProps}
+            proValues={["lite","wooden","card","oneHaash"]}
           />
 
         {audioProperties.map((item, index) => {
@@ -221,7 +224,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device, premiumPro
           title={__("Player Options", "mp3player-block")}
           initialOpen={false}
         >
-          <ToggleControl
+          <BControlPro
             className="mt5"
             checked={isOverlayIcon}
             label={__("Social Link", "mp3player-block")}
@@ -230,22 +233,28 @@ const General = ({ attributes, setAttributes, setActiveIndex, device, premiumPro
                 options: updateData(options, v, "isOverlayIcon"),
               })
             }
+            Component={ToggleControl}
+            {...premiumProps}
           />
-          <ToggleControl
+          <BControlPro
             className="mt5"
             checked={isThumb}
             label={__("Range Thumb", "mp3player-block")}
             onChange={(v) =>
               setAttributes({ options: updateData(options, v, "isThumb") })
             }
+            Component={ToggleControl}
+            {...premiumProps}
           />
-          <ToggleControl
+          <BControlPro
             className="mt5"
             checked={isAutoPlay}
             label={__("Auto Play", "mp3player-block")}
             onChange={(v) =>
               setAttributes({ options: updateData(options, v, "isAutoPlay") })
             }
+            Component={ToggleControl}
+            {...premiumProps}
           />
         </PanelBody>
       )}
@@ -256,60 +265,68 @@ const General = ({ attributes, setAttributes, setActiveIndex, device, premiumPro
           title={__("Player Options", "mp3player-block")}
           initialOpen={false}
         >
-          <ToggleControl
+          <BControlPro
             className="mt20"
             checked={isPrevNextIcon}
-            label={__("isPrevNextIcon", "mp3player-block")}
+            label={__("Show Prev & Next Icon", "mp3player-block")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "oneHaash", "isPrevNextIcon"),
               })
             }
+            Component={ToggleControl}
+            {...premiumProps}
           />
           <ToggleControl
             className="mt10"
             checked={isRunningTime}
-            label={__("isRunningTime", "mp3player-block")}
+            label={__("Show Running Time", "mp3player-block")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "oneHaash", "isRunningTime"),
               })
             }
           />
-          <ToggleControl
+          <BControlPro
             className="mt10"
             checked={isOldTime}
-            label={__("isOldTime", "mp3player-block")}
+            label={__("Show Total Time", "mp3player-block")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "oneHaash", "isOldTime"),
               })
             }
+            Component={ToggleControl}
+            {...premiumProps}
           />
-          <ToggleControl
+          <BControlPro
             className="mt10"
             checked={isPlaySpeed}
-            label={__("isPlaySpeed", "mp3player-block")}
+            label={__("Show Play Speed", "mp3player-block")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "oneHaash", "isPlaySpeed"),
               })
             }
+            Component={ToggleControl}
+            {...premiumProps}
           />
-          <ToggleControl
+          <BControlPro
             className="mt10"
             checked={isDownloadIcon}
-            label={__("isDownloadIcon", "mp3player-block")}
+            label={__("Show Download Icon", "mp3player-block")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "oneHaash", "isDownloadIcon"),
               })
             }
+            Component={ToggleControl}
+            {...premiumProps}
           />
           <ToggleControl
             className="mt10"
             checked={isBackForIcon}
-            label={__("isBackForIcon", "mp3player-block")}
+            label={__("Show Backward & Forward Icon", "mp3player-block")}
             onChange={(v) =>
               setAttributes({
                 options: updateData(options, v, "oneHaash", "isBackForIcon"),

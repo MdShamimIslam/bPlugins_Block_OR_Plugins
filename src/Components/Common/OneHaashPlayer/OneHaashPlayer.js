@@ -30,7 +30,7 @@ const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
     const track = audioRef.current;
     setAudioTrack(track);
 
-    if (track) {
+    if (track && audioProperties[activeIndex]?.audio?.url) {
       track.src = audioProperties[activeIndex]?.audio?.url;
       track.load();
       track.playbackRate = playbackSpeed;
@@ -106,12 +106,14 @@ const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
   };
 
   const handlePlayPause = () => {
-    if (isPlaying) {
-      audioTrack?.pause();
-    } else {
-      audioTrack?.play();
+    if (audioProperties[activeIndex]?.audio?.url) {
+      if (isPlaying) {
+        audioTrack?.pause();
+      } else {
+        audioTrack?.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleSpeedClick = () => {
@@ -181,7 +183,6 @@ const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
           )}
         </div>
         <h3 className="episode-title">
-          {" "}
           {audioProperties[activeIndex]?.title}
         </h3>
         <div className="wave">

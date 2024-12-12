@@ -1,1 +1,299 @@
-#bplAdminHelpPage{width:100%}#bplAdminHelpPage .bplContainer{margin:-15px auto 0;max-width:100%;width:100%}#bplAdminHelpPage .bplContainer .dashboard-heading-container{background-color:#fff;margin:0 auto 20px;width:100%}#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading{align-items:center;display:flex;flex-shrink:unset;justify-content:space-between;margin:0 auto;padding-bottom:14px;padding-top:20px;width:1090px}#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading .heading{align-items:center;display:flex;gap:15px}#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading .heading .block-logo{display:block;height:50px;width:50px}#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading .heading .heading-title{color:#1f2937;font-size:1.875rem;font-weight:700;letter-spacing:-.015em;margin-top:18px}#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading .plugin-version{background-color:#e4e6eb;border-radius:5px;color:#6b7280;font-size:14px;font-weight:700;padding:4px 12px}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks{align-items:center;display:flex;justify-content:space-between;margin:20px auto;width:1090px}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks{display:flex;font-size:1rem}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks .links{border:none;color:#6b7280;margin-right:35px;outline:none;padding-bottom:20px;text-decoration:none}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks .links:hover{border-bottom:2px solid #1f2a38}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks .links.active{border-bottom:2px solid #1f2a38;color:#000}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks .links:focus{box-shadow:none}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv{padding-bottom:20px}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv .secondLinks{align-items:center;border:none;color:#6b7280;display:inline-flex;font-size:1rem;outline:none;text-decoration:none}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv .secondLinks svg{font-size:20px;margin-right:5px}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv .secondLinks:hover{color:#000}#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv .secondLinks:focus{box-shadow:none}#bplAdminHelpPage .bplContainer .feature-section{background-color:#fff;border-radius:.5rem;margin:40px auto;width:1090px}#bplAdminHelpPage .bplContainer .feature-section .feature-container{margin:0 auto;padding:20px 30px;width:100%}#bplAdminHelpPage .bplContainer .feature-section .feature-grid{margin:0 auto}#bplAdminHelpPage .bplContainer .feature-section .feature-content{padding-right:2rem}#bplAdminHelpPage .bplContainer .feature-section .feature-content .section-title{color:#4a5568;font-size:1rem;font-weight:600;line-height:1.75rem}#bplAdminHelpPage .bplContainer .feature-section .feature-content .section-heading{color:#1a202c;font-size:2.25rem;font-weight:700;line-height:2.5rem;margin-top:.5rem}#bplAdminHelpPage .bplContainer .feature-section .feature-content .section-description{color:#4a5568;font-size:1.125rem;line-height:2rem;margin-top:1rem}#bplAdminHelpPage .bplContainer .feature-section .feature-list{display:grid;gap:4rem;grid-template-columns:repeat(3,1fr);margin-top:3rem}#bplAdminHelpPage .bplContainer .feature-section .feature-list .feature-item .feature-name{color:#1a202c;font-size:18px;font-weight:600}#bplAdminHelpPage .bplContainer .feature-section .feature-list .feature-item .feature-description{margin-top:10px}#bplAdminHelpPage .bplContainer .feature-section .upgrade-btn-container{display:flex;justify-content:center;margin:50px auto}#bplAdminHelpPage .bplContainer .feature-section .upgrade-btn-container .upgrade-btn{font-size:20px;padding:6px 20px}#bplAdminHelpPage .bplContainer .changelog-container{margin:40px auto;width:1090px}#bplAdminHelpPage .bplContainer .changelog-container .latest-ver{background:#fff;border-radius:6px;padding:20px}#bplAdminHelpPage .bplContainer .block-settings-container,#bplAdminHelpPage .bplContainer .general-settings-container{background:#fff;margin:40px auto;width:1090px}#bplAdminHelpPage .bplContainer .block-settings-container p,#bplAdminHelpPage .bplContainer .general-settings-container p{font-size:16px;padding:20px}#bplAdminHelpPage .bplContainer .header{margin:20px auto;width:1090px}#bplAdminHelpPage .bplContainer .header .heading{color:#1d2327;font-size:26px;margin:0;padding:30px}#bplAdminHelpPage .bplContainer .box{background:#fff;border-radius:4px;box-shadow:0 3px 5px rgba(0,0,0,.04)}#bplAdminHelpPage .bplContainer .features{display:grid;width:1090px;grid-gap:30px 30px;margin:20px auto;padding:20px}#bplAdminHelpPage .bplContainer .features.col-3{grid-template-columns:1fr 1fr 1fr}@media(max-width:768px){#bplAdminHelpPage .bplContainer .features.col-tab-2{grid-template-columns:1fr 1fr}}@media(max-width:576px){#bplAdminHelpPage .bplContainer .features.col-mob-1{grid-template-columns:1fr}}#bplAdminHelpPage .bplContainer .features .feature{padding:20px;text-align:center}#bplAdminHelpPage .bplContainer .features .feature i{color:#4527a4;font-size:30px}#bplAdminHelpPage .bplContainer .features .feature h3{color:#1d2327;font-size:17px;margin:17px 0 10px}#bplAdminHelpPage .bplContainer .features .feature p{font-size:13px;font-weight:400;line-height:1.5;margin:0 0 13px}#wpcontent{padding-left:0!important}
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/admin/help.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+#bplAdminHelpPage {
+  width: 100%;
+}
+#bplAdminHelpPage .bplContainer {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: -15px;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container {
+  width: 100%;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading {
+  display: flex;
+  flex-shrink: unset;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 14px;
+  width: 1090px;
+  margin: 0 auto;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading .heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading .heading .block-logo {
+  width: 50px;
+  display: block;
+  height: 50px;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading .heading .heading-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #1f2937;
+  margin-top: 18px;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .dashboard-heading .plugin-version {
+  background-color: #e4e6eb;
+  padding: 4px 12px;
+  border-radius: 5px;
+  color: #6b7280;
+  font-weight: bold;
+  font-size: 14px;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks {
+  width: 1090px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks {
+  display: flex;
+  font-size: 1rem;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks .links {
+  margin-right: 35px;
+  padding-bottom: 20px;
+  text-decoration: none;
+  color: #6b7280;
+  border: none;
+  outline: none;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks .links:hover {
+  border-bottom: 2px solid #1f2a38;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks .links.active {
+  border-bottom: 2px solid #1f2a38;
+  color: black;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .firstLinks .links:focus {
+  box-shadow: none;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv {
+  padding-bottom: 20px;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv .secondLinks {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  outline: none;
+  border: none;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv .secondLinks svg {
+  margin-right: 5px;
+  font-size: 20px;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv .secondLinks:hover {
+  color: black;
+}
+#bplAdminHelpPage .bplContainer .dashboard-heading-container .navLinks .secondLinksDiv .secondLinks:focus {
+  box-shadow: none;
+}
+#bplAdminHelpPage .bplContainer .feature-section {
+  background-color: white;
+  border-radius: 0.5rem;
+  width: 1090px;
+  margin: 40px auto;
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-container {
+  margin: 0 auto;
+  padding: 20px 30px;
+  width: 100%;
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-grid {
+  margin: 0 auto;
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-content {
+  padding-right: 2rem;
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-content .section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  color: #4a5568;
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-content .section-heading {
+  margin-top: 0.5rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+  color: #1a202c;
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-content .section-description {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  line-height: 2rem;
+  color: #4a5568;
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-list {
+  margin-top: 3rem;
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-list .feature-item .feature-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+}
+#bplAdminHelpPage .bplContainer .feature-section .feature-list .feature-item .feature-description {
+  margin-top: 10px;
+}
+#bplAdminHelpPage .bplContainer .feature-section .upgrade-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+}
+#bplAdminHelpPage .bplContainer .feature-section .upgrade-btn-container .upgrade-btn {
+  padding: 6px 20px;
+  font-size: 20px;
+}
+#bplAdminHelpPage .bplContainer .changelog-container {
+  width: 1090px;
+  margin: 40px auto;
+}
+#bplAdminHelpPage .bplContainer .changelog-container .latest-ver {
+  background: white;
+  border-radius: 6px;
+  padding: 20px;
+}
+#bplAdminHelpPage .bplContainer .general-settings-container,
+#bplAdminHelpPage .bplContainer .block-settings-container {
+  width: 1090px;
+  margin: 40px auto;
+  background: white;
+}
+#bplAdminHelpPage .bplContainer .general-settings-container p,
+#bplAdminHelpPage .bplContainer .block-settings-container p {
+  font-size: 16px;
+  padding: 20px;
+}
+#bplAdminHelpPage .bplContainer .header {
+  width: 1090px;
+  margin: 20px auto;
+}
+#bplAdminHelpPage .bplContainer .header .heading {
+  color: #1d2327;
+  font-size: 26px;
+  margin: 0;
+  padding: 30px;
+}
+#bplAdminHelpPage .bplContainer .box {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+#bplAdminHelpPage .bplContainer .features {
+  width: 1090px;
+  display: grid;
+  grid-gap: 30px 30px;
+  margin: 20px auto;
+  padding: 20px;
+}
+#bplAdminHelpPage .bplContainer .features.col-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 768px) {
+  #bplAdminHelpPage .bplContainer .features.col-tab-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 576px) {
+  #bplAdminHelpPage .bplContainer .features.col-mob-1 {
+    grid-template-columns: 1fr;
+  }
+}
+#bplAdminHelpPage .bplContainer .features .feature {
+  text-align: center;
+  padding: 20px;
+}
+#bplAdminHelpPage .bplContainer .features .feature i {
+  font-size: 30px;
+  color: #4527a4;
+}
+#bplAdminHelpPage .bplContainer .features .feature h3 {
+  font-size: 17px;
+  color: #1d2327;
+  margin: 17px 0 10px 0;
+}
+#bplAdminHelpPage .bplContainer .features .feature p {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0 0 13px 0;
+}
+
+#wpcontent {
+  padding-left: 0px !important;
+}
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/admin/Parts/DemoTab.css ***!
+  \*********************************************************************************************************************************************************************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tab-container {
+  display: flex;
+  min-height: 500px;
+  margin: 10px auto;
+  border: 1px solid #ddd;
+  width: 1090px;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  background-color: #f5f5f5;
+  border-right: 2px solid #ffa500;
+}
+
+.tab {
+  padding: 15px 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.tab:hover {
+  background-color: #e0e0e0;
+}
+
+.tab.active {
+  background-color: #fff;
+  border-right: 2px solid purple;
+  margin-right: -2px;
+  font-weight: bold;
+}
+
+.tab-content {
+  flex-grow: 1;
+  padding: 20px;
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+
+/*# sourceMappingURL=admin-help.css.map*/

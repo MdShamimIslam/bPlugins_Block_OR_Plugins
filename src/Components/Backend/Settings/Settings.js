@@ -14,9 +14,8 @@ const Settings = ({
   setAttributes,
   activeIndex,
   setActiveIndex,
-  device
+  device,
 }) => {
-  
   const [isProModalOpen, setIsProModalOpen] = useState(false);
   const { isPremium } = usePremiumInEditor("bpmpUtils", "bpmpPremiumChecker");
 
@@ -24,7 +23,6 @@ const Settings = ({
     isPremium,
     setIsProModalOpen,
   };
-
 
   return (
     <>
@@ -69,17 +67,80 @@ const Settings = ({
       <AboutProModal
         isProModalOpen={isProModalOpen}
         setIsProModalOpen={setIsProModalOpen}
-        link="https://bplugins.com/products/advance-custom-html/#pricing"
+        link="https://bplugins.com/products/audio-player-block/#pricing"
       >
         <li>
-          &emsp;
           <strong>
-            {__("Set Audio Player Padding : ", "mp3player-block")}
+            {__(
+              "Customize Your Audio Player with 5 Different Themes: ",
+              "mp3player-block"
+            )}
           </strong>
           {__(
-            "By adding this feature you can customize padding of the player.",
+            "Add 5 new themes with different looks and settings.",
             "mp3player-block"
           )}
+        </li>
+
+        <li>
+          <strong>
+            {__("Include some incredible options: ", "mp3player-block")}
+          </strong>
+          {__(
+            "Add feature of each themes like autoplay, social link, range thumb and a lot of things.",
+            "mp3player-block"
+          )}
+        </li>
+
+        <li>
+          <strong>
+            {__("Show/Hide all the options: ", "mp3player-block")}
+          </strong>
+          {__("Can show/hide all the options indivisually.", "mp3player-block")}
+        </li>
+
+        <li>
+          <strong>{__("Added some animation: ", "mp3player-block")}</strong>
+          {__(
+            "On card theme we have added some awesome animation and you can also customize these animation on your own.",
+            "mp3player-block"
+          )}
+        </li>
+
+        <li>
+          <strong>
+            {__("Set position of music controller: ", "mp3player-block")}
+          </strong>
+          {__(
+            "Set position of controller dynamically like (left, center, right).",
+            "mp3player-block"
+          )}
+        </li>
+
+        <li>
+          <strong>
+            {__(
+              "Edit all the stuff that include on themes: ",
+              "mp3player-block"
+            )}
+          </strong>
+          {__(
+            "You can edit and customize all the stuff that include on all themes dynamically.",
+            "mp3player-block"
+          )}
+        </li>
+        <li>
+          <strong>{__("Style themes dynimacally: ", "mp3player-block")}</strong>
+          {__(
+            "Style themes like shadow, background, padding, icon size, border etc.",
+            "mp3player-block"
+          )}
+        </li>
+        <li>
+          <strong>
+            {__("Add Shortcode Functionality: ", "mp3player-block")}
+          </strong>
+          {__("Add this block anywhere with shortcode.", "mp3player-block")}
         </li>
       </AboutProModal>
     </>

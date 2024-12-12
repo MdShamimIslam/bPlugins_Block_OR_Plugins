@@ -1,10 +1,12 @@
 import React from 'react';
 import Layout from '../Layout/Layout';
 import { proFeatures } from '../../utils/options';
+import DemoTab from '../Parts/DemoTab';
 
 const Dashboard = () => {
   return (
     <Layout>
+      <DemoTab/>
       <div className="feature-section">
         <div className="feature-container">
           <div className="feature-grid">
@@ -26,7 +28,7 @@ const Dashboard = () => {
               </div>
 
               <div className="upgrade-btn-container">
-                <a href="https://bplugins.com/plugins/advance-custom-html/upgrade-to-pro" target="_blank" rel="noopener noreferrer" className="button button-primary upgrade-btn">Upgrade to Pro</a>
+                <a href="https://bplugins.com/products/audio-player-block/#pricing" target="_blank" rel="noopener noreferrer" className="button button-primary upgrade-btn">Upgrade to Pro</a>
               </div>
             </div>
           </div>

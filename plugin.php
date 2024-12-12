@@ -31,7 +31,6 @@ if ( function_exists( 'bpmp_fs' ) ) {
 	define('BPMP_HAS_FREE', 'audio-player-block/plugin.php' === plugin_basename(__FILE__));
 	define('BPMP_HAS_PRO', 'audio-player-block-pro/plugin.php' === plugin_basename(__FILE__));
 
-
 	if ( ! function_exists( 'bpmp_fs' ) ) {
 		function bpmp_fs() {
 			global $bpmp_fs;
@@ -58,8 +57,8 @@ if ( function_exists( 'bpmp_fs' ) ) {
 					'has_addons'          => false,
 					'has_paid_plans'      => true,
 					'trial'               => array(
-						'days'               => 7,
-						'is_require_payment' => true,
+						'days'            => 7,
+					'is_require_payment'  => true,
 					),
 					'menu'                => array(
 						'slug'           => BPMP_HAS_FREE ? 'edit.php?post_type=audio_player_block&page=bpmp_demo_page' : 'edit.php?post_type=audio_player_block',

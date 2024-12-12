@@ -298,7 +298,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
             {rangeSl === "input" ? (
               <>
                 <ColorControl
-                  label={__("Static Background", "mp3player-block")}
+                  label={__("Static Color", "mp3player-block")}
                   value={bg}
                   onChange={(v) =>
                     setAttributes({
@@ -307,7 +307,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   }
                 />
                 <ColorControl
-                  label={__("Progress Background", "mp3player-block")}
+                  label={__("Progress Color", "mp3player-block")}
                   value={progressBg}
                   onChange={(v) =>
                     setAttributes({

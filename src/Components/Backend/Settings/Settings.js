@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { InspectorControls } from "@wordpress/block-editor";
 import { TabPanel } from "@wordpress/components";
 import { generalStyleTabs } from "../../../utils/options";
@@ -7,7 +7,6 @@ import { AboutProModal } from "../../../../../bpl-tools/ProControls";
 import General from "./General/General";
 import Styles from "./Style/Styles";
 import { __ } from "@wordpress/i18n";
-import { usePremiumInEditor } from "../../../../../bpl-tools/hooks";
 
 const Settings = ({
   attributes,
@@ -15,14 +14,10 @@ const Settings = ({
   activeIndex,
   setActiveIndex,
   device,
+  premiumProps,
+  isProModalOpen,
+  setIsProModalOpen,
 }) => {
-  const [isProModalOpen, setIsProModalOpen] = useState(false);
-  const { isPremium } = usePremiumInEditor("bpmpUtils", "bpmpPremiumChecker");
-
-  const premiumProps = {
-    isPremium,
-    setIsProModalOpen,
-  };
 
   return (
     <>

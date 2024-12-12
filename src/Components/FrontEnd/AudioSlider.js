@@ -4,7 +4,6 @@ import MusicPlayerBack from "../Backend/MusicPlayerBack/MusicPlayerBack";
 
 const AudioSlider = ({ attributes }) => {
   const { audioProperties } = attributes;
-
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);

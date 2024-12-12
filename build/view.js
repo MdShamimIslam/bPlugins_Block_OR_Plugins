@@ -1089,15 +1089,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const OneHaashPlayer = ({
-  attributes,
-  activeIndex,
-  setActiveIndex
+  attributes
 }) => {
   const {
     options,
     style,
     audioProperties
   } = attributes;
+  const [activeIndex, setActiveIndex] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
   const {
     isBackForIcon,
     isPrevNextIcon,

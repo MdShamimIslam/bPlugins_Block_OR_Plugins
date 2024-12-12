@@ -89,27 +89,25 @@ const General = ({ attributes, setAttributes, setActiveIndex, device, premiumPro
           B Blocks
         </a>
       </div>
-
       <HelpPanel slug="audio-player-block" />
-
       <PanelBody
         className="bPlPanelBody addRemoveItems"
         title={__("Add or Remove Audios", "mp3player-block")}
       >
         <SelectControlPro
-            label={__("Select Theme", "mp3player-block")}
-            labelPosition="left"
-            value={songSl}
-            options={songSlOptions}
-            onChange={(v) =>
-              setAttributes({ 
-                options: updateData(options, v, "songSl")
-              })
-            }
-            Component={SelectControl}
-            {...premiumProps}
-            proValues={["lite","wooden","card","oneHaash"]}
-          />
+          label={__("Select Theme", "mp3player-block")}
+          labelPosition="left"
+          value={songSl}
+          options={songSlOptions}
+          onChange={(v) =>
+            setAttributes({
+              options: updateData(options, v, "songSl")
+            })
+          }
+          Component={SelectControl}
+          {...premiumProps}
+          proValues={["lite", "wooden", "card", "oneHaash"]}
+        />
 
         {audioProperties.map((item, index) => {
           const { title, artist, cover, audio } = item;
@@ -129,13 +127,13 @@ const General = ({ attributes, setAttributes, setActiveIndex, device, premiumPro
               </PanelRow>
 
               {
-                songSl !== "wooden" && songSl !== "lite" &&    <PanelRow>
-                <Label className="">{__("Artist:", "mp3player-block")}</Label>
-                <TextControl
-                  value={artist}
-                  onChange={(val) => updateAudioProperty(index, "artist", val)}
-                />
-              </PanelRow>
+                songSl !== "wooden" && songSl !== "lite" && <PanelRow>
+                  <Label className="">{__("Artist:", "mp3player-block")}</Label>
+                  <TextControl
+                    value={artist}
+                    onChange={(val) => updateAudioProperty(index, "artist", val)}
+                  />
+                </PanelRow>
               }
 
               <Label>{__("Audio File:", "mp3player-block")}</Label>
@@ -148,7 +146,7 @@ const General = ({ attributes, setAttributes, setActiveIndex, device, premiumPro
                 placeholder={__("Enter Audio URL", "mp3player-block")}
               />
 
-              {songSl !== "oneHaash" && songSl !== "wooden" && songSl !== "lite"   && (
+              {songSl !== "oneHaash" && songSl !== "wooden" && songSl !== "lite" && (
                 <>
                   <Label>{__("Cover Photo:", "mp3player-block")}</Label>
                   <InlineDetailMediaUpload

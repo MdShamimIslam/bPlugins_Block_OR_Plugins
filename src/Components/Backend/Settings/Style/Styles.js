@@ -243,7 +243,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   }
                   defaults={{ fontSize: 30 }}
                   Component={Typography}
-              {...premiumProps}
+                  {...premiumProps}
                 />
               </>
             ) : (
@@ -271,7 +271,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   max={1}
                   step={0.1}
                   Component={RangeControl}
-              {...premiumProps}
+                  {...premiumProps}
                 />
                 <BControlPro
                   label={__("Typography", "mp3player-block")}
@@ -283,7 +283,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   }
                   defaults={{ fontSize: 20 }}
                   Component={Typography}
-              {...premiumProps}
+                  {...premiumProps}
                 />
               </>
             )}
@@ -381,7 +381,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                     })
                   }
                   Component={BoxControl}
-              {...premiumProps}
+                  {...premiumProps}
                 />
 
                 <BControlPro
@@ -396,7 +396,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   min={0}
                   max={20}
                   Component={BorderControl}
-              {...premiumProps}
+                  {...premiumProps}
                 />
               </>
             ) : (
@@ -440,7 +440,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                     })
                   }
                   Component={ShadowControl}
-              {...premiumProps}
+                  {...premiumProps}
                 />
 
                 <BControlPro
@@ -453,7 +453,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   }
                   defaults={{ radius: "50%" }}
                   Component={BorderControl}
-              {...premiumProps}
+                  {...premiumProps}
                 />
               </>
             )}
@@ -622,7 +622,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   }
                   defaults={{ fontSize: 30 }}
                   Component={Typography}
-              {...premiumProps}
+                  {...premiumProps}
                 />
               </>
             ) : (
@@ -662,7 +662,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   max={1}
                   step={0.1}
                   Component={RangeControl}
-              {...premiumProps}
+                  {...premiumProps}
                 />
                 <BControlPro
                   label={__("Typography", "mp3player-block")}
@@ -680,7 +680,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   }
                   defaults={{ fontSize: 20 }}
                   Component={Typography}
-              {...premiumProps}
+                  {...premiumProps}
                 />
               </>
             )}
@@ -941,7 +941,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   }
                   defaults={{ fontSize: 30 }}
                   Component={Typography}
-              {...premiumProps}
+                  {...premiumProps}
                 />
               </>
             ) : (
@@ -981,7 +981,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   max={1}
                   step={0.1}
                   Component={RangeControl}
-              {...premiumProps}
+                  {...premiumProps}
                 />
                 <BControlPro
                   label={__("Typography", "mp3player-block")}
@@ -999,7 +999,7 @@ const Styles = ({ attributes, setAttributes, device, premiumProps }) => {
                   }
                   defaults={{ fontSize: 20 }}
                   Component={Typography}
-              {...premiumProps}
+                  {...premiumProps}
                 />
               </>
             )}

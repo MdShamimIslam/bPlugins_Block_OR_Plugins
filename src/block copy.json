@@ -1,0 +1,284 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bpmp/mp3-player",
+	"title": "Audio Player",
+	"description": "Listen music on the web.",
+	"category": "widgets",
+	"keywords": [
+		"music player",
+		"audio player",
+		"mp3 player block"
+	],
+	"textdomain": "mp3player-block",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": ""
+		},
+		"audioProperties": {
+			"type": "array",
+			"default": [
+				{
+					"title": "Green Chair",
+					"artist": "Diego Nava",
+					"cover": {
+						"id": null,
+						"url": "",
+						"alt": "",
+						"title": "",
+						"link": ""
+					},
+					"audio": {
+						"id": null,
+						"url": "",
+						"title": ""
+					},
+					"link": ""
+				}
+			]
+		},
+		"options": {
+			"type": "object",
+			"default": {
+				"theme": "default",
+				"isOverlaySocial": false,
+				"isLinkNewTab": false,
+				"isAutoPlay": false
+			}
+		},
+		"elements": {
+			"type": "object",
+			"default": {
+				"thumb": false,
+				"navigation": true,
+				"backword": true,
+				"forward": true,
+				"currentTime": true,
+				"totalTime": true,
+				"playbackSpeed": false,
+				"download": false
+			}
+		},
+		"style": {
+			"type": "object",
+			"default": {
+				"height": {
+					"desktop": "",
+					"tablet": "",
+					"mobile": ""
+				},
+				"background": {},
+				"padding": {
+					"desktop": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"tablet": {
+						"top": "",
+						"left": "",
+						"right": "",
+						"bottom": ""
+					},
+					"mobile": {
+						"top": "",
+						"left": "",
+						"right": "",
+						"bottom": ""
+					}
+				},
+				"border": {
+					"width": "",
+					"style": "",
+					"color": ""
+				},
+				"radius": "",
+				"shadow": [],
+				"title": {
+					"typo": {
+						"fontSize": {
+							"desktop": "22px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"colors": {}
+				},
+				"artist": {
+					"typo": {
+						"fontSize": {
+							"desktop": "18px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"opacity": 0.6,
+					"colors": {}
+				},
+				"thumbnail": {
+					"width": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					},
+					"sliderHeight": {
+						"desktop": "",
+						"tablet": "",
+						"mobile": ""
+					},
+					"border": {
+						"width": "",
+						"style": "",
+						"color": ""
+					},
+					"radius": "3px"
+				},
+				"range": {
+					"input": {
+						"width": {
+							"desktop": "400px",
+							"tablet": "380px",
+							"mobile": "160px"
+						},
+						"height": {
+							"desktop": "7px",
+							"tablet": "6px",
+							"mobile": "6px"
+						},
+						"margin": {
+							"desktop": {
+								"top": "15px"
+							},
+							"tablet": {
+								"top": "10px"
+							},
+							"mobile": {
+								"top": "7px"
+							}
+						},
+						"radius": 4,
+						"color": "#FFFFFF5E",
+						"progressColor": "#EE714B"
+					},
+					"thumb": {
+						"width": {
+							"desktop": "16px",
+							"tablet": "15px",
+							"mobile": "14px"
+						},
+						"color": "#EE714B",
+						"shadow": [],
+						"outline": {
+							"width": "4px",
+							"style": "solid",
+							"color": "white"
+						},
+						"radius": "50%"
+					}
+				},
+				"controls": {
+					"size": "20px",
+					"playPauseSize": "20px",
+					"colors": {},
+					"hovColors": {},
+					"padding": {
+						"top": "",
+						"right": "",
+						"bottom": "",
+						"left": ""
+					},
+					"border": {},
+					"hovBorder": {}
+				},
+				"time": {
+					"typo": {
+						"fontSize": {
+							"desktop": "22px",
+							"tablet": "",
+							"mobile": ""
+						}
+					},
+					"colors": {},
+					"border": {
+						"width": "0px",
+						"style": "solid",
+						"color": "#fff"
+					},
+					"radius": "50%"
+				},
+				"playlist": {
+					"colors": {
+						"bg": "#FFFFFF",
+						"color": "#1C0568"
+					},
+					"border": {},
+					"radius": "5px"
+				},
+				"oneHaashTheme": {
+					"waveColor": "#4527a4"
+				},
+				"cardTheme": {
+					"waveTop": {
+						"desktop": -130,
+						"tablet": -130,
+						"mobile": -160
+					},
+					"wave2Top": {
+						"desktop": 10,
+						"tablet": 10,
+						"mobile": 0
+					},
+					"wave3Top": {
+						"desktop": 10,
+						"tablet": 10,
+						"mobile": 0
+					}
+				}
+			}
+		},
+		"width": {
+			"type": "string",
+			"default": "290px"
+		},
+		"widthTab": {
+			"type": "string",
+			"default": ""
+		},
+		"widthMob": {
+			"type": "string",
+			"default": ""
+		},
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"alignmentTab": {
+			"type": "string",
+			"default": "center"
+		},
+		"alignmentMob": {
+			"type": "string",
+			"default": "center"
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": [
+		"file:./index.js",
+		"wp-api"
+	],
+	"editorStyle": "file:./index.css",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

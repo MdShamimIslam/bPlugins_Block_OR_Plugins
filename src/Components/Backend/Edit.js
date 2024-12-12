@@ -7,20 +7,28 @@ import MP3Player from "../Common/MP3Player";
 import Style from "../Common/Style";
 import Setting from "./Settings/Setting";
 import Settings from "./Settings/Settings";
-import OneHaashPlayer from "../Common/OneHaashPlayer/OneHaashPlayer";
-import OneHaashStyle from "../Common/OneHaashPlayer/OneHaashStyle";
 import AudioCard from "../Common/AudioPlayCard/AudioCard";
 import Wooden from "../Common/Wooden/Wooden";
 import SliderAudio from "../Common/SliderAudio/SliderAudio";
 import LiteAudioPlayer from "../Common/LitePlayer/LiteAudioPlayer";
+import { usePremiumInEditor } from '../../../../bpl-tools/hooks';
+import OneHaash from '../Common/OneHaashPlayer/OneHaash';
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device } = props;
   const { audioProperties, options } = attributes;
   const [activeIndex, setActiveIndex] = useState(0);
-  const { songSl= 'default' } = options;
+  const { songSl = 'default' } = options;
   const id = `bpMp3Player-${clientId}`;
   const blockRef = useRef(null);
+  const [isProModalOpen, setIsProModalOpen] = useState(false);
+  const { isPremium } = usePremiumInEditor("bpmpUtils", "bpmpPremiumChecker");
+  console.log("isPremium:", isPremium);
+
+  const premiumProps = {
+    isPremium: true,
+    setIsProModalOpen,
+  };
 
   useEffect(() => {
     if (songSl === "default" && audioProperties?.length) {
@@ -40,6 +48,9 @@ const Edit = (props) => {
             device,
             activeIndex,
             setActiveIndex,
+            premiumProps,
+            isProModalOpen,
+            setIsProModalOpen
           }}
         />
       )}
@@ -96,37 +107,31 @@ const Edit = (props) => {
             id={`block-${clientId}`}
           />
         ) : songSl === "oneHaash" ? (
-          <>
-            <OneHaashStyle
-              attributes={attributes}
-              id={`block-${clientId}`}
-              device={device}
-            />
-            <OneHaashPlayer
-              attributes={attributes}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-            />
-          </>
+          <OneHaash
+            attributes={attributes}
+            device={device}
+            id={`block-${clientId}`}
+          />
+
         ) : songSl === "wooden" ? (
           <>
             <Wooden
               attributes={attributes}
-              id={`block-${clientId}`}
               device={device}
+              id={`block-${clientId}`}
             />
           </>
         ) : songSl === "card" ? (
           <AudioCard
             attributes={attributes}
-            id={`block-${clientId}`}
             device={device}
+            id={`block-${clientId}`}
           />
         ) : songSl === "lite" ? (
           <LiteAudioPlayer
             attributes={attributes}
-            id={`block-${clientId}`}
             device={device}
+            id={`block-${clientId}`}
           />
         ) : (
           "No Player Added Yet!"

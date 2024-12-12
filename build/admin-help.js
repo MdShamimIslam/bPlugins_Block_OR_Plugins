@@ -465,22 +465,22 @@ const DemoTab = () => {
   }, "OneHaash")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "tab1",
     className: `tab-content ${activeTab === "tab1" ? "active" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Tab 1 content")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Default Player")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "tab2",
     className: `tab-content ${activeTab === "tab2" ? "active" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Tab 2 content")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Slider Player")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "tab3",
     className: `tab-content ${activeTab === "tab3" ? "active" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Tab 3 content")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Lite Player")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "tab4",
     className: `tab-content ${activeTab === "tab4" ? "active" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Tab 4 content")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Wooden Player")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "tab5",
     className: `tab-content ${activeTab === "tab5" ? "active" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Tab 5 content")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Card Player")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "tab6",
     className: `tab-content ${activeTab === "tab6" ? "active" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Tab 6 content")));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "OneHaash Player")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DemoTab);
 

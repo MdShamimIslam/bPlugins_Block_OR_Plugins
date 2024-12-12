@@ -7,8 +7,9 @@ import {
   mdSkipPrevious,
 } from "../../../utils/icons";
 
-const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
+const OneHaashPlayer = ({ attributes }) => {
   const { options, style, audioProperties } = attributes;
+  const [activeIndex, setActiveIndex] = useState(0);
   const {
     isBackForIcon,
     isPrevNextIcon,
@@ -17,7 +18,7 @@ const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
     isPlaySpeed,
     isDownloadIcon,
   } = options.oneHaash;
-  const { waveBg,haashInputRange } = style.oneHaashPlayer;
+  const { waveBg, haashInputRange } = style.oneHaashPlayer;
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioTrack, setAudioTrack] = useState(null);
   const audioRef = useRef(null);
@@ -52,8 +53,8 @@ const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
 
     return () => {
       if (track) {
-        track.removeEventListener("loadedmetadata", () => {});
-        track.removeEventListener("timeupdate", () => {});
+        track.removeEventListener("loadedmetadata", () => { });
+        track.removeEventListener("timeupdate", () => { });
       }
     };
   }, [
@@ -156,10 +157,10 @@ const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
 
   const playedPercentage = (currentTime / duration) * 100;
 
-  
+
   const progressStyle = {
     background: `linear-gradient(to right, ${haashInputRange.progressColor} ${playedPercentage}%, ${haashInputRange.staticColor} ${playedPercentage}%)`,
-};
+  };
 
   return (
     <div id="v-player">
@@ -212,7 +213,7 @@ const OneHaashPlayer = ({ attributes, activeIndex, setActiveIndex }) => {
             />
           </svg>
         </div>
-        <div id="controls"  style={!isBackForIcon ? { marginTop: "17px", marginBottom:"17px" } : {}}>
+        <div id="controls" style={!isBackForIcon ? { marginTop: "17px", marginBottom: "17px" } : {}}>
           <div className="first-part control1">
             {isPrevNextIcon && (
               <div

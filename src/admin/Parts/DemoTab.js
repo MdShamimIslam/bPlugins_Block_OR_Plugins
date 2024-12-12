@@ -11,8 +11,8 @@ const DemoTab = () => {
   return (
     <div className="tab-container">
       <div className="tabs">
-        <h2 style={{textAlign:"center", fontWeight:"bold"}}>Themes</h2>
-        <div style={{ borderBottom:"2px solid purple"}}></div>
+        <h2 style={{ textAlign: "center", fontWeight: "bold" }}>Themes</h2>
+        <div style={{ borderBottom: "2px solid purple" }}></div>
         <button
           className={`tab ${activeTab === "tab1" ? "active" : ""}`}
           onClick={() => handleTabClick("tab1")}
@@ -56,37 +56,37 @@ const DemoTab = () => {
         id="tab1"
         className={`tab-content ${activeTab === "tab1" ? "active" : ""}`}
       >
-        <h2>Tab 1 content</h2>
+        <h2>Default Player</h2>
       </div>
       <div
         id="tab2"
         className={`tab-content ${activeTab === "tab2" ? "active" : ""}`}
       >
-        <h2>Tab 2 content</h2>
+        <h2>Slider Player</h2>
       </div>
       <div
         id="tab3"
         className={`tab-content ${activeTab === "tab3" ? "active" : ""}`}
       >
-        <h2>Tab 3 content</h2>
+        <h2>Lite Player</h2>
       </div>
       <div
         id="tab4"
         className={`tab-content ${activeTab === "tab4" ? "active" : ""}`}
       >
-        <h2>Tab 4 content</h2>
+        <h2>Wooden Player</h2>
       </div>
       <div
         id="tab5"
         className={`tab-content ${activeTab === "tab5" ? "active" : ""}`}
       >
-        <h2>Tab 5 content</h2>
+        <h2>Card Player</h2>
       </div>
       <div
         id="tab6"
         className={`tab-content ${activeTab === "tab6" ? "active" : ""}`}
       >
-        <h2>Tab 6 content</h2>
+        <h2>OneHaash Player</h2>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@
 .tab-container {
   display: flex;
   min-height: 500px;
-  margin: 10px auto;
+  margin: 40px auto;
   border: 1px solid #ddd;
   width: 1090px;
 }
@@ -48,5 +48,8 @@
 }
 
 .tab-content.active {
-  display: block;
+  /* display: block; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
